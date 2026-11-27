@@ -92,7 +92,7 @@ None. Zero non-conformities were found. The baseline `E01-C3` failure in Section
 ## 7. Closure Verification (`A04 (v1.2.0) §5.2.3`, `§5.1.7`)
 
 * **Gate Verdict:** `Pass`. The items in Section 1 are released as listed.
-* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues. The `press-export` check converted the committed sample to a `210.0 × 297.0 mm` trim with `3.0 mm` Bleed, `FOGRA39`, and a highest total ink of `250%`.
+* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues. Continuous integration (`CI`) run `46079411485` measured commit `020b6d0`, which holds every gated change, and passed. The `press-export` check converted the committed sample to a `210.0 × 297.0 mm` trim with `3.0 mm` Bleed, `FOGRA39`, and a highest total ink of `250%`.
 * **Follow-Up:** The header and footer (`TPL-E01-01`, `TPL-E01-04`) and the letterheads (`TPL-E04-01`, `TPL-E04-03`) remain static `PDF` pairs. The Approver plans to move them to `HTML` masters on the pattern set here.
 * **Approver Sign-Off:** The Approver confirmed the proposal on `2026-11-27`. Merging the release pull request records sign-off and puts the release into effect.
 * **Approver:** Hary Irfantri

@@ -1,23 +1,4 @@
 {
   "$comment": "Findings deferred on purpose. Each entry needs the finding id from check-report.json, a reason, a reference (REC record, waiver or pull request) and a review_by date. CI fails on any finding not listed here.",
-  "issues": [
-    {
-      "id": "pdf-preflight.cmyk-off-palette:TPL-E01-01",
-      "reason": "Pre-existing: print templates use CMYK builds for neutral and semantic colours that B02 §5.1.1 does not define (B02 gives CMYK only for the four brand colours). Needs an Approver decision: add CMYK builds for those colours to B02, or remove them from print templates.",
-      "reference": "REC-A04-009 U-01. Approver approved adding CMYK builds for neutral and status colours to B02 on 2026-11-27; this entry is removed when that B02 release lands.",
-      "review_by": "2026-12-11"
-    },
-    {
-      "id": "pdf-preflight.cmyk-off-palette:TPL-E01-02",
-      "reason": "Pre-existing: print templates use CMYK builds for neutral and semantic colours that B02 §5.1.1 does not define (B02 gives CMYK only for the four brand colours). Needs an Approver decision: add CMYK builds for those colours to B02, or remove them from print templates.",
-      "reference": "REC-A04-009 U-01. Approver approved adding CMYK builds for neutral and status colours to B02 on 2026-11-27; this entry is removed when that B02 release lands.",
-      "review_by": "2026-12-11"
-    },
-    {
-      "id": "pdf-preflight.cmyk-off-palette:TPL-E04-01",
-      "reason": "Pre-existing: print templates use CMYK builds for neutral and semantic colours that B02 §5.1.1 does not define (B02 gives CMYK only for the four brand colours). Needs an Approver decision: add CMYK builds for those colours to B02, or remove them from print templates.",
-      "reference": "REC-A04-009 U-01. Approver approved adding CMYK builds for neutral and status colours to B02 on 2026-11-27; this entry is removed when that B02 release lands.",
-      "review_by": "2026-12-11"
-    }
-  ]
+  "issues": []
 }

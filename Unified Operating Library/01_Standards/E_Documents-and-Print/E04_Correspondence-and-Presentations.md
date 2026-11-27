@@ -3,9 +3,9 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `E04` |
-| **Version** | `v2.1.1` |
+| **Version** | `v2.2.0` |
 | **Status** | `Approved` |
-| **Effective Date** | `2026-11-26` |
+| **Effective Date** | `2026-11-27` |
 | **Next Review** | `2027-05-26` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
@@ -49,6 +49,7 @@ The following documents are referenced in this standard. For undated references,
 * `C01` — Voice, Tone & Plain Language.
 * `C02` — Terminology & Controlled Vocabulary.
 * `C04` — Data, Dates & Citation Formatting.
+* `D01` — Design Tokens & Architecture.
 * `E01` — Formal Document Layout.
 * `E02` — Versioning & Draft Marking.
 * `E03` — Print & Production Specifications.
@@ -86,6 +87,14 @@ For terms shared across the library, refer to `Library-Index.md`, `C02`, `A02`, 
 **5.2.4** Slide layouts SHOULD follow the `75%` neutral, `20%` blue/navy, and `5%` **Signal Red** (`#DE0029`) balance (`B02 §5.4.1`). External presentations SHALL NOT display internal project codenames (`A03 §5.4.2`, `C02 §5.3.3`).
 
 **5.2.5** Non-Approved presentation decks distributed externally for review SHALL display their controlled `C02 §5.4.1` status and version on the cover slide (`E02 §5.1.1`, `§5.2.1`).
+
+**5.2.6** Slide decks on the `1920 px × 1080 px` canvas (`5.2.1`) SHALL apply the type scale below, published as `AST-D01-01` tokens (`D01`). At `96 px` per inch, `16 pt` equals `21.33 px`, so `24 px` is the smallest size on the `4 px` Base Unit that meets the `5.2.3` minimum. No slide text SHALL be set below `24 px`.
+
+| Slide Role | Typeface | Size | Weight | Line Height | Token |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Slide title | Display Typeface (Noto Sans Display) | `64 px` | `800` | `1.2` | `primitive.font.size.slide-title` |
+| Slide heading | Display Typeface (Noto Sans Display) | `40 px` | `700` | `1.2` | `primitive.font.size.slide-heading` |
+| Slide body and captions | Text Typeface (Noto Sans) | `24 px` | `400` | `1.5` | `primitive.font.size.slide-body` |
 
 ### 5.3 Corporate Email Signatures
 **5.3.1** Corporate email signatures SHALL use `HTML` or plain text with system sans-serif fallback fonts (`B03 §5.1.4`) and SHALL NOT replace the full signature with a raster image (`B01 §5.1.2`).
@@ -128,7 +137,7 @@ A letterhead, memorandum, presentation deck, operational workbook, email signatu
 | Check ID | Verification Criterion | Method |
 | :--- | :--- | :--- |
 | `E04-C1` | Letterheads and memoranda use A4 / `4 mm` geometry (`5.1.1`), `B01` lockup within `16 mm` Safe Margins (`5.1.2`), required `A03`/`ISO` 8601 attribution (`5.1.3`), formal `en-US` copy without contractions or parent-entity binding (`5.1.4`), `120 g/m²` archival stock when printed (`5.1.5`), and `E01 §5.4` digital `PDF` rules when distributed electronically (`5.1.6`). | Correspondence & channel audit |
-| `E04-C2` | Slide decks use `16:9` (`1920 px × 1080 px`) aligned to `4 px` (`5.2.1`), display `B01`/`A03` cover and closing attribution (`5.2.2`), use the `B03` Display Typeface and `16 pt` minimum Text Typeface meeting `WCAG` 2.2 Level AA contrast (`5.2.3`), omit external codenames (`5.2.4`), and mark non-Approved review decks (`5.2.5`). | Slide master & deck audit |
+| `E04-C2` | Slide decks use `16:9` (`1920 px × 1080 px`) aligned to `4 px` (`5.2.1`), display `B01`/`A03` cover and closing attribution (`5.2.2`), use the `B03` Display Typeface and `16 pt` minimum Text Typeface meeting `WCAG` 2.2 Level AA contrast (`5.2.3`), omit external codenames (`5.2.4`), mark non-Approved review decks (`5.2.5`), and apply the `64 px` / `40 px` / `24 px` slide type scale with no slide text below `24 px` (`5.2.6`). | Slide master & deck audit |
 | `E04-C3` | Corporate email signatures use `HTML` or plain text with sans-serif fallbacks without full-signature raster images (`5.3.1`), follow the mandatory ordered block (`5.3.2`), use an `AST-B01`-derived Primary Master Lockup or Primary Symbol `PNG` without embedding the Parent-Endorsed Lockup (`5.3.3`), and omit unused lines, unofficial abbreviations, personal numbers, quotes, hype, altered endorsements, or unauthorized badges (`5.3.4`). | Email client & copy check |
 | `E04-C4` | Shared correspondence and slide templates are registered as `TPL-E04` in `Library-Index.md` and Section 7 pinned to `E04 (vMAJOR.MINOR)` (`5.4.1`), and company descriptions reproduce approved `C01 §5.5.1` boilerplates verbatim (`5.4.2`). | Template & boilerplate audit |
 | `E04-C5` | Operational workbooks include a leading `Overview` tab with required metadata and `A03` attribution (`5.5.1`), apply `B03` typography, frozen headers, and `WCAG` 2.2 Level AA `B02` styling (`5.5.2`), enforce `C04` units, `YYYY-MM-DD` dates, non-blank cells, and `C02` status styling (`5.5.3`), and register shared workbook templates as `TPL-E04` (`5.5.4`). | Workbook & template audit |
@@ -139,14 +148,15 @@ Exceptions to any requirement in this standard require a formal, time-boxed waiv
 
 | Code | Artifact | File | Pinned Version | Status | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `TPL-E04-01` | Official Letterhead Template (Print) | `03_Templates/TPL-E04-01_Official-Letterhead-Print.pdf` | `E04 (v2.0)` | `Approved` | Press-ready A4 official letterhead (`E03` `PDF/X-4`, `FOGRA39` / `ISO` Coated v2 `CMYK`, `2 mm` full-bleed top `24%` / `76%` split accent bar with `3 mm` bleed and `3 mm`-offset `100%` K crop marks, `20 mm` L/R and `16 mm` T/B Safe Margins, rule-free header with `72 mm` curve-outlined `AST-B01-03` lockup and `ISO` 8601 Date/Reference block, rule-free stationery footer with `A03` attribution, embedded `B03 (v2.0.0)` Noto fonts; print on `≥ 120 g/m²` archival stock; Approved `2026-11-26`) |
+| `TPL-E04-01` | Official Letterhead Template (Print) | `03_Templates/TPL-E04-01_Official-Letterhead-Print.pdf` | `E04 (v2.0)` | `Approved` | Press-ready A4 official letterhead (`E03` `PDF/X-4`, `FOGRA39` / `ISO` Coated v2 `CMYK`, `2 mm` full-bleed top `24%` / `76%` split accent bar with `3 mm` bleed and `3 mm`-offset `100%` K crop marks, `20 mm` L/R and `16 mm` T/B Safe Margins, rule-free header with `72 mm` curve-outlined `AST-B01-03` lockup and `ISO` 8601 Date/Reference block, rule-free stationery footer with `A03` attribution, embedded `B03 (v2.0.0)` Noto fonts; print on `≥ 120 g/m²` archival stock; Approved `2026-11-26`; footer raised one `4 mm` step (lowest ink `19.39 mm` above trim) and neutral inks moved to `B02 (v1.3.0) §5.6.1` builds on `2026-11-27` per `REC-A04-009` (`F-03`, `U-01`)) |
 | `TPL-E04-02` | Presentation Deck Master | `03_Templates/TPL-E04-02_Presentation-Master.html` | `E04 (v2.1)` | `Planned` | `16:9` widescreen concise pitch deck master (`HTML/CSS` to `sRGB` `PDF`, `E04 §5.2`, `E01 §5.4`) with minimalist `B03` Display/Text hierarchy, `B02` palette, and cover/closing attribution slides |
-| `TPL-E04-03` | Official Letterhead Template (Digital) | `03_Templates/TPL-E04-03_Official-Letterhead-Digital.pdf` | `E04 (v2.0)` | `Approved` | Digital A4 official letterhead (`E01 §5.4` `sRGB`, zero bleed/crop marks, `2 mm` top-edge `24%` / `76%` split accent bar, `20 mm` L/R and `16 mm` T/B Safe Margins, rule-free header with `72 mm` curve-outlined `AST-B01-03` lockup and `ISO` 8601 Date/Reference block, rule-free stationery footer with `A03` attribution, embedded `B03 (v2.0.0)` Noto fonts, live selectable text; Approved `2026-11-26`) |
+| `TPL-E04-03` | Official Letterhead Template (Digital) | `03_Templates/TPL-E04-03_Official-Letterhead-Digital.pdf` | `E04 (v2.0)` | `Approved` | Digital A4 official letterhead (`E01 §5.4` `sRGB`, zero bleed/crop marks, `2 mm` top-edge `24%` / `76%` split accent bar, `20 mm` L/R and `16 mm` T/B Safe Margins, rule-free header with `72 mm` curve-outlined `AST-B01-03` lockup and `ISO` 8601 Date/Reference block, rule-free stationery footer with `A03` attribution, embedded `B03 (v2.0.0)` Noto fonts, live selectable text; Approved `2026-11-26`; footer raised one `4 mm` step (lowest ink `19.30 mm` above trim) on `2026-11-27` per `REC-A04-009` (`F-03`)) |
 
 ## 8. Revision History
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.2.0` | `2026-11-27` | Minor | Added `5.2.6` slide type scale (`64 px` title, `40 px` heading, `24 px` body minimum, line heights `1.2` / `1.5`) published as `AST-D01-01` tokens, added `D01` to Section 3, and extended `E04-C2`, per `REC-A04-009` (`F-02`); updated Section 7 notes for `TPL-E04-01` and `TPL-E04-03` after the footer move and `B02 (v1.3.0)` ink sync (`F-03`, `U-01`). | Hary Irfantri |
 | `v2.1.1` | `2026-11-26` | Errata | Removed cancelled `Planned` Google Workspace rows (`TPL-E04-04`, `TPL-E04-05`) from `Governs` and Section 7 (`A02 §5.3.1`), updated `TPL-E04-02` (`Planned`) to `HTML/CSS` to `sRGB` `PDF` concise pitch deck scope, and updated the `Library-Index.md` reference floor (`v1.2.9`) in Section 3 per `A01 §5.5.7`. | Hary Irfantri |
 | `v2.1.0` | `2026-11-26` | Minor | Added Section `5.5` (`5.5.1`–`5.5.4`) and Check `E04-C5` governing manually authored operational spreadsheets and workbooks; defined Operational Workbook in Section 4 and expanded Sections 1 and 2 (`D05` boundary); registered `TPL-E04-04` (`Google Docs`, `Planned`) and `TPL-E04-05` (`Google Sheets`, `Planned`) in `Governs` and Section 7; aligned `TPL-E04-02` (`Planned`) with Cloud-Native Office File naming (`A02 §5.4.6`) and concise pitch deck scope; and updated the `Library-Index.md` reference floor (`v1.2.8`). | Hary Irfantri |
 | `v2.0.1` | `2026-11-26` | Errata | Promoted `TPL-E04-01` (`03_Templates/TPL-E04-01_Official-Letterhead-Print.pdf`) and `TPL-E04-03` (`03_Templates/TPL-E04-03_Official-Letterhead-Digital.pdf`), both pinned to `E04 (v2.0)`, from `Planned` to `Approved` in Section 7 and updated the `Library-Index.md` reference floor (`v1.2.7`) in Section 3 per `A01 §5.5.7`. | Hary Irfantri |

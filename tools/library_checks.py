@@ -585,8 +585,8 @@ def pdf_checks(rep: Report, pal: dict):
             off = sorted(v for v in cmyk_used if v not in cmyk_ok)
             m["cmyk_not_in_b02"] = [str(v) for v in off]
             if off:
-                F("cmyk-off-palette", f"{len(off)} CMYK values are not B02 §5.1.1 builds, paper white or 100% K: "
-                  + ", ".join(str(v) for v in off) + " (E03 §5.3.1, B02 §5.1.3).")
+                F("cmyk-off-palette", f"{len(off)} CMYK values are not B02 §5.1.1 or §5.6.1 builds, paper white or 100% K: "
+                  + ", ".join(str(v) for v in off) + " (E03 §5.3.1, B02 §5.1.3, §5.6.1).")
         else:
             for pi, page in enumerate(r.pages):
                 media = [float(v) for v in page.mediabox]

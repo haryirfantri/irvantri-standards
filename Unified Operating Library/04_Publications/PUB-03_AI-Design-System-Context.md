@@ -15,6 +15,7 @@ colors:
   surface-tint: "#EFF6FF"
   border-subtle: "#E2E8F0"
   border-default: "#CBD5E1"
+  border-strong: "#64748B"
   on-surface: "#0F172A"
   on-surface-muted: "#5F6C7E"
   ink-mono: "#000000"
@@ -236,14 +237,14 @@ components:
 | **Deployment Filename** | `DESIGN.md` *(for Superdesign, Google Stitch, external repositories, and coding agents)* |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v1.1.1` |
+| **Version** | `v1.1.2` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.0)`, `B02 (v1.1.1)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` |
+| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.0)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` |
 
-> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md v1.2.14`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
+> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md v1.2.15`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
 
 ---
 
@@ -278,7 +279,8 @@ All digital Hexadecimal (`HEX`) values are written in uppercase with a leading `
 | `{colors.surface-muted}` | **Surface Muted** | `#F1F5F9` | `241, 245, 249` | `--is-color-bg-muted` | Disabled controls, neutral containers |
 | `{colors.surface-tint}` | **Surface Tint** | `#EFF6FF` | `239, 246, 255` | `--is-color-bg-tint` | Provenance callout wash, secondary button hover |
 | `{colors.border-subtle}` | **Border Subtle** | `#E2E8F0` | `226, 232, 240` | `--is-color-border-subtle` | Hairline dividers and table row separators |
-| `{colors.border-default}` | **Border Default** | `#CBD5E1` | `203, 213, 225` | `--is-color-border-default` | Structural borders and input outlines |
+| `{colors.border-default}` | **Border Default** | `#CBD5E1` | `203, 213, 225` | `--is-color-border-default` | Decorative card borders and table grids |
+| `{colors.border-strong}` | **Border Strong** | `#64748B` | `100, 116, 139` | `--is-color-border-strong` | Input borders and interactive control outlines (`4.76:1` on white) |
 | `{colors.on-surface-muted}` | **Text Muted** | `#5F6C7E` | `95, 108, 126` | `--is-color-text-muted` | Secondary copy, captions, metadata labels (`5.34:1` on white) |
 | `{colors.on-surface}` | **Text Primary** | `#0F172A` | `15, 23, 42` | `--is-color-text-primary` | Primary body ink (`17.85:1` on white) |
 | `{colors.ink-mono}` | **Pure Black** | `#000000` | `0, 0, 0` | `--is-color-text-mono` | High-contrast monospace identifiers and code |
@@ -426,6 +428,7 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
   --is-color-bg-tint: #EFF6FF;
   --is-color-border-subtle: #E2E8F0;
   --is-color-border-default: #CBD5E1;
+  --is-color-border-strong: #64748B;
   --is-color-text-primary: #0F172A;
   --is-color-text-muted: #5F6C7E;
   --is-color-text-inverse: #FFFFFF;
@@ -464,13 +467,13 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 ## Appendix C — Publication Build Manifest & Revision History (`A01 §5.7.5`, `E02 §5.1.3`)
 
-**Table 4.** Publication Build Manifest — `PUB-03` (Compiled `2026-11-26`)
+**Table 4.** Publication Build Manifest — `PUB-03` (Compiled `2026-11-27`)
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers & Assets** | `Library-Index.md (v1.2.14)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
+| **Master Registers & Assets** | `Library-Index.md (v1.2.15)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)` | `Approved` |
-| **Series B — Visual Foundations** | `B01 (v2.0.0)`, `B02 (v1.1.1)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)` | `Approved` |
+| **Series B — Visual Foundations** | `B01 (v2.0.0)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)` | `Approved` |
 | **Series E — Documents & Print** | `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` | `Approved` |
@@ -479,6 +482,7 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.1.2` | `2026-11-27` | Errata | Synchronized to `B02 (v1.2.0)`: added the `border-strong` color token (`#64748B`) for input and control borders, limited `border-default` to decorative uses, and refreshed Table 4 to `Library-Index.md (v1.2.15)` with the compile date corrected to `2026-11-27`. | Hary Irfantri |
 | `v1.1.1` | `2026-11-27` | Errata | Refreshed the source standards and Table 4 register references to E01 (v2.2.0), E04 (v2.1.1), and Library-Index.md (v1.2.14). | Hary Irfantri |
 | `v1.1.0` | `2026-11-26` | Minor | Added `@google/design.md` / Superdesign-compliant YAML frontmatter (`version`, `name`, `description`, `colors`, `typography`, `spacing`, `rounded`, `components`) starting on line 1, reordered prose into the canonical 8-section `DESIGN.md` structure (`Overview` through `Do's and Don'ts`), and verified WCAG 2.2 Level AA contrast (`≥ 4.5:1`) on every component token pair. | Hary Irfantri |
 | `v1.0.0` | `2026-11-26` | Major | Initial approved baseline of `PUB-03` (Irvantri Standards AI Design System Context, external deployment filename `DESIGN.md`), synthesizing live `Approved` Series `A`–`E` standards and `AST-D01-01` tokens. | Hary Irfantri |

@@ -8,7 +8,7 @@ The authoritative repository for the governance, visual, verbal, digital, and do
 
 ---
 
-> **Status:** Approved · **Register:** `v1.2.17` · **Last updated:** 2026-11-27
+> **Status:** Approved · **Register:** `v1.2.18` · **Last updated:** 2026-11-27
 
 ## Purpose
 

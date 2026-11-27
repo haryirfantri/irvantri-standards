@@ -990,7 +990,7 @@
         }
       },
       "secondary-border": {
-        "$value": "{semantic.color.border-default}",
+        "$value": "{semantic.color.border-strong}",
         "$type": "color",
         "$extensions": {
           "cssVar": "--is-button-secondary-border"

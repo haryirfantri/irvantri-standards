@@ -6,7 +6,7 @@
 | **Title** | Irvantri Standards Company Overview |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v2.0.2` |
+| **Version** | `v2.0.3` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Owner** | Hary Irfantri |
@@ -144,13 +144,13 @@ Synthesized from the **Brand and Design System Guide** (`PUB-01`) and active Ser
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers, Assets & Templates** | `Library-Index.md (v1.2.15)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`), `TPL-E01-01`–`TPL-E01-04` (`E01 (v2.2)`) | `Approved` |
+| **Master Registers, Assets & Templates** | `Library-Index.md (v1.2.18)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`), `TPL-E01-01`, `TPL-E01-02`, `TPL-E01-04` (`E01 (v2.0)`), `TPL-E01-03` (`E01 (v2.2)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)` | `Approved` |
 | **Series B — Visual Foundations** | `B01 (v2.0.0)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C03 (v1.0.1)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `D05 (v1.1.1)` | `Approved` |
 | **Series E — Documents & Print** | `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E03 (v1.0.0)`, `E04 (v2.1.1)` | `Approved` |
-| **Compiled Publications** | `PUB-01 (v2.0.3)` (`04_Publications/PUB-01_Brand-and-Design-System-Guide.html`) | `Approved` |
+| **Compiled Publications** | `PUB-01 (v2.0.4)` (`04_Publications/PUB-01_Brand-and-Design-System-Guide.html`) | `Approved` |
 
 ### 5.2 Revision History (`E02 §5.1.3`)
 
@@ -158,6 +158,7 @@ Synthesized from the **Brand and Design System Guide** (`PUB-01`) and active Ser
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.0.3` | `2026-11-27` | Errata | Corrected the Table 6 template pins to `TPL-E01-01`, `TPL-E01-02`, and `TPL-E01-04` at `E01 (v2.0)` and `TPL-E01-03` at `E01 (v2.2)` (`REC-A04-009` `F-05`), and synchronized Table 6 to `PUB-01 (v2.0.4)` and `Library-Index.md (v1.2.18)`. | Hary Irfantri |
 | `v2.0.2` | `2026-11-27` | Errata | Synchronized the governing standards and Table 6 build manifest to `B02 (v1.2.0)`, `PUB-01 (v2.0.3)`, and `Library-Index.md (v1.2.15)`, and corrected the precedence notice compile date. | Hary Irfantri |
 | `v2.0.1` | `2026-11-27` | Errata | Refreshed the governing standards and Table 6 build manifest to A02 (v1.3.0), E01 (v2.2.0), E04 (v2.1.1), TPL-E01-01–TPL-E01-04 pinned to E01 (v2.2), and Library-Index.md (v1.2.14). | Hary Irfantri |
 | `v2.0.0` | `2026-11-26` | Major | Recompiled `PUB-02` to `v2.0.0` closing `REC-A04-006` (`F-02`) and `REC-A04-007` (`F-03`): updated Section 4.3 typography summary to the `B03 (v2.0.0)` Noto Sans superfamily (`Noto Sans Display`, `Noto Sans`, `Noto Sans Mono`), added `B01 (v2.0.0)` `260 px` / `64 mm` lockup minimums and `B04 (v1.2.0)` `4 mm` vertical left-spine accent bar orientation, updated Section 3.1/3.2 to reference `06_Dependencies/` and `Library-Index.md` §9, and refreshed the header and Table 6 build manifest across all 22 live `Approved` standards (`Library-Index.md (v1.2.4)`), `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`04`, `TPL-E01-01`–`04`, and `PUB-01 (v2.0.0)`. | Hary Irfantri |
@@ -166,4 +167,4 @@ Synthesized from the **Brand and Design System Guide** (`PUB-01`) and active Ser
 
 ---
 
-`PUB-02` · `v2.0.2` · Compiled `2026-11-27` | © 2026 Irvantri Standards Pte. Ltd. All rights reserved. | A member of Irvantri Group
+`PUB-02` · `v2.0.3` · Compiled `2026-11-27` | © 2026 Irvantri Standards Pte. Ltd. All rights reserved. | A member of Irvantri Group

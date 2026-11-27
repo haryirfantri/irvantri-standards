@@ -1,0 +1,46 @@
+name: Library checks
+
+# Measures the Unified Operating Library on every pull request and every change
+# to main. A failing finding that is not listed in tools/known-issues.json turns
+# the run red. The report is kept as a run artifact so governance records can cite it.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  library-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r tools/requirements.txt
+
+      - name: Run library checks
+        run: python3 tools/library_checks.py --report-dir check-report
+
+      - name: Publish summary
+        if: always()
+        run: |
+          if [ -f check-report/check-report.md ]; then
+            cat check-report/check-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Keep report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: library-check-report-${{ github.sha }}
+          path: check-report/
+          retention-days: 400

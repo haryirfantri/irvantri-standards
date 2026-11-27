@@ -236,14 +236,14 @@ components:
 | **Deployment Filename** | `DESIGN.md` *(for Superdesign, Google Stitch, external repositories, and coding agents)* |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v1.1.0` |
+| **Version** | `v1.1.1` |
 | **Status** | `Approved` |
-| **Effective Date** | `2026-11-26` |
+| **Effective Date** | `2026-11-27` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.0)`, `B02 (v1.1.1)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.1.1)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` |
+| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.0)`, `B02 (v1.1.1)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` |
 
-> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-26` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md v1.2.10`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
+> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md v1.2.14`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
 
 ---
 
@@ -468,17 +468,18 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers & Assets** | `Library-Index.md (v1.2.10)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
+| **Master Registers & Assets** | `Library-Index.md (v1.2.14)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)` | `Approved` |
 | **Series B — Visual Foundations** | `B01 (v2.0.0)`, `B02 (v1.1.1)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)` | `Approved` |
-| **Series E — Documents & Print** | `E01 (v2.1.1)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` | `Approved` |
+| **Series E — Documents & Print** | `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` | `Approved` |
 
 **Table 5.** Revision History — `PUB-03`
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.1.1` | `2026-11-27` | Errata | Refreshed the source standards and Table 4 register references to E01 (v2.2.0), E04 (v2.1.1), and Library-Index.md (v1.2.14). | Hary Irfantri |
 | `v1.1.0` | `2026-11-26` | Minor | Added `@google/design.md` / Superdesign-compliant YAML frontmatter (`version`, `name`, `description`, `colors`, `typography`, `spacing`, `rounded`, `components`) starting on line 1, reordered prose into the canonical 8-section `DESIGN.md` structure (`Overview` through `Do's and Don'ts`), and verified WCAG 2.2 Level AA contrast (`≥ 4.5:1`) on every component token pair. | Hary Irfantri |
 | `v1.0.0` | `2026-11-26` | Major | Initial approved baseline of `PUB-03` (Irvantri Standards AI Design System Context, external deployment filename `DESIGN.md`), synthesizing live `Approved` Series `A`–`E` standards and `AST-D01-01` tokens. | Hary Irfantri |
 

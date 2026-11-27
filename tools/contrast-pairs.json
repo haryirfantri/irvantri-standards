@@ -1,0 +1,387 @@
+{
+  "$comment": "Colour pairings the library requires to meet a WCAG 2.2 contrast minimum. fg/bg are token paths in AST-D01-01 or literal #RRGGBB. 'informative' pairs are measured and reported but never fail. 'stated_ratios' are ratios quoted in library text; the check fails if the quote disappears or the maths disagrees.",
+  "pairs": [
+    {
+      "fg": "semantic.color.text-primary",
+      "bg": "semantic.color.bg-surface",
+      "min": 4.5,
+      "use": "Body text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-primary",
+      "bg": "semantic.color.bg-canvas",
+      "min": 4.5,
+      "use": "Body text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-primary",
+      "bg": "semantic.color.bg-muted",
+      "min": 4.5,
+      "use": "Body text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-primary",
+      "bg": "semantic.color.bg-tint",
+      "min": 4.5,
+      "use": "Body text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-muted",
+      "bg": "semantic.color.bg-surface",
+      "min": 4.5,
+      "use": "Secondary text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-muted",
+      "bg": "semantic.color.bg-canvas",
+      "min": 4.5,
+      "use": "Secondary text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-muted",
+      "bg": "semantic.color.bg-muted",
+      "min": 4.5,
+      "use": "Secondary text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-muted",
+      "bg": "semantic.color.bg-tint",
+      "min": 4.5,
+      "use": "Secondary text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.brand-primary",
+      "bg": "semantic.color.bg-surface",
+      "min": 4.5,
+      "use": "Link and Brand Blue text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.brand-primary",
+      "bg": "semantic.color.bg-canvas",
+      "min": 4.5,
+      "use": "Link and Brand Blue text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.brand-primary",
+      "bg": "semantic.color.bg-muted",
+      "min": 4.5,
+      "use": "Link and Brand Blue text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.brand-primary",
+      "bg": "semantic.color.bg-tint",
+      "min": 4.5,
+      "use": "Link and Brand Blue text",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-informative",
+      "bg": "semantic.color.status-informative-bg",
+      "min": 4.5,
+      "use": "Informative badge text on its subtle surface",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-informative",
+      "bg": "semantic.color.bg-surface",
+      "min": 4.5,
+      "use": "Informative text on white",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-success",
+      "bg": "semantic.color.status-success-bg",
+      "min": 4.5,
+      "use": "Success badge text on its subtle surface",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-success",
+      "bg": "semantic.color.bg-surface",
+      "min": 4.5,
+      "use": "Success text on white",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-warning",
+      "bg": "semantic.color.status-warning-bg",
+      "min": 4.5,
+      "use": "Warning badge text on its subtle surface",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-warning",
+      "bg": "semantic.color.bg-surface",
+      "min": 4.5,
+      "use": "Warning text on white",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-danger",
+      "bg": "semantic.color.status-danger-bg",
+      "min": 4.5,
+      "use": "Danger badge text on its subtle surface",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-danger",
+      "bg": "semantic.color.bg-surface",
+      "min": 4.5,
+      "use": "Danger text on white",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-neutral",
+      "bg": "semantic.color.status-neutral-bg",
+      "min": 4.5,
+      "use": "Neutral badge text on its subtle surface",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "semantic.color.status-neutral",
+      "bg": "semantic.color.bg-surface",
+      "min": 4.5,
+      "use": "Neutral text on white",
+      "clause": "B02 §5.3.1, §5.5.1"
+    },
+    {
+      "fg": "component.button.primary-text",
+      "bg": "component.button.primary-bg",
+      "min": 4.5,
+      "use": "Primary button label",
+      "clause": "B02 §5.5.1, D03"
+    },
+    {
+      "fg": "component.button.primary-text",
+      "bg": "component.button.primary-bg-hover",
+      "min": 4.5,
+      "use": "Primary button label, hover",
+      "clause": "B02 §5.5.1, D03"
+    },
+    {
+      "fg": "component.button.secondary-text",
+      "bg": "component.button.secondary-bg",
+      "min": 4.5,
+      "use": "Secondary button label",
+      "clause": "B02 §5.5.1, D03"
+    },
+    {
+      "fg": "component.button.secondary-text",
+      "bg": "component.button.secondary-bg-hover",
+      "min": 4.5,
+      "use": "Secondary button label, hover",
+      "clause": "B02 §5.5.1, D03"
+    },
+    {
+      "fg": "semantic.color.text-inverse",
+      "bg": "semantic.color.brand-deep",
+      "min": 4.5,
+      "use": "Reversed white text on brand-deep",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-inverse",
+      "bg": "semantic.color.brand-secondary",
+      "min": 4.5,
+      "use": "Reversed white text on brand-secondary",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.text-inverse",
+      "bg": "semantic.color.brand-primary",
+      "min": 4.5,
+      "use": "Reversed white text on brand-primary",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "component.input.border",
+      "bg": "component.input.bg",
+      "min": 3.0,
+      "use": "Input boundary",
+      "clause": "B02 §5.2.2, §5.5.1"
+    },
+    {
+      "fg": "component.input.border",
+      "bg": "semantic.color.bg-canvas",
+      "min": 3.0,
+      "use": "Input boundary",
+      "clause": "B02 §5.2.2, §5.5.1"
+    },
+    {
+      "fg": "component.input.border",
+      "bg": "semantic.color.bg-muted",
+      "min": 3.0,
+      "use": "Input boundary",
+      "clause": "B02 §5.2.2, §5.5.1"
+    },
+    {
+      "fg": "component.input.border",
+      "bg": "semantic.color.bg-tint",
+      "min": 3.0,
+      "use": "Input boundary",
+      "clause": "B02 §5.2.2, §5.5.1"
+    },
+    {
+      "fg": "component.input.border-error",
+      "bg": "component.input.bg",
+      "min": 3.0,
+      "use": "Input boundary, error state",
+      "clause": "B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.focus.ring-color",
+      "bg": "semantic.color.bg-surface",
+      "min": 3.0,
+      "use": "Focus indicator on light surfaces",
+      "clause": "D04 §5.2.4, B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.focus.ring-color",
+      "bg": "semantic.color.bg-canvas",
+      "min": 3.0,
+      "use": "Focus indicator on light surfaces",
+      "clause": "D04 §5.2.4, B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.focus.ring-color",
+      "bg": "semantic.color.bg-muted",
+      "min": 3.0,
+      "use": "Focus indicator on light surfaces",
+      "clause": "D04 §5.2.4, B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.focus.ring-color",
+      "bg": "semantic.color.bg-tint",
+      "min": 3.0,
+      "use": "Focus indicator on light surfaces",
+      "clause": "D04 §5.2.4, B02 §5.5.1"
+    },
+    {
+      "fg": "semantic.color.brand-accent",
+      "bg": "semantic.color.bg-surface",
+      "min": 3.0,
+      "use": "Signal Red accent marker (non-text)",
+      "clause": "B02 §5.4.2, §5.5.1"
+    }
+  ],
+  "informative": [
+    {
+      "fg": "semantic.color.border-default",
+      "bg": "semantic.color.bg-surface",
+      "use": "Border Default on white (decorative only, B02 §5.2.2)"
+    },
+    {
+      "fg": "component.button.secondary-border",
+      "bg": "component.button.secondary-bg",
+      "use": "Secondary button border (label carries identification)"
+    },
+    {
+      "fg": "component.card.border",
+      "bg": "component.card.bg",
+      "use": "Card border (decorative)"
+    },
+    {
+      "fg": "component.button.disabled-text",
+      "bg": "component.button.disabled-bg",
+      "use": "Disabled button label (WCAG exempts inactive controls)"
+    },
+    {
+      "fg": "semantic.color.brand-accent",
+      "bg": "semantic.color.brand-deep",
+      "use": "Signal Red on Deep Navy (no rule yet covers dark surfaces)"
+    },
+    {
+      "fg": "semantic.color.brand-primary",
+      "bg": "semantic.color.brand-deep",
+      "use": "Brand Blue on Deep Navy, incl. focus ring (no rule yet)"
+    },
+    {
+      "fg": "semantic.color.text-inverse",
+      "bg": "semantic.color.brand-accent",
+      "use": "White on Signal Red"
+    }
+  ],
+  "stated_ratios": [
+    {
+      "file": "01_Standards/B_Visual-Foundations/B02_Color-System.md",
+      "text": "**Border Default** (`#CBD5E1`) measures `1.48:1` on white",
+      "fg": "#CBD5E1",
+      "bg": "#FFFFFF",
+      "stated": 1.48
+    },
+    {
+      "file": "01_Standards/B_Visual-Foundations/B02_Color-System.md",
+      "text": "**Signal Red** reaches `5.07:1` on white",
+      "fg": "#DE0029",
+      "bg": "#FFFFFF",
+      "stated": 5.07
+    },
+    {
+      "file": "01_Standards/B_Visual-Foundations/B02_Color-System.md",
+      "text": "(`7.33:1` on white)",
+      "fg": "#A42332",
+      "bg": "#FFFFFF",
+      "stated": 7.33
+    },
+    {
+      "file": "01_Standards/B_Visual-Foundations/B02_Color-System.md",
+      "text": "(`#64748B`, `4.76:1` on white)",
+      "fg": "#64748B",
+      "bg": "#FFFFFF",
+      "stated": 4.76
+    },
+    {
+      "file": "04_Publications/PUB-03_AI-Design-System-Context.md",
+      "text": "(`4.76:1` on white)",
+      "fg": "#64748B",
+      "bg": "#FFFFFF",
+      "stated": 4.76
+    },
+    {
+      "file": "04_Publications/PUB-03_AI-Design-System-Context.md",
+      "text": "(`5.34:1` on white)",
+      "fg": "#5F6C7E",
+      "bg": "#FFFFFF",
+      "stated": 5.34
+    },
+    {
+      "file": "05_Records/REC-A04-008_B01-Lockup-and-PNG-Pre-Release-Gate.md",
+      "text": "`14.11:1` (Deep Navy)",
+      "fg": "#092B55",
+      "bg": "#FFFFFF",
+      "stated": 14.11
+    },
+    {
+      "file": "05_Records/REC-A04-008_B01-Lockup-and-PNG-Pre-Release-Gate.md",
+      "text": "`8.46:1` (Brand Blue)",
+      "fg": "#074C96",
+      "bg": "#FFFFFF",
+      "stated": 8.46
+    },
+    {
+      "file": "05_Records/REC-A04-008_B01-Lockup-and-PNG-Pre-Release-Gate.md",
+      "text": "`5.07:1` (Signal Red)",
+      "fg": "#DE0029",
+      "bg": "#FFFFFF",
+      "stated": 5.07
+    },
+    {
+      "file": "05_Records/REC-A04-008_B01-Lockup-and-PNG-Pre-Release-Gate.md",
+      "text": "`21.00:1` (Pure Black)",
+      "fg": "#000000",
+      "bg": "#FFFFFF",
+      "stated": 21.0
+    }
+  ]
+}

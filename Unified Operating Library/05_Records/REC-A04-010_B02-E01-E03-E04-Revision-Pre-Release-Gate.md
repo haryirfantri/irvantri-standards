@@ -31,7 +31,7 @@ The trigger is the Approver's approval on `2026-11-27` of the values proposed fo
 
 ## 2. Method
 
-Every result below was measured on the delivered file on branch `claude/project-thread-tp1jkj`, based on `main` at `d5706e0`. The commit that holds every gated change is named in Section 6.
+Every result below was measured on the delivered file on branch `claude/project-thread-tp1jkj`, based on `main` at `d5706e0`. The gated changes are in commit `23aedeb`.
 
 * **`PDF` structure and color:** `pypdf 6.17.0` read each page content stream and listed every `k`/`K` (`CMYK`) and `rg`/`RG` (`RGB`) operator. Total Area Coverage (`TAC`) is the sum of the four inks.
 * **`PDF` geometry:** Poppler `pdftoppm 24.02.0` rendered each page at `300 DPI`. A script measured the ink bounding box in millimeters from the TrimBox.
@@ -82,6 +82,6 @@ None. Zero non-conformities were found.
 ## 6. Closure Verification (`A04 (v1.2.0) §5.2.3`, `§5.1.7`)
 
 * **Gate Verdict:** `Pass`. The items in Section 1 are released as listed.
-* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues. The commit and continuous integration (`CI`) run are recorded in the pull request for this release.
+* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues. Continuous integration (`CI`) run `46056239550` measured commit `23aedeb`, which holds every gated change, and passed.
 * **Approver Sign-Off:** The Approver approved the released values on `2026-11-27`. Merging the release pull request records sign-off and puts the release into effect.
 * **Approver:** Hary Irfantri

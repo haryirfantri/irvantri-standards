@@ -184,6 +184,20 @@
       "clause": "B02 §5.5.1, D03"
     },
     {
+      "fg": "component.button.secondary-border",
+      "bg": "component.button.secondary-bg",
+      "min": 3.0,
+      "use": "Secondary button boundary",
+      "clause": "B02 §5.2.2, §5.5.1"
+    },
+    {
+      "fg": "component.button.secondary-border",
+      "bg": "component.button.secondary-bg-hover",
+      "min": 3.0,
+      "use": "Secondary button boundary, hover",
+      "clause": "B02 §5.2.2, §5.5.1"
+    },
+    {
       "fg": "semantic.color.text-inverse",
       "bg": "semantic.color.brand-deep",
       "min": 4.5,
@@ -280,11 +294,6 @@
       "fg": "semantic.color.border-default",
       "bg": "semantic.color.bg-surface",
       "use": "Border Default on white (decorative only, B02 §5.2.2)"
-    },
-    {
-      "fg": "component.button.secondary-border",
-      "bg": "component.button.secondary-bg",
-      "use": "Secondary button border (label carries identification)"
     },
     {
       "fg": "component.card.border",

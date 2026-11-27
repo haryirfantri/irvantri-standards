@@ -8,7 +8,7 @@
 | **Status** | `Open` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Related Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.1)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `C01 (v1.1.1)`, `D01 (v1.0.3)`, `D04 (v1.2.1)`, `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E03 (v1.0.0)`, `E04 (v2.1.1)`, `Library-Index.md (v1.2.17)` |
+| **Related Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.1)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `C01 (v1.1.1)`, `D01 (v1.0.3)`, `D04 (v1.2.1)`, `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E03 (v1.0.0)`, `E04 (v2.1.1)`, `Library-Index.md (v1.2.18)` |
 | **Expiry Date** | `None` |
 
 ## 1. Review Scope & Trigger
@@ -97,7 +97,7 @@ Every result below is measured on the delivered file, not inferred from another 
 | `PUB-01 (v2.0.3)` | `A03-C6` | Pass | The `©` and Endorsement Line strings are present. |
 | `PUB-02 (v2.0.2)` | `A01-C10` | Fail | The manifest, compile date `2026-11-27`, and precedence notice are present. The `TPL-E01` pin statement is the same as in `PUB-01` (`F-05`). |
 | `PUB-02 (v2.0.2)` | `A03-C6`, `C01` | Pass | The `©` and Endorsement Line strings are present, with zero contractions. |
-| `PUB-03 (v1.1.2)` | `A01-C10` | Fail | The manifest (Table 4), compile date `2026-11-27`, and precedence notice are present. The `TPL-E01` pin statement is the same as in `PUB-01` (`F-05`). |
+| `PUB-03 (v1.1.2)` | `A01-C10` | Pass | The manifest (Table 4), compile date `2026-11-27`, and precedence notice are present. Table 4 lists no `TPL-` items. |
 | `PUB-03 (v1.1.2)` | `B02-C1`, `B02-C2` | Pass | All 31 front-matter colors are on the `B02` palette, including `border-strong` `#64748B`. |
 | `PUB-03 (v1.1.2)` | `D01-C3` | Fail | The front-matter typography is not derived from `AST-D01-01` (`F-02`). |
 
@@ -116,33 +116,45 @@ Due dates are calculated from `2026-11-27` per `A04 (v1.1.1) §5.2.1`. `Major` f
 
 | Finding ID | Affected Item | Violated Clause / Check ID | Severity | Assigned Owner | Due Date | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `F-01` | `AST-D01-01`, `PUB-01`, `TPL-E01-03` | `B02 (v1.2.0) §5.2.2`, `§5.5.1` (`B02-C2`, `B02-C5`); `D01 (v1.0.3) §5.2.1` (`D01-C2`) | `Major` | Hary Irfantri | `2026-12-18` | `Open` |
+| `F-01` | `AST-D01-01`, `PUB-01`, `PUB-03`, `TPL-E01-03` | `B02 (v1.2.0) §5.2.2`, `§5.5.1` (`B02-C2`, `B02-C5`); `D01 (v1.0.3) §5.2.1` (`D01-C2`) | `Major` | Hary Irfantri | `2026-12-18` | `Closed` |
 | `F-02` | `PUB-03` | `D01 (v1.0.3) §5.3.1` (`D01-C3`) | `Major` | Hary Irfantri | `2026-12-18` | `Open` |
 | `F-03` | `TPL-E01-01`, `TPL-E01-04`, `TPL-E04-01`, `TPL-E04-03` | `E03 (v1.0.0) §5.1.2` (`E03-C1`); `E01 (v2.2.0) §5.2.1` (`E01-C2`); `E04 (v2.1.1) §5.1.1` (`E04-C1`) | `Major` | Hary Irfantri | `2026-12-18` | `Open` |
-| `F-04` | `TPL-E01-01`, `TPL-E01-02`, `TPL-E01-04`, `TPL-E04-01`, `TPL-E04-03` | `E03 (v1.0.0) §5.4.1` (`E03-C4`) | `Minor` | Hary Irfantri | `2026-12-27` | `Open` |
-| `F-05` | `PUB-01`, `PUB-02`, `PUB-03` | `A01 (v1.2.0) §5.7.5` (`A01-C10`) | `Minor` | Hary Irfantri | `2026-12-27` | `Open` |
-| `F-06` | `TPL-E01-03` | `C01 (v1.1.1) §5.6.1`; `E01 (v2.2.0) §5.1.2` (`E01-C1`) | `Minor` | Hary Irfantri | `2026-12-27` | `Open` |
+| `F-04` | `TPL-E01-01`, `TPL-E01-02`, `TPL-E01-04`, `TPL-E04-01`, `TPL-E04-03` | `E03 (v1.0.0) §5.4.1` (`E03-C4`) | `Minor` | Hary Irfantri | `2026-12-27` | `Closed` |
+| `F-05` | `PUB-01`, `PUB-02` | `A01 (v1.2.0) §5.7.5` (`A01-C10`) | `Minor` | Hary Irfantri | `2026-12-27` | `Closed` |
+| `F-06` | `TPL-E01-03` | `C01 (v1.1.1) §5.6.1`; `E01 (v2.2.0) §5.1.2` (`E01-C1`) | `Minor` | Hary Irfantri | `2026-12-27` | `Closed` |
 
 ## 8. Detailed Finding Descriptions
 
-* **`F-01` (`Major` — Secondary button borders below `3.0:1`):** `B02 (v1.2.0) §5.2.1` assigns **Border Strong** to "boundaries that identify an interactive control", and `§5.2.2` requires it for control boundaries. `AST-D01-01` `component.button.secondary-border` resolves to **Border Default** (`#CBD5E1`). This measures `1.48:1` on white. The token flows into 12 buttons in `PUB-01` and three `.btn-line` buttons in `TPL-E01-03`. The `B02 v1.2.0` sync (`Library-Index.md (v1.2.15)`) moved only input borders. **Remediation:** point `component.button.secondary-border` to `semantic.color.border-strong` (`#64748B`, `4.76:1`), then regenerate `PUB-01` and update `TPL-E01-03`.
+* **`F-01` (`Major` — Secondary button borders below `3.0:1`):** `B02 (v1.2.0) §5.2.1` assigns **Border Strong** to "boundaries that identify an interactive control", and `§5.2.2` requires it for control boundaries. `AST-D01-01` `component.button.secondary-border` resolves to **Border Default** (`#CBD5E1`). This measures `1.48:1` on white. The token flows into 12 buttons in `PUB-01` and three `.btn-line` buttons in `TPL-E01-03`. `PUB-03` component guidance also tells design tools to use `{colors.border-default}` for secondary buttons. The `B02 v1.2.0` sync (`Library-Index.md (v1.2.15)`) moved only input borders. **Remediation:** point `component.button.secondary-border` to `semantic.color.border-strong` (`#64748B`, `4.76:1`), then regenerate `PUB-01` and update `TPL-E01-03`.
 * **`F-02` (`Major` — `PUB-03` token values not derived from `AST-D01-01`):** `PUB-03` front matter is a published token package for design and Artificial Intelligence (`AI`) tools. Two font sizes have no `AST-D01-01` font-size token: `headline-display` `48px` and `body-slide` `22px`. Four line heights are not tokens: `1.15`, `1.25`, `1.4`, and `1.45` (the tokens are `1.2` and `1.5`). `48px` and `22px` appear in no normative standard. **Remediation:** generate `PUB-03` front matter from `AST-D01-01`. Either add the missing type steps to `AST-D01-01` through an `E04` slide type-scale clause, or remove them from `PUB-03`.
 * **`F-03` (`Major` — Footer text inside the `16 mm` Safe Margin):** `E03 (v1.0.0) §4` defines the Safe Margin as the distance within which "all essential text, marks, and legal attribution" stay protected. Footer baselines sit on the `16 mm` line, so descenders reach `15.24 mm` (`TPL-E01-01`, `TPL-E01-04`) and `15.32 mm` (`TPL-E04-01`, `TPL-E04-03`) from trim. In the letterhead, this line is the `A03 §5.6.1` copyright notice. **Remediation:** raise the footer block so its lowest ink clears `16 mm`. Alternatively, the Approver may rule that Safe Margins are measured to the text baseline (`U-03`).
 * **`F-04` (`Minor` — Undefined font resource `/F1`):** each template `PDF` opens a text object with `/F1 12 Tf`, but `/F1` is absent from the page `/Font` resources. That text object draws zero glyphs, so nothing is visibly affected. Poppler reports `Syntax Error: Unknown font tag 'F1'`. A certified `PDF/X-4` preflight may reject this. If it does, the Approver should reclassify the finding as `Major`. **Remediation:** remove the empty text object or the `/F1` selection when the templates are next rebuilt.
-* **`F-05` (`Minor` — Incorrect template pin in build manifests):** `PUB-01` Table 6, `PUB-02` Table 6, and `PUB-03` Table 4 list `TPL-E01-01`–`TPL-E01-04` as pinned to `E01 (v2.2)`. `Library-Index.md` Section 5 and `E01` Section 7 pin `TPL-E01-01`, `TPL-E01-02`, and `TPL-E01-04` to `E01 (v2.0)`. Only `TPL-E01-03` is pinned to `E01 (v2.2)`. **Remediation:** correct the three manifests in the next `ERRATA` refresh.
+* **`F-05` (`Minor` — Incorrect template pin in build manifests):** `PUB-01` Table 6 and `PUB-02` Table 6 list `TPL-E01-01`–`TPL-E01-04` as pinned to `E01 (v2.2)`. `Library-Index.md` Section 5 and `E01` Section 7 pin `TPL-E01-01`, `TPL-E01-02`, and `TPL-E01-04` to `E01 (v2.0)`. Only `TPL-E01-03` is pinned to `E01 (v2.2)`. **Remediation:** correct the three manifests in the next `ERRATA` refresh.
 * **`F-06` (`Minor` — Document language tag):** `TPL-E01-03` declares `<html lang="en">`, while `C01 §5.6.1` sets `en-US` and `PUB-01` declares `lang="en-US"`. The visible copy is United States English. **Remediation:** set `lang="en-US"`.
 
-## 9. Upstream Observations for Approver Decision (`A04 (v1.1.1) §5.3`)
+## 9. Closure Evidence (`A04 (v1.1.1) §5.2.3`)
 
-These items are not non-conformities. They are clauses whose current wording leaves a measured gap. Each needs an Approver decision on whether to revise the upstream standard under `A01 (v1.2.0) §5.5`.
+Remediation was released on `2026-11-27` with `Library-Index.md (v1.2.18)`. Each result below was re-measured on the changed files.
+
+* **`F-01` — `Closed` `2026-11-27`:** `AST-D01-01` `component.button.secondary-border` now resolves to `{semantic.color.border-strong}` (`#64748B`). It measures `4.76:1` on the white default state and `4.37:1` on the `#EFF6FF` hover state, against a `3.0:1` minimum. `PUB-01 (v2.0.4)` embedded `JSON` still parses equal to the master. All three `--is-button-secondary-border` declarations read `#64748B`. A headless Chromium scan finds zero enabled controls with `#CBD5E1` borders in `PUB-01` and `TPL-E01-03`. The one remaining `#CBD5E1` border is the `disabled` demo button `Publish release`, which is an inactive control. `PUB-03 (v1.1.3)` now names `{colors.border-strong}` for secondary buttons. `tools/contrast-pairs.json` now treats both secondary button pairs as required `3.0:1` pairs.
+* **`F-04` — `Closed` `2026-11-27`:** each of the five template `PDF` files had the empty `BT /F1 12 Tf 14.4 TL ET` object removed from its page content stream. Everything else was carried over unchanged, including the `%PDF` header version, page boxes, OutputIntent, `XMP`, Info, and fonts. Poppler now reports zero syntax errors. A `150 DPI` render of each file is pixel-identical to the previous version. `tools/library_checks.py` reports zero `undefined-font-F1` findings, so their known-issue entries were removed.
+* **`F-05` — `Closed` `2026-11-27`:** `PUB-01 (v2.0.4)` Table 6 and `PUB-02 (v2.0.3)` Table 6 now pin `TPL-E01-01`, `TPL-E01-02`, and `TPL-E01-04` to `E01 (v2.0)` and `TPL-E01-03` to `E01 (v2.2)`. This matches `Library-Index.md` Section 5 and `E01` Section 7.
+* **`F-06` — `Closed` `2026-11-27`:** `TPL-E01-03` now declares `<html lang="en-US">`.
+* **Automated check:** `python3 tools/library_checks.py` on the remediation branch gives `PASS` with zero failing findings. The three remaining known issues are the `U-01` `CMYK` builds.
+
+> **Informative Note:** The first draft of this record also listed `PUB-03` Table 4 under `F-05`. Re-measurement showed that `PUB-03` lists no `TPL-` items, so `PUB-03` was removed from `F-05` and its `A01-C10` result was corrected to `Pass`. This record was still `Open`, so the correction is permitted (`A04 (v1.1.1) §5.5.3`).
+
+## 10. Upstream Observations for Approver Decision (`A04 (v1.1.1) §5.3`)
+
+These items are not non-conformities. They are clauses whose current wording leaves a measured gap. On `2026-11-27`, the Approver approved all three for revision under `A01 (v1.2.0) §5.5`. The Approver also confirmed `F-01`–`F-03` as `Major` and confirmed that Safe Margins are measured to the lowest ink (`U-03`).
 
 * **`U-01` — No `CMYK` builds for neutral and semantic colors:** `E03 (v1.0.0) §5.3.1` requires the `B02 §5.1.1` `ISO` Coated v2 builds. `B02 (v1.2.0)` defines builds only for the four brand colors. The print templates use undefined builds for **Text Muted** (`25, 14, 0, 51`), **Border Default** (`19, 12, 6, 0`), and the **Success** set (`86, 25, 88, 27`; `6, 0, 4, 0`; `26, 0, 24, 0`). The proposed fix is to add `CMYK` builds to the `B02 §5.2.1` and `§5.3.1` tables, ideally checked by a press proof.
 * **`U-02` — "Exact A4" has no tolerance for browser export:** Chromium rounds `@page { size: A4 }` to `594.96 × 841.92 pt` (`−0.11 mm` width). The template declares exact A4, but `E01 (v2.2.0) §5.4.1` states no tolerance. The proposed fix is to add a `±0.5 mm` export tolerance to `E01 §5.4.1`.
 * **`U-03` — Safe Margin measurement point:** the `E03 (v1.0.0) §4` definition does not say whether to measure to the text baseline or to the lowest ink. The Approver may confirm lowest ink (keeping `F-03`) or revise the definition.
 
-## 10. Closure Verification (`A04 (v1.1.1) §5.2.3`)
+## 11. Closure Verification (`A04 (v1.1.1) §5.2.3`)
 
-* **Gate Verdict:** `Hold` for `F-01`–`F-03` until they close or receive a waiver. The items remain `Approved` in the register, because this gate is retrospective. Release blocking under `A04 (v1.1.1) §5.2.4` applies only if a finding passes its due date while still open.
+* **Gate Verdict:** `Hold` for `F-02` and `F-03` until they close or receive a waiver. `F-01`, `F-04`, `F-05`, and `F-06` closed on `2026-11-27`. The items remain `Approved` in the register, because this gate is retrospective. Release blocking under `A04 (v1.1.1) §5.2.4` applies only if a finding passes its due date while still open.
 * **Approver Sign-Off Date:** Pending.
 * **Approver:** Hary Irfantri
 * **Objective Closure Evidence:** Pending. This record stays `Open` until each finding is closed with evidence or waived. It becomes immutable when it reaches `Closed` (`A04 (v1.1.1) §5.5.3`).

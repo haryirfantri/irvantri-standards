@@ -237,7 +237,7 @@ components:
 | **Deployment Filename** | `DESIGN.md` *(for Superdesign, Google Stitch, external repositories, and coding agents)* |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v1.1.2` |
+| **Version** | `v1.1.3` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Owner** | Hary Irfantri |
@@ -366,7 +366,7 @@ Depth is communicated primarily through surface tone contrast (`{colors.surface}
 
 ## Components
 
-* **Buttons (`D03`):** `44px` minimum height (`{spacing.touch}`), `{rounded.sm}` (`4px`) radius, `16px`–`20px` horizontal padding. Primary uses `{colors.primary}` background with `{colors.on-primary}` text (hover `{colors.primary-hover}`); Secondary uses `{colors.surface}` with `1px solid {colors.border-default}` border and `{colors.secondary}` text (hover `{colors.surface-tint}`).
+* **Buttons (`D03`):** `44px` minimum height (`{spacing.touch}`), `{rounded.sm}` (`4px`) radius, `16px`–`20px` horizontal padding. Primary uses `{colors.primary}` background with `{colors.on-primary}` text (hover `{colors.primary-hover}`); Secondary uses `{colors.surface}` with `1px solid {colors.border-strong}` border and `{colors.secondary}` text (hover `{colors.surface-tint}`).
 * **Status Badges (`E02 §5.2.2`):** `{rounded.sm}` (`4px`), `1px` semantic border, semantic background tint, `6px` solid square marker (`border-radius: 0`), and exact Title Case `C02` text (`Approved`, `In Review`, `Draft`, `Planned`, `Sync Required`, `Deprecated`).
 * **Provenance Callout (`D03 §5.4.3`):** `{colors.info-bg}` fill (`#EFF6FF`), `4px` left border `{colors.primary}` (`#074C96`), `{rounded.md}` (`8px`) radius, `16px 20px` padding.
 * **Minimalist Data Tables (`C04 §5.4`):** Zero vertical gridlines and zero outer box borders. Header row uses `{colors.canvas}` fill, `{colors.secondary}` bold text, and `2px solid {colors.secondary}` bottom border; body rows use `{colors.surface}` fill and `1px solid {colors.border-subtle}` bottom hairline. Never leave cells blank (populate `None` or `—`).
@@ -471,7 +471,7 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers & Assets** | `Library-Index.md (v1.2.15)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
+| **Master Registers & Assets** | `Library-Index.md (v1.2.18)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)` | `Approved` |
 | **Series B — Visual Foundations** | `B01 (v2.0.0)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)` | `Approved` |
@@ -482,6 +482,7 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.1.3` | `2026-11-27` | Errata | Moved the secondary button border guidance from `{colors.border-default}` to `{colors.border-strong}` per `B02 (v1.2.0) §5.2.2` (`REC-A04-009` `F-01`), and refreshed Table 4 to `Library-Index.md (v1.2.18)`. | Hary Irfantri |
 | `v1.1.2` | `2026-11-27` | Errata | Synchronized to `B02 (v1.2.0)`: added the `border-strong` color token (`#64748B`) for input and control borders, limited `border-default` to decorative uses, and refreshed Table 4 to `Library-Index.md (v1.2.15)` with the compile date corrected to `2026-11-27`. | Hary Irfantri |
 | `v1.1.1` | `2026-11-27` | Errata | Refreshed the source standards and Table 4 register references to E01 (v2.2.0), E04 (v2.1.1), and Library-Index.md (v1.2.14). | Hary Irfantri |
 | `v1.1.0` | `2026-11-26` | Minor | Added `@google/design.md` / Superdesign-compliant YAML frontmatter (`version`, `name`, `description`, `colors`, `typography`, `spacing`, `rounded`, `components`) starting on line 1, reordered prose into the canonical 8-section `DESIGN.md` structure (`Overview` through `Do's and Don'ts`), and verified WCAG 2.2 Level AA contrast (`≥ 4.5:1`) on every component token pair. | Hary Irfantri |

@@ -4,7 +4,7 @@
 | :--- | :--- |
 | **Register** | `Library-Index.md` *(Uncoded master register)* |
 | **Entity** | Irvantri Standards |
-| **Version** | `v1.2.18` |
+| **Version** | `v1.2.19` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-20` |
 | **Last Updated** | `2026-11-27` |
@@ -74,7 +74,7 @@ Where two controlled items conflict, precedence resolves strictly from top to bo
 | `A01` | Document Control & Lifecycle | `01_Standards/A_Governance/A01_Document-Control.md` | `v1.2.0` | `Approved` | Hary Irfantri | `2027-05-20` | Ownership, approval, versioning (`vMAJOR.MINOR.ERRATA`), normative keywords, `Governs` header rule, Section 7 errata syncs, archival, register sync rules |
 | `A02` | Taxonomy, Coding & File Naming | `01_Standards/A_Governance/A02_Taxonomy-and-Naming.md` | `v1.3.0` | `Approved` | Hary Irfantri | `2027-05-20` | Series `A`–`H`, `CODE_Title-Words.ext`, extensionless Cloud-Native Office Files (`§5.4.6`, `§5.6.3`), English Title Case, artifact prefixes, `06_Dependencies/` third-party package boundary, retirement, library citations |
 | `A03` | Entity & Brand Architecture | `01_Standards/A_Governance/A03_Entity-and-Brand-Architecture.md` | `v1.1.1` | `Approved` | Hary Irfantri | `2027-05-20` | `Irvantri Standards Pte. Ltd.`, `Irvantri Group Pte. Ltd.`, Branded House model, Endorsement Line, co-branding, legal attribution |
-| `A04` | Compliance, Reviews & Exceptions | `01_Standards/A_Governance/A04_Compliance-and-Exceptions.md` | `v1.1.1` | `Approved` | Hary Irfantri | `2027-05-20` | Consistency audits, Section 6 conformance verification, non-conformity Service Level Agreements (`SLA`s), cross-standard conflicts, time-boxed waivers, `REC-` retention |
+| `A04` | Compliance, Reviews & Exceptions | `01_Standards/A_Governance/A04_Compliance-and-Exceptions.md` | `v1.2.0` | `Approved` | Hary Irfantri | `2027-05-20` | Consistency audits, Section 6 conformance verification, non-conformity Service Level Agreements (`SLA`s), cross-standard conflicts, time-boxed waivers, `REC-` retention, recorded and measured Pre-Release Gates (`5.1.5`–`5.1.7`) |
 
 ### Series B — Visual Foundations
 | Code | Standard | File | Version | Status | Owner | Next Review | Notes |
@@ -203,6 +203,7 @@ Where two controlled items conflict, precedence resolves strictly from top to bo
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.19` | `2026-11-27` | Errata | Synced `A04` (`v1.2.0`, `MINOR`, adding recorded Pre-Release Gates, measured evidence, and automated check citation in `5.1.5`–`5.1.7` and `A04-C10`) in Section 4 following archival of outgoing `A04_Compliance-and-Exceptions_v1.1.1.md` to `99_Archive/` per `A01 §5.5.4`, `§5.7.2`, and `§5.8.1`. | Hary Irfantri |
 | `v1.2.18` | `2026-11-27` | Errata | Updated Section 5 notes for `AST-D01-01`, `TPL-E01-01`–`TPL-E01-04`, `TPL-E04-01`, and `TPL-E04-03`; synced `PUB-01` (`v2.0.4`), `PUB-02` (`v2.0.3`), and `PUB-03` (`v1.1.3`) in Section 6; and updated `REC-A04-009` (`Open`) in Section 7 after closing `F-01`, `F-04`, `F-05`, and `F-06` per `A01 §5.8.1` and `A04 §5.2.3`, `§5.5.2`. | Hary Irfantri |
 | `v1.2.17` | `2026-11-27` | Errata | Registered `REC-A04-009` (`Open`) in Section 7, recording a measured retrospective Pre-Release Gate for `TPL-E01-01`/`03`/`04`, `TPL-E04-01`/`03`, `AST-D01-01`, and `PUB-01`–`PUB-03` per `A01 §5.8.1` and `A04 §5.1.2`, `§5.5.2`. | Hary Irfantri |
 | `v1.2.16` | `2026-11-27` | Errata | Synced `B01` (`v2.0.1`, `ERRATA`, Section 7 and `Governs` registration only) in Section 4; registered `AST-B01-05`–`AST-B01-08` (Primary Master Lockup in three colorways and Monochrome Black Symbol) and `AST-B01-09`–`AST-B01-16` (lossless `300 DPI` `PNG` derivatives), all pinned to `B01 (v2.0)` and `Approved`, in Section 5; and registered `REC-A04-008` (`Closed`) in Section 7 per `A01 §5.5.6`, `§5.8.1` and `A04 §5.1.2`, `§5.5.2`. | Hary Irfantri |

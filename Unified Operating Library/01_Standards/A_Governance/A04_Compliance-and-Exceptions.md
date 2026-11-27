@@ -3,9 +3,9 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `A04` |
-| **Version** | `v1.1.1` |
+| **Version** | `v1.2.0` |
 | **Status** | `Approved` |
-| **Effective Date** | `2026-11-25` |
+| **Effective Date** | `2026-11-27` |
 | **Next Review** | `2027-05-20` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
@@ -69,6 +69,19 @@ For terms shared across the library, refer to `C02`, `A01`, `A02`, and `A03`. Fo
 * Cross-standard overlaps or contradictions logged since the previous review (`5.3.2`).
 
 **5.1.4** Every Scheduled Consistency Review and Event-Driven Audit SHALL be documented as a Governance Record (`REC-A04-[001–999]`) saved in `05_Records/` per `A02`. Each record SHALL be registered in `Library-Index.md` Section 7 on the same calendar date (`A01 §5.8.1`).
+
+**5.1.5** Every Pre-Release Gate SHALL be documented as a Governance Record (`REC-A04-[001–999]`) in `05_Records/`. The gate record SHALL be registered in `Library-Index.md` Section 7 no later than the calendar date on which the gated item is registered as `Approved` (`A01 §5.8.1`). One gate record MAY cover several items released together.
+
+**5.1.6** Each `Pass` or `Fail` result recorded for a Section 6 check SHALL cite measured evidence where the check's criterion can be measured. Measured evidence SHALL state:
+1. **Result:** the measured value or tool output, such as a contrast ratio, checksum, page-box size, or preflight message.
+2. **Method:** the tool, script, or calculation used, with its version where one exists.
+3. **Subject:** the exact file measured and the commit or version of that file.
+
+Agreement between two library documents SHALL NOT count as evidence for a measurable criterion.
+
+> **Informative Note:** Contrast, palette membership, token parity, checksums, license text, file existence, page geometry, and `PDF` structure are measurable. Tone and audience fit are not; those can be recorded as reviewer judgment.
+
+**5.1.7** Where an automated library check covers a Section 6 criterion, the record SHOULD cite the continuous integration (`CI`) run identifier and the commit it measured. A failing automated check SHALL be logged as a finding or covered by a waiver before the affected item is promoted.
 
 ### 5.2 Non-Conformity Classification & Remediation
 **5.2.1** Every identified non-conformity SHALL receive a unique `Finding ID` in its `REC-A04` record and be classified into one severity tier with a binding remediation window:
@@ -151,6 +164,7 @@ An audit, conflict log, or exception waiver conforms to `A04` if and only if all
 | `A04-C7` | Every `REC-` file complies with `A02` naming and `5.5.1` header fields, syncs `Status` and `Expiry Date` in `Library-Index.md` Section 7 on the same date (`5.5.2`), and terminal records remain unmodified (`5.5.3`). | Repository & register check |
 | `A04-C8` | Non-Approved standards are excluded from binding audits (`5.1.1`); Pre-Release Gates and 15-business-day Event-Driven Audits execute on trigger (`5.1.2`); overdue `Critical`/`Major` findings escalate within 1 business day and block release (`5.2.4`). | Audit & release log review |
 | `A04-C9` | Waivers are approved prior to release (`5.4.1`), and deviations from `SHOULD`/`SHOULD NOT` clauses carry documented justifications (`5.4.2`). | Deliverable & review log audit |
+| `A04-C10` | Every Pre-Release Gate has a registered `REC-A04` record on or before the promotion date (`5.1.5`), every measurable `Pass` or `Fail` cites a result, method, and subject (`5.1.6`), and failing automated checks are logged or waived before promotion (`5.1.7`). | Record, register & `CI` audit |
 
 Exceptions to any requirement in this standard require a formal, time-boxed waiver approved and logged in accordance with Clause `5.4`, subject to the non-waivable restrictions in Clause `5.4.3`.
 
@@ -162,6 +176,7 @@ None.
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.0` | `2026-11-27` | Minor | Added `5.1.5` (recorded Pre-Release Gates), `5.1.6` (measured evidence for every measurable `Pass` or `Fail`), `5.1.7` (automated check citation and failing-check handling), and `A04-C10`, per `REC-A04-009` and Approver decision of `2026-11-27`. | Hary Irfantri |
 | `v1.1.1` | `2026-11-25` | Errata | Removed obsolete pre-approval note in Section 3 and tightened or split 30+ word sentences in `5.1.4`, `5.2.1`, `5.2.3`, `5.3.1`–`5.3.2`, `5.4.1`–`5.4.2`, `5.4.6`–`5.4.7`, `5.5.1`, and `5.5.3` per `REC-A04-005` (`F-10`). | Hary Irfantri |
 | `v1.1.0` | `2026-11-22` | Minor | Resolved Non-Conformity definition and `Critical`/`Major`/`Minor` tier overlaps (`4`, `5.2.1`, `5.2.3`–`5.2.4`), aligned 1-business-day metadata mismatch escalation with `A01 §5.8.2`, fixed `5.1.3` internal citations (`5.4.9`, `5.3.2`), generalized Section 5.5 to all `REC-` records with `C04` date citation, standardized `REC-A04-[001–999]` notation, expanded `SLA`/`ISO`, and added `A04-C8` and `A04-C9` per `REC-A04-001`. | Hary Irfantri |
 | `v1.0.0` | `2026-11-20` | Major | Initial approved baseline of `A04` (Compliance, Reviews & Exceptions), confirming scheduled consistency review cadence, three-tier non-conformity `SLA`s, cross-standard conflict resolution, and 90/180-day single-renewal waiver caps. | Hary Irfantri |

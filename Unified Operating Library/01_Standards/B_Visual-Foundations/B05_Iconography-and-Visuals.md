@@ -3,9 +3,9 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `B05` |
-| **Version** | `v1.1.0` |
+| **Version** | `v1.2.0` |
 | **Status** | `Approved` |
-| **Effective Date** | `2026-11-25` |
+| **Effective Date** | `2026-11-27` |
 | **Next Review** | `2027-05-22` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
@@ -66,6 +66,10 @@ For terms shared across the library, refer to `C02`, `B01`, and `B04`. For the p
 
 **5.1.3** Icons SHALL NOT be substituted for the official `B01` Primary Symbol or lockups, and `16 px` small-format derivatives SHALL simplify fine geometric detail rather than compressing intricate artwork (`B01 §5.3.2`).
 
+**5.1.4** Where the brand symbol appears on screen from `16 px` to below `28 px`, interfaces SHALL use the registered Small-Format Symbol (`AST-B01-17` or `AST-B01-18`) under `B01 §5.3.4`. Interfaces SHALL NOT draw a separate icon version of the symbol.
+
+> **Informative Note:** The Small-Format Symbol is a `B01` mark, not a `UI` icon. Its stroke widths follow `B01 §5.3.5`, so the uniform `1.5 px` or `2 px` stroke rule in Clause `5.1.1` does not apply to it.
+
 ### 5.2 Technical Schematics & Data Charts
 **5.2.1** Technical schematics and architecture diagrams SHALL use straight or orthogonal connectors (`90°` bends) (`C04 §5.3.2`), consistent node styling, and legible labels (`B03 §5.2.2`).
 
@@ -89,7 +93,7 @@ A visual asset, diagram, chart, interface, or publication conforms to `B05` if a
 
 | Check ID | Verification Criterion | Method |
 | :--- | :--- | :--- |
-| `B05-C1` | `UI` icons align to `16 px`, `20 px`, or `24 px` grids with uniform `1.5 px` or `2 px` strokes (`5.1.1`), use `SVG`/`PNG` masters (`5.1.2`), and avoid `B01` mark substitution or over-compressed detail (`5.1.3`). | Icon & asset audit |
+| `B05-C1` | `UI` icons align to `16 px`, `20 px`, or `24 px` grids with uniform `1.5 px` or `2 px` strokes (`5.1.1`), use `SVG`/`PNG` masters (`5.1.2`), and avoid `B01` mark substitution or over-compressed detail (`5.1.3`). Brand symbols rendered from `16 px` to below `28 px` use `AST-B01-17` or `AST-B01-18` (`5.1.4`). | Icon & asset audit |
 | `B05-C2` | Technical schematics use orthogonal/straight connectors and clear labels (`5.2.1`), and data charts pair color with non-color series cues (`5.2.2`). | Diagram & chart review |
 | `B05-C3` | Diagrams and charts contain zero internal codenames or promotional hype (`5.2.3`). | Content & glossary audit |
 | `B05-C4` | Photography and illustrations match objective editorial tone (`5.3.1`), preserve contrast and rights clearance (`5.3.2`), and avoid third-party non-affiliation claims (`A03 §5.6.2`). | Visual & rights inspection |
@@ -105,6 +109,7 @@ None.
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.0` | `2026-11-27` | Minor | Added `5.1.4` requiring the registered `B01 (v2.1.0)` Small-Format Symbol (`AST-B01-17`, `AST-B01-18`) for brand symbols rendered from `16 px` to below `28 px`, with an informative note separating it from `UI` icon stroke rules, and extended `B05-C1`. | Hary Irfantri |
 | `v1.1.0` | `2026-11-25` | Minor | Replaced subjective motion qualifiers in `5.4.1` with a recommended `300 ms` duration cap and objective `SHALL NOT` limits on flashing (`> 3` flashes per second) and unpausable erratic movement (`B05-C5`), restored Section 3 normative reference parity (added `D02`, removed six unused references and obsolete pre-approval note), split 30+ word sentences in `5.1.1` and `5.3.1`–`5.3.2`, and confirmed `D03 (v2.0.0)` alignment per `REC-A04-005` (`F-08`, `F-09`, `F-10`). | Hary Irfantri |
 | `v1.0.0` | `2026-11-22` | Major | Initial approved baseline of `B05` (Iconography, Diagrams & Visuals), locking the `16 px`–`24 px` icon grid and stroke rules, schematic and data chart accessibility rules, editorial photography/illustration standards, and reduced-motion requirements. | Hary Irfantri |
 | `v0.1.0` | `2026-11-22` | Pre-Release | Initial draft establishing the `16 px`–`24 px` icon grid and stroke rules, schematic and data chart accessibility rules, editorial photography/illustration standards, and reduced-motion requirements. | Hary Irfantri |

@@ -243,14 +243,14 @@ components:
 | **Deployment Filename** | `DESIGN.md` *(for Superdesign, Google Stitch, external repositories, and coding agents)* |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v1.2.0` |
+| **Version** | `v1.2.1` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.0.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` |
+| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` |
 
-> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md (v1.2.20)`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
+> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md (v1.2.22)`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
 
 ---
 
@@ -379,7 +379,8 @@ Depth is communicated primarily through surface tone contrast (`{colors.surface}
 * **Status Badges (`E02 §5.2.2`):** `{rounded.sm}` (`4px`), `1px` semantic border, semantic background tint, `6px` solid square marker (`border-radius: 0`), and exact Title Case `C02` text (`Approved`, `In Review`, `Draft`, `Planned`, `Sync Required`, `Deprecated`).
 * **Provenance Callout (`D03 §5.4.3`):** `{colors.info-bg}` fill (`#EFF6FF`), `4px` left border `{colors.primary}` (`#074C96`), `{rounded.md}` (`8px`) radius, `16px 20px` padding.
 * **Minimalist Data Tables (`C04 §5.4`):** Zero vertical gridlines and zero outer box borders. Header row uses `{colors.canvas}` fill, `{colors.secondary}` bold text, and `2px solid {colors.secondary}` bottom border; body rows use `{colors.surface}` fill and `1px solid {colors.border-subtle}` bottom hairline. Never leave cells blank (populate `None` or `—`).
-* **Brand Mark Assets (`B01 v2.0.0`):** Source all logos verbatim from approved `02_Assets/` Scalable Vector Graphics (`SVG`) masters (`AST-B01-01` Primary Symbol `≥ 28px`/`12 mm`; `AST-B01-02` White Symbol `≥ 28px`/`12 mm`; `AST-B01-03` Full-Color Parent-Endorsed Lockup `4.15:1` `≥ 260px`/`64 mm`; `AST-B01-04` White Parent-Endorsed Lockup `4.15:1` `≥ 260px`/`64 mm`) with at least `0.25×` Primary Symbol width unobstructed Clear Space on all four sides.
+* **Brand Mark Assets (`B01 v2.1.0`):** Source all logos verbatim from approved `02_Assets/` Scalable Vector Graphics (`SVG`) masters (`AST-B01-01` Primary Symbol `≥ 28px`/`12 mm`; `AST-B01-02` White Symbol `≥ 28px`/`12 mm`; `AST-B01-03` Full-Color Parent-Endorsed Lockup `4.15:1` `≥ 260px`/`64 mm`; `AST-B01-04` White Parent-Endorsed Lockup `4.15:1` `≥ 260px`/`64 mm`) with at least `0.25×` Primary Symbol width unobstructed Clear Space on all four sides.
+* **Favicons & App Icons (`B01 v2.1.0 §5.3.4`, `§5.4.4`, `§5.6.2`; `B05 §5.1.4`):** Below `28px`, never shrink the Primary Symbol; use `AST-B01-17_Small-Format-Symbol.svg` (`16px`–`27px`, switches to white under `prefers-color-scheme: dark`) or `AST-B01-18_White-Small-Format-Symbol.svg` on dark surfaces. Web pages link `AST-B01-17` as `<link rel="icon" type="image/svg+xml">`, `AST-B01-19_Favicon.ico` as the fallback, and `AST-B01-21_Apple-Touch-Icon.png` as `apple-touch-icon`; web app manifests list `AST-B01-22_App-Icon-192.png` and `AST-B01-23_App-Icon-512.png`. Never redraw the symbol as a `UI` icon or place it in any frame other than the Pure White App Icon Tile.
 
 ---
 
@@ -480,9 +481,9 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers & Assets** | `Library-Index.md (v1.2.20)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
+| **Master Registers & Assets** | `Library-Index.md (v1.2.22)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)` | `Approved` |
-| **Series B — Visual Foundations** | `B01 (v2.0.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)` | `Approved` |
+| **Series B — Visual Foundations** | `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)` | `Approved` |
 | **Series E — Documents & Print** | `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` | `Approved` |
@@ -491,6 +492,7 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.1` | `2026-11-27` | Errata | Synchronized the source standards and Table 4 to `B01 (v2.1.0)`, `B05 (v1.2.0)`, and `Library-Index.md (v1.2.22)`, and added favicon and app icon guidance for `AST-B01-17`–`AST-B01-23` (`REC-A04-012`). | Hary Irfantri |
 | `v1.2.0` | `2026-11-27` | Minor | Regenerated the front-matter typography and Table 3 from `AST-D01-01`: replaced the unsourced `48px` `headline-display` with `slide-title` (`64px`), added `slide-heading` (`40px`), raised `body-slide` from `22px` to `24px` (`E04 (v2.2.0) §5.2.6`), snapped all line heights to the `1.2` / `1.5` tokens, and removed deck sizes below `24px` (`REC-A04-009` `F-02`); refreshed the source standards and Table 4 to `A04 (v1.2.0)`, `B02 (v1.3.0)`, `E01 (v2.3.0)`, `E04 (v2.2.0)`, and `Library-Index.md (v1.2.20)`. | Hary Irfantri |
 | `v1.1.3` | `2026-11-27` | Errata | Moved the secondary button border guidance from `{colors.border-default}` to `{colors.border-strong}` per `B02 (v1.2.0) §5.2.2` (`REC-A04-009` `F-01`), and refreshed Table 4 to `Library-Index.md (v1.2.18)`. | Hary Irfantri |
 | `v1.1.2` | `2026-11-27` | Errata | Synchronized to `B02 (v1.2.0)`: added the `border-strong` color token (`#64748B`) for input and control borders, limited `border-default` to decorative uses, and refreshed Table 4 to `Library-Index.md (v1.2.15)` with the compile date corrected to `2026-11-27`. | Hary Irfantri |

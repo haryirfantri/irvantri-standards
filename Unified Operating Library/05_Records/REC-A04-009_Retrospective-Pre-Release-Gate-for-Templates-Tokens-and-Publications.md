@@ -5,10 +5,10 @@
 | **Code** | `REC-A04-009` |
 | **Record Type** | Pre-Release Gate (Retrospective) |
 | **Date** | `2026-11-27` |
-| **Status** | `Open` |
+| **Status** | `Closed` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Related Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.1)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `C01 (v1.1.1)`, `D01 (v1.0.3)`, `D04 (v1.2.1)`, `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E03 (v1.0.0)`, `E04 (v2.1.1)`, `Library-Index.md (v1.2.18)` |
+| **Related Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.1)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `C01 (v1.1.1)`, `D01 (v1.0.3)`, `D04 (v1.2.1)`, `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E03 (v1.0.0)`, `E04 (v2.1.1)`, `Library-Index.md (v1.2.20)` |
 | **Expiry Date** | `None` |
 
 ## 1. Review Scope & Trigger
@@ -117,8 +117,8 @@ Due dates are calculated from `2026-11-27` per `A04 (v1.1.1) §5.2.1`. `Major` f
 | Finding ID | Affected Item | Violated Clause / Check ID | Severity | Assigned Owner | Due Date | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `F-01` | `AST-D01-01`, `PUB-01`, `PUB-03`, `TPL-E01-03` | `B02 (v1.2.0) §5.2.2`, `§5.5.1` (`B02-C2`, `B02-C5`); `D01 (v1.0.3) §5.2.1` (`D01-C2`) | `Major` | Hary Irfantri | `2026-12-18` | `Closed` |
-| `F-02` | `PUB-03` | `D01 (v1.0.3) §5.3.1` (`D01-C3`) | `Major` | Hary Irfantri | `2026-12-18` | `Open` |
-| `F-03` | `TPL-E01-01`, `TPL-E01-04`, `TPL-E04-01`, `TPL-E04-03` | `E03 (v1.0.0) §5.1.2` (`E03-C1`); `E01 (v2.2.0) §5.2.1` (`E01-C2`); `E04 (v2.1.1) §5.1.1` (`E04-C1`) | `Major` | Hary Irfantri | `2026-12-18` | `Open` |
+| `F-02` | `PUB-03` | `D01 (v1.0.3) §5.3.1` (`D01-C3`) | `Major` | Hary Irfantri | `2026-12-18` | `Closed` |
+| `F-03` | `TPL-E01-01`, `TPL-E01-04`, `TPL-E04-01`, `TPL-E04-03` | `E03 (v1.0.0) §5.1.2` (`E03-C1`); `E01 (v2.2.0) §5.2.1` (`E01-C2`); `E04 (v2.1.1) §5.1.1` (`E04-C1`) | `Major` | Hary Irfantri | `2026-12-18` | `Closed` |
 | `F-04` | `TPL-E01-01`, `TPL-E01-02`, `TPL-E01-04`, `TPL-E04-01`, `TPL-E04-03` | `E03 (v1.0.0) §5.4.1` (`E03-C4`) | `Minor` | Hary Irfantri | `2026-12-27` | `Closed` |
 | `F-05` | `PUB-01`, `PUB-02` | `A01 (v1.2.0) §5.7.5` (`A01-C10`) | `Minor` | Hary Irfantri | `2026-12-27` | `Closed` |
 | `F-06` | `TPL-E01-03` | `C01 (v1.1.1) §5.6.1`; `E01 (v2.2.0) §5.1.2` (`E01-C1`) | `Minor` | Hary Irfantri | `2026-12-27` | `Closed` |
@@ -142,6 +142,12 @@ Remediation was released on `2026-11-27` with `Library-Index.md (v1.2.18)`. Each
 * **`F-06` — `Closed` `2026-11-27`:** `TPL-E01-03` now declares `<html lang="en-US">`.
 * **Automated check:** `python3 tools/library_checks.py` on the remediation branch gives `PASS` with zero failing findings. The three remaining known issues are the `U-01` `CMYK` builds.
 
+The upstream revisions approved in Section 10 were released on `2026-11-27` with `Library-Index.md (v1.2.20)`. Their own Pre-Release Gate is `REC-A04-010`. Each result below was re-measured on the changed files.
+
+* **`F-02` — `Closed` `2026-11-27`:** `E04 (v2.2.0) §5.2.6` sets the slide type scale (`64 px`, `40 px`, `24 px`), and `AST-D01-01` publishes it as `primitive.font.size.slide-title`, `slide-heading`, and `slide-body`. `PUB-03 (v1.2.0)` front-matter typography is now generated from `AST-D01-01`. A script regenerates it and finds it identical to the file. `headline-display` (`48px`) became `slide-title` (`64px`), and `body-slide` moved from `22px` to `24px`. Every line height is now `1.2` or `1.5`, the two `AST-D01-01` tokens.
+* **`F-03` — `Closed` `2026-11-27`:** the footer block in each of the four templates was raised one `4 mm` step, from a `16 mm` to a `20 mm` baseline. A `300 DPI` render measured from the TrimBox puts the lowest ink at `19.30 mm` (`TPL-E01-01`), `19.22 mm` (`TPL-E01-04`), `19.39 mm` (`TPL-E04-01`), and `19.30 mm` (`TPL-E04-03`) above trim. All clear the `16 mm` Safe Margin, measured to the outermost ink under `E03 (v1.1.0) §5.1.5`. In the digital templates, a `150 DPI` before-and-after render changes only inside the footer band.
+* **`U-01`–`U-03`:** released as `B02 (v1.3.0) §5.6.1`, `E01 (v2.3.0) §5.4.5`, and `E03 (v1.1.0) §5.1.5`. The print templates now use only `B02 §5.1.1` and `§5.6.1` builds, so the three `cmyk-off-palette` known issues were removed from `tools/known-issues.json`. `tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues.
+
 > **Informative Note:** The first draft of this record also listed `PUB-03` Table 4 under `F-05`. Re-measurement showed that `PUB-03` lists no `TPL-` items, so `PUB-03` was removed from `F-05` and its `A01-C10` result was corrected to `Pass`. This record was still `Open`, so the correction is permitted (`A04 (v1.1.1) §5.5.3`).
 
 ## 10. Upstream Observations for Approver Decision (`A04 (v1.1.1) §5.3`)
@@ -154,7 +160,7 @@ These items are not non-conformities. They are clauses whose current wording lea
 
 ## 11. Closure Verification (`A04 (v1.1.1) §5.2.3`)
 
-* **Gate Verdict:** `Hold` for `F-02` and `F-03` until they close or receive a waiver. `F-01`, `F-04`, `F-05`, and `F-06` closed on `2026-11-27`. The items remain `Approved` in the register, because this gate is retrospective. Release blocking under `A04 (v1.1.1) §5.2.4` applies only if a finding passes its due date while still open.
-* **Approver Sign-Off Date:** Pending.
+* **Gate Verdict:** `Pass`. All six findings (`F-01`–`F-06`) closed on `2026-11-27` with the evidence in Section 9, within their due dates.
+* **Approver Sign-Off:** The Approver approved the remediation values on `2026-11-27`. Merging the release pull request records sign-off of this closure evidence.
 * **Approver:** Hary Irfantri
-* **Objective Closure Evidence:** Pending. This record stays `Open` until each finding is closed with evidence or waived. It becomes immutable when it reaches `Closed` (`A04 (v1.1.1) §5.5.3`).
+* **Objective Closure Evidence:** Section 9 and `REC-A04-010`. This record is `Closed` and immutable from this release (`A04 (v1.1.1) §5.5.3`).

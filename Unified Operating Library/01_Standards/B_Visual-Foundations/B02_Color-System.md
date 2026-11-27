@@ -3,7 +3,7 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `B02` |
-| **Version** | `v1.2.0` |
+| **Version** | `v1.3.0` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Next Review** | `2027-05-22` |
@@ -121,13 +121,42 @@ For terms shared across the library, refer to `C02` and `B01`. For the purposes 
 
 **5.5.2** Semantic state communication in interfaces and status badges (`C02 §5.4.1`, `D03`) SHALL NOT rely on color alone. Every color-coded status indicator SHALL pair color with an explicit text label, icon, or status glyph.
 
+### 5.6 Print Builds for Neutral & Semantic Colors
+**5.6.1** Print production (`E03`) of the neutral scale (`5.2.1`) and semantic palette (`5.3.1`) SHALL use the `ISO` Coated v2 `CMYK` builds below. Automated `RGB`-to-`CMYK` conversions SHALL NOT be used (`5.1.3`, `E03 §5.3.1`). **Informative** foreground uses the **Brand Blue** build (`5.1.1`).
+
+| Color Name | Source Clause | HEX | CMYK (ISO Coated v2) | ΔE76 | Note |
+| :--- | :--- | :--- | :--- | ---: | :--- |
+| **Pure White** | `5.2.1` | `#FFFFFF` | `0, 0, 0, 0` | `0.0` | Unprinted paper |
+| **Canvas Subtle** | `5.2.1` | `#F8FAFC` | `3, 2, 1, 0` | `0.0` |  |
+| **Surface Muted** | `5.2.1` | `#F1F5F9` | `7, 3, 2, 0` | `1.3` | Also Neutral subtle surface |
+| **Surface Tint** | `5.2.1` | `#EFF6FF` | `7, 2, 0, 0` | `1.0` | Also Informative subtle surface |
+| **Border Subtle** | `5.2.1` | `#E2E8F0` | `14, 7, 4, 0` | `0.4` |  |
+| **Border Default** | `5.2.1` | `#CBD5E1` | `24, 12, 8, 0` | `1.1` | Also Neutral border |
+| **Border Strong** | `5.2.1` | `#64748B` | `45, 25, 0, 50` | `1.1` | K-heavy |
+| **Text Muted** | `5.2.1` | `#5F6C7E` | `40, 20, 0, 60` | `1.2` | K-heavy |
+| **Text Primary** | `5.2.1` | `#0F172A` | `80, 40, 0, 100` | `7.4` | K-heavy; screen value is darker than press black |
+| **Pure Black** | `5.2.1` | `#000000` | `0, 0, 0, 100` | `n/a` | K-only (`E03 §5.3.2`) |
+| **Success** | `5.3.1` | `#166534` | `85, 10, 95, 50` | `0.0` |  |
+| **Success Surface** | `5.3.1` | `#F0FDF4` | `6, 0, 7, 0` | `3.1` |  |
+| **Success Border** | `5.3.1` | `#BBF7D0` | `35, 0, 35, 0` | `12.1` | Outside the press gamut; closest printable build |
+| **Warning** | `5.3.1` | `#92400E` | `0, 75, 100, 45` | `4.7` |  |
+| **Warning Surface** | `5.3.1` | `#FFFBEB` | `0, 2, 11, 0` | `1.0` |  |
+| **Warning Border** | `5.3.1` | `#FDE68A` | `2, 7, 57, 0` | `0.4` |  |
+| **Danger** | `5.3.1` | `#A42332` | `7, 99, 73, 33` | `1.5` |  |
+| **Danger Surface** | `5.3.1` | `#FEF2F2` | `0, 7, 4, 0` | `0.0` |  |
+| **Danger Border** | `5.3.1` | `#FECACA` | `0, 29, 16, 0` | `2.1` |  |
+| **Neutral** | `5.3.1` | `#475569` | `50, 25, 0, 70` | `1.2` | K-heavy |
+| **Informative Border** | `5.3.1` | `#BFDBFE` | `29, 9, 0, 0` | `4.2` |  |
+
+> **Informative Note:** Each build was set once from the `sRGB` value using the `ISO` Coated v2 profile in `06_Dependencies/Color-Profiles/ISOcoated_v2_eci.icc`. The conversion used relative colorimetric intent (littleCMS) and whole-percentage rounding. ΔE76 is the 1976 color difference between the screen color and the press simulation. Dark text builds are K-heavy to limit registration blur in small type. **Text Primary** and **Success Border** sit outside the press gamut, so their builds are the closest printable match. Brand builds in `5.1.1` are unchanged; changing them requires a Color Proof (`E03 §5.4.3`).
+
 ## 6. Conformance & Verification
 
 A digital interface, token file, publication, or print deliverable conforms to `B02` if and only if all of the following objective checks pass:
 
 | Check ID | Verification Criterion | Method |
 | :--- | :--- | :--- |
-| `B02-C1` | Brand colors match exact `HEX`, `RGB`, and `ISO` Coated v2 `CMYK` builds (`5.1.1`, `5.1.3`), with uppercase `#RRGGBB` syntax (`5.1.2`). | Token & prepress audit |
+| `B02-C1` | Brand colors match exact `HEX`, `RGB`, and `ISO` Coated v2 `CMYK` builds (`5.1.1`, `5.1.3`), with uppercase `#RRGGBB` syntax (`5.1.2`), and print files use only the `5.1.1` and `5.6.1` `CMYK` builds. | Token & prepress audit |
 | `B02-C2` | Neutral surfaces and typography use only calibrated neutral scale tokens (`5.2.1`), input and control boundaries use **Border Strong** (`5.2.2`), with zero ad-hoc hex values in templates or interfaces (`5.4.3`). | Stylesheet & layout lint |
 | `B02-C3` | Semantic alerts and status indicators use the approved semantic palette (`5.3.1`), and error text uses `#A42332` rather than `#DE0029` (`5.3.2`). | `UI` & contrast inspection |
 | `B02-C4` | **Signal Red** (`#DE0029`) is restricted to approved mark, rule, and accent roles (`5.4.2`). | Visual & layout review |
@@ -143,6 +172,7 @@ None.
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.3.0` | `2026-11-27` | Minor | Added `5.6.1` fixed `ISO` Coated v2 `CMYK` builds for the neutral scale and semantic palette, measured against the library color profile, and extended `B02-C1`, per `REC-A04-009` (`U-01`). | Hary Irfantri |
 | `v1.2.0` | `2026-11-27` | Minor | Added **Border Strong** (`#64748B`, `4.76:1` on white) for input and control boundaries (`5.2.1`, `5.2.2`), limited **Border Default** to decorative uses after it measured `1.48:1` against the `3.0:1` non-text minimum (`5.5.1`), corrected the `5.3.2` rationale (**Signal Red** meets `WCAG` AA; **Danger** is kept for semantic distinction), and extended `B02-C2`. | Hary Irfantri |
 | `v1.1.1` | `2026-11-25` | Errata | Added `D02` to Section 3 normative references (covering `D01`–`D03` in `5.2.1`), tightened `5.4.1` below 30 words, and confirmed `D03 (v2.0.0)` alignment per `REC-A04-005` (`F-09`, `F-10`). | Hary Irfantri |
 | `v1.1.0` | `2026-11-24` | Minor | Added `Surface Tint` (`#EFF6FF`) and `Border Subtle` (`#E2E8F0`) neutral tokens (`5.2.1`), added the fifth `Neutral` semantic status row (`#475569` / `#F1F5F9` / `#CBD5E1`) (`5.3.1`), added subtle neutral elevation allowance (`5.4.4`), expanded `ISO` and `UI` on first occurrence, and aligned Section 3 normative references. | Hary Irfantri |

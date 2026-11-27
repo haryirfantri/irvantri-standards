@@ -35,11 +35,17 @@ colors:
   neutral-bg: "#F1F5F9"
   neutral-border: "#CBD5E1"
 typography:
-  headline-display:
+  slide-title:
     fontFamily: "Noto Sans Display"
-    fontSize: "48px"
+    fontSize: "64px"
     fontWeight: 800
-    lineHeight: 1.15
+    lineHeight: 1.2
+    letterSpacing: "-0.03em"
+  slide-heading:
+    fontFamily: "Noto Sans Display"
+    fontSize: "40px"
+    fontWeight: 700
+    lineHeight: 1.2
     letterSpacing: "-0.03em"
   headline-lg:
     fontFamily: "Noto Sans Display"
@@ -51,7 +57,7 @@ typography:
     fontFamily: "Noto Sans Display"
     fontSize: "28px"
     fontWeight: 800
-    lineHeight: 1.15
+    lineHeight: 1.2
     letterSpacing: "-0.04em"
   headline-md:
     fontFamily: "Noto Sans Display"
@@ -63,7 +69,7 @@ typography:
     fontFamily: "Noto Sans Display"
     fontSize: "16px"
     fontWeight: 700
-    lineHeight: 1.25
+    lineHeight: 1.2
     letterSpacing: "-0.02em"
   body-lg:
     fontFamily: "Noto Sans"
@@ -79,15 +85,15 @@ typography:
     letterSpacing: "0em"
   body-slide:
     fontFamily: "Noto Sans"
-    fontSize: "22px"
+    fontSize: "24px"
     fontWeight: 400
-    lineHeight: 1.45
+    lineHeight: 1.5
     letterSpacing: "0em"
   label-lg:
     fontFamily: "Noto Sans"
     fontSize: "14px"
     fontWeight: 600
-    lineHeight: 1.4
+    lineHeight: 1.5
     letterSpacing: "0em"
   label-sm:
     fontFamily: "Noto Sans"
@@ -99,7 +105,7 @@ typography:
     fontFamily: "Noto Sans Mono"
     fontSize: "14px"
     fontWeight: 500
-    lineHeight: 1.4
+    lineHeight: 1.5
     letterSpacing: "0em"
 spacing:
   xs: "4px"
@@ -237,14 +243,14 @@ components:
 | **Deployment Filename** | `DESIGN.md` *(for Superdesign, Google Stitch, external repositories, and coding agents)* |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v1.1.3` |
+| **Version** | `v1.2.0` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)`, `B01 (v2.0.0)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` |
+| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.0.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` |
 
-> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md v1.2.15`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
+> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md (v1.2.20)`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
 
 ---
 
@@ -309,21 +315,24 @@ Use exclusively the unified **`SIL OFL-1.1` Noto Sans superfamily** (`06_Depende
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400;600;700;800&family=Noto+Sans+Mono:wght@400;500;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
 
-**Table 3.** Role-Based Typographic Scale (`B03 §5.2.6`, `E04 §5.2.3`)
+**Table 3.** Role-Based Typographic Scale, generated from `AST-D01-01` (`B03 §5.2.6`, `E04 §5.2.6`)
 
-| YAML Token | Role | Typeface | Size (Web / Deck) | Weight | Tracking | Line Height |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `{typography.headline-display}` | Cover / Hero Title | `Noto Sans Display` | `48px` / `56px`–`72px` | `800` | `-0.03em` | `1.15` |
-| `{typography.headline-lg}` | Page / Slide Title | `Noto Sans Display` | `32px` / `36px`–`44px` | `800` | `-0.03em` | `1.20` |
-| `{typography.headline-kpi}` | Metric / Key Performance Indicator (`KPI`) | `Noto Sans Display` | `28px` / `56px`–`72px` | `800` | `-0.04em` | `1.15` |
-| `{typography.headline-md}` | Section Title | `Noto Sans Display` | `20px` / `24px`–`28px` | `700` | `-0.03em` | `1.20` |
-| `{typography.headline-sm}` | Panel Title | `Noto Sans Display` | `16px` / `20px`–`22px` | `700` | `-0.02em` | `1.25` |
-| `{typography.body-lg}` | Long-Form Documentation | `Noto Sans` | `16px` (`12 pt`) | `400` | `0em` | `1.50` |
-| `{typography.body-md}` | Standard UI & Tables | `Noto Sans` | `14px` (`10.5 pt`) | `400` | `0em` | `1.50` |
-| `{typography.body-slide}` | Presentation Body Copy | `Noto Sans` | `22px` (`≥ 16 pt` min) | `400` | `0em` | `1.45` |
-| `{typography.label-sm}` | Eyebrow / Overline (Uppercase) | `Noto Sans` | `12px` / `14px` | `700` | `0.12em` | `1.20` |
-| `{typography.code-md}` | Codes, Versions, Dates | `Noto Sans Mono` | `14px` / `16px`–`22px` | `500` | `0em` | `1.40` |
+| YAML Token | Role | Typeface | Size | Weight | Tracking | Line Height | Source Token |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `{typography.slide-title}` | Slide Title (`1920 × 1080`) | `Noto Sans Display` | `64px` | `800` | `-0.03em` | `1.2` | `primitive.font.size.slide-title` |
+| `{typography.slide-heading}` | Slide Heading (`1920 × 1080`) | `Noto Sans Display` | `40px` | `700` | `-0.03em` | `1.2` | `primitive.font.size.slide-heading` |
+| `{typography.body-slide}` | Slide Body & Captions (`1920 × 1080`) | `Noto Sans` | `24px` (minimum) | `400` | `0em` | `1.5` | `primitive.font.size.slide-body` |
+| `{typography.headline-lg}` | Page Title | `Noto Sans Display` | `32px` | `800` | `-0.03em` | `1.2` | `primitive.font.size.page-title-desktop` |
+| `{typography.headline-kpi}` | Metric / Key Performance Indicator (`KPI`) | `Noto Sans Display` | `28px` | `800` | `-0.04em` | `1.2` | `primitive.font.size.kpi-desktop` |
+| `{typography.headline-md}` | Section Title | `Noto Sans Display` | `20px` | `700` | `-0.03em` | `1.2` | `primitive.font.size.section-title-desktop` |
+| `{typography.headline-sm}` | Panel Title | `Noto Sans Display` | `16px` | `700` | `-0.02em` | `1.2` | `primitive.font.size.panel-title` |
+| `{typography.body-lg}` | Long-Form Documentation | `Noto Sans` | `16px` (`12 pt`) | `400` | `0em` | `1.5` | `primitive.font.size.body-doc` |
+| `{typography.body-md}` | Standard UI & Tables | `Noto Sans` | `14px` (`10.5 pt`) | `400` | `0em` | `1.5` | `primitive.font.size.body-ui` |
+| `{typography.label-lg}` | Button & Field Labels | `Noto Sans` | `14px` | `600` | `0em` | `1.5` | `primitive.font.size.body-ui` |
+| `{typography.label-sm}` | Eyebrow / Overline (Uppercase) | `Noto Sans` | `12px` | `700` | `0.12em` | `1.2` | `primitive.font.size.eyebrow` |
+| `{typography.code-md}` | Codes, Versions, Dates | `Noto Sans Mono` | `14px` | `500` | `0em` | `1.5` | `primitive.font.size.body-ui` |
 
+* **Slide Text (`E04 §5.2.6`):** On `1920 × 1080` slides, use only `{typography.slide-title}`, `{typography.slide-heading}`, and `{typography.body-slide}`. Never set slide text below `24px`.
 * **Fallback Stacks (`B03 §5.1.4`):** `'Noto Sans Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif`; `'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif`; `'Noto Sans Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace`.
 * **Tabular Numerals & Measure (`B03 §5.2.4`, `§5.3.1`):** Enforce `font-variant-numeric: tabular-nums;` on every table, metric readout, and register. Keep prose columns between `50` and `85` characters per line (`max-width: 72ch`). Restrict ALL CAPS to eyebrows, table headers, codes, and wordmarks (`B03 §5.2.7`).
 
@@ -471,17 +480,18 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers & Assets** | `Library-Index.md (v1.2.18)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
-| **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.1.1)` | `Approved` |
-| **Series B — Visual Foundations** | `B01 (v2.0.0)`, `B02 (v1.2.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)` | `Approved` |
+| **Master Registers & Assets** | `Library-Index.md (v1.2.20)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
+| **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)` | `Approved` |
+| **Series B — Visual Foundations** | `B01 (v2.0.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.1.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)` | `Approved` |
-| **Series E — Documents & Print** | `E01 (v2.2.0)`, `E02 (v1.1.0)`, `E04 (v2.1.1)` | `Approved` |
+| **Series E — Documents & Print** | `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` | `Approved` |
 
 **Table 5.** Revision History — `PUB-03`
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.0` | `2026-11-27` | Minor | Regenerated the front-matter typography and Table 3 from `AST-D01-01`: replaced the unsourced `48px` `headline-display` with `slide-title` (`64px`), added `slide-heading` (`40px`), raised `body-slide` from `22px` to `24px` (`E04 (v2.2.0) §5.2.6`), snapped all line heights to the `1.2` / `1.5` tokens, and removed deck sizes below `24px` (`REC-A04-009` `F-02`); refreshed the source standards and Table 4 to `A04 (v1.2.0)`, `B02 (v1.3.0)`, `E01 (v2.3.0)`, `E04 (v2.2.0)`, and `Library-Index.md (v1.2.20)`. | Hary Irfantri |
 | `v1.1.3` | `2026-11-27` | Errata | Moved the secondary button border guidance from `{colors.border-default}` to `{colors.border-strong}` per `B02 (v1.2.0) §5.2.2` (`REC-A04-009` `F-01`), and refreshed Table 4 to `Library-Index.md (v1.2.18)`. | Hary Irfantri |
 | `v1.1.2` | `2026-11-27` | Errata | Synchronized to `B02 (v1.2.0)`: added the `border-strong` color token (`#64748B`) for input and control borders, limited `border-default` to decorative uses, and refreshed Table 4 to `Library-Index.md (v1.2.15)` with the compile date corrected to `2026-11-27`. | Hary Irfantri |
 | `v1.1.1` | `2026-11-27` | Errata | Refreshed the source standards and Table 4 register references to E01 (v2.2.0), E04 (v2.1.1), and Library-Index.md (v1.2.14). | Hary Irfantri |

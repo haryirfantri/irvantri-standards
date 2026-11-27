@@ -3,9 +3,9 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `B02` |
-| **Version** | `v1.1.1` |
+| **Version** | `v1.2.0` |
 | **Status** | `Approved` |
-| **Effective Date** | `2026-11-25` |
+| **Effective Date** | `2026-11-27` |
 | **Next Review** | `2027-05-22` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
@@ -82,10 +82,13 @@ For terms shared across the library, refer to `C02` and `B01`. For the purposes 
 | **Surface Muted** | `#F1F5F9` | `241, 245, 249` | Hover fills, subtle badges, and alternating row surfaces |
 | **Surface Tint** | `#EFF6FF` | `239, 246, 255` | Interactive hover washes, active navigation fills, and provenance callout surfaces |
 | **Border Subtle** | `#E2E8F0` | `226, 232, 240` | Hairline structural dividers, table row rules, and secondary container borders |
-| **Border Default** | `#CBD5E1` | `203, 213, 225` | Hairline rules, table grids, and form input borders |
+| **Border Default** | `#CBD5E1` | `203, 213, 225` | Decorative hairline rules, table grids, and card borders |
+| **Border Strong** | `#64748B` | `100, 116, 139` | Form input borders, selectable-control outlines, and other boundaries that identify an interactive control |
 | **Text Muted** | `#5F6C7E` | `95, 108, 126` | Secondary metadata, captions, and helper text on light surfaces |
 | **Text Primary** | `#0F172A` | `15, 23, 42` | Body copy, headings, and primary User Interface (`UI`) labels on light surfaces |
 | **Pure Black** | `#000000` | `0, 0, 0` | Monochrome single-ink print reproduction (`B01 §5.4.1`, `E03`) |
+
+**5.2.2** Input and control boundaries SHALL use **Border Strong** (`#64748B`) to meet the `3.0:1` non-text contrast minimum (`5.5.1`). **Border Default** (`#CBD5E1`) measures `1.48:1` on white and SHALL NOT serve that purpose.
 
 ### 5.3 Semantic & Status Color Palette
 **5.3.1** System status badges, validation alerts, and feedback banners (`C03 §5.2`–`§5.3`, `D03`) SHALL use the semantic palette below:
@@ -98,7 +101,9 @@ For terms shared across the library, refer to `C02` and `B01`. For the purposes 
 | **Danger** | `#A42332` | `164, 35, 50` | `#FEF2F2` | `#FECACA` |
 | **Neutral** | `#475569` | `71, 85, 105` | `#F1F5F9` | `#CBD5E1` |
 
-**5.3.2** Raw **Signal Red** (`#DE0029`) SHALL NOT be used for body text, form validation messages, or error text on white (`#FFFFFF`) or light neutral surfaces (`#F8FAFC`, `#F1F5F9`). Error and danger text SHALL use **Danger** (`#A42332`) to preserve `WCAG` 2.2 Level AA contrast (`D04`).
+**5.3.2** Raw **Signal Red** (`#DE0029`) SHALL NOT be used for body text, form validation messages, or error text on white (`#FFFFFF`) or light neutral surfaces (`#F8FAFC`, `#F1F5F9`). Error and danger text SHALL use **Danger** (`#A42332`) (`D04`).
+
+> **Informative Note:** **Signal Red** reaches `5.07:1` on white and meets `WCAG` 2.2 Level AA. **Danger** is required so error meaning stays distinct from the brand accent and keeps a wider margin (`7.33:1` on white).
 
 ### 5.4 Proportional Color Ratios & Surface Rules
 **5.4.1** Page compositions, presentation slides (`E04`), and publications (`PUB-`) SHOULD target a `75%` light neutral (`#FFFFFF` / `#F8FAFC`), `20%` blue or navy (`#074C96` / `#092B55`), and `5%` **Signal Red** (`#DE0029`) balance.
@@ -123,7 +128,7 @@ A digital interface, token file, publication, or print deliverable conforms to `
 | Check ID | Verification Criterion | Method |
 | :--- | :--- | :--- |
 | `B02-C1` | Brand colors match exact `HEX`, `RGB`, and `ISO` Coated v2 `CMYK` builds (`5.1.1`, `5.1.3`), with uppercase `#RRGGBB` syntax (`5.1.2`). | Token & prepress audit |
-| `B02-C2` | Neutral surfaces and typography use only calibrated neutral scale tokens (`5.2.1`), with zero ad-hoc hex values in templates or interfaces (`5.4.3`). | Stylesheet & layout lint |
+| `B02-C2` | Neutral surfaces and typography use only calibrated neutral scale tokens (`5.2.1`), input and control boundaries use **Border Strong** (`5.2.2`), with zero ad-hoc hex values in templates or interfaces (`5.4.3`). | Stylesheet & layout lint |
 | `B02-C3` | Semantic alerts and status indicators use the approved semantic palette (`5.3.1`), and error text uses `#A42332` rather than `#DE0029` (`5.3.2`). | `UI` & contrast inspection |
 | `B02-C4` | **Signal Red** (`#DE0029`) is restricted to approved mark, rule, and accent roles (`5.4.2`). | Visual & layout review |
 | `B02-C5` | All text (`4.5:1`) and large text / `UI` controls (`3.0:1`) satisfy `WCAG` 2.2 Level AA contrast (`5.5.1`), and status badges include non-color text or icon cues (`5.5.2`). | Accessibility contrast audit |
@@ -138,6 +143,7 @@ None.
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.0` | `2026-11-27` | Minor | Added **Border Strong** (`#64748B`, `4.76:1` on white) for input and control boundaries (`5.2.1`, `5.2.2`), limited **Border Default** to decorative uses after it measured `1.48:1` against the `3.0:1` non-text minimum (`5.5.1`), corrected the `5.3.2` rationale (**Signal Red** meets `WCAG` AA; **Danger** is kept for semantic distinction), and extended `B02-C2`. | Hary Irfantri |
 | `v1.1.1` | `2026-11-25` | Errata | Added `D02` to Section 3 normative references (covering `D01`–`D03` in `5.2.1`), tightened `5.4.1` below 30 words, and confirmed `D03 (v2.0.0)` alignment per `REC-A04-005` (`F-09`, `F-10`). | Hary Irfantri |
 | `v1.1.0` | `2026-11-24` | Minor | Added `Surface Tint` (`#EFF6FF`) and `Border Subtle` (`#E2E8F0`) neutral tokens (`5.2.1`), added the fifth `Neutral` semantic status row (`#475569` / `#F1F5F9` / `#CBD5E1`) (`5.3.1`), added subtle neutral elevation allowance (`5.4.4`), expanded `ISO` and `UI` on first occurrence, and aligned Section 3 normative references. | Hary Irfantri |
 | `v1.0.0` | `2026-11-22` | Major | Initial approved baseline of `B02` (Color System), locking the Primary Brand Palette (`HEX`, `RGB`, and `ISO` Coated v2 `CMYK`), Neutral Scale, Semantic Status Palette (`#A42332` Danger), proportional usage ratios, `WCAG` 2.2 Level AA contrast rules, and non-color status cue requirements. | Hary Irfantri |

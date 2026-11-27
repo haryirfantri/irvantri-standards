@@ -1,0 +1,1954 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#092B55" />
+  <meta name="description" content="Irvantri Standards Design System compiled publication covering marks, color system, Noto Sans typography, spatial grids, components, accessibility, and export governance." />
+  <title>PUB-01 — Irvantri Standards Design System &amp; Brand Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@700;800&family=Noto+Sans+Mono:wght@400;500;700&family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+/*
+ * Irvantri Standards Design System — Generated CSS Custom Properties
+ * Single Source: 02_Assets/AST-D01-01_Design-Tokens.json | Pinned: D01 (v1.0)
+ * Compiled: 2026-11-26 | Generated programmatically; do not edit manually (D01 §5.3.1)
+ */
+:root {
+  /* Semantic Tier */
+  --is-color-brand-primary: #074C96;
+  --is-color-brand-accent: #DE0029;
+  --is-color-brand-deep: #092B55;
+  --is-color-brand-secondary: #102F60;
+  --is-color-bg-canvas: #F8FAFC;
+  --is-color-bg-surface: #FFFFFF;
+  --is-color-bg-muted: #F1F5F9;
+  --is-color-bg-tint: #EFF6FF;
+  --is-color-border-default: #CBD5E1;
+  --is-color-border-subtle: #E2E8F0;
+  --is-color-text-primary: #0F172A;
+  --is-color-text-muted: #5F6C7E;
+  --is-color-text-inverse: #FFFFFF;
+  --is-color-text-mono: #000000;
+  --is-color-status-informative: #074C96;
+  --is-color-status-informative-bg: #EFF6FF;
+  --is-color-status-informative-border: #BFDBFE;
+  --is-color-status-success: #166534;
+  --is-color-status-success-bg: #F0FDF4;
+  --is-color-status-success-border: #BBF7D0;
+  --is-color-status-warning: #92400E;
+  --is-color-status-warning-bg: #FFFBEB;
+  --is-color-status-warning-border: #FDE68A;
+  --is-color-status-danger: #A42332;
+  --is-color-status-danger-bg: #FEF2F2;
+  --is-color-status-danger-border: #FECACA;
+  --is-color-status-neutral: #475569;
+  --is-color-status-neutral-bg: #F1F5F9;
+  --is-color-status-neutral-border: #CBD5E1;
+  --is-font-family-display: 'Noto Sans Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif;
+  --is-font-family-text: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif;
+  --is-font-family-mono: 'Noto Sans Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+  --is-font-size-eyebrow: 12px;
+  --is-font-size-body-ui: 14px;
+  --is-font-size-body-doc: 16px;
+  --is-font-size-panel-title: 16px;
+  --is-font-size-section-title: 20px;
+  --is-font-size-page-title: 32px;
+  --is-font-line-height-heading: 1.2;
+  --is-font-line-height-body: 1.5;
+  --is-space-1: 4px;
+  --is-space-2: 8px;
+  --is-space-3: 12px;
+  --is-space-4: 16px;
+  --is-space-5: 20px;
+  --is-space-6: 24px;
+  --is-space-8: 32px;
+  --is-space-11: 44px;
+  --is-space-12: 48px;
+  --is-space-16: 64px;
+  --is-radius-none: 0px;
+  --is-radius-sm: 4px;
+  --is-radius-md: 8px;
+  --is-radius-lg: 12px;
+  --is-shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --is-shadow-action: 0 2px 6px rgba(15, 23, 42, 0.12);
+  --is-focus-ring-width: 3px;
+  --is-focus-ring-offset: 3px;
+  --is-focus-ring-color: #074C96;
+  /* Component Tier */
+  --is-button-primary-bg: #074C96;
+  --is-button-primary-bg-hover: #102F60;
+  --is-button-primary-text: #FFFFFF;
+  --is-button-secondary-bg: #FFFFFF;
+  --is-button-secondary-bg-hover: #EFF6FF;
+  --is-button-secondary-text: #092B55;
+  --is-button-secondary-border: #CBD5E1;
+  --is-button-disabled-bg: #F1F5F9;
+  --is-button-disabled-text: #475569;
+  --is-button-min-height: 44px;
+  --is-button-gap-compact: 12px;
+  --is-button-radius: 4px;
+  --is-input-bg: #FFFFFF;
+  --is-input-border: #CBD5E1;
+  --is-input-border-error: #A42332;
+  --is-input-min-height: 44px;
+  --is-input-radius: 4px;
+  --is-badge-radius: 4px;
+  --is-banner-radius: 8px;
+  --is-card-bg: #FFFFFF;
+  --is-card-border: #CBD5E1;
+  --is-card-radius: 8px;
+  --is-card-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --is-feature-radius: 12px;
+  --is-provenance-bg: #EFF6FF;
+  --is-provenance-border: #074C96;
+  --is-provenance-radius: 8px;
+  --is-icon-size-sm: 16px;
+  --is-icon-size-md: 20px;
+  --is-icon-size-lg: 24px;
+  --is-icon-stroke-fine: 1.5px;
+  --is-icon-stroke-default: 2px;
+}
+
+/* Base & Accessibility Reset (B03, B04, D02, D04) */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--is-color-bg-canvas);
+  color: var(--is-color-text-primary);
+  font-family: var(--is-font-family-text);
+  font-size: var(--is-font-size-body-ui);
+  line-height: var(--is-font-line-height-body);
+  overflow-x: clip;
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+a { color: var(--is-color-brand-primary); }
+img, svg { max-width: 100%; }
+code, pre, .is-mono { font-family: var(--is-font-family-mono); }
+.is-tabular { font-variant-numeric: tabular-nums; }
+
+/* D04 §5.2.3–§5.2.4 Focus Indicator: 3 px solid Brand Blue with 3 px offset */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--is-focus-ring-width) solid var(--is-focus-ring-color);
+  outline-offset: var(--is-focus-ring-offset);
+}
+
+/* D02 §5.1.3 Skip Link */
+.is-skip-link {
+  position: fixed;
+  z-index: 1000;
+  left: var(--is-space-4);
+  top: -96px;
+  min-height: var(--is-button-min-height);
+  display: inline-flex;
+  align-items: center;
+  padding: var(--is-space-2) var(--is-space-4);
+  background: var(--is-color-bg-surface);
+  color: var(--is-color-brand-deep);
+  border: 2px solid var(--is-color-brand-primary);
+  border-radius: var(--is-radius-sm);
+  font-weight: 700;
+  text-decoration: none;
+}
+.is-skip-link:focus { top: var(--is-space-4); }
+
+.is-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.is-sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* B04 (v1.2.0) §5.3.1 Signature Split Accent Bar: 24% Signal Red (#DE0029) / 76% Deep Navy (#092B55) */
+.is-accent-bar {
+  display: flex;
+  width: 100%;
+  height: var(--is-space-1);
+}
+.is-accent-bar__red { width: 24%; background: var(--is-color-brand-accent); }
+.is-accent-bar__navy { width: 76%; background: var(--is-color-brand-deep); }
+
+/* B05 §5.1.1 Icon Grid (16 px / 20 px / 24 px, uniform 2 px stroke) */
+.is-icon {
+  display: inline-block;
+  width: var(--is-icon-size-md);
+  height: var(--is-icon-size-md);
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--is-icon-stroke-default);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
+.is-icon--sm { width: var(--is-icon-size-sm); height: var(--is-icon-size-sm); }
+.is-icon--lg { width: var(--is-icon-size-lg); height: var(--is-icon-size-lg); }
+
+/* D03 §5.1 Buttons: 44 px minimum target, 4 px radius, sentence case */
+.is-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--is-space-2);
+  min-height: var(--is-button-min-height);
+  padding: var(--is-space-2) var(--is-space-4);
+  border-radius: var(--is-button-radius);
+  border: 1px solid transparent;
+  font-size: var(--is-font-size-body-ui);
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: normal;
+  text-align: center;
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+.is-btn--primary {
+  background: var(--is-button-primary-bg);
+  color: var(--is-button-primary-text);
+  box-shadow: var(--is-shadow-action);
+}
+.is-btn--primary:hover:not(:disabled) { background: var(--is-button-primary-bg-hover); }
+.is-btn--secondary {
+  background: var(--is-button-secondary-bg);
+  color: var(--is-button-secondary-text);
+  border-color: var(--is-button-secondary-border);
+}
+.is-btn--secondary:hover:not(:disabled) { background: var(--is-button-secondary-bg-hover); }
+.is-btn--quiet {
+  background: transparent;
+  color: var(--is-color-brand-primary);
+}
+.is-btn--quiet:hover:not(:disabled) { background: var(--is-color-bg-tint); }
+.is-btn--danger {
+  background: var(--is-color-status-danger);
+  color: var(--is-color-text-inverse);
+}
+.is-btn--danger:hover:not(:disabled) { background: var(--is-color-brand-deep); }
+.is-btn:disabled {
+  background: var(--is-button-disabled-bg);
+  color: var(--is-button-disabled-text);
+  border-color: var(--is-color-border-default);
+  box-shadow: none;
+}
+
+/* D03 / B04 Cards & Panels (8 px / 12 px radii) */
+.is-card {
+  background: var(--is-card-bg);
+  border: 1px solid var(--is-card-border);
+  border-radius: var(--is-card-radius);
+  box-shadow: var(--is-card-shadow);
+}
+.is-panel {
+  background: var(--is-color-bg-canvas);
+  border: 1px solid var(--is-color-border-subtle);
+  border-radius: var(--is-card-radius);
+}
+
+/* E02 §5.2.2 & B02 §5.3.1 Status Badges (4 px radius, 5 semantic tiers, explicit text + square cue) */
+.is-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--is-space-2);
+  padding: var(--is-space-1) var(--is-space-2);
+  border-radius: var(--is-badge-radius);
+  border: 1px solid transparent;
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.is-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 0;
+  background: currentColor;
+}
+.is-status--informative {
+  color: var(--is-color-status-informative);
+  background: var(--is-color-status-informative-bg);
+  border-color: var(--is-color-status-informative-border);
+}
+.is-status--success {
+  color: var(--is-color-status-success);
+  background: var(--is-color-status-success-bg);
+  border-color: var(--is-color-status-success-border);
+}
+.is-status--warning {
+  color: var(--is-color-status-warning);
+  background: var(--is-color-status-warning-bg);
+  border-color: var(--is-color-status-warning-border);
+}
+.is-status--danger {
+  color: var(--is-color-status-danger);
+  background: var(--is-color-status-danger-bg);
+  border-color: var(--is-color-status-danger-border);
+}
+.is-status--neutral {
+  color: var(--is-color-status-neutral);
+  background: var(--is-color-status-neutral-bg);
+  border-color: var(--is-color-status-neutral-border);
+}
+
+/* D03 §5.4.3 Provenance Callout */
+.is-provenance {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--is-space-3);
+  padding: var(--is-space-4);
+  background: var(--is-provenance-bg);
+  border: 1px solid var(--is-color-status-informative-border);
+  border-left: 4px solid var(--is-provenance-border);
+  border-radius: var(--is-provenance-radius);
+}
+.is-provenance__icon { color: var(--is-color-brand-primary); margin-top: 2px; }
+.is-provenance strong { color: var(--is-color-brand-deep); display: block; margin-bottom: var(--is-space-1); }
+.is-provenance p { margin: 0; color: var(--is-color-text-primary); font-size: var(--is-font-size-body-ui); }
+
+/* D03 §5.2 Form Controls (B02 §5.3.2 Danger #A42332 for required/error markers) */
+.is-field-label {
+  display: block;
+  margin-bottom: var(--is-space-2);
+  color: var(--is-color-brand-deep);
+  font-size: var(--is-font-size-body-ui);
+  font-weight: 700;
+}
+.is-required { color: var(--is-color-status-danger); }
+.is-field {
+  display: block;
+  width: 100%;
+  min-height: var(--is-input-min-height);
+  padding: var(--is-space-2) var(--is-space-3);
+  background: var(--is-input-bg);
+  color: var(--is-color-text-primary);
+  border: 1px solid var(--is-input-border);
+  border-radius: var(--is-input-radius);
+  font-size: var(--is-font-size-body-ui);
+}
+.is-field::placeholder { color: var(--is-color-text-muted); }
+.is-field[aria-invalid="true"] { border-color: var(--is-input-border-error); border-width: 2px; }
+.is-field-help { margin-top: var(--is-space-2); color: var(--is-color-text-muted); font-size: var(--is-font-size-body-ui); }
+.is-field-error { margin-top: var(--is-space-2); color: var(--is-color-status-danger); font-size: var(--is-font-size-body-ui); font-weight: 700; }
+
+/* D02 (v2.0.1) Responsive Application Shell (<768 Compact, 768-1279 Medium, >=1280 Expanded) */
+.is-shell {
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  min-height: 100dvh;
+}
+.is-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  background: var(--is-color-bg-surface);
+  border-right: 1px solid var(--is-color-border-default);
+  display: flex;
+  flex-direction: column;
+  padding: var(--is-space-6) var(--is-space-4);
+  min-width: 0;
+}
+/* B01 §5.3.1 Clear Space: 12 px padding >= 0.25x (10 px) for 40 px symbol */
+.is-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--is-space-3);
+  padding: var(--is-space-3);
+  color: var(--is-color-brand-deep);
+  text-decoration: none;
+  border-radius: var(--is-radius-sm);
+}
+.is-sidebar__brand-text { display: flex; flex-direction: column; gap: var(--is-space-1); min-width: 0; }
+.is-sidebar__brand-text strong {
+  font-family: var(--is-font-family-display);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.is-sidebar__brand-text span {
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 700;
+  color: var(--is-color-text-muted);
+  letter-spacing: 0.08em;
+}
+.is-sidebar__divider {
+  height: 1px;
+  background: var(--is-color-border-subtle);
+  margin: var(--is-space-4) 0;
+}
+.is-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--is-space-1);
+  overflow-y: auto;
+  min-height: 0;
+}
+.is-nav__group {
+  color: var(--is-color-text-muted);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: var(--is-space-3) var(--is-space-3) var(--is-space-1);
+}
+.is-nav__link {
+  min-height: var(--is-button-min-height);
+  display: flex;
+  align-items: center;
+  gap: var(--is-space-3);
+  padding: var(--is-space-2) var(--is-space-3);
+  border-radius: var(--is-radius-sm);
+  border-left: 4px solid transparent;
+  color: var(--is-color-text-muted);
+  text-decoration: none;
+  font-size: var(--is-font-size-body-ui);
+  font-weight: 600;
+}
+.is-nav__link:hover {
+  background: var(--is-color-bg-tint);
+  color: var(--is-color-brand-primary);
+}
+.is-nav__link[aria-current="location"] {
+  background: var(--is-color-bg-tint);
+  color: var(--is-color-brand-primary);
+  border-left-color: var(--is-color-brand-accent);
+  font-weight: 700;
+}
+.is-sidebar__foot {
+  margin-top: auto;
+  padding-top: var(--is-space-4);
+}
+.is-sidebar__meta-box {
+  background: var(--is-color-bg-canvas);
+  border: 1px solid var(--is-color-border-subtle);
+  border-radius: var(--is-radius-md);
+  overflow: hidden;
+}
+.is-sidebar__meta-body {
+  padding: var(--is-space-4);
+  display: grid;
+  gap: var(--is-space-2);
+}
+.is-sidebar__meta-body strong {
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-body-ui);
+  color: var(--is-color-brand-deep);
+}
+.is-sidebar__meta-body span {
+  font-size: var(--is-font-size-eyebrow);
+  color: var(--is-color-text-muted);
+}
+
+/* Topbar (Compact/Medium/Expanded) */
+.is-content-frame { min-width: 0; display: flex; flex-direction: column; }
+.is-topbar {
+  min-height: 72px;
+  padding: var(--is-space-3) var(--is-space-8);
+  background: var(--is-color-bg-surface);
+  border-bottom: 1px solid var(--is-color-border-subtle);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--is-space-4);
+}
+.is-topbar__left, .is-topbar__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--is-space-3);
+  min-width: 0;
+}
+.is-topbar__mark { display: none; width: 28px; height: 28px; flex: none; }
+.is-breadcrumb-parent {
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--is-color-text-muted);
+}
+.is-breadcrumb-current {
+  font-size: var(--is-font-size-body-ui);
+  font-weight: 700;
+  color: var(--is-color-brand-deep);
+}
+
+/* Mobile / Medium Navigation Tabs */
+.is-mobile-tabs {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--is-color-bg-surface);
+  border-bottom: 1px solid var(--is-color-border-default);
+  padding: var(--is-space-2) var(--is-space-4);
+  gap: var(--is-space-3);
+  overflow-x: auto;
+}
+.is-mobile-tabs a {
+  min-height: var(--is-button-min-height);
+  display: inline-flex;
+  align-items: center;
+  padding: var(--is-space-2) var(--is-space-3);
+  border-radius: var(--is-radius-sm);
+  color: var(--is-color-text-muted);
+  text-decoration: none;
+  font-size: var(--is-font-size-body-ui);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.is-mobile-tabs a:hover, .is-mobile-tabs a[aria-current="location"] {
+  background: var(--is-color-bg-tint);
+  color: var(--is-color-brand-primary);
+}
+
+/* Main Content */
+.is-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--is-space-8);
+}
+.is-section { margin-top: var(--is-space-16); scroll-margin-top: var(--is-space-8); }
+.is-section:first-of-type { margin-top: 0; }
+.is-eyebrow {
+  display: inline-block;
+  color: var(--is-color-brand-primary);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.is-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--is-space-4);
+  margin-bottom: var(--is-space-6);
+}
+.is-section-head h2 {
+  margin: var(--is-space-2) 0 var(--is-space-2);
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-section-title);
+  font-weight: 800;
+  line-height: var(--is-font-line-height-heading);
+  letter-spacing: -0.03em;
+  color: var(--is-color-brand-deep);
+}
+.is-section-head p {
+  margin: 0;
+  max-width: 72ch;
+  font-size: var(--is-font-size-body-doc);
+  color: var(--is-color-text-muted);
+}
+.is-section-tag {
+  font-family: var(--is-font-family-mono);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 700;
+  color: var(--is-color-text-muted);
+}
+
+/* Cover / Hero (Solid Deep Navy #092B55 + B04 §5.3.1 Split Bar, Zero Unapproved Gradients or Rings) */
+.is-hero {
+  background: var(--is-color-brand-deep);
+  color: var(--is-color-text-inverse);
+  border-radius: var(--is-feature-radius);
+  overflow: hidden;
+}
+.is-hero__inner {
+  padding: var(--is-space-12);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: var(--is-space-8);
+  align-items: center;
+}
+.is-hero__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--is-space-3);
+  color: var(--is-color-status-informative-border);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.is-hero__kicker-rule { width: 24px; height: 4px; background: var(--is-color-brand-accent); display: inline-block; }
+.is-hero h1 {
+  margin: var(--is-space-4) 0;
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-page-title);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--is-color-text-inverse);
+}
+.is-hero p {
+  margin: 0;
+  max-width: 65ch;
+  font-size: var(--is-font-size-body-doc);
+  color: var(--is-color-bg-tint);
+}
+.is-hero__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--is-space-2);
+  margin-top: var(--is-space-6);
+}
+.is-hero__tags span {
+  padding: var(--is-space-1) var(--is-space-3);
+  border: 1px solid var(--is-color-status-informative-border);
+  border-radius: var(--is-radius-sm);
+  background: var(--is-color-brand-secondary);
+  color: var(--is-color-text-inverse);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 700;
+}
+.is-hero__emblem-box {
+  background: var(--is-color-bg-surface);
+  color: var(--is-color-brand-deep);
+  border-radius: var(--is-radius-md);
+  padding: var(--is-space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--is-space-3);
+}
+.is-hero__emblem-box strong {
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-body-ui);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.is-hero__emblem-box small {
+  font-size: 13px;
+  color: var(--is-color-text-muted);
+}
+
+/* Grids */
+.is-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--is-space-4); }
+.is-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--is-space-4); }
+.is-grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--is-space-4); }
+.is-stack { display: grid; gap: var(--is-space-4); }
+
+/* Brand Pillars & Boilerplate */
+.is-pillar { padding: var(--is-space-6); }
+.is-pillar__num {
+  display: inline-block;
+  font-family: var(--is-font-family-mono);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 700;
+  color: var(--is-color-brand-primary);
+  margin-bottom: var(--is-space-3);
+}
+.is-pillar h3 {
+  margin: 0 0 var(--is-space-2);
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-panel-title);
+  color: var(--is-color-brand-deep);
+}
+.is-pillar p { margin: 0; color: var(--is-color-text-muted); font-size: var(--is-font-size-body-ui); }
+.is-boilerplate {
+  padding: var(--is-space-6);
+  margin-top: var(--is-space-4);
+}
+.is-boilerplate h3 {
+  margin: var(--is-space-2) 0 var(--is-space-3);
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-panel-title);
+  color: var(--is-color-brand-deep);
+}
+.is-boilerplate p { margin: 0; max-width: 78ch; font-size: var(--is-font-size-body-doc); }
+
+/* Principles List */
+.is-principles { padding: var(--is-space-6); margin-top: var(--is-space-4); }
+.is-principles h3 {
+  margin: var(--is-space-2) 0 var(--is-space-4);
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-panel-title);
+  color: var(--is-color-brand-deep);
+}
+.is-principles-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: principle;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--is-space-4);
+}
+.is-principles-list li {
+  counter-increment: principle;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: var(--is-space-1) var(--is-space-3);
+  padding-top: var(--is-space-3);
+  border-top: 1px solid var(--is-color-border-subtle);
+}
+.is-principles-list li::before {
+  content: counter(principle, decimal-leading-zero);
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  font-family: var(--is-font-family-mono);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 700;
+  color: var(--is-color-brand-primary);
+}
+.is-principles-list strong { grid-column: 2; color: var(--is-color-brand-deep); font-size: var(--is-font-size-body-ui); }
+.is-principles-list span { grid-column: 2; color: var(--is-color-text-muted); font-size: var(--is-font-size-body-ui); }
+
+/* Logo Showcase (B01 v2.0.0) */
+.is-mark-card {
+  border-radius: var(--is-card-radius);
+  border: 1px solid var(--is-color-border-default);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.is-mark-card--light { background: var(--is-color-bg-surface); }
+.is-mark-card--dark { background: var(--is-color-brand-deep); color: var(--is-color-text-inverse); border-color: var(--is-color-brand-deep); }
+.is-mark-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--is-space-2);
+  padding: var(--is-space-4) var(--is-space-6) 0;
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.is-mark-card--light .is-mark-card__head { color: var(--is-color-text-muted); }
+.is-mark-card--dark .is-mark-card__head { color: var(--is-color-status-informative-border); }
+.is-lockup-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--is-space-8) var(--is-space-6);
+}
+.is-lockup-img {
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.is-mono-symbol {
+  width: 72px;
+  height: 72px;
+  flex: none;
+  display: block;
+}
+.is-mark-card__foot {
+  border-top: 1px solid var(--is-color-border-subtle);
+  padding: var(--is-space-3) var(--is-space-6);
+  font-size: var(--is-font-size-body-ui);
+  color: var(--is-color-text-muted);
+}
+.is-mark-card--dark .is-mark-card__foot {
+  border-color: var(--is-color-brand-secondary);
+  color: var(--is-color-bg-tint);
+}
+.is-clearspace-box {
+  display: grid;
+  place-items: center;
+  padding: var(--is-space-6);
+  border: 2px dashed var(--is-color-brand-primary);
+  border-radius: var(--is-radius-sm);
+  margin: var(--is-space-4) auto;
+  width: fit-content;
+}
+
+/* Color Swatches (B02 v1.1.1) */
+.is-swatch { overflow: hidden; }
+.is-swatch__fill {
+  height: 112px;
+  padding: var(--is-space-4);
+  display: flex;
+  align-items: flex-start;
+}
+.is-swatch__badge {
+  font-family: var(--is-font-family-mono);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 700;
+  padding: var(--is-space-1) var(--is-space-2);
+  border-radius: var(--is-radius-sm);
+  background: var(--is-color-bg-surface);
+  color: var(--is-color-brand-deep);
+}
+.is-swatch__body { padding: var(--is-space-4); display: grid; gap: var(--is-space-2); }
+.is-swatch__top { display: flex; justify-content: space-between; align-items: center; gap: var(--is-space-2); }
+.is-swatch__body h3 { margin: 0; font-family: var(--is-font-family-display); font-size: var(--is-font-size-panel-title); color: var(--is-color-brand-deep); }
+.is-swatch__meta { font-family: var(--is-font-family-mono); font-size: var(--is-font-size-eyebrow); color: var(--is-color-text-muted); }
+.is-swatch__desc { margin: 0; font-size: var(--is-font-size-body-ui); color: var(--is-color-text-muted); }
+.is-neutral-row {
+  display: flex;
+  align-items: center;
+  gap: var(--is-space-3);
+  padding: var(--is-space-3) var(--is-space-4);
+}
+.is-chip {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--is-radius-sm);
+  border: 1px solid var(--is-color-border-default);
+  flex: none;
+}
+
+/* Tables (B03 §5.3.1, C04 §5.4, D03 §5.3.1 & §5.3.3 Compact Card Reflow) */
+.is-table-wrap { overflow-x: auto; }
+.is-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--is-font-size-body-ui);
+}
+.is-table caption {
+  text-align: left;
+  padding: var(--is-space-4) var(--is-space-6);
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-panel-title);
+  font-weight: 700;
+  color: var(--is-color-brand-deep);
+  border-bottom: 1px solid var(--is-color-border-subtle);
+}
+.is-table th {
+  background: var(--is-color-bg-canvas);
+  color: var(--is-color-brand-deep);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--is-space-3) var(--is-space-4);
+  border-bottom: 1px solid var(--is-color-border-default);
+}
+.is-table td {
+  padding: var(--is-space-3) var(--is-space-4);
+  border-bottom: 1px solid var(--is-color-border-subtle);
+  color: var(--is-color-text-primary);
+  vertical-align: top;
+}
+.is-table tbody tr:last-child td { border-bottom: 0; }
+
+/* Code Panel */
+.is-code-panel {
+  background: var(--is-color-brand-deep);
+  color: var(--is-color-text-inverse);
+  border-radius: var(--is-card-radius);
+  border: 1px solid var(--is-color-brand-secondary);
+  overflow: hidden;
+}
+.is-code-panel__bar {
+  background: var(--is-color-brand-secondary);
+  padding: var(--is-space-3) var(--is-space-4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--is-space-3);
+  border-bottom: 1px solid var(--is-color-brand-primary);
+}
+.is-code-panel pre {
+  margin: 0;
+  padding: var(--is-space-6);
+  overflow-x: auto;
+  font-size: var(--is-font-size-body-ui);
+  line-height: 1.6;
+  color: var(--is-color-bg-tint);
+}
+
+/* Spacing / Radius Visualizers */
+.is-bars { display: flex; align-items: flex-end; gap: var(--is-space-2); height: 64px; margin: var(--is-space-4) 0; }
+.is-bars span { display: block; height: 32px; background: var(--is-color-brand-primary); border-radius: var(--is-radius-sm); flex: none; }
+.is-radii { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--is-space-2); margin: var(--is-space-4) 0; }
+.is-radii span {
+  padding: var(--is-space-4) var(--is-space-2);
+  background: var(--is-color-bg-tint);
+  border: 2px solid var(--is-color-brand-primary);
+  color: var(--is-color-brand-deep);
+  font-family: var(--is-font-family-mono);
+  font-size: var(--is-font-size-eyebrow);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Confirmation Dialog Preview & Empty State (D03 §5.4) */
+.is-dialog-preview {
+  padding: var(--is-space-6);
+  border: 2px solid var(--is-color-status-danger-border);
+  background: var(--is-color-bg-surface);
+  border-radius: var(--is-card-radius);
+}
+.is-empty-state {
+  padding: var(--is-space-8) var(--is-space-6);
+  text-align: center;
+  background: var(--is-color-bg-canvas);
+  border: 1px dashed var(--is-color-border-default);
+  border-radius: var(--is-card-radius);
+  display: grid;
+  justify-items: center;
+  gap: var(--is-space-3);
+}
+
+/* Footer (D02 §5.3, A03 §5.3.3, §5.6.1, E02 §5.1.1) */
+.is-footer {
+  margin-top: var(--is-space-16);
+  padding: var(--is-space-6) 0;
+  border-top: 1px solid var(--is-color-border-default);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--is-space-4);
+}
+.is-footer__brand { display: flex; align-items: center; gap: var(--is-space-3); }
+.is-footer__brand strong {
+  display: block;
+  font-family: var(--is-font-family-display);
+  font-size: var(--is-font-size-body-ui);
+  color: var(--is-color-brand-deep);
+}
+.is-footer__meta { display: grid; gap: var(--is-space-1); font-size: var(--is-font-size-body-ui); color: var(--is-color-text-muted); }
+
+/* Toast Notification (C03 §5.3.3, D04 §5.3.2) */
+.is-toast {
+  position: fixed;
+  z-index: 100;
+  right: var(--is-space-4);
+  bottom: var(--is-space-4);
+  background: var(--is-color-brand-deep);
+  color: var(--is-color-text-inverse);
+  padding: var(--is-space-3) var(--is-space-4);
+  border-radius: var(--is-radius-md);
+  border: 1px solid var(--is-color-brand-primary);
+  box-shadow: var(--is-shadow-action);
+  font-size: var(--is-font-size-body-ui);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 150ms ease, transform 150ms ease;
+  max-width: calc(100vw - 32px);
+}
+.is-toast.is-show { opacity: 1; transform: translateY(0); }
+
+/* B05 §5.4.2 & D04 §5.3.3 Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* D02 (v2.0.1) §5.1.1 Breakpoints: Medium (768 px through 1279 px) */
+@media (max-width: 1279px) {
+  .is-shell { grid-template-columns: 224px minmax(0, 1fr); }
+  .is-main { padding: var(--is-space-6); }
+  .is-topbar { padding: var(--is-space-3) var(--is-space-6); }
+  .is-hero__inner { padding: var(--is-space-8); grid-template-columns: minmax(0, 1fr) 200px; }
+  .is-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .is-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* D02 (v2.0.1) §5.1.1–§5.1.2 Compact (< 768 px, Reflow verified to 320 px) */
+@media (max-width: 767px) {
+  .is-shell { display: block; }
+  .is-sidebar { display: none; }
+  .is-topbar { padding: var(--is-space-3) var(--is-space-4); }
+  .is-topbar__mark { display: block; }
+  .is-mobile-tabs { display: flex; }
+  .is-main { padding: var(--is-space-4); }
+  .is-hero__inner { padding: var(--is-space-6); grid-template-columns: 1fr; }
+  .is-hero h1 { font-size: 24px; }
+  .is-section-head h2 { font-size: 18px; }
+  .is-grid-4, .is-grid-3, .is-grid-2, .is-principles-list { grid-template-columns: 1fr; }
+  .is-topbar__actions, .is-btn-row { gap: var(--is-button-gap-compact); }
+
+  /* D03 §5.3.3 Compact Data Table Summary-Card Reflow */
+  .is-table--responsive thead { display: none; }
+  .is-table--responsive, .is-table--responsive tbody, .is-table--responsive tr, .is-table--responsive td {
+    display: block;
+    width: 100%;
+  }
+  .is-table--responsive tr {
+    border: 1px solid var(--is-color-border-default);
+    border-radius: var(--is-radius-md);
+    margin: var(--is-space-3) 0;
+    padding: var(--is-space-3);
+    background: var(--is-color-bg-surface);
+  }
+  .is-table--responsive td {
+    border: 0;
+    padding: var(--is-space-1) 0;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--is-space-3);
+  }
+  .is-table--responsive td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--is-color-brand-deep);
+    flex: none;
+  }
+}
+
+@media print {
+  body { background: var(--is-color-bg-surface); }
+  .is-shell { display: block; }
+  .is-sidebar, .is-topbar, .is-mobile-tabs, .is-toast, .is-skip-link, .is-sprite, .no-print { display: none !important; }
+  .is-main { max-width: none; padding: 0; }
+  .is-hero { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .is-card, .is-mark-card { break-inside: avoid; }
+}
+  </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="is-sprite" focusable="false">
+  <symbol id="ic-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="ic-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 16-5-5L5 21"/></symbol>
+  <symbol id="ic-droplet" viewBox="0 0 24 24"><path d="M12 22a8 8 0 0 0 8-8c0-5-8-12-8-12S4 9 4 14a8 8 0 0 0 8 8Z"/></symbol>
+  <symbol id="ic-type" viewBox="0 0 24 24"><path d="M4 7V4h16v3M12 4v16m-5 0h10"/></symbol>
+  <symbol id="ic-box" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></symbol>
+  <symbol id="ic-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="15" rx="2"/><path d="M8 22h8m-4-4v4"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 11v6m0-10h.01"/></symbol>
+  <symbol id="ic-file" viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M13 2v7h7M8 13h8M8 17h8"/></symbol>
+  <symbol id="ic-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+  <symbol id="ic-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+  <symbol id="ic-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 18v3h16v-3"/></symbol>
+  <symbol id="ic-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+</svg>
+
+<a class="is-skip-link" href="#main">Skip to main content</a>
+
+<div class="is-shell" id="page-top">
+  <aside class="is-sidebar" aria-label="Primary publication navigation">
+    <a href="#page-top" class="is-sidebar__brand" aria-label="Irvantri Standards Design System, return to top">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzAgMjcwIiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjI3MCIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIyIj4KICA8dGl0bGU+SXJ2YW50cmkgU3RhbmRhcmRzIFByaW1hcnkgU3ltYm9sPC90aXRsZT4KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNjMuMDQxNTgxLC0xMzYuNzA3NDExKSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNDU2LjM3NjQzNiwtNzE1LjIyNTAxOSkiPgogICAgICA8ZyBpZD0ic3ltYm9sLXNpZ25hbC1yZWQiIHRyYW5zZm9ybT0ibWF0cml4KDQuMDUwNjMxLDAsMCw0LjA1MDYzMSwzODM1LjIwNjU5Niw4NzUuNjczMTgxKSI+CiAgICAgICAgPHBhdGggZD0iTS01MTEuMjM2LDM4Ljg1OEwtNTExLjIzNiwyNi4yNzZMLTUwOC4xNzMsMjkuMzQyTC01MDguMTczLDQ2LjA5NEwtNTExLjIzNiw0Ni4wOTRMLTU0MC4wNDcsMTcuMjgzQy01NDEuMjQ5LDIwLjQxMyAtNTQxLjkwOCwyMy44MTMgLTU0MS45MDgsMjcuMzY4Qy01NDEuOTA4LDQyLjg5NCAtNTI5LjMyMSw1NS40ODIgLTUxMy43OTUsNTUuNDgyQy01MDUuMTAxLDU1LjQ4MiAtNDk3LjMzMiw1MS41MzcgLTQ5Mi4xNzUsNDUuMzM4TC00ODguNTQ1LDQ4Ljk2N0MtNDk0LjY0LDU2LjA4NSAtNTAzLjY5MSw2MC41OTYgLTUxMy43OTUsNjAuNTk2Qy01MzIuMTQ2LDYwLjU5NiAtNTQ3LjAyMyw0NS43MiAtNTQ3LjAyMywyNy4zNjhDLTU0Ny4wMjMsMjIuNTI5IC01NDUuOTg5LDE3LjkzMiAtNTQ0LjEyOCwxMy43ODdMLTU0NC4xMjgsMTMuNzg0Qy01NDMuMzQsMTIuMDI0IC01NDIuNCwxMC4zNDcgLTU0MS4zMjksOC43NjZMLTUzNy42MzUsMTIuNDYyTC01MTEuMjM2LDM4Ljg1OFoiIGZpbGw9IiNERTAwMjkiLz4KICAgICAgPC9nPgogICAgPC9nPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwtMTQ1Ni4zNzY0MzYsLTcxNS4yMjUwMTkpIj4KICAgICAgPGcgaWQ9InN5bWJvbC1icmFuZC1ibHVlIiB0cmFuc2Zvcm09Im1hdHJpeCg0LjA1MDYzMSwwLDAsNC4wNTA2MzEsMzgzNS4yMDY1OTYsODc1LjY3MzE4MSkiPgogICAgICAgIDxwYXRoIGQ9Ik0tNTEzLjc5NSwtNS44NjFDLTQ5NS40NDMsLTUuODYxIC00ODAuNTY2LDkuMDE3IC00ODAuNTY2LDI3LjM2OEMtNDgwLjU2NiwzNC4yNjEgLTQ4Mi42NjYsNDAuNjYzIC00ODYuMjYsNDUuOTcyTC00ODkuOTU2LDQyLjI3NUwtNTE2LjM1MywxNS44NzhMLTUxNi4zNTMsMjguNDZMLTUxOS40MTcsMjUuMzk2TC01MTkuNDE3LDguNjQ0TC01MTYuMzUzLDguNjQ0TC00ODcuNTQ1LDM3LjQ1MkMtNDg2LjM0MSwzNC4zMjIgLTQ4NS42ODEsMzAuOTIyIC00ODUuNjgxLDI3LjM2OEMtNDg1LjY4MSwxMS44NDIgLTQ5OC4yNjgsLTAuNzQ1IC01MTMuNzk1LC0wLjc0NUMtNTIyLjQ4OCwtMC43NDUgLTUzMC4yNTgsMy4yMDEgLTUzNS40MTUsOS4zOThMLTUzOS4wNDQsNS43NjhDLTUzMi45NSwtMS4zNDkgLTUyMy45LC01Ljg2MSAtNTEzLjc5NSwtNS44NjFaIiBmaWxsPSIjMDc0Qzk2Ii8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="" width="40" height="40" />
+      <span class="is-sidebar__brand-text">
+        <strong>IRVANTRI STANDARDS</strong>
+        <span>DESIGN SYSTEM</span>
+      </span>
+    </a>
+    <div class="is-sidebar__divider" aria-hidden="true"></div>
+    <nav class="is-nav" id="side-nav" aria-label="Guide sections">
+      <span class="is-nav__group">FOUNDATIONS</span>
+      <a class="is-nav__link" href="#overview" aria-current="location"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-grid" /></svg><span>Overview</span></a>
+      <a class="is-nav__link" href="#foundation"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-shield" /></svg><span>Brand foundation</span></a>
+      <a class="is-nav__link" href="#marks"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-image" /></svg><span>Marks and lockups</span></a>
+      <a class="is-nav__link" href="#color"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-droplet" /></svg><span>Color system</span></a>
+      <a class="is-nav__link" href="#typography"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-type" /></svg><span>Typography</span></a>
+      <span class="is-nav__group">SYSTEMS &amp; GOVERNANCE</span>
+      <a class="is-nav__link" href="#components"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-box" /></svg><span>Components and grids</span></a>
+      <a class="is-nav__link" href="#responsive"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-monitor" /></svg><span>Responsive and access</span></a>
+      <a class="is-nav__link" href="#tokens"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-file" /></svg><span>Design tokens</span></a>
+      <a class="is-nav__link" href="#manifest"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-check" /></svg><span>Build manifest</span></a>
+    </nav>
+    <div class="is-sidebar__foot">
+      <div class="is-sidebar__meta-box">
+        <div class="is-accent-bar" aria-hidden="true"><span class="is-accent-bar__red"></span><span class="is-accent-bar__navy"></span></div>
+        <div class="is-sidebar__meta-body">
+          <strong>PUB-01</strong>
+          <span class="is-mono">v2.0.0 · 2026-11-26</span>
+          <span>A member of Irvantri Group</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="is-content-frame">
+    <header class="is-topbar">
+      <div class="is-topbar__left">
+        <img class="is-topbar__mark" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzAgMjcwIiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjI3MCIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIyIj4KICA8dGl0bGU+SXJ2YW50cmkgU3RhbmRhcmRzIFByaW1hcnkgU3ltYm9sPC90aXRsZT4KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNjMuMDQxNTgxLC0xMzYuNzA3NDExKSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNDU2LjM3NjQzNiwtNzE1LjIyNTAxOSkiPgogICAgICA8ZyBpZD0ic3ltYm9sLXNpZ25hbC1yZWQiIHRyYW5zZm9ybT0ibWF0cml4KDQuMDUwNjMxLDAsMCw0LjA1MDYzMSwzODM1LjIwNjU5Niw4NzUuNjczMTgxKSI+CiAgICAgICAgPHBhdGggZD0iTS01MTEuMjM2LDM4Ljg1OEwtNTExLjIzNiwyNi4yNzZMLTUwOC4xNzMsMjkuMzQyTC01MDguMTczLDQ2LjA5NEwtNTExLjIzNiw0Ni4wOTRMLTU0MC4wNDcsMTcuMjgzQy01NDEuMjQ5LDIwLjQxMyAtNTQxLjkwOCwyMy44MTMgLTU0MS45MDgsMjcuMzY4Qy01NDEuOTA4LDQyLjg5NCAtNTI5LjMyMSw1NS40ODIgLTUxMy43OTUsNTUuNDgyQy01MDUuMTAxLDU1LjQ4MiAtNDk3LjMzMiw1MS41MzcgLTQ5Mi4xNzUsNDUuMzM4TC00ODguNTQ1LDQ4Ljk2N0MtNDk0LjY0LDU2LjA4NSAtNTAzLjY5MSw2MC41OTYgLTUxMy43OTUsNjAuNTk2Qy01MzIuMTQ2LDYwLjU5NiAtNTQ3LjAyMyw0NS43MiAtNTQ3LjAyMywyNy4zNjhDLTU0Ny4wMjMsMjIuNTI5IC01NDUuOTg5LDE3LjkzMiAtNTQ0LjEyOCwxMy43ODdMLTU0NC4xMjgsMTMuNzg0Qy01NDMuMzQsMTIuMDI0IC01NDIuNCwxMC4zNDcgLTU0MS4zMjksOC43NjZMLTUzNy42MzUsMTIuNDYyTC01MTEuMjM2LDM4Ljg1OFoiIGZpbGw9IiNERTAwMjkiLz4KICAgICAgPC9nPgogICAgPC9nPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwtMTQ1Ni4zNzY0MzYsLTcxNS4yMjUwMTkpIj4KICAgICAgPGcgaWQ9InN5bWJvbC1icmFuZC1ibHVlIiB0cmFuc2Zvcm09Im1hdHJpeCg0LjA1MDYzMSwwLDAsNC4wNTA2MzEsMzgzNS4yMDY1OTYsODc1LjY3MzE4MSkiPgogICAgICAgIDxwYXRoIGQ9Ik0tNTEzLjc5NSwtNS44NjFDLTQ5NS40NDMsLTUuODYxIC00ODAuNTY2LDkuMDE3IC00ODAuNTY2LDI3LjM2OEMtNDgwLjU2NiwzNC4yNjEgLTQ4Mi42NjYsNDAuNjYzIC00ODYuMjYsNDUuOTcyTC00ODkuOTU2LDQyLjI3NUwtNTE2LjM1MywxNS44NzhMLTUxNi4zNTMsMjguNDZMLTUxOS40MTcsMjUuMzk2TC01MTkuNDE3LDguNjQ0TC01MTYuMzUzLDguNjQ0TC00ODcuNTQ1LDM3LjQ1MkMtNDg2LjM0MSwzNC4zMjIgLTQ4NS42ODEsMzAuOTIyIC00ODUuNjgxLDI3LjM2OEMtNDg1LjY4MSwxMS44NDIgLTQ5OC4yNjgsLTAuNzQ1IC01MTMuNzk1LC0wLjc0NUMtNTIyLjQ4OCwtMC43NDUgLTUzMC4yNTgsMy4yMDEgLTUzNS40MTUsOS4zOThMLTUzOS4wNDQsNS43NjhDLTUzMi45NSwtMS4zNDkgLTUyMy45LC01Ljg2MSAtNTEzLjc5NSwtNS44NjFaIiBmaWxsPSIjMDc0Qzk2Ii8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="" width="28" height="28" />
+        <span class="is-breadcrumb-parent">IRVANTRI STANDARDS</span>
+        <svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-chevron" /></svg>
+        <span class="is-breadcrumb-current">Brand and Design System Guide</span>
+      </div>
+      <div class="is-topbar__actions no-print">
+        <span class="is-status is-status--success">Approved</span>
+        <span class="is-mono">v2.0.0</span>
+        <button type="button" class="is-btn is-btn--secondary" id="download-json-top">
+          <svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-download" /></svg>
+          <span>Download JSON</span>
+        </button>
+        <button type="button" class="is-btn is-btn--secondary" id="download-css-top">
+          <svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-download" /></svg>
+          <span>Download CSS</span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="is-mobile-tabs" aria-label="Compact section navigation">
+      <a href="#overview">Overview</a>
+      <a href="#foundation">Foundation</a>
+      <a href="#marks">Marks</a>
+      <a href="#color">Color</a>
+      <a href="#typography">Typography</a>
+      <a href="#components">Components</a>
+      <a href="#responsive">Responsive</a>
+      <a href="#tokens">Tokens</a>
+      <a href="#manifest">Manifest</a>
+    </nav>
+
+    <main id="main" class="is-main">
+      <!-- 00 / OVERVIEW & COVER -->
+      <section id="overview" class="is-section" aria-labelledby="pub-title">
+        <div class="is-hero">
+          <div class="is-hero__inner">
+            <div>
+              <span class="is-hero__kicker"><span class="is-hero__kicker-rule" aria-hidden="true"></span>IRVANTRI STANDARDS DESIGN SYSTEM</span>
+              <h1 id="pub-title">Brand and Design System Guide</h1>
+              <p>Compiled visual, verbal, User Interface (UI), and User Experience (UX) publication synthesized from the Irvantri Standards Unified Operating Library for Irvantri Standards Pte. Ltd.</p>
+              <div class="is-hero__tags">
+                <span>PUB-01</span>
+                <span class="is-mono">v2.0.0</span>
+                <span>Library-Index.md (v1.2.4)</span>
+                <span>AST-D01-01</span>
+              </div>
+            </div>
+            <div class="is-hero__emblem-box">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzAgMjcwIiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjI3MCIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIyIj4KICA8dGl0bGU+SXJ2YW50cmkgU3RhbmRhcmRzIFByaW1hcnkgU3ltYm9sPC90aXRsZT4KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNjMuMDQxNTgxLC0xMzYuNzA3NDExKSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNDU2LjM3NjQzNiwtNzE1LjIyNTAxOSkiPgogICAgICA8ZyBpZD0ic3ltYm9sLXNpZ25hbC1yZWQiIHRyYW5zZm9ybT0ibWF0cml4KDQuMDUwNjMxLDAsMCw0LjA1MDYzMSwzODM1LjIwNjU5Niw4NzUuNjczMTgxKSI+CiAgICAgICAgPHBhdGggZD0iTS01MTEuMjM2LDM4Ljg1OEwtNTExLjIzNiwyNi4yNzZMLTUwOC4xNzMsMjkuMzQyTC01MDguMTczLDQ2LjA5NEwtNTExLjIzNiw0Ni4wOTRMLTU0MC4wNDcsMTcuMjgzQy01NDEuMjQ5LDIwLjQxMyAtNTQxLjkwOCwyMy44MTMgLTU0MS45MDgsMjcuMzY4Qy01NDEuOTA4LDQyLjg5NCAtNTI5LjMyMSw1NS40ODIgLTUxMy43OTUsNTUuNDgyQy01MDUuMTAxLDU1LjQ4MiAtNDk3LjMzMiw1MS41MzcgLTQ5Mi4xNzUsNDUuMzM4TC00ODguNTQ1LDQ4Ljk2N0MtNDk0LjY0LDU2LjA4NSAtNTAzLjY5MSw2MC41OTYgLTUxMy43OTUsNjAuNTk2Qy01MzIuMTQ2LDYwLjU5NiAtNTQ3LjAyMyw0NS43MiAtNTQ3LjAyMywyNy4zNjhDLTU0Ny4wMjMsMjIuNTI5IC01NDUuOTg5LDE3LjkzMiAtNTQ0LjEyOCwxMy43ODdMLTU0NC4xMjgsMTMuNzg0Qy01NDMuMzQsMTIuMDI0IC01NDIuNCwxMC4zNDcgLTU0MS4zMjksOC43NjZMLTUzNy42MzUsMTIuNDYyTC01MTEuMjM2LDM4Ljg1OFoiIGZpbGw9IiNERTAwMjkiLz4KICAgICAgPC9nPgogICAgPC9nPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwtMTQ1Ni4zNzY0MzYsLTcxNS4yMjUwMTkpIj4KICAgICAgPGcgaWQ9InN5bWJvbC1icmFuZC1ibHVlIiB0cmFuc2Zvcm09Im1hdHJpeCg0LjA1MDYzMSwwLDAsNC4wNTA2MzEsMzgzNS4yMDY1OTYsODc1LjY3MzE4MSkiPgogICAgICAgIDxwYXRoIGQ9Ik0tNTEzLjc5NSwtNS44NjFDLTQ5NS40NDMsLTUuODYxIC00ODAuNTY2LDkuMDE3IC00ODAuNTY2LDI3LjM2OEMtNDgwLjU2NiwzNC4yNjEgLTQ4Mi42NjYsNDAuNjYzIC00ODYuMjYsNDUuOTcyTC00ODkuOTU2LDQyLjI3NUwtNTE2LjM1MywxNS44NzhMLTUxNi4zNTMsMjguNDZMLTUxOS40MTcsMjUuMzk2TC01MTkuNDE3LDguNjQ0TC01MTYuMzUzLDguNjQ0TC00ODcuNTQ1LDM3LjQ1MkMtNDg2LjM0MSwzNC4zMjIgLTQ4NS42ODEsMzAuOTIyIC00ODUuNjgxLDI3LjM2OEMtNDg1LjY4MSwxMS44NDIgLTQ5OC4yNjgsLTAuNzQ1IC01MTMuNzk1LC0wLjc0NUMtNTIyLjQ4OCwtMC43NDUgLTUzMC4yNTgsMy4yMDEgLTUzNS40MTUsOS4zOThMLTUzOS4wNDQsNS43NjhDLTUzMi45NSwtMS4zNDkgLTUyMy45LC01Ljg2MSAtNTEzLjc5NSwtNS44NjFaIiBmaWxsPSIjMDc0Qzk2Ii8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Irvantri Standards Primary Symbol" width="96" height="96" />
+              <strong>IRVANTRI STANDARDS</strong>
+              <small>A member of Irvantri Group</small>
+            </div>
+          </div>
+          <div class="is-accent-bar" aria-hidden="true"><span class="is-accent-bar__red"></span><span class="is-accent-bar__navy"></span></div>
+        </div>
+
+        <div class="is-provenance" style="margin-top: var(--is-space-6);">
+          <svg class="is-icon is-provenance__icon" aria-hidden="true"><use href="#ic-lock" /></svg>
+          <div>
+            <strong>Precedence notice (A01 §5.1.4, §5.7.5)</strong>
+            <p>This compiled publication (PUB-01) is an informative reference copy compiled on <span class="is-mono">2026-11-26</span> from active Series A through Series E normative standards. Active normative standards prevail in the event of any conflict between this guide and an underlying standard.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 01 / BRAND FOUNDATION -->
+      <section id="foundation" class="is-section" aria-labelledby="heading-foundation">
+        <div class="is-section-head">
+          <div>
+            <span class="is-eyebrow">01 / Brand foundation</span>
+            <h2 id="heading-foundation">Architecture, voice, and operating principles</h2>
+            <p>Irvantri Standards operates a Branded House architecture (A03) grounded in objective, verifiable language (C01) and controlled terminology (C02).</p>
+          </div>
+          <span class="is-section-tag">A03 · C01 · C02 · D03</span>
+        </div>
+
+        <div class="is-grid-4">
+          <article class="is-card is-pillar"><span class="is-pillar__num">01</span><h3>Integrity</h3><p>Display active C02 lifecycle states explicitly without prohibited synonyms, and render domain record flags (incomplete, exempt, locked) distinct from lifecycle badges (D03 §5.5.1).</p></article>
+          <article class="is-card is-pillar"><span class="is-pillar__num">02</span><h3>Precision</h3><p>Use uppercase library codes, exact International Organization for Standardization (ISO) 8601 dates, and unambiguous units (A02, C04).</p></article>
+          <article class="is-card is-pillar"><span class="is-pillar__num">03</span><h3>Reliability</h3><p>Apply deterministic single-source tokens, consistent component states, and explicit user confirmations (D01, D03, D05).</p></article>
+          <article class="is-card is-pillar"><span class="is-pillar__num">04</span><h3>Progress</h3><p>Prioritize open reviews, active assignments, and required operational decisions ahead of decorative charts (D03 §5.5.2).</p></article>
+        </div>
+
+        <div class="is-card is-boilerplate">
+          <span class="is-eyebrow">Approved short corporate description (C01 §5.5.1)</span>
+          <h3>Authoritative company boilerplate</h3>
+          <p>Irvantri Standards (Irvantri Standards Pte. Ltd.) builds practical operating standards, governance frameworks, and structured digital and documentation systems. Focused on clarity, traceability, and repeatable execution, Irvantri Standards helps organizations replace ad-hoc work with durable, auditable baselines. A member of Irvantri Group.</p>
+        </div>
+
+        <div class="is-card is-principles">
+          <span class="is-eyebrow">Operational interface discipline (D03 §5.5, B04 §5.3.4)</span>
+          <h3>Seven operating principles</h3>
+          <ol class="is-principles-list">
+            <li><strong>Trust through restraint</strong><span>Rely on calibrated neutral surfaces, structured 4 px grids, measured typographic hierarchy, and zero ornamental noise.</span></li>
+            <li><strong>Precision over ornament</strong><span>Pair clear labels with traceable identifiers, explicit ownership, and non-color provenance callouts.</span></li>
+            <li><strong>Action before vanity analytics</strong><span>Lead operational dashboards with open reviews, active assignments, and required user decisions.</span></li>
+            <li><strong>Honest system states</strong><span>Use exact C02 controlled status strings and never hide exceptions, waivers, or locked states.</span></li>
+            <li><strong>Traceable operations</strong><span>Require explicit user actions and confirmation dialogs for consequential exports and destructive changes.</span></li>
+            <li><strong>Adapt without fragmentation</strong><span>Maintain identical status semantics, keyboard operability, and reading order from 320 px through 1440 px.</span></li>
+            <li><strong>No decorative takeover</strong><span>Exclude orbital rings, wave textures, and unapproved gradients from dense work surfaces, forms, and tables.</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 02 / MARKS & LOCKUPS -->
+      <section id="marks" class="is-section" aria-labelledby="heading-marks">
+        <div class="is-section-head">
+          <div>
+            <span class="is-eyebrow">02 / Marks and lockups</span>
+            <h2 id="heading-marks">Official marks and master assets</h2>
+            <p>Source digital marks strictly from registered SVG masters or lossless PNG derivatives exported from those masters (B01 §5.1.2). Print deliverables use vector SVG or PDF masters.</p>
+          </div>
+          <span class="is-section-tag">B01 (v2.0.0) · A03 (v1.1.1)</span>
+        </div>
+
+        <div class="is-grid-3">
+          <div class="is-mark-card is-mark-card--light">
+            <div class="is-mark-card__head"><span>01 / FULL-COLOR PRIMARY</span><span class="is-status is-status--success">Approved</span></div>
+            <div class="is-lockup-stage">
+              <img class="is-lockup-img" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NjQiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNjY0IDE2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlLWFzdC1iMDEtMDMgZGVzYy1hc3QtYjAxLTAzIj4KICA8dGl0bGUgaWQ9InRpdGxlLWFzdC1iMDEtMDMiPklydmFudHJpIFN0YW5kYXJkcyDigJQgUGFyZW50LUVuZG9yc2VkIExvY2t1cCAoRnVsbC1Db2xvciBQcmltYXJ5KTwvdGl0bGU+CiAgPGRlc2MgaWQ9ImRlc2MtYXN0LWIwMS0wMyI+QVNULUIwMS0wMyBtYXN0ZXIgdmVjdG9yIGxvY2t1cCAoNjY0IHggMTYwLCA0LjE1OjEpIGZvciBsaWdodCBzdXJmYWNlcywgYWxpZ25lZCB0byBCMDEgKHYyLjAuMCksIEIwMiAodjEuMS4xKSwgYW5kIEIwMyAodjIuMC4wKS4gQ29tYmluZXMgdmVyYmF0aW0gQVNULUIwMS0wMSBQcmltYXJ5IFN5bWJvbCB3aXRoIGN1cnZlLW91dGxpbmVkIE5vdG8gU2FucyBEaXNwbGF5IEV4dHJhQm9sZCB3b3JkbWFyayAoSVJWQU5UUkkgU1RBTkRBUkRTKSBhbmQgTm90byBTYW5zIFJlZ3VsYXIgRW5kb3JzZW1lbnQgTGluZSAoQSBtZW1iZXIgb2YgSXJ2YW50cmkgR3JvdXApLiBNaW5pbXVtIHdpZHRoOiAyNjAgcHggZGlnaXRhbCAvIDY0IG1tIHByaW50OyBDbGVhciBTcGFjZTogMC4yNXggc3ltYm9sIHdpZHRoIG9uIGFsbCBmb3VyIHNpZGVzLjwvZGVzYz4KICA8ZyBpZD0icHJpbWFyeS1zeW1ib2wiIHRyYW5zZm9ybT0ibWF0cml4KDIuNDA3NTcyLDAsMCwyLjQwNzU3MiwxMzE2Ljk5ODM2LDE0LjEwOTU3NSkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMiI+CiAgICA8cGF0aCBpZD0ic3ltYm9sLXNpZ25hbC1yZWQiIGQ9Ik0tNTExLjIzNiwzOC44NThMLTUxMS4yMzYsMjYuMjc2TC01MDguMTczLDI5LjM0MkwtNTA4LjE3Myw0Ni4wOTRMLTUxMS4yMzYsNDYuMDk0TC01NDAuMDQ3LDE3LjI4M0MtNTQxLjI0OSwyMC40MTMgLTU0MS45MDgsMjMuODEzIC01NDEuOTA4LDI3LjM2OEMtNTQxLjkwOCw0Mi44OTQgLTUyOS4zMjEsNTUuNDgyIC01MTMuNzk1LDU1LjQ4MkMtNTA1LjEwMSw1NS40ODIgLTQ5Ny4zMzIsNTEuNTM3IC00OTIuMTc1LDQ1LjMzOEwtNDg4LjU0NSw0OC45NjdDLTQ5NC42NCw1Ni4wODUgLTUwMy42OTEsNjAuNTk2IC01MTMuNzk1LDYwLjU5NkMtNTMyLjE0Niw2MC41OTYgLTU0Ny4wMjMsNDUuNzIgLTU0Ny4wMjMsMjcuMzY4Qy01NDcuMDIzLDIyLjUyOSAtNTQ1Ljk4OSwxNy45MzIgLTU0NC4xMjgsMTMuNzg3TC01NDQuMTI4LDEzLjc4NEMtNTQzLjM0LDEyLjAyNCAtNTQyLjQsMTAuMzQ3IC01NDEuMzI5LDguNzY2TC01MzcuNjM1LDEyLjQ2MkwtNTExLjIzNiwzOC44NThaIiBmaWxsPSIjREUwMDI5Ii8+CiAgICA8cGF0aCBpZD0ic3ltYm9sLWJyYW5kLWJsdWUiIGQ9Ik0tNTEzLjc5NSwtNS44NjFDLTQ5NS40NDMsLTUuODYxIC00ODAuNTY2LDkuMDE3IC00ODAuNTY2LDI3LjM2OEMtNDgwLjU2NiwzNC4yNjEgLTQ4Mi42NjYsNDAuNjYzIC00ODYuMjYsNDUuOTcyTC00ODkuOTU2LDQyLjI3NUwtNTE2LjM1MywxNS44NzhMLTUxNi4zNTMsMjguNDZMLTUxOS40MTcsMjUuMzk2TC01MTkuNDE3LDguNjQ0TC01MTYuMzUzLDguNjQ0TC00ODcuNTQ1LDM3LjQ1MkMtNDg2LjM0MSwzNC4zMjIgLTQ4NS42ODEsMzAuOTIyIC00ODUuNjgxLDI3LjM2OEMtNDg1LjY4MSwxMS44NDIgLTQ5OC4yNjgsLTAuNzQ1IC01MTMuNzk1LC0wLjc0NUMtNTIyLjQ4OCwtMC43NDUgLTUzMC4yNTgsMy4yMDEgLTUzNS40MTUsOS4zOThMLTUzOS4wNDQsNS43NjhDLTUzMi45NSwtMS4zNDkgLTUyMy45LC01Ljg2MSAtNTEzLjc5NSwtNS44NjFaIiBmaWxsPSIjMDc0Qzk2Ii8+CiAgPC9nPgogIDxyZWN0IGlkPSJsb2NrdXAtZGl2aWRlciIgeD0iMTkyIiB5PSI0IiB3aWR0aD0iNCIgaGVpZ2h0PSIxNTIiIGZpbGw9IiNDQkQ1RTEiLz4KICA8ZyBpZD0ibG9ja3VwLXR5cG9ncmFwaHkiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICA8cGF0aCBpZD0id29yZG1hcmstbGluZS0xIiBkPSJNMjQ3LjgxMiA0NEgyMjkuNjY0VjM4Ljk1NkwyMzQuMDMyIDM3LjAzMlYxMy44NEwyMjkuNjY0IDExLjkxNlY2Ljg3MkgyNDcuODEyVjExLjkxNkwyNDMuNDk2IDEzLjg0VjM3LjAzMkwyNDcuODEyIDM4Ljk1NlpNMjY0LjE3MiA2Ljg3MlEyNzguMzY4IDYuODcyIDI3OC4zNjggMTcuOTQ4UTI3OC4zNjggMjEuNTM2IDI3Ni43ODIgMjMuOThRMjc1LjE5NiAyNi40MjQgMjcyLjQ0IDI3LjgyOEwyODIuNTggNDRIMjcxLjk3MkwyNjQuNTg4IDMwLjA2NEgyNjIuMTQ0VjQ0SDI1Mi43MzJWNi44NzJaTTI2NC4wMTYgMTMuODRIMjYyLjE0NFYyMy4xNDhIMjYzLjkxMlEyNjYuMDk2IDIzLjE0OCAyNjcuNDc0IDIxLjk3OFEyNjguODUyIDIwLjgwOCAyNjguODUyIDE4LjI2UTI2OC44NTIgMTYuMDI0IDI2Ny43MDggMTQuOTMyUTI2Ni41NjQgMTMuODQgMjY0LjAxNiAxMy44NFpNMzE1LjM3MiA2Ljg3MiAzMDMuODggNDRIMjkyLjg1NkwyODEuNDY4IDYuODcySDI5Mi4wMjRMMjk2LjgwOCAyNy40NjRRMjk3LjAxNiAyOC4yOTYgMjk3LjM4IDI5Ljg4MlEyOTcuNzQ0IDMxLjQ2OCAyOTguMDU2IDMzLjEzMlEyOTguMzY4IDM0Ljc5NiAyOTguNDIgMzUuODg4UTI5OC41MjQgMzQuNzk2IDI5OC44MSAzMy4xNThRMjk5LjA5NiAzMS41MiAyOTkuNDA4IDI5LjkzNFEyOTkuNzIgMjguMzQ4IDI5OS44NzYgMjcuNTE2TDMwNC44NjggNi44NzJaTTMzOC4wMjQgNDQgMzM2LjMwOCAzNi4wNDRIMzI0Ljk3MkwzMjMuMjA0IDQ0SDMxMi44NTZMMzI0LjI0NCA2LjcxNkgzMzYuNzc2TDM0OC4zMiA0NFpNMzMyLjQwOCAyMS4xNzJRMzMxLjk5MiAxOS40NTYgMzMxLjQ3MiAxNy4yNzJRMzMwLjk1MiAxNS4wODggMzMwLjU4OCAxMi45MDRRMzMwLjI3NiAxNS4wODggMzI5Ljc4MiAxNy4yNzJRMzI5LjI4OCAxOS40NTYgMzI4Ljg3MiAyMS4xNzJMMzI2Ljg5NiAyOC42NkgzMzQuMzg0Wk0zODQuODA0IDQ0SDM3Mi40OEwzNTkuNjg4IDE2LjgwNEgzNTkuNDhRMzU5LjQ4IDE3Ljc0IDM1OS41ODQgMTkuNDNRMzU5LjY4OCAyMS4xMiAzNTkuNzkyIDIzLjA3UTM1OS44OTYgMjUuMDIgMzU5Ljk0OCAyNi44NFY0NEgzNTEuNTc2VjYuODcySDM2My44NDhMMzc2LjU4OCAzMy43NTZIMzc2Ljc0NFEzNzYuNzQ0IDMyLjgyIDM3Ni42NjYgMzEuMjA4UTM3Ni41ODggMjkuNTk2IDM3Ni40ODQgMjcuNjk4UTM3Ni4zOCAyNS44IDM3Ni4zOCAyNC4wODRWNi44NzJIMzg0LjgwNFpNNDA3LjE5NiA0NEgzOTcuNzg0VjE0LjIwNEgzODkuMjU2VjYuODcySDQxNS43MjRWMTQuMjA0SDQwNy4xOTZaTTQzMS42NjggNi44NzJRNDQ1Ljg2NCA2Ljg3MiA0NDUuODY0IDE3Ljk0OFE0NDUuODY0IDIxLjUzNiA0NDQuMjc4IDIzLjk4UTQ0Mi42OTIgMjYuNDI0IDQzOS45MzYgMjcuODI4TDQ1MC4wNzYgNDRINDM5LjQ2OEw0MzIuMDg0IDMwLjA2NEg0MjkuNjRWNDRINDIwLjIyOFY2Ljg3MlpNNDMxLjUxMiAxMy44NEg0MjkuNjRWMjMuMTQ4SDQzMS40MDhRNDMzLjU5MiAyMy4xNDggNDM0Ljk3IDIxLjk3OFE0MzYuMzQ4IDIwLjgwOCA0MzYuMzQ4IDE4LjI2UTQzNi4zNDggMTYuMDI0IDQzNS4yMDQgMTQuOTMyUTQzNC4wNiAxMy44NCA0MzEuNTEyIDEzLjg0Wk00NjguNzc2IDQ0SDQ1MC42MjhWMzguOTU2TDQ1NC45OTYgMzcuMDMyVjEzLjg0TDQ1MC42MjggMTEuOTE2VjYuODcySDQ2OC43NzZWMTEuOTE2TDQ2NC40NiAxMy44NFYzNy4wMzJMNDY4Ljc3NiAzOC45NTZaIiBmaWxsPSIjMDkyQjU1Ii8+CiAgICA8cGF0aCBpZD0id29yZG1hcmstbGluZS0yIiBkPSJNMjU0LjUyIDg3LjIzNlEyNTQuNTIgOTAuNDA4IDI1My4wOSA5Mi45ODJRMjUxLjY2IDk1LjU1NiAyNDguNjQ0IDk3LjAzOFEyNDUuNjI4IDk4LjUyIDI0MC44NDQgOTguNTJRMjM3LjMwOCA5OC41MiAyMzQuOTY4IDk3Ljk0OFEyMzIuNjI4IDk3LjM3NiAyMzAuMTMyIDk2LjIzMlY4OC4xNzJRMjMyLjk0IDg5LjQ3MiAyMzUuODI2IDkwLjM1NlEyMzguNzEyIDkxLjI0IDI0MS4xMDQgOTEuMjRRMjQzLjE4NCA5MS4yNCAyNDQuMTQ2IDkwLjI3OFEyNDUuMTA4IDg5LjMxNiAyNDUuMTA4IDg3Ljg2UTI0NS4xMDggODYuMDkyIDI0My42NzggODQuOTc0UTI0Mi4yNDggODMuODU2IDIzOC44MTYgODIuNFEyMzYuMjY4IDgxLjMwOCAyMzQuMzcgNzkuOTNRMjMyLjQ3MiA3OC41NTIgMjMxLjQzMiA3Ni40NDZRMjMwLjM5MiA3NC4zNCAyMzAuMzkyIDcxLjA2NFEyMzAuMzkyIDY3LjU4IDIzMi4wMyA2NS4yMTRRMjMzLjY2OCA2Mi44NDggMjM2LjYzMiA2MS42UTIzOS41OTYgNjAuMzUyIDI0My40OTYgNjAuMzUyUTI0Ni45MjggNjAuMzUyIDI0OS42NTggNjEuMTA2UTI1Mi4zODggNjEuODYgMjU0LjU3MiA2Mi45NTJMMjUxLjY2IDY5Ljg2OFEyNDkuNDI0IDY4Ljc3NiAyNDcuMjQgNjguMTc4UTI0NS4wNTYgNjcuNTggMjQzLjIzNiA2Ny41OFEyNDEuNDE2IDY3LjU4IDI0MC41NTggNjguNDY0UTIzOS43IDY5LjM0OCAyMzkuNyA3MC43UTIzOS43IDcxLjc5MiAyNDAuMzUgNzIuNTk4UTI0MSA3My40MDQgMjQyLjUwOCA3NC4yMzZRMjQ0LjAxNiA3NS4wNjggMjQ2LjU2NCA3Ni4zNjhRMjQ5LjExMiA3Ny41NjQgMjUwLjg4IDc4Ljk5NFEyNTIuNjQ4IDgwLjQyNCAyNTMuNTg0IDgyLjM3NFEyNTQuNTIgODQuMzI0IDI1NC41MiA4Ny4yMzZaTTI3NC43MjggOThIMjY1LjMxNlY2OC4yMDRIMjU2Ljc4OFY2MC44NzJIMjgzLjI1NlY2OC4yMDRIMjc0LjcyOFpNMzA1LjcgOTggMzAzLjk4NCA5MC4wNDRIMjkyLjY0OEwyOTAuODggOThIMjgwLjUzMkwyOTEuOTIgNjAuNzE2SDMwNC40NTJMMzE1Ljk5NiA5OFpNMzAwLjA4NCA3NS4xNzJRMjk5LjY2OCA3My40NTYgMjk5LjE0OCA3MS4yNzJRMjk4LjYyOCA2OS4wODggMjk4LjI2NCA2Ni45MDRRMjk3Ljk1MiA2OS4wODggMjk3LjQ1OCA3MS4yNzJRMjk2Ljk2NCA3My40NTYgMjk2LjU0OCA3NS4xNzJMMjk0LjU3MiA4Mi42NkgzMDIuMDZaTTM1Mi40OCA5OEgzNDAuMTU2TDMyNy4zNjQgNzAuODA0SDMyNy4xNTZRMzI3LjE1NiA3MS43NCAzMjcuMjYgNzMuNDNRMzI3LjM2NCA3NS4xMiAzMjcuNDY4IDc3LjA3UTMyNy41NzIgNzkuMDIgMzI3LjYyNCA4MC44NFY5OEgzMTkuMjUyVjYwLjg3MkgzMzEuNTI0TDM0NC4yNjQgODcuNzU2SDM0NC40MlEzNDQuNDIgODYuODIgMzQ0LjM0MiA4NS4yMDhRMzQ0LjI2NCA4My41OTYgMzQ0LjE2IDgxLjY5OFEzNDQuMDU2IDc5LjggMzQ0LjA1NiA3OC4wODRWNjAuODcySDM1Mi40OFpNMzg5LjEyIDc4Ljg2NFEzODkuMTIgODUuMjYgMzg2Ljg1OCA4OS40OThRMzg0LjU5NiA5My43MzYgMzgwLjQ4OCA5NS44NjhRMzc2LjM4IDk4IDM3MC43NjQgOThIMzU5LjUzMlY2MC44NzJIMzcxLjU5NlEzODAuMDIgNjAuODcyIDM4NC41NyA2NS40NzRRMzg5LjEyIDcwLjA3NiAzODkuMTIgNzguODY0Wk0zNzkuMzk2IDc5LjE3NlEzNzkuMzk2IDczLjUwOCAzNzcuNDcyIDcwLjgwNFEzNzUuNTQ4IDY4LjEgMzcxLjcgNjguMUgzNjguOTQ0VjkwLjcySDM3MS4wMjRRMzc1LjM0IDkwLjcyIDM3Ny4zNjggODcuODM0UTM3OS4zOTYgODQuOTQ4IDM3OS4zOTYgNzkuMTc2Wk00MTUuMjU2IDk4IDQxMy41NCA5MC4wNDRINDAyLjIwNEw0MDAuNDM2IDk4SDM5MC4wODhMNDAxLjQ3NiA2MC43MTZINDE0LjAwOEw0MjUuNTUyIDk4Wk00MDkuNjQgNzUuMTcyUTQwOS4yMjQgNzMuNDU2IDQwOC43MDQgNzEuMjcyUTQwOC4xODQgNjkuMDg4IDQwNy44MiA2Ni45MDRRNDA3LjUwOCA2OS4wODggNDA3LjAxNCA3MS4yNzJRNDA2LjUyIDczLjQ1NiA0MDYuMTA0IDc1LjE3Mkw0MDQuMTI4IDgyLjY2SDQxMS42MTZaTTQ0MC4yNDggNjAuODcyUTQ1NC40NDQgNjAuODcyIDQ1NC40NDQgNzEuOTQ4UTQ1NC40NDQgNzUuNTM2IDQ1Mi44NTggNzcuOThRNDUxLjI3MiA4MC40MjQgNDQ4LjUxNiA4MS44MjhMNDU4LjY1NiA5OEg0NDguMDQ4TDQ0MC42NjQgODQuMDY0SDQzOC4yMlY5OEg0MjguODA4VjYwLjg3MlpNNDQwLjA5MiA2Ny44NEg0MzguMjJWNzcuMTQ4SDQzOS45ODhRNDQyLjE3MiA3Ny4xNDggNDQzLjU1IDc1Ljk3OFE0NDQuOTI4IDc0LjgwOCA0NDQuOTI4IDcyLjI2UTQ0NC45MjggNzAuMDI0IDQ0My43ODQgNjguOTMyUTQ0Mi42NCA2Ny44NCA0NDAuMDkyIDY3Ljg0Wk00OTAuOTI4IDc4Ljg2NFE0OTAuOTI4IDg1LjI2IDQ4OC42NjYgODkuNDk4UTQ4Ni40MDQgOTMuNzM2IDQ4Mi4yOTYgOTUuODY4UTQ3OC4xODggOTggNDcyLjU3MiA5OEg0NjEuMzRWNjAuODcySDQ3My40MDRRNDgxLjgyOCA2MC44NzIgNDg2LjM3OCA2NS40NzRRNDkwLjkyOCA3MC4wNzYgNDkwLjkyOCA3OC44NjRaTTQ4MS4yMDQgNzkuMTc2UTQ4MS4yMDQgNzMuNTA4IDQ3OS4yOCA3MC44MDRRNDc3LjM1NiA2OC4xIDQ3My41MDggNjguMUg0NzAuNzUyVjkwLjcySDQ3Mi44MzJRNDc3LjE0OCA5MC43MiA0NzkuMTc2IDg3LjgzNFE0ODEuMjA0IDg0Ljk0OCA0ODEuMjA0IDc5LjE3NlpNNTE5LjQwNCA4Ny4yMzZRNTE5LjQwNCA5MC40MDggNTE3Ljk3NCA5Mi45ODJRNTE2LjU0NCA5NS41NTYgNTEzLjUyOCA5Ny4wMzhRNTEwLjUxMiA5OC41MiA1MDUuNzI4IDk4LjUyUTUwMi4xOTIgOTguNTIgNDk5Ljg1MiA5Ny45NDhRNDk3LjUxMiA5Ny4zNzYgNDk1LjAxNiA5Ni4yMzJWODguMTcyUTQ5Ny44MjQgODkuNDcyIDUwMC43MSA5MC4zNTZRNTAzLjU5NiA5MS4yNCA1MDUuOTg4IDkxLjI0UTUwOC4wNjggOTEuMjQgNTA5LjAzIDkwLjI3OFE1MDkuOTkyIDg5LjMxNiA1MDkuOTkyIDg3Ljg2UTUwOS45OTIgODYuMDkyIDUwOC41NjIgODQuOTc0UTUwNy4xMzIgODMuODU2IDUwMy43IDgyLjRRNTAxLjE1MiA4MS4zMDggNDk5LjI1NCA3OS45M1E0OTcuMzU2IDc4LjU1MiA0OTYuMzE2IDc2LjQ0NlE0OTUuMjc2IDc0LjM0IDQ5NS4yNzYgNzEuMDY0UTQ5NS4yNzYgNjcuNTggNDk2LjkxNCA2NS4yMTRRNDk4LjU1MiA2Mi44NDggNTAxLjUxNiA2MS42UTUwNC40OCA2MC4zNTIgNTA4LjM4IDYwLjM1MlE1MTEuODEyIDYwLjM1MiA1MTQuNTQyIDYxLjEwNlE1MTcuMjcyIDYxLjg2IDUxOS40NTYgNjIuOTUyTDUxNi41NDQgNjkuODY4UTUxNC4zMDggNjguNzc2IDUxMi4xMjQgNjguMTc4UTUwOS45NCA2Ny41OCA1MDguMTIgNjcuNThRNTA2LjMgNjcuNTggNTA1LjQ0MiA2OC40NjRRNTA0LjU4NCA2OS4zNDggNTA0LjU4NCA3MC43UTUwNC41ODQgNzEuNzkyIDUwNS4yMzQgNzIuNTk4UTUwNS44ODQgNzMuNDA0IDUwNy4zOTIgNzQuMjM2UTUwOC45IDc1LjA2OCA1MTEuNDQ4IDc2LjM2OFE1MTMuOTk2IDc3LjU2NCA1MTUuNzY0IDc4Ljk5NFE1MTcuNTMyIDgwLjQyNCA1MTguNDY4IDgyLjM3NFE1MTkuNDA0IDg0LjMyNCA1MTkuNDA0IDg3LjIzNloiIGZpbGw9IiMwOTJCNTUiLz4KICAgIDxwYXRoIGlkPSJlbmRvcnNlbWVudC1saW5lIiBkPSJNMjQ1Ljk4NSAxNDYgMjQzLjE0NyAxMzguNzA3SDIzMy44MDhMMjMxLjAwMyAxNDZIMjI4TDIzNy4yMDcgMTIyLjMzOUgyMzkuODhMMjQ5LjA1NCAxNDZaTTIzOS42MTYgMTI4LjkzOVEyMzkuNTE3IDEyOC42NzUgMjM5LjI4NiAxMjcuOTgyUTIzOS4wNTUgMTI3LjI4OSAyMzguODQxIDEyNi41NDdRMjM4LjYyNiAxMjUuODA0IDIzOC40OTQgMTI1LjQwOFEyMzguMjYzIDEyNi40MzEgMjM3Ljk2NiAxMjcuNDA0UTIzNy42NjkgMTI4LjM3OCAyMzcuNDcxIDEyOC45MzlMMjM0Ljc5OCAxMzYuMDY3SDI0Mi4yNTZaTTI3OS44NzYgMTI3Ljk4MlEyODIuODc5IDEyNy45ODIgMjg0LjM2NCAxMjkuNTE3UTI4NS44NDkgMTMxLjA1MSAyODUuODQ5IDEzNC40ODNWMTQ2SDI4Mi45NzhWMTM0LjYxNVEyODIuOTc4IDEzMC40MjQgMjc5LjM4MSAxMzAuNDI0UTI3Ni44MDcgMTMwLjQyNCAyNzUuNzAyIDEzMS45MDlRMjc0LjU5NiAxMzMuMzk0IDI3NC41OTYgMTM2LjIzMlYxNDZIMjcxLjcyNVYxMzQuNjE1UTI3MS43MjUgMTMwLjQyNCAyNjguMDk1IDEzMC40MjRRMjY1LjQyMiAxMzAuNDI0IDI2NC4zOTkgMTMyLjA3NFEyNjMuMzc2IDEzMy43MjQgMjYzLjM3NiAxMzYuODI2VjE0NkgyNjAuNDcyVjEyOC4zMTJIMjYyLjgxNUwyNjMuMjQ0IDEzMC43MjFIMjYzLjQwOVEyNjQuMjM0IDEyOS4zMzUgMjY1LjYzNiAxMjguNjU5UTI2Ny4wMzkgMTI3Ljk4MiAyNjguNjIzIDEyNy45ODJRMjcyLjc4MSAxMjcuOTgyIDI3NC4wMzUgMTMwLjk1MkgyNzQuMlEyNzUuMDkxIDEyOS40MzQgMjc2LjYyNSAxMjguNzA4UTI3OC4xNiAxMjcuOTgyIDI3OS44NzYgMTI3Ljk4MlpNMjk4LjE1OCAxMjcuOTgyUTMwMC40MzUgMTI3Ljk4MiAzMDIuMDY4IDEyOC45NzJRMzAzLjcwMiAxMjkuOTYyIDMwNC41NzcgMTMxLjc2UTMwNS40NTEgMTMzLjU1OSAzMDUuNDUxIDEzNS45NjhWMTM3LjcxN0gyOTMuMzRRMjkzLjQwNiAxNDAuNzIgMjk0Ljg3NSAxNDIuMjg3UTI5Ni4zNDMgMTQzLjg1NSAyOTguOTgzIDE0My44NTVRMzAwLjY2NiAxNDMuODU1IDMwMS45NjkgMTQzLjU0MVEzMDMuMjczIDE0My4yMjggMzA0LjY1OSAxNDIuNjM0VjE0NS4xNzVRMzAzLjMwNiAxNDUuNzY5IDMwMS45ODYgMTQ2LjA1UTMwMC42NjYgMTQ2LjMzIDI5OC44NTEgMTQ2LjMzUTI5Ni4zNDMgMTQ2LjMzIDI5NC40MTMgMTQ1LjMwN1EyOTIuNDgyIDE0NC4yODQgMjkxLjQwOSAxNDIuMjU1UTI5MC4zMzcgMTQwLjIyNSAyOTAuMzM3IDEzNy4yODhRMjkwLjMzNyAxMzQuMzg0IDI5MS4zMSAxMzIuMzA1UTI5Mi4yODQgMTMwLjIyNiAyOTQuMDQ5IDEyOS4xMDRRMjk1LjgxNSAxMjcuOTgyIDI5OC4xNTggMTI3Ljk4MlpNMjk4LjEyNSAxMzAuMzU4UTI5Ni4wNDYgMTMwLjM1OCAyOTQuODQxIDEzMS42OTVRMjkzLjYzNyAxMzMuMDMxIDI5My40MDYgMTM1LjQwN0gzMDIuNDE1UTMwMi4zODIgMTMzLjE2MyAzMDEuMzU5IDEzMS43NjFRMzAwLjMzNiAxMzAuMzU4IDI5OC4xMjUgMTMwLjM1OFpNMzI5LjM0MyAxMjcuOTgyUTMzMi4zNDYgMTI3Ljk4MiAzMzMuODMxIDEyOS41MTdRMzM1LjMxNiAxMzEuMDUxIDMzNS4zMTYgMTM0LjQ4M1YxNDZIMzMyLjQ0NVYxMzQuNjE1UTMzMi40NDUgMTMwLjQyNCAzMjguODQ4IDEzMC40MjRRMzI2LjI3NCAxMzAuNDI0IDMyNS4xNjggMTMxLjkwOVEzMjQuMDYzIDEzMy4zOTQgMzI0LjA2MyAxMzYuMjMyVjE0NkgzMjEuMTkyVjEzNC42MTVRMzIxLjE5MiAxMzAuNDI0IDMxNy41NjIgMTMwLjQyNFEzMTQuODg5IDEzMC40MjQgMzEzLjg2NiAxMzIuMDc0UTMxMi44NDMgMTMzLjcyNCAzMTIuODQzIDEzNi44MjZWMTQ2SDMwOS45MzlWMTI4LjMxMkgzMTIuMjgyTDMxMi43MTEgMTMwLjcyMUgzMTIuODc2UTMxMy43MDEgMTI5LjMzNSAzMTUuMTA0IDEyOC42NTlRMzE2LjUwNiAxMjcuOTgyIDMxOC4wOSAxMjcuOTgyUTMyMi4yNDggMTI3Ljk4MiAzMjMuNTAyIDEzMC45NTJIMzIzLjY2N1EzMjQuNTU4IDEyOS40MzQgMzI2LjA5MiAxMjguNzA4UTMyNy42MjcgMTI3Ljk4MiAzMjkuMzQzIDEyNy45ODJaTTM0My42OTggMTI3LjAyNVEzNDMuNjk4IDEyOC4xNDcgMzQzLjY0OSAxMjkuMTJRMzQzLjU5OSAxMzAuMDk0IDM0My41MzMgMTMwLjY1NUgzNDMuNjk4UTM0NC40NTcgMTI5LjUzMyAzNDUuNzc3IDEyOC43NzRRMzQ3LjA5NyAxMjguMDE1IDM0OS4xNzYgMTI4LjAxNVEzNTIuNDc2IDEyOC4wMTUgMzU0LjQ3MyAxMzAuMzA4UTM1Ni40NjkgMTMyLjYwMiAzNTYuNDY5IDEzNy4xNTZRMzU2LjQ2OSAxNDEuNzEgMzU0LjQ1NiAxNDQuMDJRMzUyLjQ0MyAxNDYuMzMgMzQ5LjE3NiAxNDYuMzNRMzQ3LjA5NyAxNDYuMzMgMzQ1Ljc3NyAxNDUuNTcxUTM0NC40NTcgMTQ0LjgxMiAzNDMuNjk4IDE0My43NTZIMzQzLjQ2N0wzNDIuODczIDE0NkgzNDAuNzk0VjEyMC45MkgzNDMuNjk4Wk0zNDguNjgxIDEzMC40MjRRMzQ1Ljg3NiAxMzAuNDI0IDM0NC43ODcgMTMyLjA0MVEzNDMuNjk4IDEzMy42NTggMzQzLjY5OCAxMzcuMDU3VjEzNy4xODlRMzQzLjY5OCAxNDAuNDU2IDM0NC43NzEgMTQyLjE4OFEzNDUuODQzIDE0My45MjEgMzQ4Ljc0NyAxNDMuOTIxUTM1MS4xMjMgMTQzLjkyMSAzNTIuMjk1IDE0Mi4xNzJRMzUzLjQ2NiAxNDAuNDIzIDM1My40NjYgMTM3LjEyM1EzNTMuNDY2IDEzMC40MjQgMzQ4LjY4MSAxMzAuNDI0Wk0zNjcuOTIgMTI3Ljk4MlEzNzAuMTk3IDEyNy45ODIgMzcxLjgzMSAxMjguOTcyUTM3My40NjQgMTI5Ljk2MiAzNzQuMzM5IDEzMS43NlEzNzUuMjEzIDEzMy41NTkgMzc1LjIxMyAxMzUuOTY4VjEzNy43MTdIMzYzLjEwMlEzNjMuMTY4IDE0MC43MiAzNjQuNjM3IDE0Mi4yODdRMzY2LjEwNSAxNDMuODU1IDM2OC43NDUgMTQzLjg1NVEzNzAuNDI4IDE0My44NTUgMzcxLjczMiAxNDMuNTQxUTM3My4wMzUgMTQzLjIyOCAzNzQuNDIxIDE0Mi42MzRWMTQ1LjE3NVEzNzMuMDY4IDE0NS43NjkgMzcxLjc0OCAxNDYuMDVRMzcwLjQyOCAxNDYuMzMgMzY4LjYxMyAxNDYuMzNRMzY2LjEwNSAxNDYuMzMgMzY0LjE3NSAxNDUuMzA3UTM2Mi4yNDQgMTQ0LjI4NCAzNjEuMTcyIDE0Mi4yNTVRMzYwLjA5OSAxNDAuMjI1IDM2MC4wOTkgMTM3LjI4OFEzNjAuMDk5IDEzNC4zODQgMzYxLjA3MyAxMzIuMzA1UTM2Mi4wNDYgMTMwLjIyNiAzNjMuODEyIDEyOS4xMDRRMzY1LjU3NyAxMjcuOTgyIDM2Ny45MiAxMjcuOTgyWk0zNjcuODg3IDEzMC4zNThRMzY1LjgwOCAxMzAuMzU4IDM2NC42MDQgMTMxLjY5NVEzNjMuMzk5IDEzMy4wMzEgMzYzLjE2OCAxMzUuNDA3SDM3Mi4xNzdRMzcyLjE0NCAxMzMuMTYzIDM3MS4xMjEgMTMxLjc2MVEzNzAuMDk4IDEzMC4zNTggMzY3Ljg4NyAxMzAuMzU4Wk0zODcuOTUxIDEyNy45ODJRMzg4LjQ0NiAxMjcuOTgyIDM4OS4wMjQgMTI4LjAzMVEzODkuNjAxIDEyOC4wODEgMzkwLjAzIDEyOC4xOEwzODkuNjY3IDEzMC44NTNRMzg5LjIzOCAxMzAuNzU0IDM4OC43MjcgMTMwLjY4OFEzODguMjE1IDEzMC42MjIgMzg3Ljc1MyAxMzAuNjIyUTM4Ni40IDEzMC42MjIgMzg1LjIxMiAxMzEuMzY1UTM4NC4wMjQgMTMyLjEwNyAzODMuMzE1IDEzMy40NDRRMzgyLjYwNSAxMzQuNzggMzgyLjYwNSAxMzYuNTYyVjE0NkgzNzkuNzAxVjEyOC4zMTJIMzgyLjA3N0wzODIuNDA3IDEzMS41NDZIMzgyLjUzOVEzODMuMzk3IDEzMC4wOTQgMzg0Ljc1IDEyOS4wMzhRMzg2LjEwMyAxMjcuOTgyIDM4Ny45NTEgMTI3Ljk4MlpNNDE3LjI4OCAxMzcuMTIzUTQxNy4yODggMTQxLjUxMiA0MTUuMDYxIDE0My45MjFRNDEyLjgzMyAxNDYuMzMgNDA5LjAzOCAxNDYuMzNRNDA2LjY5NSAxNDYuMzMgNDA0Ljg2NCAxNDUuMjU3UTQwMy4wMzIgMTQ0LjE4NSA0MDEuOTc2IDE0Mi4xMjNRNDAwLjkyIDE0MC4wNiA0MDAuOTIgMTM3LjEyM1E0MDAuOTIgMTMyLjczNCA0MDMuMTMxIDEzMC4zNThRNDA1LjM0MiAxMjcuOTgyIDQwOS4xMzcgMTI3Ljk4MlE0MTEuNTQ2IDEyNy45ODIgNDEzLjM3OCAxMjkuMDU1UTQxNS4yMDkgMTMwLjEyNyA0MTYuMjQ5IDEzMi4xNTZRNDE3LjI4OCAxMzQuMTg2IDQxNy4yODggMTM3LjEyM1pNNDAzLjkyMyAxMzcuMTIzUTQwMy45MjMgMTQwLjI1OCA0MDUuMTYxIDE0Mi4wODlRNDA2LjM5OCAxNDMuOTIxIDQwOS4xMDQgMTQzLjkyMVE0MTEuNzc3IDE0My45MjEgNDEzLjAzMSAxNDIuMDg5UTQxNC4yODUgMTQwLjI1OCA0MTQuMjg1IDEzNy4xMjNRNDE0LjI4NSAxMzMuOTg4IDQxMy4wMzEgMTMyLjIwNlE0MTEuNzc3IDEzMC40MjQgNDA5LjA3MSAxMzAuNDI0UTQwNi4zNjUgMTMwLjQyNCA0MDUuMTQ0IDEzMi4yMDZRNDAzLjkyMyAxMzMuOTg4IDQwMy45MjMgMTM3LjEyM1pNNDMwLjAyNiAxMzAuNTU2SDQyNS41NzFWMTQ2SDQyMi42NjdWMTMwLjU1Nkg0MTkuNTY1VjEyOS4yMDNMNDIyLjY2NyAxMjguMjEzVjEyNy4xOVE0MjIuNjY3IDEyMy43NTggNDI0LjE4NSAxMjIuMjU2UTQyNS43MDMgMTIwLjc1NSA0MjguNDA5IDEyMC43NTVRNDI5LjQ2NSAxMjAuNzU1IDQzMC4zNCAxMjAuOTM2UTQzMS4yMTQgMTIxLjExOCA0MzEuODQxIDEyMS4zNDlMNDMxLjA4MiAxMjMuNjI2UTQzMC41NTQgMTIzLjQ2MSA0MjkuODYxIDEyMy4yOTZRNDI5LjE2OCAxMjMuMTMxIDQyOC40NDIgMTIzLjEzMVE0MjYuOTkgMTIzLjEzMSA0MjYuMjgxIDEyNC4xMDVRNDI1LjU3MSAxMjUuMDc4IDQyNS41NzEgMTI3LjE1N1YxMjguMzEySDQzMC4wMjZaTTQ0OC44MzYgMTQ2SDQ0MC4zMjJWMTQ0LjI4NEw0NDMuMDk0IDE0My42NTdWMTI0LjgxNEw0NDAuMzIyIDEyNC4xNTRWMTIyLjQzOEg0NDguODM2VjEyNC4xNTRMNDQ2LjA2NCAxMjQuODE0VjE0My42NTdMNDQ4LjgzNiAxNDQuMjg0Wk00NjEuMjQ0IDEyNy45ODJRNDYxLjczOSAxMjcuOTgyIDQ2Mi4zMTcgMTI4LjAzMVE0NjIuODk0IDEyOC4wODEgNDYzLjMyMyAxMjguMThMNDYyLjk2IDEzMC44NTNRNDYyLjUzMSAxMzAuNzU0IDQ2Mi4wMTkgMTMwLjY4OFE0NjEuNTA4IDEzMC42MjIgNDYxLjA0NiAxMzAuNjIyUTQ1OS42OTMgMTMwLjYyMiA0NTguNTA1IDEzMS4zNjVRNDU3LjMxNyAxMzIuMTA3IDQ1Ni42MDggMTMzLjQ0NFE0NTUuODk4IDEzNC43OCA0NTUuODk4IDEzNi41NjJWMTQ2SDQ1Mi45OTRWMTI4LjMxMkg0NTUuMzdMNDU1LjcgMTMxLjU0Nkg0NTUuODMyUTQ1Ni42OSAxMzAuMDk0IDQ1OC4wNDMgMTI5LjAzOFE0NTkuMzk2IDEyNy45ODIgNDYxLjI0NCAxMjcuOTgyWk00NzAuNTE3IDE0NiA0NjMuODE4IDEyOC4zMTJINDY2LjkyTDQ3MC42ODIgMTM4Ljc0UTQ3MC45NDYgMTM5LjQ2NiA0NzEuMjQzIDE0MC4zNTdRNDcxLjU0IDE0MS4yNDggNDcxLjc3MSAxNDIuMDU2UTQ3Mi4wMDIgMTQyLjg2NSA0NzIuMTAxIDE0My40MjZINDcyLjIzM1E0NzIuMzY1IDE0Mi44NjUgNDcyLjYxMyAxNDIuMDRRNDcyLjg2IDE0MS4yMTUgNDczLjE3MyAxNDAuMzI0UTQ3My40ODcgMTM5LjQzMyA0NzMuNzE4IDEzOC43NEw0NzcuNDggMTI4LjMxMkg0ODAuNTgyTDQ3My44NSAxNDZaTTQ5MC4wODYgMTI4LjAxNVE0OTMuMzIgMTI4LjAxNSA0OTQuODcxIDEyOS40MzRRNDk2LjQyMiAxMzAuODUzIDQ5Ni40MjIgMTMzLjk1NVYxNDZINDk0LjMxTDQ5My43NDkgMTQzLjQ5Mkg0OTMuNjE3UTQ5Mi40NjIgMTQ0Ljk0NCA0OTEuMTkyIDE0NS42MzdRNDg5LjkyMSAxNDYuMzMgNDg3LjY3NyAxNDYuMzNRNDg1LjI2OCAxNDYuMzMgNDgzLjY4NCAxNDUuMDZRNDgyLjEgMTQzLjc4OSA0ODIuMSAxNDEuMDgzUTQ4Mi4xIDEzOC40NDMgNDg0LjE3OSAxMzcuMDA3UTQ4Ni4yNTggMTM1LjU3MiA0OTAuNTgxIDEzNS40NEw0OTMuNTg0IDEzNS4zNDFWMTM0LjI4NVE0OTMuNTg0IDEzMi4wNzQgNDkyLjYyNyAxMzEuMjE2UTQ5MS42NyAxMzAuMzU4IDQ4OS45MjEgMTMwLjM1OFE0ODguNTM1IDEzMC4zNTggNDg3LjI4MSAxMzAuNzdRNDg2LjAyNyAxMzEuMTgzIDQ4NC45MzggMTMxLjcxMUw0ODQuMDQ3IDEyOS41MzNRNDg1LjIwMiAxMjguOTA2IDQ4Ni43ODYgMTI4LjQ2UTQ4OC4zNyAxMjguMDE1IDQ5MC4wODYgMTI4LjAxNVpNNDkwLjk0NCAxMzcuNDUzUTQ4Ny42NDQgMTM3LjU4NSA0ODYuMzc0IDEzOC41MDlRNDg1LjEwMyAxMzkuNDMzIDQ4NS4xMDMgMTQxLjExNlE0ODUuMTAzIDE0Mi42MDEgNDg2LjAxMSAxNDMuMjk0UTQ4Ni45MTggMTQzLjk4NyA0ODguMzM3IDE0My45ODdRNDkwLjU4MSAxNDMuOTg3IDQ5Mi4wNjYgMTQyLjc1UTQ5My41NTEgMTQxLjUxMiA0OTMuNTUxIDEzOC45MzhWMTM3LjM1NFpNNTEwLjQxNCAxMjcuOTgyUTUxMy41ODIgMTI3Ljk4MiA1MTUuMTk5IDEyOS41MTdRNTE2LjgxNiAxMzEuMDUxIDUxNi44MTYgMTM0LjQ4M1YxNDZINTEzLjk0NVYxMzQuNjgxUTUxMy45NDUgMTMwLjQyNCA1MDkuOTg1IDEzMC40MjRRNTA3LjA0OCAxMzAuNDI0IDUwNS45MjYgMTMyLjA3NFE1MDQuODA0IDEzMy43MjQgNTA0LjgwNCAxMzYuODI2VjE0Nkg1MDEuOVYxMjguMzEySDUwNC4yNDNMNTA0LjY3MiAxMzAuNzIxSDUwNC44MzdRNTA1LjY5NSAxMjkuMzM1IDUwNy4yMTMgMTI4LjY1OVE1MDguNzMxIDEyNy45ODIgNTEwLjQxNCAxMjcuOTgyWk01MjguMjAxIDE0My45NTRRNTI4Ljg2MSAxNDMuOTU0IDUyOS41NTQgMTQzLjgzOVE1MzAuMjQ3IDE0My43MjMgNTMwLjY3NiAxNDMuNTkxVjE0NS44MDJRNTMwLjIxNCAxNDYuMDMzIDUyOS4zNTYgMTQ2LjE4MVE1MjguNDk4IDE0Ni4zMyA1MjcuNzA2IDE0Ni4zM1E1MjYuMzIgMTQ2LjMzIDUyNS4xNDkgMTQ1Ljg1MVE1MjMuOTc3IDE0NS4zNzMgNTIzLjI1MSAxNDQuMTg1UTUyMi41MjUgMTQyLjk5NyA1MjIuNTI1IDE0MC44NTJWMTMwLjU1Nkg1MjAuMDE3VjEyOS4xN0w1MjIuNTU4IDEyOC4wMTVMNTIzLjcxMyAxMjQuMjUzSDUyNS40MjlWMTI4LjMxMkg1MzAuNTQ0VjEzMC41NTZINTI1LjQyOVYxNDAuNzg2UTUyNS40MjkgMTQyLjQwMyA1MjYuMjA1IDE0My4xNzhRNTI2Ljk4IDE0My45NTQgNTI4LjIwMSAxNDMuOTU0Wk01NDIuNDU3IDEyNy45ODJRNTQyLjk1MiAxMjcuOTgyIDU0My41MyAxMjguMDMxUTU0NC4xMDcgMTI4LjA4MSA1NDQuNTM2IDEyOC4xOEw1NDQuMTczIDEzMC44NTNRNTQzLjc0NCAxMzAuNzU0IDU0My4yMzMgMTMwLjY4OFE1NDIuNzIxIDEzMC42MjIgNTQyLjI1OSAxMzAuNjIyUTU0MC45MDYgMTMwLjYyMiA1MzkuNzE4IDEzMS4zNjVRNTM4LjUzIDEzMi4xMDcgNTM3LjgyMSAxMzMuNDQ0UTUzNy4xMTEgMTM0Ljc4IDUzNy4xMTEgMTM2LjU2MlYxNDZINTM0LjIwN1YxMjguMzEySDUzNi41ODNMNTM2LjkxMyAxMzEuNTQ2SDUzNy4wNDVRNTM3LjkwMyAxMzAuMDk0IDUzOS4yNTYgMTI5LjAzOFE1NDAuNjA5IDEyNy45ODIgNTQyLjQ1NyAxMjcuOTgyWk01NDkuMzIxIDEyMS42NzlRNTQ5Ljk4MSAxMjEuNjc5IDU1MC40OTMgMTIyLjEyNFE1NTEuMDA0IDEyMi41NyA1NTEuMDA0IDEyMy41MjdRNTUxLjAwNCAxMjQuNDUxIDU1MC40OTMgMTI0LjkxM1E1NDkuOTgxIDEyNS4zNzUgNTQ5LjMyMSAxMjUuMzc1UTU0OC41OTUgMTI1LjM3NSA1NDguMSAxMjQuOTEzUTU0Ny42MDUgMTI0LjQ1MSA1NDcuNjA1IDEyMy41MjdRNTQ3LjYwNSAxMjIuNTcgNTQ4LjEgMTIyLjEyNFE1NDguNTk1IDEyMS42NzkgNTQ5LjMyMSAxMjEuNjc5Wk01NTAuNzQgMTI4LjMxMlYxNDZINTQ3LjgzNlYxMjguMzEyWk01NzUuNTU2IDEzMy41NTlINTgzLjcwN1YxNDUuMTA5UTU4MS43OTMgMTQ1LjczNiA1NzkuODQ2IDE0Ni4wMzNRNTc3Ljg5OSAxNDYuMzMgNTc1LjQyNCAxNDYuMzNRNTcxLjc2MSAxNDYuMzMgNTY5LjI1MyAxNDQuODYyUTU2Ni43NDUgMTQzLjM5MyA1NjUuNDQyIDE0MC42NzFRNTY0LjEzOCAxMzcuOTQ4IDU2NC4xMzggMTM0LjIxOVE1NjQuMTM4IDEzMC41MjMgNTY1LjU5IDEyNy44MTdRNTY3LjA0MiAxMjUuMTExIDU2OS43NjUgMTIzLjYwOVE1NzIuNDg3IDEyMi4xMDggNTc2LjM0OCAxMjIuMTA4UTU3OC4zMjggMTIyLjEwOCA1ODAuMDk0IDEyMi40NzFRNTgxLjg1OSAxMjIuODM0IDU4My4zNzcgMTIzLjQ5NEw1ODIuMjU1IDEyNi4wNjhRNTgxLjAwMSAxMjUuNTA3IDU3OS40MzQgMTI1LjExMVE1NzcuODY2IDEyNC43MTUgNTc2LjE4MyAxMjQuNzE1UTU3MS45NTkgMTI0LjcxNSA1NjkuNiAxMjcuMjU2UTU2Ny4yNCAxMjkuNzk3IDU2Ny4yNCAxMzQuMjE5UTU2Ny4yNCAxMzcuMDI0IDU2OC4xNDggMTM5LjE4NVE1NjkuMDU1IDE0MS4zNDcgNTcxLjAwMiAxNDIuNTUyUTU3Mi45NDkgMTQzLjc1NiA1NzYuMTE3IDE0My43NTZRNTc3LjY2OCAxNDMuNzU2IDU3OC43NTcgMTQzLjU5MVE1NzkuODQ2IDE0My40MjYgNTgwLjczNyAxNDMuMTk1VjEzNi4xOTlINTc1LjU1NlpNNTk3LjIwNCAxMjcuOTgyUTU5Ny42OTkgMTI3Ljk4MiA1OTguMjc3IDEyOC4wMzFRNTk4Ljg1NCAxMjguMDgxIDU5OS4yODMgMTI4LjE4TDU5OC45MiAxMzAuODUzUTU5OC40OTEgMTMwLjc1NCA1OTcuOTggMTMwLjY4OFE1OTcuNDY4IDEzMC42MjIgNTk3LjAwNiAxMzAuNjIyUTU5NS42NTMgMTMwLjYyMiA1OTQuNDY1IDEzMS4zNjVRNTkzLjI3NyAxMzIuMTA3IDU5Mi41NjggMTMzLjQ0NFE1OTEuODU4IDEzNC43OCA1OTEuODU4IDEzNi41NjJWMTQ2SDU4OC45NTRWMTI4LjMxMkg1OTEuMzNMNTkxLjY2IDEzMS41NDZINTkxLjc5MlE1OTIuNjUgMTMwLjA5NCA1OTQuMDAzIDEyOS4wMzhRNTk1LjM1NiAxMjcuOTgyIDU5Ny4yMDQgMTI3Ljk4MlpNNjE3LjMwMSAxMzcuMTIzUTYxNy4zMDEgMTQxLjUxMiA2MTUuMDc0IDE0My45MjFRNjEyLjg0NiAxNDYuMzMgNjA5LjA1MSAxNDYuMzNRNjA2LjcwOCAxNDYuMzMgNjA0Ljg3NyAxNDUuMjU3UTYwMy4wNDUgMTQ0LjE4NSA2MDEuOTg5IDE0Mi4xMjNRNjAwLjkzMyAxNDAuMDYgNjAwLjkzMyAxMzcuMTIzUTYwMC45MzMgMTMyLjczNCA2MDMuMTQ0IDEzMC4zNThRNjA1LjM1NSAxMjcuOTgyIDYwOS4xNSAxMjcuOTgyUTYxMS41NTkgMTI3Ljk4MiA2MTMuMzkxIDEyOS4wNTVRNjE1LjIyMiAxMzAuMTI3IDYxNi4yNjIgMTMyLjE1NlE2MTcuMzAxIDEzNC4xODYgNjE3LjMwMSAxMzcuMTIzWk02MDMuOTM2IDEzNy4xMjNRNjAzLjkzNiAxNDAuMjU4IDYwNS4xNzQgMTQyLjA4OVE2MDYuNDExIDE0My45MjEgNjA5LjExNyAxNDMuOTIxUTYxMS43OSAxNDMuOTIxIDYxMy4wNDQgMTQyLjA4OVE2MTQuMjk4IDE0MC4yNTggNjE0LjI5OCAxMzcuMTIzUTYxNC4yOTggMTMzLjk4OCA2MTMuMDQ0IDEzMi4yMDZRNjExLjc5IDEzMC40MjQgNjA5LjA4NCAxMzAuNDI0UTYwNi4zNzggMTMwLjQyNCA2MDUuMTU3IDEzMi4yMDZRNjAzLjkzNiAxMzMuOTg4IDYwMy45MzYgMTM3LjEyM1pNNjM2LjY3MiAxMjguMzEyVjE0Nkg2MzQuMjk2TDYzMy44NjcgMTQzLjY1N0g2MzMuNzM1UTYzMi44NzcgMTQ1LjA0MyA2MzEuMzU5IDE0NS42ODdRNjI5Ljg0MSAxNDYuMzMgNjI4LjEyNSAxNDYuMzNRNjI0LjkyNCAxNDYuMzMgNjIzLjMwNyAxNDQuNzk2UTYyMS42OSAxNDMuMjYxIDYyMS42OSAxMzkuODk1VjEyOC4zMTJINjI0LjYyN1YxMzkuNjk3UTYyNC42MjcgMTQzLjkyMSA2MjguNTU0IDE0My45MjFRNjMxLjQ5MSAxNDMuOTIxIDYzMi42MyAxNDIuMjcxUTYzMy43NjggMTQwLjYyMSA2MzMuNzY4IDEzNy41MTlWMTI4LjMxMlpNNjUwLjY5NyAxMjcuOTgyUTY1My45NjQgMTI3Ljk4MiA2NTUuOTYxIDEzMC4yNTlRNjU3Ljk1NyAxMzIuNTM2IDY1Ny45NTcgMTM3LjEyM1E2NTcuOTU3IDE0MS42NDQgNjU1Ljk2MSAxNDMuOTg3UTY1My45NjQgMTQ2LjMzIDY1MC42NjQgMTQ2LjMzUTY0OC42MTggMTQ2LjMzIDY0Ny4yODIgMTQ1LjU1NVE2NDUuOTQ1IDE0NC43NzkgNjQ1LjE4NiAxNDMuNzU2SDY0NC45ODhRNjQ1LjA1NCAxNDQuMzE3IDY0NS4xMiAxNDUuMTc1UTY0NS4xODYgMTQ2LjAzMyA2NDUuMTg2IDE0Ni42NlYxNTMuOTJINjQyLjI4MlYxMjguMzEySDY0NC42NThMNjQ1LjA1NCAxMzAuNzIxSDY0NS4xODZRNjQ1Ljk3OCAxMjkuNTY2IDY0Ny4yNjUgMTI4Ljc3NFE2NDguNTUyIDEyNy45ODIgNjUwLjY5NyAxMjcuOTgyWk02NTAuMTY5IDEzMC40MjRRNjQ3LjQ2MyAxMzAuNDI0IDY0Ni4zNTggMTMxLjk0MlE2NDUuMjUyIDEzMy40NiA2NDUuMTg2IDEzNi41NjJWMTM3LjEyM1E2NDUuMTg2IDE0MC4zOSA2NDYuMjU5IDE0Mi4xNTVRNjQ3LjMzMSAxNDMuOTIxIDY1MC4yMzUgMTQzLjkyMVE2NTEuODUyIDE0My45MjEgNjUyLjg5MiAxNDMuMDNRNjUzLjkzMSAxNDIuMTM5IDY1NC40NDMgMTQwLjYwNVE2NTQuOTU0IDEzOS4wNyA2NTQuOTU0IDEzNy4wOVE2NTQuOTU0IDEzNC4wNTQgNjUzLjc4MyAxMzIuMjM5UTY1Mi42MTEgMTMwLjQyNCA2NTAuMTY5IDEzMC40MjRaIiBmaWxsPSIjNUY2QzdFIi8+CiAgPC9nPgo8L3N2Zz4K" alt="Full-color Irvantri Standards Parent-Endorsed Lockup (AST-B01-03)" width="664" height="160" />
+            </div>
+            <div class="is-mark-card__foot">Master files: <code class="is-mono">AST-B01-01_Primary-Symbol.svg</code> and <code class="is-mono">AST-B01-03_Parent-Lockup.svg</code> (<code class="is-mono">Approved</code>, <code class="is-mono">664 × 160</code> curve-outlined Noto Sans) on <code class="is-mono">#FFFFFF</code> or <code class="is-mono">#F8FAFC</code>.</div>
+          </div>
+
+          <div class="is-mark-card is-mark-card--dark">
+            <div class="is-mark-card__head"><span>02 / REVERSED WHITE</span><span class="is-mono">#FFFFFF · Approved</span></div>
+            <div class="is-lockup-stage">
+              <img class="is-lockup-img" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NjQiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNjY0IDE2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlLWFzdC1iMDEtMDQgZGVzYy1hc3QtYjAxLTA0Ij4KICA8dGl0bGUgaWQ9InRpdGxlLWFzdC1iMDEtMDQiPklydmFudHJpIFN0YW5kYXJkcyDigJQgUGFyZW50LUVuZG9yc2VkIExvY2t1cCAoUmV2ZXJzZWQgV2hpdGUpPC90aXRsZT4KICA8ZGVzYyBpZD0iZGVzYy1hc3QtYjAxLTA0Ij5BU1QtQjAxLTA0IG1hc3RlciB2ZWN0b3IgbG9ja3VwICg2NjQgeCAxNjAsIDQuMTU6MSkgZm9yIGRhcmsgc3VyZmFjZXMsIGFsaWduZWQgdG8gQjAxICh2Mi4wLjApLCBCMDIgKHYxLjEuMSksIGFuZCBCMDMgKHYyLjAuMCkuIENvbWJpbmVzIHZlcmJhdGltIEFTVC1CMDEtMDIgUmV2ZXJzZWQgV2hpdGUgU3ltYm9sIHdpdGggY3VydmUtb3V0bGluZWQgTm90byBTYW5zIERpc3BsYXkgRXh0cmFCb2xkIHdvcmRtYXJrIChJUlZBTlRSSSBTVEFOREFSRFMpIGFuZCBOb3RvIFNhbnMgUmVndWxhciBFbmRvcnNlbWVudCBMaW5lIChBIG1lbWJlciBvZiBJcnZhbnRyaSBHcm91cCkuIE1pbmltdW0gd2lkdGg6IDI2MCBweCBkaWdpdGFsIC8gNjQgbW0gcHJpbnQ7IENsZWFyIFNwYWNlOiAwLjI1eCBzeW1ib2wgd2lkdGggb24gYWxsIGZvdXIgc2lkZXMuPC9kZXNjPgogIDxnIGlkPSJ3aGl0ZS1zeW1ib2wiIHRyYW5zZm9ybT0ibWF0cml4KDIuNDA3NTcyLDAsMCwyLjQwNzU3MiwxMzE2Ljk5ODM2LDE0LjEwOTU3NSkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMiI+CiAgICA8cGF0aCBpZD0ic3ltYm9sLWxvd2VyLXdoaXRlIiBkPSJNLTUxMS4yMzYsMzguODU4TC01MTEuMjM2LDI2LjI3NkwtNTA4LjE3MywyOS4zNDJMLTUwOC4xNzMsNDYuMDk0TC01MTEuMjM2LDQ2LjA5NEwtNTQwLjA0NywxNy4yODNDLTU0MS4yNDksMjAuNDEzIC01NDEuOTA4LDIzLjgxMyAtNTQxLjkwOCwyNy4zNjhDLTU0MS45MDgsNDIuODk0IC01MjkuMzIxLDU1LjQ4MiAtNTEzLjc5NSw1NS40ODJDLTUwNS4xMDEsNTUuNDgyIC00OTcuMzMyLDUxLjUzNyAtNDkyLjE3NSw0NS4zMzhMLTQ4OC41NDUsNDguOTY3Qy00OTQuNjQsNTYuMDg1IC01MDMuNjkxLDYwLjU5NiAtNTEzLjc5NSw2MC41OTZDLTUzMi4xNDYsNjAuNTk2IC01NDcuMDIzLDQ1LjcyIC01NDcuMDIzLDI3LjM2OEMtNTQ3LjAyMywyMi41MjkgLTU0NS45ODksMTcuOTMyIC01NDQuMTI4LDEzLjc4N0wtNTQ0LjEyOCwxMy43ODRDLTU0My4zNCwxMi4wMjQgLTU0Mi40LDEwLjM0NyAtNTQxLjMyOSw4Ljc2NkwtNTM3LjYzNSwxMi40NjJMLTUxMS4yMzYsMzguODU4WiIgZmlsbD0iI0ZGRkZGRiIvPgogICAgPHBhdGggaWQ9InN5bWJvbC11cHBlci13aGl0ZSIgZD0iTS01MTMuNzk1LC01Ljg2MUMtNDk1LjQ0MywtNS44NjEgLTQ4MC41NjYsOS4wMTcgLTQ4MC41NjYsMjcuMzY4Qy00ODAuNTY2LDM0LjI2MSAtNDgyLjY2Niw0MC42NjMgLTQ4Ni4yNiw0NS45NzJMLTQ4OS45NTYsNDIuMjc1TC01MTYuMzUzLDE1Ljg3OEwtNTE2LjM1MywyOC40NkwtNTE5LjQxNywyNS4zOTZMLTUxOS40MTcsOC42NDRMLTUxNi4zNTMsOC42NDRMLTQ4Ny41NDUsMzcuNDUyQy00ODYuMzQxLDM0LjMyMiAtNDg1LjY4MSwzMC45MjIgLTQ4NS42ODEsMjcuMzY4Qy00ODUuNjgxLDExLjg0MiAtNDk4LjI2OCwtMC43NDUgLTUxMy43OTUsLTAuNzQ1Qy01MjIuNDg4LC0wLjc0NSAtNTMwLjI1OCwzLjIwMSAtNTM1LjQxNSw5LjM5OEwtNTM5LjA0NCw1Ljc2OEMtNTMyLjk1LC0xLjM0OSAtNTIzLjksLTUuODYxIC01MTMuNzk1LC01Ljg2MVoiIGZpbGw9IiNGRkZGRkYiLz4KICA8L2c+CiAgPHJlY3QgaWQ9ImxvY2t1cC1kaXZpZGVyIiB4PSIxOTIiIHk9IjQiIHdpZHRoPSI0IiBoZWlnaHQ9IjE1MiIgZmlsbD0iI0ZGRkZGRiIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KICA8ZyBpZD0ibG9ja3VwLXR5cG9ncmFwaHkiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICA8cGF0aCBpZD0id29yZG1hcmstbGluZS0xIiBkPSJNMjQ3LjgxMiA0NEgyMjkuNjY0VjM4Ljk1NkwyMzQuMDMyIDM3LjAzMlYxMy44NEwyMjkuNjY0IDExLjkxNlY2Ljg3MkgyNDcuODEyVjExLjkxNkwyNDMuNDk2IDEzLjg0VjM3LjAzMkwyNDcuODEyIDM4Ljk1NlpNMjY0LjE3MiA2Ljg3MlEyNzguMzY4IDYuODcyIDI3OC4zNjggMTcuOTQ4UTI3OC4zNjggMjEuNTM2IDI3Ni43ODIgMjMuOThRMjc1LjE5NiAyNi40MjQgMjcyLjQ0IDI3LjgyOEwyODIuNTggNDRIMjcxLjk3MkwyNjQuNTg4IDMwLjA2NEgyNjIuMTQ0VjQ0SDI1Mi43MzJWNi44NzJaTTI2NC4wMTYgMTMuODRIMjYyLjE0NFYyMy4xNDhIMjYzLjkxMlEyNjYuMDk2IDIzLjE0OCAyNjcuNDc0IDIxLjk3OFEyNjguODUyIDIwLjgwOCAyNjguODUyIDE4LjI2UTI2OC44NTIgMTYuMDI0IDI2Ny43MDggMTQuOTMyUTI2Ni41NjQgMTMuODQgMjY0LjAxNiAxMy44NFpNMzE1LjM3MiA2Ljg3MiAzMDMuODggNDRIMjkyLjg1NkwyODEuNDY4IDYuODcySDI5Mi4wMjRMMjk2LjgwOCAyNy40NjRRMjk3LjAxNiAyOC4yOTYgMjk3LjM4IDI5Ljg4MlEyOTcuNzQ0IDMxLjQ2OCAyOTguMDU2IDMzLjEzMlEyOTguMzY4IDM0Ljc5NiAyOTguNDIgMzUuODg4UTI5OC41MjQgMzQuNzk2IDI5OC44MSAzMy4xNThRMjk5LjA5NiAzMS41MiAyOTkuNDA4IDI5LjkzNFEyOTkuNzIgMjguMzQ4IDI5OS44NzYgMjcuNTE2TDMwNC44NjggNi44NzJaTTMzOC4wMjQgNDQgMzM2LjMwOCAzNi4wNDRIMzI0Ljk3MkwzMjMuMjA0IDQ0SDMxMi44NTZMMzI0LjI0NCA2LjcxNkgzMzYuNzc2TDM0OC4zMiA0NFpNMzMyLjQwOCAyMS4xNzJRMzMxLjk5MiAxOS40NTYgMzMxLjQ3MiAxNy4yNzJRMzMwLjk1MiAxNS4wODggMzMwLjU4OCAxMi45MDRRMzMwLjI3NiAxNS4wODggMzI5Ljc4MiAxNy4yNzJRMzI5LjI4OCAxOS40NTYgMzI4Ljg3MiAyMS4xNzJMMzI2Ljg5NiAyOC42NkgzMzQuMzg0Wk0zODQuODA0IDQ0SDM3Mi40OEwzNTkuNjg4IDE2LjgwNEgzNTkuNDhRMzU5LjQ4IDE3Ljc0IDM1OS41ODQgMTkuNDNRMzU5LjY4OCAyMS4xMiAzNTkuNzkyIDIzLjA3UTM1OS44OTYgMjUuMDIgMzU5Ljk0OCAyNi44NFY0NEgzNTEuNTc2VjYuODcySDM2My44NDhMMzc2LjU4OCAzMy43NTZIMzc2Ljc0NFEzNzYuNzQ0IDMyLjgyIDM3Ni42NjYgMzEuMjA4UTM3Ni41ODggMjkuNTk2IDM3Ni40ODQgMjcuNjk4UTM3Ni4zOCAyNS44IDM3Ni4zOCAyNC4wODRWNi44NzJIMzg0LjgwNFpNNDA3LjE5NiA0NEgzOTcuNzg0VjE0LjIwNEgzODkuMjU2VjYuODcySDQxNS43MjRWMTQuMjA0SDQwNy4xOTZaTTQzMS42NjggNi44NzJRNDQ1Ljg2NCA2Ljg3MiA0NDUuODY0IDE3Ljk0OFE0NDUuODY0IDIxLjUzNiA0NDQuMjc4IDIzLjk4UTQ0Mi42OTIgMjYuNDI0IDQzOS45MzYgMjcuODI4TDQ1MC4wNzYgNDRINDM5LjQ2OEw0MzIuMDg0IDMwLjA2NEg0MjkuNjRWNDRINDIwLjIyOFY2Ljg3MlpNNDMxLjUxMiAxMy44NEg0MjkuNjRWMjMuMTQ4SDQzMS40MDhRNDMzLjU5MiAyMy4xNDggNDM0Ljk3IDIxLjk3OFE0MzYuMzQ4IDIwLjgwOCA0MzYuMzQ4IDE4LjI2UTQzNi4zNDggMTYuMDI0IDQzNS4yMDQgMTQuOTMyUTQzNC4wNiAxMy44NCA0MzEuNTEyIDEzLjg0Wk00NjguNzc2IDQ0SDQ1MC42MjhWMzguOTU2TDQ1NC45OTYgMzcuMDMyVjEzLjg0TDQ1MC42MjggMTEuOTE2VjYuODcySDQ2OC43NzZWMTEuOTE2TDQ2NC40NiAxMy44NFYzNy4wMzJMNDY4Ljc3NiAzOC45NTZaIiBmaWxsPSIjRkZGRkZGIi8+CiAgICA8cGF0aCBpZD0id29yZG1hcmstbGluZS0yIiBkPSJNMjU0LjUyIDg3LjIzNlEyNTQuNTIgOTAuNDA4IDI1My4wOSA5Mi45ODJRMjUxLjY2IDk1LjU1NiAyNDguNjQ0IDk3LjAzOFEyNDUuNjI4IDk4LjUyIDI0MC44NDQgOTguNTJRMjM3LjMwOCA5OC41MiAyMzQuOTY4IDk3Ljk0OFEyMzIuNjI4IDk3LjM3NiAyMzAuMTMyIDk2LjIzMlY4OC4xNzJRMjMyLjk0IDg5LjQ3MiAyMzUuODI2IDkwLjM1NlEyMzguNzEyIDkxLjI0IDI0MS4xMDQgOTEuMjRRMjQzLjE4NCA5MS4yNCAyNDQuMTQ2IDkwLjI3OFEyNDUuMTA4IDg5LjMxNiAyNDUuMTA4IDg3Ljg2UTI0NS4xMDggODYuMDkyIDI0My42NzggODQuOTc0UTI0Mi4yNDggODMuODU2IDIzOC44MTYgODIuNFEyMzYuMjY4IDgxLjMwOCAyMzQuMzcgNzkuOTNRMjMyLjQ3MiA3OC41NTIgMjMxLjQzMiA3Ni40NDZRMjMwLjM5MiA3NC4zNCAyMzAuMzkyIDcxLjA2NFEyMzAuMzkyIDY3LjU4IDIzMi4wMyA2NS4yMTRRMjMzLjY2OCA2Mi44NDggMjM2LjYzMiA2MS42UTIzOS41OTYgNjAuMzUyIDI0My40OTYgNjAuMzUyUTI0Ni45MjggNjAuMzUyIDI0OS42NTggNjEuMTA2UTI1Mi4zODggNjEuODYgMjU0LjU3MiA2Mi45NTJMMjUxLjY2IDY5Ljg2OFEyNDkuNDI0IDY4Ljc3NiAyNDcuMjQgNjguMTc4UTI0NS4wNTYgNjcuNTggMjQzLjIzNiA2Ny41OFEyNDEuNDE2IDY3LjU4IDI0MC41NTggNjguNDY0UTIzOS43IDY5LjM0OCAyMzkuNyA3MC43UTIzOS43IDcxLjc5MiAyNDAuMzUgNzIuNTk4UTI0MSA3My40MDQgMjQyLjUwOCA3NC4yMzZRMjQ0LjAxNiA3NS4wNjggMjQ2LjU2NCA3Ni4zNjhRMjQ5LjExMiA3Ny41NjQgMjUwLjg4IDc4Ljk5NFEyNTIuNjQ4IDgwLjQyNCAyNTMuNTg0IDgyLjM3NFEyNTQuNTIgODQuMzI0IDI1NC41MiA4Ny4yMzZaTTI3NC43MjggOThIMjY1LjMxNlY2OC4yMDRIMjU2Ljc4OFY2MC44NzJIMjgzLjI1NlY2OC4yMDRIMjc0LjcyOFpNMzA1LjcgOTggMzAzLjk4NCA5MC4wNDRIMjkyLjY0OEwyOTAuODggOThIMjgwLjUzMkwyOTEuOTIgNjAuNzE2SDMwNC40NTJMMzE1Ljk5NiA5OFpNMzAwLjA4NCA3NS4xNzJRMjk5LjY2OCA3My40NTYgMjk5LjE0OCA3MS4yNzJRMjk4LjYyOCA2OS4wODggMjk4LjI2NCA2Ni45MDRRMjk3Ljk1MiA2OS4wODggMjk3LjQ1OCA3MS4yNzJRMjk2Ljk2NCA3My40NTYgMjk2LjU0OCA3NS4xNzJMMjk0LjU3MiA4Mi42NkgzMDIuMDZaTTM1Mi40OCA5OEgzNDAuMTU2TDMyNy4zNjQgNzAuODA0SDMyNy4xNTZRMzI3LjE1NiA3MS43NCAzMjcuMjYgNzMuNDNRMzI3LjM2NCA3NS4xMiAzMjcuNDY4IDc3LjA3UTMyNy41NzIgNzkuMDIgMzI3LjYyNCA4MC44NFY5OEgzMTkuMjUyVjYwLjg3MkgzMzEuNTI0TDM0NC4yNjQgODcuNzU2SDM0NC40MlEzNDQuNDIgODYuODIgMzQ0LjM0MiA4NS4yMDhRMzQ0LjI2NCA4My41OTYgMzQ0LjE2IDgxLjY5OFEzNDQuMDU2IDc5LjggMzQ0LjA1NiA3OC4wODRWNjAuODcySDM1Mi40OFpNMzg5LjEyIDc4Ljg2NFEzODkuMTIgODUuMjYgMzg2Ljg1OCA4OS40OThRMzg0LjU5NiA5My43MzYgMzgwLjQ4OCA5NS44NjhRMzc2LjM4IDk4IDM3MC43NjQgOThIMzU5LjUzMlY2MC44NzJIMzcxLjU5NlEzODAuMDIgNjAuODcyIDM4NC41NyA2NS40NzRRMzg5LjEyIDcwLjA3NiAzODkuMTIgNzguODY0Wk0zNzkuMzk2IDc5LjE3NlEzNzkuMzk2IDczLjUwOCAzNzcuNDcyIDcwLjgwNFEzNzUuNTQ4IDY4LjEgMzcxLjcgNjguMUgzNjguOTQ0VjkwLjcySDM3MS4wMjRRMzc1LjM0IDkwLjcyIDM3Ny4zNjggODcuODM0UTM3OS4zOTYgODQuOTQ4IDM3OS4zOTYgNzkuMTc2Wk00MTUuMjU2IDk4IDQxMy41NCA5MC4wNDRINDAyLjIwNEw0MDAuNDM2IDk4SDM5MC4wODhMNDAxLjQ3NiA2MC43MTZINDE0LjAwOEw0MjUuNTUyIDk4Wk00MDkuNjQgNzUuMTcyUTQwOS4yMjQgNzMuNDU2IDQwOC43MDQgNzEuMjcyUTQwOC4xODQgNjkuMDg4IDQwNy44MiA2Ni45MDRRNDA3LjUwOCA2OS4wODggNDA3LjAxNCA3MS4yNzJRNDA2LjUyIDczLjQ1NiA0MDYuMTA0IDc1LjE3Mkw0MDQuMTI4IDgyLjY2SDQxMS42MTZaTTQ0MC4yNDggNjAuODcyUTQ1NC40NDQgNjAuODcyIDQ1NC40NDQgNzEuOTQ4UTQ1NC40NDQgNzUuNTM2IDQ1Mi44NTggNzcuOThRNDUxLjI3MiA4MC40MjQgNDQ4LjUxNiA4MS44MjhMNDU4LjY1NiA5OEg0NDguMDQ4TDQ0MC42NjQgODQuMDY0SDQzOC4yMlY5OEg0MjguODA4VjYwLjg3MlpNNDQwLjA5MiA2Ny44NEg0MzguMjJWNzcuMTQ4SDQzOS45ODhRNDQyLjE3MiA3Ny4xNDggNDQzLjU1IDc1Ljk3OFE0NDQuOTI4IDc0LjgwOCA0NDQuOTI4IDcyLjI2UTQ0NC45MjggNzAuMDI0IDQ0My43ODQgNjguOTMyUTQ0Mi42NCA2Ny44NCA0NDAuMDkyIDY3Ljg0Wk00OTAuOTI4IDc4Ljg2NFE0OTAuOTI4IDg1LjI2IDQ4OC42NjYgODkuNDk4UTQ4Ni40MDQgOTMuNzM2IDQ4Mi4yOTYgOTUuODY4UTQ3OC4xODggOTggNDcyLjU3MiA5OEg0NjEuMzRWNjAuODcySDQ3My40MDRRNDgxLjgyOCA2MC44NzIgNDg2LjM3OCA2NS40NzRRNDkwLjkyOCA3MC4wNzYgNDkwLjkyOCA3OC44NjRaTTQ4MS4yMDQgNzkuMTc2UTQ4MS4yMDQgNzMuNTA4IDQ3OS4yOCA3MC44MDRRNDc3LjM1NiA2OC4xIDQ3My41MDggNjguMUg0NzAuNzUyVjkwLjcySDQ3Mi44MzJRNDc3LjE0OCA5MC43MiA0NzkuMTc2IDg3LjgzNFE0ODEuMjA0IDg0Ljk0OCA0ODEuMjA0IDc5LjE3NlpNNTE5LjQwNCA4Ny4yMzZRNTE5LjQwNCA5MC40MDggNTE3Ljk3NCA5Mi45ODJRNTE2LjU0NCA5NS41NTYgNTEzLjUyOCA5Ny4wMzhRNTEwLjUxMiA5OC41MiA1MDUuNzI4IDk4LjUyUTUwMi4xOTIgOTguNTIgNDk5Ljg1MiA5Ny45NDhRNDk3LjUxMiA5Ny4zNzYgNDk1LjAxNiA5Ni4yMzJWODguMTcyUTQ5Ny44MjQgODkuNDcyIDUwMC43MSA5MC4zNTZRNTAzLjU5NiA5MS4yNCA1MDUuOTg4IDkxLjI0UTUwOC4wNjggOTEuMjQgNTA5LjAzIDkwLjI3OFE1MDkuOTkyIDg5LjMxNiA1MDkuOTkyIDg3Ljg2UTUwOS45OTIgODYuMDkyIDUwOC41NjIgODQuOTc0UTUwNy4xMzIgODMuODU2IDUwMy43IDgyLjRRNTAxLjE1MiA4MS4zMDggNDk5LjI1NCA3OS45M1E0OTcuMzU2IDc4LjU1MiA0OTYuMzE2IDc2LjQ0NlE0OTUuMjc2IDc0LjM0IDQ5NS4yNzYgNzEuMDY0UTQ5NS4yNzYgNjcuNTggNDk2LjkxNCA2NS4yMTRRNDk4LjU1MiA2Mi44NDggNTAxLjUxNiA2MS42UTUwNC40OCA2MC4zNTIgNTA4LjM4IDYwLjM1MlE1MTEuODEyIDYwLjM1MiA1MTQuNTQyIDYxLjEwNlE1MTcuMjcyIDYxLjg2IDUxOS40NTYgNjIuOTUyTDUxNi41NDQgNjkuODY4UTUxNC4zMDggNjguNzc2IDUxMi4xMjQgNjguMTc4UTUwOS45NCA2Ny41OCA1MDguMTIgNjcuNThRNTA2LjMgNjcuNTggNTA1LjQ0MiA2OC40NjRRNTA0LjU4NCA2OS4zNDggNTA0LjU4NCA3MC43UTUwNC41ODQgNzEuNzkyIDUwNS4yMzQgNzIuNTk4UTUwNS44ODQgNzMuNDA0IDUwNy4zOTIgNzQuMjM2UTUwOC45IDc1LjA2OCA1MTEuNDQ4IDc2LjM2OFE1MTMuOTk2IDc3LjU2NCA1MTUuNzY0IDc4Ljk5NFE1MTcuNTMyIDgwLjQyNCA1MTguNDY4IDgyLjM3NFE1MTkuNDA0IDg0LjMyNCA1MTkuNDA0IDg3LjIzNloiIGZpbGw9IiNGRkZGRkYiLz4KICAgIDxwYXRoIGlkPSJlbmRvcnNlbWVudC1saW5lIiBkPSJNMjQ1Ljk4NSAxNDYgMjQzLjE0NyAxMzguNzA3SDIzMy44MDhMMjMxLjAwMyAxNDZIMjI4TDIzNy4yMDcgMTIyLjMzOUgyMzkuODhMMjQ5LjA1NCAxNDZaTTIzOS42MTYgMTI4LjkzOVEyMzkuNTE3IDEyOC42NzUgMjM5LjI4NiAxMjcuOTgyUTIzOS4wNTUgMTI3LjI4OSAyMzguODQxIDEyNi41NDdRMjM4LjYyNiAxMjUuODA0IDIzOC40OTQgMTI1LjQwOFEyMzguMjYzIDEyNi40MzEgMjM3Ljk2NiAxMjcuNDA0UTIzNy42NjkgMTI4LjM3OCAyMzcuNDcxIDEyOC45MzlMMjM0Ljc5OCAxMzYuMDY3SDI0Mi4yNTZaTTI3OS44NzYgMTI3Ljk4MlEyODIuODc5IDEyNy45ODIgMjg0LjM2NCAxMjkuNTE3UTI4NS44NDkgMTMxLjA1MSAyODUuODQ5IDEzNC40ODNWMTQ2SDI4Mi45NzhWMTM0LjYxNVEyODIuOTc4IDEzMC40MjQgMjc5LjM4MSAxMzAuNDI0UTI3Ni44MDcgMTMwLjQyNCAyNzUuNzAyIDEzMS45MDlRMjc0LjU5NiAxMzMuMzk0IDI3NC41OTYgMTM2LjIzMlYxNDZIMjcxLjcyNVYxMzQuNjE1UTI3MS43MjUgMTMwLjQyNCAyNjguMDk1IDEzMC40MjRRMjY1LjQyMiAxMzAuNDI0IDI2NC4zOTkgMTMyLjA3NFEyNjMuMzc2IDEzMy43MjQgMjYzLjM3NiAxMzYuODI2VjE0NkgyNjAuNDcyVjEyOC4zMTJIMjYyLjgxNUwyNjMuMjQ0IDEzMC43MjFIMjYzLjQwOVEyNjQuMjM0IDEyOS4zMzUgMjY1LjYzNiAxMjguNjU5UTI2Ny4wMzkgMTI3Ljk4MiAyNjguNjIzIDEyNy45ODJRMjcyLjc4MSAxMjcuOTgyIDI3NC4wMzUgMTMwLjk1MkgyNzQuMlEyNzUuMDkxIDEyOS40MzQgMjc2LjYyNSAxMjguNzA4UTI3OC4xNiAxMjcuOTgyIDI3OS44NzYgMTI3Ljk4MlpNMjk4LjE1OCAxMjcuOTgyUTMwMC40MzUgMTI3Ljk4MiAzMDIuMDY4IDEyOC45NzJRMzAzLjcwMiAxMjkuOTYyIDMwNC41NzcgMTMxLjc2UTMwNS40NTEgMTMzLjU1OSAzMDUuNDUxIDEzNS45NjhWMTM3LjcxN0gyOTMuMzRRMjkzLjQwNiAxNDAuNzIgMjk0Ljg3NSAxNDIuMjg3UTI5Ni4zNDMgMTQzLjg1NSAyOTguOTgzIDE0My44NTVRMzAwLjY2NiAxNDMuODU1IDMwMS45NjkgMTQzLjU0MVEzMDMuMjczIDE0My4yMjggMzA0LjY1OSAxNDIuNjM0VjE0NS4xNzVRMzAzLjMwNiAxNDUuNzY5IDMwMS45ODYgMTQ2LjA1UTMwMC42NjYgMTQ2LjMzIDI5OC44NTEgMTQ2LjMzUTI5Ni4zNDMgMTQ2LjMzIDI5NC40MTMgMTQ1LjMwN1EyOTIuNDgyIDE0NC4yODQgMjkxLjQwOSAxNDIuMjU1UTI5MC4zMzcgMTQwLjIyNSAyOTAuMzM3IDEzNy4yODhRMjkwLjMzNyAxMzQuMzg0IDI5MS4zMSAxMzIuMzA1UTI5Mi4yODQgMTMwLjIyNiAyOTQuMDQ5IDEyOS4xMDRRMjk1LjgxNSAxMjcuOTgyIDI5OC4xNTggMTI3Ljk4MlpNMjk4LjEyNSAxMzAuMzU4UTI5Ni4wNDYgMTMwLjM1OCAyOTQuODQxIDEzMS42OTVRMjkzLjYzNyAxMzMuMDMxIDI5My40MDYgMTM1LjQwN0gzMDIuNDE1UTMwMi4zODIgMTMzLjE2MyAzMDEuMzU5IDEzMS43NjFRMzAwLjMzNiAxMzAuMzU4IDI5OC4xMjUgMTMwLjM1OFpNMzI5LjM0MyAxMjcuOTgyUTMzMi4zNDYgMTI3Ljk4MiAzMzMuODMxIDEyOS41MTdRMzM1LjMxNiAxMzEuMDUxIDMzNS4zMTYgMTM0LjQ4M1YxNDZIMzMyLjQ0NVYxMzQuNjE1UTMzMi40NDUgMTMwLjQyNCAzMjguODQ4IDEzMC40MjRRMzI2LjI3NCAxMzAuNDI0IDMyNS4xNjggMTMxLjkwOVEzMjQuMDYzIDEzMy4zOTQgMzI0LjA2MyAxMzYuMjMyVjE0NkgzMjEuMTkyVjEzNC42MTVRMzIxLjE5MiAxMzAuNDI0IDMxNy41NjIgMTMwLjQyNFEzMTQuODg5IDEzMC40MjQgMzEzLjg2NiAxMzIuMDc0UTMxMi44NDMgMTMzLjcyNCAzMTIuODQzIDEzNi44MjZWMTQ2SDMwOS45MzlWMTI4LjMxMkgzMTIuMjgyTDMxMi43MTEgMTMwLjcyMUgzMTIuODc2UTMxMy43MDEgMTI5LjMzNSAzMTUuMTA0IDEyOC42NTlRMzE2LjUwNiAxMjcuOTgyIDMxOC4wOSAxMjcuOTgyUTMyMi4yNDggMTI3Ljk4MiAzMjMuNTAyIDEzMC45NTJIMzIzLjY2N1EzMjQuNTU4IDEyOS40MzQgMzI2LjA5MiAxMjguNzA4UTMyNy42MjcgMTI3Ljk4MiAzMjkuMzQzIDEyNy45ODJaTTM0My42OTggMTI3LjAyNVEzNDMuNjk4IDEyOC4xNDcgMzQzLjY0OSAxMjkuMTJRMzQzLjU5OSAxMzAuMDk0IDM0My41MzMgMTMwLjY1NUgzNDMuNjk4UTM0NC40NTcgMTI5LjUzMyAzNDUuNzc3IDEyOC43NzRRMzQ3LjA5NyAxMjguMDE1IDM0OS4xNzYgMTI4LjAxNVEzNTIuNDc2IDEyOC4wMTUgMzU0LjQ3MyAxMzAuMzA4UTM1Ni40NjkgMTMyLjYwMiAzNTYuNDY5IDEzNy4xNTZRMzU2LjQ2OSAxNDEuNzEgMzU0LjQ1NiAxNDQuMDJRMzUyLjQ0MyAxNDYuMzMgMzQ5LjE3NiAxNDYuMzNRMzQ3LjA5NyAxNDYuMzMgMzQ1Ljc3NyAxNDUuNTcxUTM0NC40NTcgMTQ0LjgxMiAzNDMuNjk4IDE0My43NTZIMzQzLjQ2N0wzNDIuODczIDE0NkgzNDAuNzk0VjEyMC45MkgzNDMuNjk4Wk0zNDguNjgxIDEzMC40MjRRMzQ1Ljg3NiAxMzAuNDI0IDM0NC43ODcgMTMyLjA0MVEzNDMuNjk4IDEzMy42NTggMzQzLjY5OCAxMzcuMDU3VjEzNy4xODlRMzQzLjY5OCAxNDAuNDU2IDM0NC43NzEgMTQyLjE4OFEzNDUuODQzIDE0My45MjEgMzQ4Ljc0NyAxNDMuOTIxUTM1MS4xMjMgMTQzLjkyMSAzNTIuMjk1IDE0Mi4xNzJRMzUzLjQ2NiAxNDAuNDIzIDM1My40NjYgMTM3LjEyM1EzNTMuNDY2IDEzMC40MjQgMzQ4LjY4MSAxMzAuNDI0Wk0zNjcuOTIgMTI3Ljk4MlEzNzAuMTk3IDEyNy45ODIgMzcxLjgzMSAxMjguOTcyUTM3My40NjQgMTI5Ljk2MiAzNzQuMzM5IDEzMS43NlEzNzUuMjEzIDEzMy41NTkgMzc1LjIxMyAxMzUuOTY4VjEzNy43MTdIMzYzLjEwMlEzNjMuMTY4IDE0MC43MiAzNjQuNjM3IDE0Mi4yODdRMzY2LjEwNSAxNDMuODU1IDM2OC43NDUgMTQzLjg1NVEzNzAuNDI4IDE0My44NTUgMzcxLjczMiAxNDMuNTQxUTM3My4wMzUgMTQzLjIyOCAzNzQuNDIxIDE0Mi42MzRWMTQ1LjE3NVEzNzMuMDY4IDE0NS43NjkgMzcxLjc0OCAxNDYuMDVRMzcwLjQyOCAxNDYuMzMgMzY4LjYxMyAxNDYuMzNRMzY2LjEwNSAxNDYuMzMgMzY0LjE3NSAxNDUuMzA3UTM2Mi4yNDQgMTQ0LjI4NCAzNjEuMTcyIDE0Mi4yNTVRMzYwLjA5OSAxNDAuMjI1IDM2MC4wOTkgMTM3LjI4OFEzNjAuMDk5IDEzNC4zODQgMzYxLjA3MyAxMzIuMzA1UTM2Mi4wNDYgMTMwLjIyNiAzNjMuODEyIDEyOS4xMDRRMzY1LjU3NyAxMjcuOTgyIDM2Ny45MiAxMjcuOTgyWk0zNjcuODg3IDEzMC4zNThRMzY1LjgwOCAxMzAuMzU4IDM2NC42MDQgMTMxLjY5NVEzNjMuMzk5IDEzMy4wMzEgMzYzLjE2OCAxMzUuNDA3SDM3Mi4xNzdRMzcyLjE0NCAxMzMuMTYzIDM3MS4xMjEgMTMxLjc2MVEzNzAuMDk4IDEzMC4zNTggMzY3Ljg4NyAxMzAuMzU4Wk0zODcuOTUxIDEyNy45ODJRMzg4LjQ0NiAxMjcuOTgyIDM4OS4wMjQgMTI4LjAzMVEzODkuNjAxIDEyOC4wODEgMzkwLjAzIDEyOC4xOEwzODkuNjY3IDEzMC44NTNRMzg5LjIzOCAxMzAuNzU0IDM4OC43MjcgMTMwLjY4OFEzODguMjE1IDEzMC42MjIgMzg3Ljc1MyAxMzAuNjIyUTM4Ni40IDEzMC42MjIgMzg1LjIxMiAxMzEuMzY1UTM4NC4wMjQgMTMyLjEwNyAzODMuMzE1IDEzMy40NDRRMzgyLjYwNSAxMzQuNzggMzgyLjYwNSAxMzYuNTYyVjE0NkgzNzkuNzAxVjEyOC4zMTJIMzgyLjA3N0wzODIuNDA3IDEzMS41NDZIMzgyLjUzOVEzODMuMzk3IDEzMC4wOTQgMzg0Ljc1IDEyOS4wMzhRMzg2LjEwMyAxMjcuOTgyIDM4Ny45NTEgMTI3Ljk4MlpNNDE3LjI4OCAxMzcuMTIzUTQxNy4yODggMTQxLjUxMiA0MTUuMDYxIDE0My45MjFRNDEyLjgzMyAxNDYuMzMgNDA5LjAzOCAxNDYuMzNRNDA2LjY5NSAxNDYuMzMgNDA0Ljg2NCAxNDUuMjU3UTQwMy4wMzIgMTQ0LjE4NSA0MDEuOTc2IDE0Mi4xMjNRNDAwLjkyIDE0MC4wNiA0MDAuOTIgMTM3LjEyM1E0MDAuOTIgMTMyLjczNCA0MDMuMTMxIDEzMC4zNThRNDA1LjM0MiAxMjcuOTgyIDQwOS4xMzcgMTI3Ljk4MlE0MTEuNTQ2IDEyNy45ODIgNDEzLjM3OCAxMjkuMDU1UTQxNS4yMDkgMTMwLjEyNyA0MTYuMjQ5IDEzMi4xNTZRNDE3LjI4OCAxMzQuMTg2IDQxNy4yODggMTM3LjEyM1pNNDAzLjkyMyAxMzcuMTIzUTQwMy45MjMgMTQwLjI1OCA0MDUuMTYxIDE0Mi4wODlRNDA2LjM5OCAxNDMuOTIxIDQwOS4xMDQgMTQzLjkyMVE0MTEuNzc3IDE0My45MjEgNDEzLjAzMSAxNDIuMDg5UTQxNC4yODUgMTQwLjI1OCA0MTQuMjg1IDEzNy4xMjNRNDE0LjI4NSAxMzMuOTg4IDQxMy4wMzEgMTMyLjIwNlE0MTEuNzc3IDEzMC40MjQgNDA5LjA3MSAxMzAuNDI0UTQwNi4zNjUgMTMwLjQyNCA0MDUuMTQ0IDEzMi4yMDZRNDAzLjkyMyAxMzMuOTg4IDQwMy45MjMgMTM3LjEyM1pNNDMwLjAyNiAxMzAuNTU2SDQyNS41NzFWMTQ2SDQyMi42NjdWMTMwLjU1Nkg0MTkuNTY1VjEyOS4yMDNMNDIyLjY2NyAxMjguMjEzVjEyNy4xOVE0MjIuNjY3IDEyMy43NTggNDI0LjE4NSAxMjIuMjU2UTQyNS43MDMgMTIwLjc1NSA0MjguNDA5IDEyMC43NTVRNDI5LjQ2NSAxMjAuNzU1IDQzMC4zNCAxMjAuOTM2UTQzMS4yMTQgMTIxLjExOCA0MzEuODQxIDEyMS4zNDlMNDMxLjA4MiAxMjMuNjI2UTQzMC41NTQgMTIzLjQ2MSA0MjkuODYxIDEyMy4yOTZRNDI5LjE2OCAxMjMuMTMxIDQyOC40NDIgMTIzLjEzMVE0MjYuOTkgMTIzLjEzMSA0MjYuMjgxIDEyNC4xMDVRNDI1LjU3MSAxMjUuMDc4IDQyNS41NzEgMTI3LjE1N1YxMjguMzEySDQzMC4wMjZaTTQ0OC44MzYgMTQ2SDQ0MC4zMjJWMTQ0LjI4NEw0NDMuMDk0IDE0My42NTdWMTI0LjgxNEw0NDAuMzIyIDEyNC4xNTRWMTIyLjQzOEg0NDguODM2VjEyNC4xNTRMNDQ2LjA2NCAxMjQuODE0VjE0My42NTdMNDQ4LjgzNiAxNDQuMjg0Wk00NjEuMjQ0IDEyNy45ODJRNDYxLjczOSAxMjcuOTgyIDQ2Mi4zMTcgMTI4LjAzMVE0NjIuODk0IDEyOC4wODEgNDYzLjMyMyAxMjguMThMNDYyLjk2IDEzMC44NTNRNDYyLjUzMSAxMzAuNzU0IDQ2Mi4wMTkgMTMwLjY4OFE0NjEuNTA4IDEzMC42MjIgNDYxLjA0NiAxMzAuNjIyUTQ1OS42OTMgMTMwLjYyMiA0NTguNTA1IDEzMS4zNjVRNDU3LjMxNyAxMzIuMTA3IDQ1Ni42MDggMTMzLjQ0NFE0NTUuODk4IDEzNC43OCA0NTUuODk4IDEzNi41NjJWMTQ2SDQ1Mi45OTRWMTI4LjMxMkg0NTUuMzdMNDU1LjcgMTMxLjU0Nkg0NTUuODMyUTQ1Ni42OSAxMzAuMDk0IDQ1OC4wNDMgMTI5LjAzOFE0NTkuMzk2IDEyNy45ODIgNDYxLjI0NCAxMjcuOTgyWk00NzAuNTE3IDE0NiA0NjMuODE4IDEyOC4zMTJINDY2LjkyTDQ3MC42ODIgMTM4Ljc0UTQ3MC45NDYgMTM5LjQ2NiA0NzEuMjQzIDE0MC4zNTdRNDcxLjU0IDE0MS4yNDggNDcxLjc3MSAxNDIuMDU2UTQ3Mi4wMDIgMTQyLjg2NSA0NzIuMTAxIDE0My40MjZINDcyLjIzM1E0NzIuMzY1IDE0Mi44NjUgNDcyLjYxMyAxNDIuMDRRNDcyLjg2IDE0MS4yMTUgNDczLjE3MyAxNDAuMzI0UTQ3My40ODcgMTM5LjQzMyA0NzMuNzE4IDEzOC43NEw0NzcuNDggMTI4LjMxMkg0ODAuNTgyTDQ3My44NSAxNDZaTTQ5MC4wODYgMTI4LjAxNVE0OTMuMzIgMTI4LjAxNSA0OTQuODcxIDEyOS40MzRRNDk2LjQyMiAxMzAuODUzIDQ5Ni40MjIgMTMzLjk1NVYxNDZINDk0LjMxTDQ5My43NDkgMTQzLjQ5Mkg0OTMuNjE3UTQ5Mi40NjIgMTQ0Ljk0NCA0OTEuMTkyIDE0NS42MzdRNDg5LjkyMSAxNDYuMzMgNDg3LjY3NyAxNDYuMzNRNDg1LjI2OCAxNDYuMzMgNDgzLjY4NCAxNDUuMDZRNDgyLjEgMTQzLjc4OSA0ODIuMSAxNDEuMDgzUTQ4Mi4xIDEzOC40NDMgNDg0LjE3OSAxMzcuMDA3UTQ4Ni4yNTggMTM1LjU3MiA0OTAuNTgxIDEzNS40NEw0OTMuNTg0IDEzNS4zNDFWMTM0LjI4NVE0OTMuNTg0IDEzMi4wNzQgNDkyLjYyNyAxMzEuMjE2UTQ5MS42NyAxMzAuMzU4IDQ4OS45MjEgMTMwLjM1OFE0ODguNTM1IDEzMC4zNTggNDg3LjI4MSAxMzAuNzdRNDg2LjAyNyAxMzEuMTgzIDQ4NC45MzggMTMxLjcxMUw0ODQuMDQ3IDEyOS41MzNRNDg1LjIwMiAxMjguOTA2IDQ4Ni43ODYgMTI4LjQ2UTQ4OC4zNyAxMjguMDE1IDQ5MC4wODYgMTI4LjAxNVpNNDkwLjk0NCAxMzcuNDUzUTQ4Ny42NDQgMTM3LjU4NSA0ODYuMzc0IDEzOC41MDlRNDg1LjEwMyAxMzkuNDMzIDQ4NS4xMDMgMTQxLjExNlE0ODUuMTAzIDE0Mi42MDEgNDg2LjAxMSAxNDMuMjk0UTQ4Ni45MTggMTQzLjk4NyA0ODguMzM3IDE0My45ODdRNDkwLjU4MSAxNDMuOTg3IDQ5Mi4wNjYgMTQyLjc1UTQ5My41NTEgMTQxLjUxMiA0OTMuNTUxIDEzOC45MzhWMTM3LjM1NFpNNTEwLjQxNCAxMjcuOTgyUTUxMy41ODIgMTI3Ljk4MiA1MTUuMTk5IDEyOS41MTdRNTE2LjgxNiAxMzEuMDUxIDUxNi44MTYgMTM0LjQ4M1YxNDZINTEzLjk0NVYxMzQuNjgxUTUxMy45NDUgMTMwLjQyNCA1MDkuOTg1IDEzMC40MjRRNTA3LjA0OCAxMzAuNDI0IDUwNS45MjYgMTMyLjA3NFE1MDQuODA0IDEzMy43MjQgNTA0LjgwNCAxMzYuODI2VjE0Nkg1MDEuOVYxMjguMzEySDUwNC4yNDNMNTA0LjY3MiAxMzAuNzIxSDUwNC44MzdRNTA1LjY5NSAxMjkuMzM1IDUwNy4yMTMgMTI4LjY1OVE1MDguNzMxIDEyNy45ODIgNTEwLjQxNCAxMjcuOTgyWk01MjguMjAxIDE0My45NTRRNTI4Ljg2MSAxNDMuOTU0IDUyOS41NTQgMTQzLjgzOVE1MzAuMjQ3IDE0My43MjMgNTMwLjY3NiAxNDMuNTkxVjE0NS44MDJRNTMwLjIxNCAxNDYuMDMzIDUyOS4zNTYgMTQ2LjE4MVE1MjguNDk4IDE0Ni4zMyA1MjcuNzA2IDE0Ni4zM1E1MjYuMzIgMTQ2LjMzIDUyNS4xNDkgMTQ1Ljg1MVE1MjMuOTc3IDE0NS4zNzMgNTIzLjI1MSAxNDQuMTg1UTUyMi41MjUgMTQyLjk5NyA1MjIuNTI1IDE0MC44NTJWMTMwLjU1Nkg1MjAuMDE3VjEyOS4xN0w1MjIuNTU4IDEyOC4wMTVMNTIzLjcxMyAxMjQuMjUzSDUyNS40MjlWMTI4LjMxMkg1MzAuNTQ0VjEzMC41NTZINTI1LjQyOVYxNDAuNzg2UTUyNS40MjkgMTQyLjQwMyA1MjYuMjA1IDE0My4xNzhRNTI2Ljk4IDE0My45NTQgNTI4LjIwMSAxNDMuOTU0Wk01NDIuNDU3IDEyNy45ODJRNTQyLjk1MiAxMjcuOTgyIDU0My41MyAxMjguMDMxUTU0NC4xMDcgMTI4LjA4MSA1NDQuNTM2IDEyOC4xOEw1NDQuMTczIDEzMC44NTNRNTQzLjc0NCAxMzAuNzU0IDU0My4yMzMgMTMwLjY4OFE1NDIuNzIxIDEzMC42MjIgNTQyLjI1OSAxMzAuNjIyUTU0MC45MDYgMTMwLjYyMiA1MzkuNzE4IDEzMS4zNjVRNTM4LjUzIDEzMi4xMDcgNTM3LjgyMSAxMzMuNDQ0UTUzNy4xMTEgMTM0Ljc4IDUzNy4xMTEgMTM2LjU2MlYxNDZINTM0LjIwN1YxMjguMzEySDUzNi41ODNMNTM2LjkxMyAxMzEuNTQ2SDUzNy4wNDVRNTM3LjkwMyAxMzAuMDk0IDUzOS4yNTYgMTI5LjAzOFE1NDAuNjA5IDEyNy45ODIgNTQyLjQ1NyAxMjcuOTgyWk01NDkuMzIxIDEyMS42NzlRNTQ5Ljk4MSAxMjEuNjc5IDU1MC40OTMgMTIyLjEyNFE1NTEuMDA0IDEyMi41NyA1NTEuMDA0IDEyMy41MjdRNTUxLjAwNCAxMjQuNDUxIDU1MC40OTMgMTI0LjkxM1E1NDkuOTgxIDEyNS4zNzUgNTQ5LjMyMSAxMjUuMzc1UTU0OC41OTUgMTI1LjM3NSA1NDguMSAxMjQuOTEzUTU0Ny42MDUgMTI0LjQ1MSA1NDcuNjA1IDEyMy41MjdRNTQ3LjYwNSAxMjIuNTcgNTQ4LjEgMTIyLjEyNFE1NDguNTk1IDEyMS42NzkgNTQ5LjMyMSAxMjEuNjc5Wk01NTAuNzQgMTI4LjMxMlYxNDZINTQ3LjgzNlYxMjguMzEyWk01NzUuNTU2IDEzMy41NTlINTgzLjcwN1YxNDUuMTA5UTU4MS43OTMgMTQ1LjczNiA1NzkuODQ2IDE0Ni4wMzNRNTc3Ljg5OSAxNDYuMzMgNTc1LjQyNCAxNDYuMzNRNTcxLjc2MSAxNDYuMzMgNTY5LjI1MyAxNDQuODYyUTU2Ni43NDUgMTQzLjM5MyA1NjUuNDQyIDE0MC42NzFRNTY0LjEzOCAxMzcuOTQ4IDU2NC4xMzggMTM0LjIxOVE1NjQuMTM4IDEzMC41MjMgNTY1LjU5IDEyNy44MTdRNTY3LjA0MiAxMjUuMTExIDU2OS43NjUgMTIzLjYwOVE1NzIuNDg3IDEyMi4xMDggNTc2LjM0OCAxMjIuMTA4UTU3OC4zMjggMTIyLjEwOCA1ODAuMDk0IDEyMi40NzFRNTgxLjg1OSAxMjIuODM0IDU4My4zNzcgMTIzLjQ5NEw1ODIuMjU1IDEyNi4wNjhRNTgxLjAwMSAxMjUuNTA3IDU3OS40MzQgMTI1LjExMVE1NzcuODY2IDEyNC43MTUgNTc2LjE4MyAxMjQuNzE1UTU3MS45NTkgMTI0LjcxNSA1NjkuNiAxMjcuMjU2UTU2Ny4yNCAxMjkuNzk3IDU2Ny4yNCAxMzQuMjE5UTU2Ny4yNCAxMzcuMDI0IDU2OC4xNDggMTM5LjE4NVE1NjkuMDU1IDE0MS4zNDcgNTcxLjAwMiAxNDIuNTUyUTU3Mi45NDkgMTQzLjc1NiA1NzYuMTE3IDE0My43NTZRNTc3LjY2OCAxNDMuNzU2IDU3OC43NTcgMTQzLjU5MVE1NzkuODQ2IDE0My40MjYgNTgwLjczNyAxNDMuMTk1VjEzNi4xOTlINTc1LjU1NlpNNTk3LjIwNCAxMjcuOTgyUTU5Ny42OTkgMTI3Ljk4MiA1OTguMjc3IDEyOC4wMzFRNTk4Ljg1NCAxMjguMDgxIDU5OS4yODMgMTI4LjE4TDU5OC45MiAxMzAuODUzUTU5OC40OTEgMTMwLjc1NCA1OTcuOTggMTMwLjY4OFE1OTcuNDY4IDEzMC42MjIgNTk3LjAwNiAxMzAuNjIyUTU5NS42NTMgMTMwLjYyMiA1OTQuNDY1IDEzMS4zNjVRNTkzLjI3NyAxMzIuMTA3IDU5Mi41NjggMTMzLjQ0NFE1OTEuODU4IDEzNC43OCA1OTEuODU4IDEzNi41NjJWMTQ2SDU4OC45NTRWMTI4LjMxMkg1OTEuMzNMNTkxLjY2IDEzMS41NDZINTkxLjc5MlE1OTIuNjUgMTMwLjA5NCA1OTQuMDAzIDEyOS4wMzhRNTk1LjM1NiAxMjcuOTgyIDU5Ny4yMDQgMTI3Ljk4MlpNNjE3LjMwMSAxMzcuMTIzUTYxNy4zMDEgMTQxLjUxMiA2MTUuMDc0IDE0My45MjFRNjEyLjg0NiAxNDYuMzMgNjA5LjA1MSAxNDYuMzNRNjA2LjcwOCAxNDYuMzMgNjA0Ljg3NyAxNDUuMjU3UTYwMy4wNDUgMTQ0LjE4NSA2MDEuOTg5IDE0Mi4xMjNRNjAwLjkzMyAxNDAuMDYgNjAwLjkzMyAxMzcuMTIzUTYwMC45MzMgMTMyLjczNCA2MDMuMTQ0IDEzMC4zNThRNjA1LjM1NSAxMjcuOTgyIDYwOS4xNSAxMjcuOTgyUTYxMS41NTkgMTI3Ljk4MiA2MTMuMzkxIDEyOS4wNTVRNjE1LjIyMiAxMzAuMTI3IDYxNi4yNjIgMTMyLjE1NlE2MTcuMzAxIDEzNC4xODYgNjE3LjMwMSAxMzcuMTIzWk02MDMuOTM2IDEzNy4xMjNRNjAzLjkzNiAxNDAuMjU4IDYwNS4xNzQgMTQyLjA4OVE2MDYuNDExIDE0My45MjEgNjA5LjExNyAxNDMuOTIxUTYxMS43OSAxNDMuOTIxIDYxMy4wNDQgMTQyLjA4OVE2MTQuMjk4IDE0MC4yNTggNjE0LjI5OCAxMzcuMTIzUTYxNC4yOTggMTMzLjk4OCA2MTMuMDQ0IDEzMi4yMDZRNjExLjc5IDEzMC40MjQgNjA5LjA4NCAxMzAuNDI0UTYwNi4zNzggMTMwLjQyNCA2MDUuMTU3IDEzMi4yMDZRNjAzLjkzNiAxMzMuOTg4IDYwMy45MzYgMTM3LjEyM1pNNjM2LjY3MiAxMjguMzEyVjE0Nkg2MzQuMjk2TDYzMy44NjcgMTQzLjY1N0g2MzMuNzM1UTYzMi44NzcgMTQ1LjA0MyA2MzEuMzU5IDE0NS42ODdRNjI5Ljg0MSAxNDYuMzMgNjI4LjEyNSAxNDYuMzNRNjI0LjkyNCAxNDYuMzMgNjIzLjMwNyAxNDQuNzk2UTYyMS42OSAxNDMuMjYxIDYyMS42OSAxMzkuODk1VjEyOC4zMTJINjI0LjYyN1YxMzkuNjk3UTYyNC42MjcgMTQzLjkyMSA2MjguNTU0IDE0My45MjFRNjMxLjQ5MSAxNDMuOTIxIDYzMi42MyAxNDIuMjcxUTYzMy43NjggMTQwLjYyMSA2MzMuNzY4IDEzNy41MTlWMTI4LjMxMlpNNjUwLjY5NyAxMjcuOTgyUTY1My45NjQgMTI3Ljk4MiA2NTUuOTYxIDEzMC4yNTlRNjU3Ljk1NyAxMzIuNTM2IDY1Ny45NTcgMTM3LjEyM1E2NTcuOTU3IDE0MS42NDQgNjU1Ljk2MSAxNDMuOTg3UTY1My45NjQgMTQ2LjMzIDY1MC42NjQgMTQ2LjMzUTY0OC42MTggMTQ2LjMzIDY0Ny4yODIgMTQ1LjU1NVE2NDUuOTQ1IDE0NC43NzkgNjQ1LjE4NiAxNDMuNzU2SDY0NC45ODhRNjQ1LjA1NCAxNDQuMzE3IDY0NS4xMiAxNDUuMTc1UTY0NS4xODYgMTQ2LjAzMyA2NDUuMTg2IDE0Ni42NlYxNTMuOTJINjQyLjI4MlYxMjguMzEySDY0NC42NThMNjQ1LjA1NCAxMzAuNzIxSDY0NS4xODZRNjQ1Ljk3OCAxMjkuNTY2IDY0Ny4yNjUgMTI4Ljc3NFE2NDguNTUyIDEyNy45ODIgNjUwLjY5NyAxMjcuOTgyWk02NTAuMTY5IDEzMC40MjRRNjQ3LjQ2MyAxMzAuNDI0IDY0Ni4zNTggMTMxLjk0MlE2NDUuMjUyIDEzMy40NiA2NDUuMTg2IDEzNi41NjJWMTM3LjEyM1E2NDUuMTg2IDE0MC4zOSA2NDYuMjU5IDE0Mi4xNTVRNjQ3LjMzMSAxNDMuOTIxIDY1MC4yMzUgMTQzLjkyMVE2NTEuODUyIDE0My45MjEgNjUyLjg5MiAxNDMuMDNRNjUzLjkzMSAxNDIuMTM5IDY1NC40NDMgMTQwLjYwNVE2NTQuOTU0IDEzOS4wNyA2NTQuOTU0IDEzNy4wOVE2NTQuOTU0IDEzNC4wNTQgNjUzLjc4MyAxMzIuMjM5UTY1Mi42MTEgMTMwLjQyNCA2NTAuMTY5IDEzMC40MjRaIiBmaWxsPSIjRkZGRkZGIi8+CiAgPC9nPgo8L3N2Zz4K" alt="Reversed white Irvantri Standards Parent-Endorsed Lockup (AST-B01-04)" width="664" height="160" />
+            </div>
+            <div class="is-mark-card__foot">Master files: <code class="is-mono">AST-B01-02_White-Symbol.svg</code> and <code class="is-mono">AST-B01-04_Parent-Lockup-White.svg</code> (<code class="is-mono">Approved</code>, <code class="is-mono">664 × 160</code> curve-outlined Noto Sans) on Deep Navy (<code class="is-mono">#092B55</code>) or dark surfaces.</div>
+          </div>
+
+          <div class="is-mark-card is-mark-card--light">
+            <div class="is-mark-card__head"><span>03 / MONOCHROME BLACK</span><span class="is-mono">#000000</span></div>
+            <div class="is-lockup-stage">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzAgMjcwIiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjI3MCIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIyIj4KICA8dGl0bGU+SXJ2YW50cmkgU3RhbmRhcmRzIE1vbm9jaHJvbWUgQmxhY2sgU3ltYm9sPC90aXRsZT4KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNjMuMDQxNTgxLC0xMzYuNzA3NDExKSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNDU2LjM3NjQzNiwtNzE1LjIyNTAxOSkiPgogICAgICA8ZyBpZD0ic3ltYm9sLXNpZ25hbC1yZWQiIHRyYW5zZm9ybT0ibWF0cml4KDQuMDUwNjMxLDAsMCw0LjA1MDYzMSwzODM1LjIwNjU5Niw4NzUuNjczMTgxKSI+CiAgICAgICAgPHBhdGggZD0iTS01MTEuMjM2LDM4Ljg1OEwtNTExLjIzNiwyNi4yNzZMLTUwOC4xNzMsMjkuMzQyTC01MDguMTczLDQ2LjA5NEwtNTExLjIzNiw0Ni4wOTRMLTU0MC4wNDcsMTcuMjgzQy01NDEuMjQ5LDIwLjQxMyAtNTQxLjkwOCwyMy44MTMgLTU0MS45MDgsMjcuMzY4Qy01NDEuOTA4LDQyLjg5NCAtNTI5LjMyMSw1NS40ODIgLTUxMy43OTUsNTUuNDgyQy01MDUuMTAxLDU1LjQ4MiAtNDk3LjMzMiw1MS41MzcgLTQ5Mi4xNzUsNDUuMzM4TC00ODguNTQ1LDQ4Ljk2N0MtNDk0LjY0LDU2LjA4NSAtNTAzLjY5MSw2MC41OTYgLTUxMy43OTUsNjAuNTk2Qy01MzIuMTQ2LDYwLjU5NiAtNTQ3LjAyMyw0NS43MiAtNTQ3LjAyMywyNy4zNjhDLTU0Ny4wMjMsMjIuNTI5IC01NDUuOTg5LDE3LjkzMiAtNTQ0LjEyOCwxMy43ODdMLTU0NC4xMjgsMTMuNzg0Qy01NDMuMzQsMTIuMDI0IC01NDIuNCwxMC4zNDcgLTU0MS4zMjksOC43NjZMLTUzNy42MzUsMTIuNDYyTC01MTEuMjM2LDM4Ljg1OFoiIGZpbGw9IiMwMDAwMDAiLz4KICAgICAgPC9nPgogICAgPC9nPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwtMTQ1Ni4zNzY0MzYsLTcxNS4yMjUwMTkpIj4KICAgICAgPGcgaWQ9InN5bWJvbC1icmFuZC1ibHVlIiB0cmFuc2Zvcm09Im1hdHJpeCg0LjA1MDYzMSwwLDAsNC4wNTA2MzEsMzgzNS4yMDY1OTYsODc1LjY3MzE4MSkiPgogICAgICAgIDxwYXRoIGQ9Ik0tNTEzLjc5NSwtNS44NjFDLTQ5NS40NDMsLTUuODYxIC00ODAuNTY2LDkuMDE3IC00ODAuNTY2LDI3LjM2OEMtNDgwLjU2NiwzNC4yNjEgLTQ4Mi42NjYsNDAuNjYzIC00ODYuMjYsNDUuOTcyTC00ODkuOTU2LDQyLjI3NUwtNTE2LjM1MywxNS44NzhMLTUxNi4zNTMsMjguNDZMLTUxOS40MTcsMjUuMzk2TC01MTkuNDE3LDguNjQ0TC01MTYuMzUzLDguNjQ0TC00ODcuNTQ1LDM3LjQ1MkMtNDg2LjM0MSwzNC4zMjIgLTQ4NS42ODEsMzAuOTIyIC00ODUuNjgxLDI3LjM2OEMtNDg1LjY4MSwxMS44NDIgLTQ5OC4yNjgsLTAuNzQ1IC01MTMuNzk1LC0wLjc0NUMtNTIyLjQ4OCwtMC43NDUgLTUzMC4yNTgsMy4yMDEgLTUzNS40MTUsOS4zOThMLTUzOS4wNDQsNS43NjhDLTUzMi45NSwtMS4zNDkgLTUyMy45LC01Ljg2MSAtNTEzLjc5NSwtNS44NjFaIiBmaWxsPSIjMDAwMDAwIi8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" class="is-mono-symbol" alt="Monochrome black Irvantri Standards symbol for single-ink print" width="72" height="72" />
+            </div>
+            <div class="is-mark-card__foot">Restricted strictly to single-ink print (100% K-only per E03 §5.3.2) and monochrome reproduction (B01 §5.4.1).</div>
+          </div>
+        </div>
+
+        <div class="is-grid-3" style="margin-top: var(--is-space-4);">
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">CLEAR SPACE · B01 §5.3.1</span>
+            <h3>0.25× unobstructed margin</h3>
+            <div class="is-clearspace-box">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzAgMjcwIiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjI3MCIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIyIj4KICA8dGl0bGU+SXJ2YW50cmkgU3RhbmRhcmRzIFByaW1hcnkgU3ltYm9sPC90aXRsZT4KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNjMuMDQxNTgxLC0xMzYuNzA3NDExKSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNDU2LjM3NjQzNiwtNzE1LjIyNTAxOSkiPgogICAgICA8ZyBpZD0ic3ltYm9sLXNpZ25hbC1yZWQiIHRyYW5zZm9ybT0ibWF0cml4KDQuMDUwNjMxLDAsMCw0LjA1MDYzMSwzODM1LjIwNjU5Niw4NzUuNjczMTgxKSI+CiAgICAgICAgPHBhdGggZD0iTS01MTEuMjM2LDM4Ljg1OEwtNTExLjIzNiwyNi4yNzZMLTUwOC4xNzMsMjkuMzQyTC01MDguMTczLDQ2LjA5NEwtNTExLjIzNiw0Ni4wOTRMLTU0MC4wNDcsMTcuMjgzQy01NDEuMjQ5LDIwLjQxMyAtNTQxLjkwOCwyMy44MTMgLTU0MS45MDgsMjcuMzY4Qy01NDEuOTA4LDQyLjg5NCAtNTI5LjMyMSw1NS40ODIgLTUxMy43OTUsNTUuNDgyQy01MDUuMTAxLDU1LjQ4MiAtNDk3LjMzMiw1MS41MzcgLTQ5Mi4xNzUsNDUuMzM4TC00ODguNTQ1LDQ4Ljk2N0MtNDk0LjY0LDU2LjA4NSAtNTAzLjY5MSw2MC41OTYgLTUxMy43OTUsNjAuNTk2Qy01MzIuMTQ2LDYwLjU5NiAtNTQ3LjAyMyw0NS43MiAtNTQ3LjAyMywyNy4zNjhDLTU0Ny4wMjMsMjIuNTI5IC01NDUuOTg5LDE3LjkzMiAtNTQ0LjEyOCwxMy43ODdMLTU0NC4xMjgsMTMuNzg0Qy01NDMuMzQsMTIuMDI0IC01NDIuNCwxMC4zNDcgLTU0MS4zMjksOC43NjZMLTUzNy42MzUsMTIuNDYyTC01MTEuMjM2LDM4Ljg1OFoiIGZpbGw9IiNERTAwMjkiLz4KICAgICAgPC9nPgogICAgPC9nPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwtMTQ1Ni4zNzY0MzYsLTcxNS4yMjUwMTkpIj4KICAgICAgPGcgaWQ9InN5bWJvbC1icmFuZC1ibHVlIiB0cmFuc2Zvcm09Im1hdHJpeCg0LjA1MDYzMSwwLDAsNC4wNTA2MzEsMzgzNS4yMDY1OTYsODc1LjY3MzE4MSkiPgogICAgICAgIDxwYXRoIGQ9Ik0tNTEzLjc5NSwtNS44NjFDLTQ5NS40NDMsLTUuODYxIC00ODAuNTY2LDkuMDE3IC00ODAuNTY2LDI3LjM2OEMtNDgwLjU2NiwzNC4yNjEgLTQ4Mi42NjYsNDAuNjYzIC00ODYuMjYsNDUuOTcyTC00ODkuOTU2LDQyLjI3NUwtNTE2LjM1MywxNS44NzhMLTUxNi4zNTMsMjguNDZMLTUxOS40MTcsMjUuMzk2TC01MTkuNDE3LDguNjQ0TC01MTYuMzUzLDguNjQ0TC00ODcuNTQ1LDM3LjQ1MkMtNDg2LjM0MSwzNC4zMjIgLTQ4NS42ODEsMzAuOTIyIC00ODUuNjgxLDI3LjM2OEMtNDg1LjY4MSwxMS44NDIgLTQ5OC4yNjgsLTAuNzQ1IC01MTMuNzk1LC0wLjc0NUMtNTIyLjQ4OCwtMC43NDUgLTUzMC4yNTgsMy4yMDEgLTUzNS40MTUsOS4zOThMLTUzOS4wNDQsNS43NjhDLTUzMi45NSwtMS4zNDkgLTUyMy45LC01Ljg2MSAtNTEzLjc5NSwtNS44NjFaIiBmaWxsPSIjMDc0Qzk2Ii8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="Primary Symbol inside 0.25× clear-space boundary" width="64" height="64" />
+            </div>
+            <p>Maintain at least 0.25× the Primary Symbol width (w) of unobstructed Clear Space on all four sides.</p>
+          </div>
+
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">CO-BRANDING · B01 §5.5</span>
+            <h3>Tier 4 optical parity</h3>
+            <p>Size the Irvantri Standards mark at Optical Parity with partner marks, separated by a 1 px vertical rule centered inside a minimum 1.0× symbol-width horizontal gap. Publication requires a signed Approver agreement and rights-holder permission.</p>
+          </div>
+
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">PROHIBITED MISUSE · B01 §5.6.1</span>
+            <h3>Zero alteration permitted</h3>
+            <p>Do not stretch, skew, rotate, recolor, apply gradients or shadows, rearrange lockup typography, crop, enclose in unapproved frames, or redraw symbols outside registered <code class="is-mono">AST-B01</code> masters.</p>
+          </div>
+        </div>
+
+        <div class="is-card is-table-wrap" style="margin-top: var(--is-space-4);">
+          <table class="is-table is-table--responsive">
+            <caption>Table 1. Official mark touchpoints and minimum reproduction dimensions (B01 (v2.0.0) §5.2.1, §5.3.2–§5.3.3)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Mark variant</th>
+                <th scope="col">Digital minimum</th>
+                <th scope="col">Print minimum</th>
+                <th scope="col">Required touchpoints</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Mark variant"><strong>Primary Symbol</strong></td>
+                <td data-label="Digital minimum" class="is-tabular">28 px × 28 px</td>
+                <td data-label="Print minimum" class="is-tabular">12 mm × 12 mm</td>
+                <td data-label="Required touchpoints">Compact navigation bars, app tiles, avatars, watermarks, constrained containers</td>
+              </tr>
+              <tr>
+                <td data-label="Mark variant"><strong>Primary Master Lockup</strong></td>
+                <td data-label="Digital minimum" class="is-tabular">140 px width (28 px symbol)</td>
+                <td data-label="Print minimum" class="is-tabular">38 mm width (12 mm symbol)</td>
+                <td data-label="Required touchpoints">Product headers, web navigation bars, technical documentation headers</td>
+              </tr>
+              <tr>
+                <td data-label="Mark variant"><strong>Parent-Endorsed Lockup</strong></td>
+                <td data-label="Digital minimum" class="is-tabular">260 px width (62.7 px symbol; 9 px endorsement cap)</td>
+                <td data-label="Print minimum" class="is-tabular">64 mm width (15.4 mm symbol; 6 pt endorsement cap)</td>
+                <td data-label="Required touchpoints">Formal document covers (E01), compiled publications (PUB-), corporate footers (D02), correspondence and slide covers (E04)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 03 / COLOR SYSTEM -->
+      <section id="color" class="is-section" aria-labelledby="heading-color">
+        <div class="is-section-head">
+          <div>
+            <span class="is-eyebrow">03 / Color system</span>
+            <h2 id="heading-color">Primary, neutral, and five-state semantic palettes</h2>
+            <p>All interfaces and print deliverables use exact Hexadecimal (HEX), Red-Green-Blue (RGB), and ISO Coated v2 Cyan-Magenta-Yellow-Key (CMYK) values with Web Content Accessibility Guidelines (WCAG) 2.2 Level AA contrast.</p>
+          </div>
+          <span class="is-section-tag">B02 (v1.1.1) · D01 (v1.0.3)</span>
+        </div>
+
+        <div class="is-grid-4">
+          <article class="is-card is-swatch">
+            <div class="is-swatch__fill" style="background: #074C96;"><span class="is-swatch__badge">PRIMARY</span></div>
+            <div class="is-swatch__body">
+              <div class="is-swatch__top">
+                <h3>Brand Blue</h3>
+                <button type="button" class="is-btn is-btn--secondary" data-copy="#074C96" aria-label="Copy Brand Blue HEX value #074C96"><span class="is-mono">#074C96</span><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-copy" /></svg></button>
+              </div>
+              <div class="is-swatch__meta">RGB 7, 76, 150 · CMYK 98, 73, 7, 0</div>
+              <p class="is-swatch__desc">Primary interactive and identity anchor (<code class="is-mono">--is-color-brand-primary</code>).</p>
+            </div>
+          </article>
+
+          <article class="is-card is-swatch">
+            <div class="is-swatch__fill" style="background: #DE0029;"><span class="is-swatch__badge">ACCENT</span></div>
+            <div class="is-swatch__body">
+              <div class="is-swatch__top">
+                <h3>Signal Red</h3>
+                <button type="button" class="is-btn is-btn--secondary" data-copy="#DE0029" aria-label="Copy Signal Red HEX value #DE0029"><span class="is-mono">#DE0029</span><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-copy" /></svg></button>
+              </div>
+              <div class="is-swatch__meta">RGB 222, 0, 41 · CMYK 4, 100, 84, 0</div>
+              <p class="is-swatch__desc">Brand marks, signature rules, and active markers only; never body or error text.</p>
+            </div>
+          </article>
+
+          <article class="is-card is-swatch">
+            <div class="is-swatch__fill" style="background: #092B55;"><span class="is-swatch__badge">STRUCTURAL</span></div>
+            <div class="is-swatch__body">
+              <div class="is-swatch__top">
+                <h3>Deep Navy</h3>
+                <button type="button" class="is-btn is-btn--secondary" data-copy="#092B55" aria-label="Copy Deep Navy HEX value #092B55"><span class="is-mono">#092B55</span><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-copy" /></svg></button>
+              </div>
+              <div class="is-swatch__meta">RGB 9, 43, 85 · CMYK 100, 85, 35, 30</div>
+              <p class="is-swatch__desc">Primary structural dark surface and formal header ink (<code class="is-mono">--is-color-brand-deep</code>).</p>
+            </div>
+          </article>
+
+          <article class="is-card is-swatch">
+            <div class="is-swatch__fill" style="background: #102F60;"><span class="is-swatch__badge">SECONDARY</span></div>
+            <div class="is-swatch__body">
+              <div class="is-swatch__top">
+                <h3>Royal Navy</h3>
+                <button type="button" class="is-btn is-btn--secondary" data-copy="#102F60" aria-label="Copy Royal Navy HEX value #102F60"><span class="is-mono">#102F60</span><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-copy" /></svg></button>
+              </div>
+              <div class="is-swatch__meta">RGB 16, 47, 96 · CMYK 98, 82, 28, 22</div>
+              <p class="is-swatch__desc">Secondary dark surface and interactive hover or active state (<code class="is-mono">--is-color-brand-secondary</code>).</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="is-card is-table-wrap" style="margin-top: var(--is-space-4);">
+          <table class="is-table is-table--responsive">
+            <caption>Table 2. Calibrated neutral surface and typography scale (B02 (v1.1.1) §5.2.1)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Neutral role</th>
+                <th scope="col">HEX</th>
+                <th scope="col">RGB</th>
+                <th scope="col">CSS token</th>
+                <th scope="col">Permitted application</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#FFFFFF;"></span><strong>Pure White</strong></span></td><td data-label="HEX" class="is-mono">#FFFFFF</td><td data-label="RGB" class="is-tabular">255, 255, 255</td><td data-label="CSS token" class="is-mono">--is-color-bg-surface</td><td data-label="Permitted application">Primary page canvas, cards, and reversed marks</td></tr>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#F8FAFC;"></span><strong>Canvas Subtle</strong></span></td><td data-label="HEX" class="is-mono">#F8FAFC</td><td data-label="RGB" class="is-tabular">248, 250, 252</td><td data-label="CSS token" class="is-mono">--is-color-bg-canvas</td><td data-label="Permitted application">Secondary panel backgrounds, table headers, code blocks</td></tr>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#F1F5F9;"></span><strong>Surface Muted</strong></span></td><td data-label="HEX" class="is-mono">#F1F5F9</td><td data-label="RGB" class="is-tabular">241, 245, 249</td><td data-label="CSS token" class="is-mono">--is-color-bg-muted</td><td data-label="Permitted application">Neutral badges, disabled surfaces, alternating rows</td></tr>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#EFF6FF;"></span><strong>Surface Tint</strong></span></td><td data-label="HEX" class="is-mono">#EFF6FF</td><td data-label="RGB" class="is-tabular">239, 246, 255</td><td data-label="CSS token" class="is-mono">--is-color-bg-tint</td><td data-label="Permitted application">Interactive hover washes, active navigation fills, provenance callouts</td></tr>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#E2E8F0;"></span><strong>Border Subtle</strong></span></td><td data-label="HEX" class="is-mono">#E2E8F0</td><td data-label="RGB" class="is-tabular">226, 232, 240</td><td data-label="CSS token" class="is-mono">--is-color-border-subtle</td><td data-label="Permitted application">Hairline structural dividers, table row rules, secondary borders</td></tr>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#CBD5E1;"></span><strong>Border Default</strong></span></td><td data-label="HEX" class="is-mono">#CBD5E1</td><td data-label="RGB" class="is-tabular">203, 213, 225</td><td data-label="CSS token" class="is-mono">--is-color-border-default</td><td data-label="Permitted application">Card borders, table grids, and form input borders</td></tr>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#5F6C7E;"></span><strong>Text Muted</strong></span></td><td data-label="HEX" class="is-mono">#5F6C7E</td><td data-label="RGB" class="is-tabular">95, 108, 126</td><td data-label="CSS token" class="is-mono">--is-color-text-muted</td><td data-label="Permitted application">Secondary metadata, captions, and helper text on light surfaces</td></tr>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#0F172A;"></span><strong>Text Primary</strong></span></td><td data-label="HEX" class="is-mono">#0F172A</td><td data-label="RGB" class="is-tabular">15, 23, 42</td><td data-label="CSS token" class="is-mono">--is-color-text-primary</td><td data-label="Permitted application">Body copy, headings, and primary UI labels on light surfaces</td></tr>
+              <tr><td data-label="Neutral role"><span class="is-neutral-row" style="padding:0;"><span class="is-chip" style="background:#000000;"></span><strong>Pure Black</strong></span></td><td data-label="HEX" class="is-mono">#000000</td><td data-label="RGB" class="is-tabular">0, 0, 0</td><td data-label="CSS token" class="is-mono">--is-color-text-mono</td><td data-label="Permitted application">Single-ink print monochrome reproduction (B01 §5.4.1, E03 §5.3.2)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="is-card is-table-wrap" style="margin-top: var(--is-space-4);">
+          <table class="is-table is-table--responsive">
+            <caption>Table 3. Five-state semantic status palette paired with C02 controlled status strings (B02 (v1.1.1) §5.3.1)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Controlled badge</th>
+                <th scope="col">Semantic state</th>
+                <th scope="col">Foreground HEX</th>
+                <th scope="col">Surface HEX</th>
+                <th scope="col">Border HEX</th>
+                <th scope="col">Controlled C02 usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Controlled badge"><span class="is-status is-status--informative">In Review</span></td><td data-label="Semantic state">Informative</td><td data-label="Foreground HEX" class="is-mono">#074C96</td><td data-label="Surface HEX" class="is-mono">#EFF6FF</td><td data-label="Border HEX" class="is-mono">#BFDBFE</td><td data-label="Controlled C02 usage">Planned, In Review, Open</td></tr>
+              <tr><td data-label="Controlled badge"><span class="is-status is-status--success">Approved</span></td><td data-label="Semantic state">Success</td><td data-label="Foreground HEX" class="is-mono">#166534</td><td data-label="Surface HEX" class="is-mono">#F0FDF4</td><td data-label="Border HEX" class="is-mono">#BBF7D0</td><td data-label="Controlled C02 usage">Approved, Active</td></tr>
+              <tr><td data-label="Controlled badge"><span class="is-status is-status--warning">Draft</span></td><td data-label="Semantic state">Warning</td><td data-label="Foreground HEX" class="is-mono">#92400E</td><td data-label="Surface HEX" class="is-mono">#FFFBEB</td><td data-label="Border HEX" class="is-mono">#FDE68A</td><td data-label="Controlled C02 usage">Draft, Sync Required, Waived</td></tr>
+              <tr><td data-label="Controlled badge"><span class="is-status is-status--danger">Deprecated</span></td><td data-label="Semantic state">Danger</td><td data-label="Foreground HEX" class="is-mono">#A42332</td><td data-label="Surface HEX" class="is-mono">#FEF2F2</td><td data-label="Border HEX" class="is-mono">#FECACA</td><td data-label="Controlled C02 usage">Deprecated, Rejected, Revoked, validation errors</td></tr>
+              <tr><td data-label="Controlled badge"><span class="is-status is-status--neutral">Closed</span></td><td data-label="Semantic state">Neutral</td><td data-label="Foreground HEX" class="is-mono">#475569</td><td data-label="Surface HEX" class="is-mono">#F1F5F9</td><td data-label="Border HEX" class="is-mono">#CBD5E1</td><td data-label="Controlled C02 usage">Closed, Expired, read-only or archived indicators</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="is-provenance" style="margin-top: var(--is-space-4);">
+          <svg class="is-icon is-provenance__icon" aria-hidden="true"><use href="#ic-info" /></svg>
+          <div>
+            <strong>Signal Red restriction and contrast thresholds (B02 §5.3.2, §5.5.1)</strong>
+            <p>Never apply raw Signal Red (<code class="is-mono">#DE0029</code>) to body copy, form validation messages, or error text on light neutral surfaces. Error and danger text uses Danger (<code class="is-mono">#A42332</code>). Normal text requires at least a 4.5:1 contrast ratio; large text and non-text UI boundaries require at least 3.0:1.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 / TYPOGRAPHY -->
+      <section id="typography" class="is-section" aria-labelledby="heading-type">
+        <div class="is-section-head">
+          <div>
+            <span class="is-eyebrow">04 / Typography</span>
+            <h2 id="heading-type">Unified Noto Sans superfamily and role scale</h2>
+            <p>Use Noto Sans Display for headings and institutional display roles, Noto Sans for body copy and tables, and Noto Sans Mono for codes, versions, and file paths. Licensed packages reside in <code class="is-mono">06_Dependencies/Fonts/</code> under SIL Open Font License 1.1 (<code class="is-mono">Dependencies-Manifest.md v2.0.0</code>).</p>
+          </div>
+          <span class="is-section-tag">B03 (v2.0.0)</span>
+        </div>
+
+        <div class="is-grid-3">
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">DISPLAY TYPEFACE</span>
+            <div style="font-family:var(--is-font-family-display);font-size:48px;font-weight:800;line-height:1.1;color:var(--is-color-brand-deep);margin:var(--is-space-2) 0;">Aa<span style="color:var(--is-color-brand-primary);">.</span></div>
+            <h3>Noto Sans Display</h3>
+            <p>Headings, cover titles, Key Performance Indicator (KPI) readouts, and section titles. Fallback: <code class="is-mono">-apple-system, BlinkMacSystemFont, Segoe UI, Liberation Sans, Arial, sans-serif</code>.</p>
+          </div>
+
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">TEXT TYPEFACE</span>
+            <div style="font-family:var(--is-font-family-text);font-size:28px;font-weight:700;line-height:1.2;color:var(--is-color-brand-deep);margin:var(--is-space-2) 0;">Clarity in every row.</div>
+            <h3>Noto Sans</h3>
+            <p>Minimum 14 px (10.5 pt) for standard UI copy and 16 px (12 pt) for long-form prose. Line height 1.4 through 1.6; measure 50 through 85 characters per line.</p>
+          </div>
+
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">MONOSPACE &amp; TABULAR</span>
+            <div class="is-mono is-tabular" style="font-size:20px;font-weight:700;color:var(--is-color-brand-primary);margin:var(--is-space-4) 0;">01 02 03 04 05<br />v2.0.0 · B03</div>
+            <h3>Noto Sans Mono</h3>
+            <p>Mandatory for version strings (<code class="is-mono">vMAJOR.MINOR.ERRATA</code>), file paths, token identifiers, and code blocks. Fallbacks: <code class="is-mono">Liberation Mono, DejaVu Sans Mono, monospace</code>. Apply <code class="is-mono">tabular-nums</code> to all numeric tables.</p>
+          </div>
+        </div>
+
+        <div class="is-card is-table-wrap" style="margin-top: var(--is-space-4);">
+          <table class="is-table is-table--responsive">
+            <caption>Table 4. Recommended Digital Interface Role-Based Typographic Hierarchy (B03 (v2.0.0) §5.2.6)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Typeface</th>
+                <th scope="col">Desktop / Mobile size</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Tracking</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Role"><strong>Page Title</strong></td><td data-label="Typeface">Noto Sans Display</td><td data-label="Desktop / Mobile size" class="is-tabular">32 px / 24 px</td><td data-label="Weight" class="is-tabular">800</td><td data-label="Tracking" class="is-mono">-0.03em</td></tr>
+              <tr><td data-label="Role"><strong>Metric / KPI Value</strong></td><td data-label="Typeface">Noto Sans Display</td><td data-label="Desktop / Mobile size" class="is-tabular">28 px / 24 px</td><td data-label="Weight" class="is-tabular">700–800</td><td data-label="Tracking" class="is-mono">-0.04em</td></tr>
+              <tr><td data-label="Role"><strong>Section Title</strong></td><td data-label="Typeface">Noto Sans Display</td><td data-label="Desktop / Mobile size" class="is-tabular">20 px / 18 px</td><td data-label="Weight" class="is-tabular">700–800</td><td data-label="Tracking" class="is-mono">-0.03em</td></tr>
+              <tr><td data-label="Role"><strong>Panel Title</strong></td><td data-label="Typeface">Noto Sans Display</td><td data-label="Desktop / Mobile size" class="is-tabular">16 px / 16 px</td><td data-label="Weight" class="is-tabular">700</td><td data-label="Tracking" class="is-mono">-0.02em</td></tr>
+              <tr><td data-label="Role"><strong>Body Copy</strong></td><td data-label="Typeface">Noto Sans</td><td data-label="Desktop / Mobile size" class="is-tabular">14 px through 16 px</td><td data-label="Weight" class="is-tabular">400–500</td><td data-label="Tracking" class="is-mono">0</td></tr>
+              <tr><td data-label="Role"><strong>Forms and Tables</strong></td><td data-label="Typeface">Noto Sans</td><td data-label="Desktop / Mobile size" class="is-tabular">14 px</td><td data-label="Weight" class="is-tabular">500–700</td><td data-label="Tracking" class="is-mono">0</td></tr>
+              <tr><td data-label="Role"><strong>Eyebrow / Overline</strong></td><td data-label="Typeface">Noto Sans</td><td data-label="Desktop / Mobile size" class="is-tabular">12 px</td><td data-label="Weight" class="is-tabular">700–800</td><td data-label="Tracking" class="is-mono">+0.12em</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 05 / COMPONENTS, GRIDS & ICONOGRAPHY -->
+      <section id="components" class="is-section" aria-labelledby="heading-components">
+        <div class="is-section-head">
+          <div>
+            <span class="is-eyebrow">05 / Components, grids, and iconography</span>
+            <h2 id="heading-components">Controls, forms, dialogs, and spatial rhythm</h2>
+            <p>Interactive patterns follow imperative verb-object labels (C03), 4 px digital and 4 mm print Base Unit geometry with horizontal or 4 mm vertical left-spine cover accent bars (B04 v1.2.0), 16 px / 20 px / 24 px line icons (B05), and explicit operational state discipline (D03).</p>
+          </div>
+          <span class="is-section-tag">B04 (v1.2.0) · B05 · C03 · D03</span>
+        </div>
+
+        <div class="is-grid-2">
+          <article class="is-card is-pillar is-stack">
+            <div>
+              <span class="is-pillar__num">BUTTON HIERARCHY · D03 §5.1</span>
+              <h3>Single primary action per view</h3>
+            </div>
+            <div class="is-btn-row" style="display:flex;flex-wrap:wrap;gap:var(--is-space-3);">
+              <button type="button" class="is-btn is-btn--primary demo-action" data-feedback="Standard approval previewed. No record was modified.">Approve standard</button>
+              <button type="button" class="is-btn is-btn--secondary demo-action" data-feedback="Draft saved in preview mode. No file was written.">Save draft</button>
+              <button type="button" class="is-btn is-btn--quiet demo-action" data-feedback="Review action canceled in preview mode.">Cancel review</button>
+            </div>
+            <div style="padding-top:var(--is-space-3);border-top:1px solid var(--is-color-border-subtle);display:flex;flex-wrap:wrap;align-items:center;gap:var(--is-space-3);">
+              <button type="button" class="is-btn" disabled>Publish release</button>
+              <span style="font-size:var(--is-font-size-body-ui);color:var(--is-color-text-muted);">Complete Pre-Release Gate audit to enable (D03 §5.1.5).</span>
+            </div>
+          </article>
+
+          <article class="is-card is-pillar">
+            <span class="is-pillar__num">FORM VALIDATION · D03 §5.2</span>
+            <h3>Visible labels and blur validation</h3>
+            <form id="example-form" novalidate style="margin-top:var(--is-space-3);">
+              <label class="is-field-label" for="ref-input">Library code <span class="is-required" aria-hidden="true">*</span></label>
+              <input class="is-field is-mono" id="ref-input" type="text" placeholder="e.g., A01 or REC-A04-001" aria-required="true" aria-describedby="ref-help ref-error" required />
+              <div class="is-field-help" id="ref-help">Enter an active library identifier matching A02 syntax. Validation triggers on blur or submission (D03 §5.2.4).</div>
+              <div class="is-field-error" id="ref-error" hidden></div>
+              <div style="margin-top:var(--is-space-4);">
+                <button type="submit" class="is-btn is-btn--secondary">Validate code</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="is-card is-pillar is-stack">
+            <div>
+              <span class="is-pillar__num">DESTRUCTIVE CONFIRMATION · D03 §5.4.1</span>
+              <h3>Explicit item and consequence</h3>
+            </div>
+            <div class="is-dialog-preview" role="region" aria-label="Destructive confirmation example">
+              <strong style="display:block;color:var(--is-color-brand-deep);margin-bottom:var(--is-space-2);">Deprecate standard B01?</strong>
+              <p style="margin:0 0 var(--is-space-4);color:var(--is-color-text-primary);">Deprecating B01 moves the file to <code class="is-mono">99_Archive/</code> and permanently locks code <code class="is-mono">B01</code> against reuse (A02 §5.3.2).</p>
+              <div style="display:flex;flex-wrap:wrap;gap:var(--is-space-3);">
+                <button type="button" class="is-btn is-btn--danger demo-action" data-feedback="Deprecation previewed. No standard was deprecated.">Deprecate standard</button>
+                <button type="button" class="is-btn is-btn--secondary demo-action" data-feedback="Deprecation canceled.">Keep active</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="is-card is-pillar is-stack">
+            <div>
+              <span class="is-pillar__num">EMPTY STATE · D03 §5.4.2</span>
+              <h3>Explain absence and provide recovery</h3>
+            </div>
+            <div class="is-empty-state">
+              <svg class="is-icon is-icon--lg" style="color:var(--is-color-brand-primary);" aria-hidden="true"><use href="#ic-file" /></svg>
+              <strong style="color:var(--is-color-brand-deep);">No active exception waivers</strong>
+              <p style="margin:0;max-width:44ch;color:var(--is-color-text-muted);">All controlled deliverables currently conform to active standards with zero open REC-A04 waivers.</p>
+              <button type="button" class="is-btn is-btn--secondary demo-action" data-feedback="Waiver request form previewed.">Request exception waiver</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="is-grid-3" style="margin-top: var(--is-space-4);">
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">SPACING · B04 §5.1.1</span>
+            <h3>4 px Base Unit grid</h3>
+            <div class="is-bars" aria-hidden="true">
+              <span style="width:4px;"></span><span style="width:8px;"></span><span style="width:12px;"></span><span style="width:16px;"></span><span style="width:24px;"></span><span style="width:32px;"></span><span style="width:48px;"></span>
+            </div>
+            <p class="is-mono">4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 px</p>
+          </div>
+
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">CORNER RADII · B04 §5.2.1</span>
+            <h3>Restrained geometric radii</h3>
+            <div class="is-radii">
+              <span style="border-radius:0px;">0 px</span>
+              <span style="border-radius:4px;">4 px</span>
+              <span style="border-radius:8px;">8 px</span>
+              <span style="border-radius:12px;">12 px</span>
+            </div>
+            <p>Sharp (0 px), controls and badges (4 px), cards and banners (8 px), feature containers (12 px). Zero decorative pills.</p>
+          </div>
+
+          <div class="is-card is-pillar">
+            <span class="is-pillar__num">ICONOGRAPHY · B05 §5.1.1</span>
+            <h3>16 / 20 / 24 px uniform grid</h3>
+            <div style="display:flex;align-items:center;gap:var(--is-space-4);margin:var(--is-space-4) 0;color:var(--is-color-brand-primary);">
+              <svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-shield" /></svg>
+              <svg class="is-icon" aria-hidden="true"><use href="#ic-file" /></svg>
+              <svg class="is-icon is-icon--lg" aria-hidden="true"><use href="#ic-lock" /></svg>
+              <svg class="is-icon is-icon--lg" aria-hidden="true"><use href="#ic-grid" /></svg>
+            </div>
+            <p>Uniform 1.5 px or 2 px stroke across sibling icons on 4 px grids. Decorative icons carry <code class="is-mono">aria-hidden="true"</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 / RESPONSIVE, ACCESSIBILITY & EXPORTS -->
+      <section id="responsive" class="is-section" aria-labelledby="heading-responsive">
+        <div class="is-section-head">
+          <div>
+            <span class="is-eyebrow">06 / Responsive shells, accessibility, and exports</span>
+            <h2 id="heading-responsive">One accessible baseline from 320 px through 1440 px</h2>
+            <p>Responsive breakpoints align with D02 (v2.0.1), accessibility controls align with WCAG 2.2 Level AA and Accessible Rich Internet Applications (ARIA) rules in D04 (v1.2.1), and generated outputs enforce D05 (v1.1.1).</p>
+          </div>
+          <span class="is-section-tag">D02 · D04 · D05</span>
+        </div>
+
+        <div class="is-card is-table-wrap">
+          <table class="is-table is-table--responsive">
+            <caption>Table 5. Responsive layout tiers and reflow rules (D02 (v2.0.1) §5.1.1–§5.1.2)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Viewport tier</th>
+                <th scope="col">Width range</th>
+                <th scope="col">Shell and navigation behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Viewport tier"><strong>Compact (Mobile)</strong></td><td data-label="Width range" class="is-tabular">320 px through 767 px</td><td data-label="Shell and navigation behavior">Single-column flow, collapsible drawer or sticky tabs, 44 px × 44 px touch targets spaced ≥ 12 px, tables reflow into summary cards</td></tr>
+              <tr><td data-label="Viewport tier"><strong>Medium (Tablet)</strong></td><td data-label="Width range" class="is-tabular">768 px through 1279 px</td><td data-label="Shell and navigation behavior">Collapsible or compact rail paired with single or two-column work surfaces</td></tr>
+              <tr><td data-label="Viewport tier"><strong>Expanded (Desktop)</strong></td><td data-label="Width range" class="is-tabular">1280 px and above</td><td data-label="Shell and navigation behavior">Persistent navigation shell, structured multi-column grids, zero horizontal overflow at 200% zoom</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="is-grid-2" style="margin-top: var(--is-space-4);">
+          <article class="is-card is-pillar">
+            <span class="is-pillar__num">ACCESSIBILITY · D04 (v1.2.1)</span>
+            <h3>WCAG 2.2 Level AA checklist</h3>
+            <ul style="margin:var(--is-space-3) 0 0;padding-left:var(--is-space-5);display:grid;gap:var(--is-space-2);">
+              <li>Use semantic landmarks (<code class="is-mono">header</code>, <code class="is-mono">nav</code>, <code class="is-mono">main</code>, <code class="is-mono">footer</code>) and one page-level <code class="is-mono">h1</code>.</li>
+              <li>Render keyboard focus indicators as a 3 px solid <code class="is-mono">#074C96</code> outline with 3 px offset (D04 §5.2.4).</li>
+              <li>Maintain 44 px × 44 px targets with at least 12 px separation on Compact viewports (D04 §5.1.3).</li>
+              <li>Announce dynamic status updates via polite ARIA Live Regions without stealing focus (D04 §5.3.2).</li>
+              <li>Honor <code class="is-mono">prefers-reduced-motion</code> and avoid color-only signaling (D04 §5.1.2, §5.3.3).</li>
+            </ul>
+          </article>
+
+          <article class="is-card is-pillar">
+            <span class="is-pillar__num">EXPORTS &amp; GOVERNANCE · D05 (v1.1.1)</span>
+            <h3>Traceable generated outputs</h3>
+            <ul style="margin:var(--is-space-3) 0 0;padding-left:var(--is-space-5);display:grid;gap:var(--is-space-2);">
+              <li>Store Audit Timestamps in Coordinated Universal Time (UTC) using ISO 8601; display local time zones only with explicit offsets (D05 §5.1.3).</li>
+              <li>Never auto-generate finalized formal reports on routine save actions; require explicit user confirmation (D05 §5.2.5).</li>
+              <li>Mark unfinalized exports with controlled <code class="is-mono">Draft</code> or <code class="is-mono">In Review</code> labels rather than informal provisional wording (D05 §5.2.6).</li>
+              <li>Preserve zero blank table cells (<code class="is-mono">None</code> or <code class="is-mono">—</code>) and declared International System of Units (SI) symbols (C04 §5.3.1, §5.4.1).</li>
+              <li>Never mix tenant branding and Irvantri Group parent branding within the same interface view (D02 §5.2.4).</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- 07 / SINGLE-SOURCE DESIGN TOKENS -->
+      <section id="tokens" class="is-section" aria-labelledby="heading-tokens">
+        <div class="is-section-head">
+          <div>
+            <span class="is-eyebrow">07 / Design tokens</span>
+            <h2 id="heading-tokens">Single-source JSON to CSS architecture</h2>
+            <p>All stylesheets generate deterministically from <code class="is-mono">02_Assets/AST-D01-01_Design-Tokens.json</code> using the three-tier hierarchy and lowercase <code class="is-mono">--is-</code> kebab-case prefix (D01 §5.1.1–§5.1.2, §5.3.1).</p>
+          </div>
+          <span class="is-section-tag">AST-D01-01 · D01 (v1.0)</span>
+        </div>
+
+        <div class="is-code-panel">
+          <div class="is-code-panel__bar">
+            <strong class="is-mono">AST-D01-01_Design-Tokens.css (Generated from JSON)</strong>
+            <div style="display:flex;flex-wrap:wrap;gap:var(--is-space-2);" class="no-print">
+              <button type="button" class="is-btn is-btn--secondary" id="copy-css-btn"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-copy" /></svg><span>Copy CSS</span></button>
+              <button type="button" class="is-btn is-btn--primary" id="download-json-btn"><svg class="is-icon is-icon--sm" aria-hidden="true"><use href="#ic-download" /></svg><span>Download JSON</span></button>
+            </div>
+          </div>
+          <pre id="generated-css-block"><code>/*
+ * Irvantri Standards Design System — Generated CSS Custom Properties
+ * Single Source: 02_Assets/AST-D01-01_Design-Tokens.json | Pinned: D01 (v1.0)
+ * Compiled: 2026-11-26 | Generated programmatically; do not edit manually (D01 §5.3.1)
+ */
+:root {
+  /* Semantic Tier */
+  --is-color-brand-primary: #074C96;
+  --is-color-brand-accent: #DE0029;
+  --is-color-brand-deep: #092B55;
+  --is-color-brand-secondary: #102F60;
+  --is-color-bg-canvas: #F8FAFC;
+  --is-color-bg-surface: #FFFFFF;
+  --is-color-bg-muted: #F1F5F9;
+  --is-color-bg-tint: #EFF6FF;
+  --is-color-border-default: #CBD5E1;
+  --is-color-border-subtle: #E2E8F0;
+  --is-color-text-primary: #0F172A;
+  --is-color-text-muted: #5F6C7E;
+  --is-color-text-inverse: #FFFFFF;
+  --is-color-text-mono: #000000;
+  --is-color-status-informative: #074C96;
+  --is-color-status-informative-bg: #EFF6FF;
+  --is-color-status-informative-border: #BFDBFE;
+  --is-color-status-success: #166534;
+  --is-color-status-success-bg: #F0FDF4;
+  --is-color-status-success-border: #BBF7D0;
+  --is-color-status-warning: #92400E;
+  --is-color-status-warning-bg: #FFFBEB;
+  --is-color-status-warning-border: #FDE68A;
+  --is-color-status-danger: #A42332;
+  --is-color-status-danger-bg: #FEF2F2;
+  --is-color-status-danger-border: #FECACA;
+  --is-color-status-neutral: #475569;
+  --is-color-status-neutral-bg: #F1F5F9;
+  --is-color-status-neutral-border: #CBD5E1;
+  --is-font-family-display: 'Noto Sans Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif;
+  --is-font-family-text: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif;
+  --is-font-family-mono: 'Noto Sans Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+  --is-font-size-eyebrow: 12px;
+  --is-font-size-body-ui: 14px;
+  --is-font-size-body-doc: 16px;
+  --is-font-size-panel-title: 16px;
+  --is-font-size-section-title: 20px;
+  --is-font-size-page-title: 32px;
+  --is-font-line-height-heading: 1.2;
+  --is-font-line-height-body: 1.5;
+  --is-space-1: 4px;
+  --is-space-2: 8px;
+  --is-space-3: 12px;
+  --is-space-4: 16px;
+  --is-space-5: 20px;
+  --is-space-6: 24px;
+  --is-space-8: 32px;
+  --is-space-11: 44px;
+  --is-space-12: 48px;
+  --is-space-16: 64px;
+  --is-radius-none: 0px;
+  --is-radius-sm: 4px;
+  --is-radius-md: 8px;
+  --is-radius-lg: 12px;
+  --is-shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --is-shadow-action: 0 2px 6px rgba(15, 23, 42, 0.12);
+  --is-focus-ring-width: 3px;
+  --is-focus-ring-offset: 3px;
+  --is-focus-ring-color: #074C96;
+  /* Component Tier */
+  --is-button-primary-bg: #074C96;
+  --is-button-primary-bg-hover: #102F60;
+  --is-button-primary-text: #FFFFFF;
+  --is-button-secondary-bg: #FFFFFF;
+  --is-button-secondary-bg-hover: #EFF6FF;
+  --is-button-secondary-text: #092B55;
+  --is-button-secondary-border: #CBD5E1;
+  --is-button-disabled-bg: #F1F5F9;
+  --is-button-disabled-text: #475569;
+  --is-button-min-height: 44px;
+  --is-button-gap-compact: 12px;
+  --is-button-radius: 4px;
+  --is-input-bg: #FFFFFF;
+  --is-input-border: #CBD5E1;
+  --is-input-border-error: #A42332;
+  --is-input-min-height: 44px;
+  --is-input-radius: 4px;
+  --is-badge-radius: 4px;
+  --is-banner-radius: 8px;
+  --is-card-bg: #FFFFFF;
+  --is-card-border: #CBD5E1;
+  --is-card-radius: 8px;
+  --is-card-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --is-feature-radius: 12px;
+  --is-provenance-bg: #EFF6FF;
+  --is-provenance-border: #074C96;
+  --is-provenance-radius: 8px;
+  --is-icon-size-sm: 16px;
+  --is-icon-size-md: 20px;
+  --is-icon-size-lg: 24px;
+  --is-icon-stroke-fine: 1.5px;
+  --is-icon-stroke-default: 2px;
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- 08 / BUILD MANIFEST & REVISION HISTORY (A01 §5.7.5, E02 §5.1.3) -->
+      <section id="manifest" class="is-section" aria-labelledby="heading-manifest">
+        <div class="is-section-head">
+          <div>
+            <span class="is-eyebrow">08 / Publication build manifest and revision history</span>
+            <h2 id="heading-manifest">Traceability manifest (A01 §5.7.5)</h2>
+            <p>Every Compiled Publication records its compile date, exact source standard versions, and reverse-chronological revision history. Active normative standards prevail in the event of a conflict.</p>
+          </div>
+          <span class="is-section-tag">A01 §5.7.5 · E02 §5.1.3</span>
+        </div>
+
+        <div class="is-card is-table-wrap">
+          <table class="is-table is-table--responsive">
+            <caption>Table 6. Publication Build Manifest — PUB-01 (Compiled 2026-11-26)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Series / Register</th>
+                <th scope="col">Source standards and exact versions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td data-label="Series / Register"><strong>Master Registers, Assets &amp; Templates</strong></td><td data-label="Source standards and exact versions" class="is-mono">Library-Index.md (v1.2.4) · Dependencies-Manifest.md (v2.0.0) · AST-B01-01–AST-B01-04 (pinned to B01 (v2.0)) · AST-D01-01 (pinned to D01 (v1.0)) · TPL-E01-01–TPL-E01-04 (pinned to E01 (v2.0))</td></tr>
+              <tr><td data-label="Series / Register"><strong>Series A — Governance</strong></td><td data-label="Source standards and exact versions" class="is-mono">A01 (v1.2.0), A02 (v1.2.0), A03 (v1.1.1), A04 (v1.1.1)</td></tr>
+              <tr><td data-label="Series / Register"><strong>Series B — Visual Foundations</strong></td><td data-label="Source standards and exact versions" class="is-mono">B01 (v2.0.0), B02 (v1.1.1), B03 (v2.0.0), B04 (v1.2.0), B05 (v1.1.0)</td></tr>
+              <tr><td data-label="Series / Register"><strong>Series C — Verbal Standards</strong></td><td data-label="Source standards and exact versions" class="is-mono">C01 (v1.1.1), C02 (v1.1.0), C03 (v1.0.1), C04 (v1.0.1)</td></tr>
+              <tr><td data-label="Series / Register"><strong>Series D — Digital Systems</strong></td><td data-label="Source standards and exact versions" class="is-mono">D01 (v1.0.3), D02 (v2.0.1), D03 (v2.0.0), D04 (v1.2.1), D05 (v1.1.1)</td></tr>
+              <tr><td data-label="Series / Register"><strong>Series E — Documents and Print</strong></td><td data-label="Source standards and exact versions" class="is-mono">E01 (v2.0.2), E02 (v1.1.0), E03 (v1.0.0), E04 (v2.0.0)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="is-card is-table-wrap" style="margin-top: var(--is-space-4);">
+          <table class="is-table is-table--responsive">
+            <caption>Table 7. Revision History — PUB-01 (E02 §5.1.3)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Version</th>
+                <th scope="col">Date</th>
+                <th scope="col">Type</th>
+                <th scope="col">Summary of changes</th>
+                <th scope="col">Approver</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Version" class="is-mono">v2.0.0</td>
+                <td data-label="Date" class="is-mono">2026-11-26</td>
+                <td data-label="Type">Major</td>
+                <td data-label="Summary of changes">Recompiled PUB-01 to v2.0.0 closing REC-A04-006 (F-02) and REC-A04-007 (F-03): migrated Google Fonts stylesheet, Section 04 Typography cards/Table 4, and embedded AST-D01-01 JSON/CSS tokens to the B03 (v2.0.0) Noto Sans superfamily (Noto Sans Display, Noto Sans, Noto Sans Mono); updated Section 02 marks cards to embed approved curve-outlined AST-B01-03 and AST-B01-04 SVG masters; raised Table 1 Parent-Endorsed Lockup minimums to 260 px digital / 64 mm print per B01 (v2.0.0); reflected B04 (v1.2.0) vertical left-spine accent bars and Dependencies-Manifest.md (v2.0.0); and synchronized Table 6 build manifest with all 22 live Approved standards (Library-Index.md v1.2.4).</td>
+                <td data-label="Approver">Hary Irfantri</td>
+              </tr>
+              <tr>
+                <td data-label="Version" class="is-mono">v1.0.0</td>
+                <td data-label="Date" class="is-mono">2026-11-25</td>
+                <td data-label="Type">Major</td>
+                <td data-label="Summary of changes">Promoted PUB-01 to Approved v1.0.0 baseline per REC-A04-005 (F-02): removed non-binding banner, synchronized build manifest and embedded AST-D01-01 tokens across all 22 Approved standards (including D03 v2.0.0 operational state discipline), bound embedded symbols to cleaned Approved AST-B01-01 and AST-B01-02 masters, fixed A02 §5.7.2 citation syntax, replaced Signal Red text with Brand Blue and Danger (#A42332), replaced uncontrolled badge label with Approved, and expanded sidebar symbol Clear Space to 12 px (0.30×).</td>
+                <td data-label="Approver">Hary Irfantri</td>
+              </tr>
+              <tr>
+                <td data-label="Version" class="is-mono">v0.1.0</td>
+                <td data-label="Date" class="is-mono">2026-11-24</td>
+                <td data-label="Type">Pre-Release</td>
+                <td data-label="Summary of changes">Rebuilt legacy Brand Guidelines.html as a standards-aligned compiled publication (PUB-01) generated from AST-D01-01_Design-Tokens.json and synchronized with all 22 Approved Series A through Series E standards.</td>
+                <td data-label="Approver">Hary Irfantri</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CORPORATE FOOTER (D02 §5.3.1, A03 §5.3.3, §5.6.1, E02 §5.1.1) -->
+      <footer class="is-footer">
+        <div class="is-footer__brand">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzAgMjcwIiB3aWR0aD0iMjcwIiBoZWlnaHQ9IjI3MCIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIyIj4KICA8dGl0bGU+SXJ2YW50cmkgU3RhbmRhcmRzIFByaW1hcnkgU3ltYm9sPC90aXRsZT4KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNjMuMDQxNTgxLC0xMzYuNzA3NDExKSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xNDU2LjM3NjQzNiwtNzE1LjIyNTAxOSkiPgogICAgICA8ZyBpZD0ic3ltYm9sLXNpZ25hbC1yZWQiIHRyYW5zZm9ybT0ibWF0cml4KDQuMDUwNjMxLDAsMCw0LjA1MDYzMSwzODM1LjIwNjU5Niw4NzUuNjczMTgxKSI+CiAgICAgICAgPHBhdGggZD0iTS01MTEuMjM2LDM4Ljg1OEwtNTExLjIzNiwyNi4yNzZMLTUwOC4xNzMsMjkuMzQyTC01MDguMTczLDQ2LjA5NEwtNTExLjIzNiw0Ni4wOTRMLTU0MC4wNDcsMTcuMjgzQy01NDEuMjQ5LDIwLjQxMyAtNTQxLjkwOCwyMy44MTMgLTU0MS45MDgsMjcuMzY4Qy01NDEuOTA4LDQyLjg5NCAtNTI5LjMyMSw1NS40ODIgLTUxMy43OTUsNTUuNDgyQy01MDUuMTAxLDU1LjQ4MiAtNDk3LjMzMiw1MS41MzcgLTQ5Mi4xNzUsNDUuMzM4TC00ODguNTQ1LDQ4Ljk2N0MtNDk0LjY0LDU2LjA4NSAtNTAzLjY5MSw2MC41OTYgLTUxMy43OTUsNjAuNTk2Qy01MzIuMTQ2LDYwLjU5NiAtNTQ3LjAyMyw0NS43MiAtNTQ3LjAyMywyNy4zNjhDLTU0Ny4wMjMsMjIuNTI5IC01NDUuOTg5LDE3LjkzMiAtNTQ0LjEyOCwxMy43ODdMLTU0NC4xMjgsMTMuNzg0Qy01NDMuMzQsMTIuMDI0IC01NDIuNCwxMC4zNDcgLTU0MS4zMjksOC43NjZMLTUzNy42MzUsMTIuNDYyTC01MTEuMjM2LDM4Ljg1OFoiIGZpbGw9IiNERTAwMjkiLz4KICAgICAgPC9nPgogICAgPC9nPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsMSwtMTQ1Ni4zNzY0MzYsLTcxNS4yMjUwMTkpIj4KICAgICAgPGcgaWQ9InN5bWJvbC1icmFuZC1ibHVlIiB0cmFuc2Zvcm09Im1hdHJpeCg0LjA1MDYzMSwwLDAsNC4wNTA2MzEsMzgzNS4yMDY1OTYsODc1LjY3MzE4MSkiPgogICAgICAgIDxwYXRoIGQ9Ik0tNTEzLjc5NSwtNS44NjFDLTQ5NS40NDMsLTUuODYxIC00ODAuNTY2LDkuMDE3IC00ODAuNTY2LDI3LjM2OEMtNDgwLjU2NiwzNC4yNjEgLTQ4Mi42NjYsNDAuNjYzIC00ODYuMjYsNDUuOTcyTC00ODkuOTU2LDQyLjI3NUwtNTE2LjM1MywxNS44NzhMLTUxNi4zNTMsMjguNDZMLTUxOS40MTcsMjUuMzk2TC01MTkuNDE3LDguNjQ0TC01MTYuMzUzLDguNjQ0TC00ODcuNTQ1LDM3LjQ1MkMtNDg2LjM0MSwzNC4zMjIgLTQ4NS42ODEsMzAuOTIyIC00ODUuNjgxLDI3LjM2OEMtNDg1LjY4MSwxMS44NDIgLTQ5OC4yNjgsLTAuNzQ1IC01MTMuNzk1LC0wLjc0NUMtNTIyLjQ4OCwtMC43NDUgLTUzMC4yNTgsMy4yMDEgLTUzNS40MTUsOS4zOThMLTUzOS4wNDQsNS43NjhDLTUzMi45NSwtMS4zNDkgLTUyMy45LC01Ljg2MSAtNTEzLjc5NSwtNS44NjFaIiBmaWxsPSIjMDc0Qzk2Ii8+CiAgICAgIDwvZz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="" width="36" height="36" />
+          <div>
+            <strong>IRVANTRI STANDARDS</strong>
+            <span style="color:var(--is-color-text-muted);font-size:var(--is-font-size-body-ui);">A member of Irvantri Group</span>
+          </div>
+        </div>
+        <div class="is-footer__meta">
+          <span>© 2026 Irvantri Standards Pte. Ltd. All rights reserved.</span>
+          <span class="is-mono">PUB-01 · v2.0.0 · Compiled 2026-11-26</span>
+        </div>
+        <a href="#page-top" class="is-btn is-btn--quiet no-print">Return to top</a>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<div id="live-status" class="is-sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+<div class="is-toast" id="toast" aria-hidden="true"></div>
+
+<script>
+(() => {
+  const GENERATED_CSS = "/*\n * Irvantri Standards Design System \u2014 Generated CSS Custom Properties\n * Single Source: 02_Assets/AST-D01-01_Design-Tokens.json | Pinned: D01 (v1.0)\n * Compiled: 2026-11-26 | Generated programmatically; do not edit manually (D01 \u00a75.3.1)\n */\n:root {\n  /* Semantic Tier */\n  --is-color-brand-primary: #074C96;\n  --is-color-brand-accent: #DE0029;\n  --is-color-brand-deep: #092B55;\n  --is-color-brand-secondary: #102F60;\n  --is-color-bg-canvas: #F8FAFC;\n  --is-color-bg-surface: #FFFFFF;\n  --is-color-bg-muted: #F1F5F9;\n  --is-color-bg-tint: #EFF6FF;\n  --is-color-border-default: #CBD5E1;\n  --is-color-border-subtle: #E2E8F0;\n  --is-color-text-primary: #0F172A;\n  --is-color-text-muted: #5F6C7E;\n  --is-color-text-inverse: #FFFFFF;\n  --is-color-text-mono: #000000;\n  --is-color-status-informative: #074C96;\n  --is-color-status-informative-bg: #EFF6FF;\n  --is-color-status-informative-border: #BFDBFE;\n  --is-color-status-success: #166534;\n  --is-color-status-success-bg: #F0FDF4;\n  --is-color-status-success-border: #BBF7D0;\n  --is-color-status-warning: #92400E;\n  --is-color-status-warning-bg: #FFFBEB;\n  --is-color-status-warning-border: #FDE68A;\n  --is-color-status-danger: #A42332;\n  --is-color-status-danger-bg: #FEF2F2;\n  --is-color-status-danger-border: #FECACA;\n  --is-color-status-neutral: #475569;\n  --is-color-status-neutral-bg: #F1F5F9;\n  --is-color-status-neutral-border: #CBD5E1;\n  --is-font-family-display: 'Noto Sans Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif;\n  --is-font-family-text: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif;\n  --is-font-family-mono: 'Noto Sans Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace;\n  --is-font-size-eyebrow: 12px;\n  --is-font-size-body-ui: 14px;\n  --is-font-size-body-doc: 16px;\n  --is-font-size-panel-title: 16px;\n  --is-font-size-section-title: 20px;\n  --is-font-size-page-title: 32px;\n  --is-font-line-height-heading: 1.2;\n  --is-font-line-height-body: 1.5;\n  --is-space-1: 4px;\n  --is-space-2: 8px;\n  --is-space-3: 12px;\n  --is-space-4: 16px;\n  --is-space-5: 20px;\n  --is-space-6: 24px;\n  --is-space-8: 32px;\n  --is-space-11: 44px;\n  --is-space-12: 48px;\n  --is-space-16: 64px;\n  --is-radius-none: 0px;\n  --is-radius-sm: 4px;\n  --is-radius-md: 8px;\n  --is-radius-lg: 12px;\n  --is-shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06);\n  --is-shadow-action: 0 2px 6px rgba(15, 23, 42, 0.12);\n  --is-focus-ring-width: 3px;\n  --is-focus-ring-offset: 3px;\n  --is-focus-ring-color: #074C96;\n  /* Component Tier */\n  --is-button-primary-bg: #074C96;\n  --is-button-primary-bg-hover: #102F60;\n  --is-button-primary-text: #FFFFFF;\n  --is-button-secondary-bg: #FFFFFF;\n  --is-button-secondary-bg-hover: #EFF6FF;\n  --is-button-secondary-text: #092B55;\n  --is-button-secondary-border: #CBD5E1;\n  --is-button-disabled-bg: #F1F5F9;\n  --is-button-disabled-text: #475569;\n  --is-button-min-height: 44px;\n  --is-button-gap-compact: 12px;\n  --is-button-radius: 4px;\n  --is-input-bg: #FFFFFF;\n  --is-input-border: #CBD5E1;\n  --is-input-border-error: #A42332;\n  --is-input-min-height: 44px;\n  --is-input-radius: 4px;\n  --is-badge-radius: 4px;\n  --is-banner-radius: 8px;\n  --is-card-bg: #FFFFFF;\n  --is-card-border: #CBD5E1;\n  --is-card-radius: 8px;\n  --is-card-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);\n  --is-feature-radius: 12px;\n  --is-provenance-bg: #EFF6FF;\n  --is-provenance-border: #074C96;\n  --is-provenance-radius: 8px;\n  --is-icon-size-sm: 16px;\n  --is-icon-size-md: 20px;\n  --is-icon-size-lg: 24px;\n  --is-icon-stroke-fine: 1.5px;\n  --is-icon-stroke-default: 2px;\n}";
+  const GENERATED_JSON = "{\n  \"$schema\": \"https://tr.designtokens.org/format/\",\n  \"meta\": {\n    \"code\": \"AST-D01-01\",\n    \"title\": \"Design Tokens Master Schema\",\n    \"file\": \"02_Assets/AST-D01-01_Design-Tokens.json\",\n    \"entity\": \"Irvantri Standards Pte. Ltd.\",\n    \"offering\": \"Irvantri Standards Design System\",\n    \"governingStandard\": \"D01\",\n    \"pinnedVersion\": \"D01 (v1.0)\",\n    \"status\": \"Approved\",\n    \"generatedDate\": \"2026-11-26\",\n    \"owner\": \"Hary Irfantri\",\n    \"approver\": \"Hary Irfantri\",\n    \"sourceStandards\": {\n      \"B01\": \"v2.0.0\",\n      \"B02\": \"v1.1.1\",\n      \"B03\": \"v2.0.0\",\n      \"B04\": \"v1.2.0\",\n      \"B05\": \"v1.1.0\",\n      \"C02\": \"v1.1.0\",\n      \"C04\": \"v1.0.1\",\n      \"D01\": \"v1.0.3\",\n      \"D02\": \"v2.0.1\",\n      \"D03\": \"v2.0.0\",\n      \"D04\": \"v1.2.1\",\n      \"E01\": \"v2.0.0\",\n      \"E02\": \"v1.1.0\"\n    },\n    \"defaultTheme\": \"light\"\n  },\n  \"primitive\": {\n    \"color\": {\n      \"brand\": {\n        \"brand-blue\": {\n          \"$value\": \"#074C96\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"7, 76, 150\",\n            \"cmykIsoCoatedV2\": \"98, 73, 7, 0\",\n            \"source\": \"B02 \u00a75.1.1\"\n          }\n        },\n        \"signal-red\": {\n          \"$value\": \"#DE0029\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"222, 0, 41\",\n            \"cmykIsoCoatedV2\": \"4, 100, 84, 0\",\n            \"source\": \"B02 \u00a75.1.1\"\n          }\n        },\n        \"deep-navy\": {\n          \"$value\": \"#092B55\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"9, 43, 85\",\n            \"cmykIsoCoatedV2\": \"100, 85, 35, 30\",\n            \"source\": \"B02 \u00a75.1.1\"\n          }\n        },\n        \"royal-navy\": {\n          \"$value\": \"#102F60\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"16, 47, 96\",\n            \"cmykIsoCoatedV2\": \"98, 82, 28, 22\",\n            \"source\": \"B02 \u00a75.1.1\"\n          }\n        }\n      },\n      \"neutral\": {\n        \"pure-white\": {\n          \"$value\": \"#FFFFFF\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"255, 255, 255\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        },\n        \"canvas-subtle\": {\n          \"$value\": \"#F8FAFC\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"248, 250, 252\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        },\n        \"surface-muted\": {\n          \"$value\": \"#F1F5F9\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"241, 245, 249\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        },\n        \"surface-tint\": {\n          \"$value\": \"#EFF6FF\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"239, 246, 255\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        },\n        \"border-subtle\": {\n          \"$value\": \"#E2E8F0\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"226, 232, 240\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        },\n        \"border-default\": {\n          \"$value\": \"#CBD5E1\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"203, 213, 225\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        },\n        \"text-muted\": {\n          \"$value\": \"#5F6C7E\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"95, 108, 126\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        },\n        \"text-primary\": {\n          \"$value\": \"#0F172A\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"15, 23, 42\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        },\n        \"pure-black\": {\n          \"$value\": \"#000000\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"0, 0, 0\",\n            \"source\": \"B02 \u00a75.2.1\"\n          }\n        }\n      },\n      \"semantic\": {\n        \"informative-fg\": {\n          \"$value\": \"#074C96\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"7, 76, 150\",\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"informative-bg\": {\n          \"$value\": \"#EFF6FF\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"informative-border\": {\n          \"$value\": \"#BFDBFE\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"success-fg\": {\n          \"$value\": \"#166534\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"22, 101, 52\",\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"success-bg\": {\n          \"$value\": \"#F0FDF4\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"success-border\": {\n          \"$value\": \"#BBF7D0\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"warning-fg\": {\n          \"$value\": \"#92400E\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"146, 64, 14\",\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"warning-bg\": {\n          \"$value\": \"#FFFBEB\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"warning-border\": {\n          \"$value\": \"#FDE68A\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"danger-fg\": {\n          \"$value\": \"#A42332\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"164, 35, 50\",\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"danger-bg\": {\n          \"$value\": \"#FEF2F2\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"danger-border\": {\n          \"$value\": \"#FECACA\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"neutral-fg\": {\n          \"$value\": \"#475569\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"rgb\": \"71, 85, 105\",\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"neutral-bg\": {\n          \"$value\": \"#F1F5F9\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        },\n        \"neutral-border\": {\n          \"$value\": \"#CBD5E1\",\n          \"$type\": \"color\",\n          \"$extensions\": {\n            \"source\": \"B02 \u00a75.3.1\"\n          }\n        }\n      }\n    },\n    \"font\": {\n      \"family\": {\n        \"display\": {\n          \"$value\": \"'Noto Sans Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif\",\n          \"$type\": \"fontFamily\",\n          \"$extensions\": {\n            \"source\": \"B03 (v2.0.0) \u00a75.1.1, \u00a75.1.4\"\n          }\n        },\n        \"text\": {\n          \"$value\": \"'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', Arial, sans-serif\",\n          \"$type\": \"fontFamily\",\n          \"$extensions\": {\n            \"source\": \"B03 (v2.0.0) \u00a75.1.1, \u00a75.1.4\"\n          }\n        },\n        \"mono\": {\n          \"$value\": \"'Noto Sans Mono', 'Liberation Mono', 'DejaVu Sans Mono', monospace\",\n          \"$type\": \"fontFamily\",\n          \"$extensions\": {\n            \"source\": \"B03 (v2.0.0) \u00a75.1.2\"\n          }\n        }\n      },\n      \"size\": {\n        \"eyebrow\": {\n          \"$value\": \"12px\",\n          \"$type\": \"dimension\"\n        },\n        \"body-ui\": {\n          \"$value\": \"14px\",\n          \"$type\": \"dimension\"\n        },\n        \"body-doc\": {\n          \"$value\": \"16px\",\n          \"$type\": \"dimension\"\n        },\n        \"panel-title\": {\n          \"$value\": \"16px\",\n          \"$type\": \"dimension\"\n        },\n        \"section-title-mobile\": {\n          \"$value\": \"18px\",\n          \"$type\": \"dimension\"\n        },\n        \"section-title-desktop\": {\n          \"$value\": \"20px\",\n          \"$type\": \"dimension\"\n        },\n        \"kpi-mobile\": {\n          \"$value\": \"24px\",\n          \"$type\": \"dimension\"\n        },\n        \"kpi-desktop\": {\n          \"$value\": \"28px\",\n          \"$type\": \"dimension\"\n        },\n        \"page-title-mobile\": {\n          \"$value\": \"24px\",\n          \"$type\": \"dimension\"\n        },\n        \"page-title-desktop\": {\n          \"$value\": \"32px\",\n          \"$type\": \"dimension\"\n        }\n      },\n      \"lineHeight\": {\n        \"heading\": {\n          \"$value\": \"1.2\",\n          \"$type\": \"number\"\n        },\n        \"body\": {\n          \"$value\": \"1.5\",\n          \"$type\": \"number\"\n        }\n      },\n      \"tracking\": {\n        \"tight-kpi\": {\n          \"$value\": \"-0.04em\",\n          \"$type\": \"dimension\"\n        },\n        \"tight-heading\": {\n          \"$value\": \"-0.03em\",\n          \"$type\": \"dimension\"\n        },\n        \"tight-panel\": {\n          \"$value\": \"-0.02em\",\n          \"$type\": \"dimension\"\n        },\n        \"normal\": {\n          \"$value\": \"0\",\n          \"$type\": \"dimension\"\n        },\n        \"eyebrow\": {\n          \"$value\": \"0.12em\",\n          \"$type\": \"dimension\"\n        }\n      }\n    },\n    \"space\": {\n      \"base\": {\n        \"$value\": \"4px\",\n        \"$type\": \"dimension\"\n      },\n      \"1\": {\n        \"$value\": \"4px\",\n        \"$type\": \"dimension\"\n      },\n      \"2\": {\n        \"$value\": \"8px\",\n        \"$type\": \"dimension\"\n      },\n      \"3\": {\n        \"$value\": \"12px\",\n        \"$type\": \"dimension\"\n      },\n      \"4\": {\n        \"$value\": \"16px\",\n        \"$type\": \"dimension\"\n      },\n      \"5\": {\n        \"$value\": \"20px\",\n        \"$type\": \"dimension\"\n      },\n      \"6\": {\n        \"$value\": \"24px\",\n        \"$type\": \"dimension\"\n      },\n      \"8\": {\n        \"$value\": \"32px\",\n        \"$type\": \"dimension\"\n      },\n      \"11\": {\n        \"$value\": \"44px\",\n        \"$type\": \"dimension\"\n      },\n      \"12\": {\n        \"$value\": \"48px\",\n        \"$type\": \"dimension\"\n      },\n      \"16\": {\n        \"$value\": \"64px\",\n        \"$type\": \"dimension\"\n      }\n    },\n    \"radius\": {\n      \"none\": {\n        \"$value\": \"0px\",\n        \"$type\": \"dimension\"\n      },\n      \"sm\": {\n        \"$value\": \"4px\",\n        \"$type\": \"dimension\"\n      },\n      \"md\": {\n        \"$value\": \"8px\",\n        \"$type\": \"dimension\"\n      },\n      \"lg\": {\n        \"$value\": \"12px\",\n        \"$type\": \"dimension\"\n      }\n    },\n    \"shadow\": {\n      \"card\": {\n        \"$value\": \"0 2px 8px rgba(15, 23, 42, 0.06)\",\n        \"$type\": \"shadow\",\n        \"$extensions\": {\n          \"source\": \"B02 \u00a75.4.4, B04 \u00a75.2.3\"\n        }\n      },\n      \"action\": {\n        \"$value\": \"0 2px 6px rgba(15, 23, 42, 0.12)\",\n        \"$type\": \"shadow\",\n        \"$extensions\": {\n          \"source\": \"B02 \u00a75.4.4, B04 \u00a75.2.3\"\n        }\n      }\n    },\n    \"focus\": {\n      \"ring-width\": {\n        \"$value\": \"3px\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"source\": \"D04 \u00a75.2.4\"\n        }\n      },\n      \"ring-offset\": {\n        \"$value\": \"3px\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"source\": \"D04 \u00a75.2.4\"\n        }\n      }\n    },\n    \"icon\": {\n      \"size-sm\": {\n        \"$value\": \"16px\",\n        \"$type\": \"dimension\"\n      },\n      \"size-md\": {\n        \"$value\": \"20px\",\n        \"$type\": \"dimension\"\n      },\n      \"size-lg\": {\n        \"$value\": \"24px\",\n        \"$type\": \"dimension\"\n      },\n      \"stroke-fine\": {\n        \"$value\": \"1.5px\",\n        \"$type\": \"dimension\"\n      },\n      \"stroke-default\": {\n        \"$value\": \"2px\",\n        \"$type\": \"dimension\"\n      }\n    },\n    \"breakpoint\": {\n      \"reflow-min\": {\n        \"$value\": \"320px\",\n        \"$type\": \"dimension\"\n      },\n      \"compact-max\": {\n        \"$value\": \"767px\",\n        \"$type\": \"dimension\"\n      },\n      \"medium-min\": {\n        \"$value\": \"768px\",\n        \"$type\": \"dimension\"\n      },\n      \"medium-max\": {\n        \"$value\": \"1279px\",\n        \"$type\": \"dimension\"\n      },\n      \"expanded-min\": {\n        \"$value\": \"1280px\",\n        \"$type\": \"dimension\"\n      },\n      \"standard-max\": {\n        \"$value\": \"1440px\",\n        \"$type\": \"dimension\"\n      }\n    }\n  },\n  \"semantic\": {\n    \"color\": {\n      \"brand-primary\": {\n        \"$value\": \"{primitive.color.brand.brand-blue}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-brand-primary\"\n        }\n      },\n      \"brand-accent\": {\n        \"$value\": \"{primitive.color.brand.signal-red}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-brand-accent\"\n        }\n      },\n      \"brand-deep\": {\n        \"$value\": \"{primitive.color.brand.deep-navy}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-brand-deep\"\n        }\n      },\n      \"brand-secondary\": {\n        \"$value\": \"{primitive.color.brand.royal-navy}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-brand-secondary\"\n        }\n      },\n      \"bg-canvas\": {\n        \"$value\": \"{primitive.color.neutral.canvas-subtle}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-bg-canvas\"\n        }\n      },\n      \"bg-surface\": {\n        \"$value\": \"{primitive.color.neutral.pure-white}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-bg-surface\"\n        }\n      },\n      \"bg-muted\": {\n        \"$value\": \"{primitive.color.neutral.surface-muted}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-bg-muted\"\n        }\n      },\n      \"bg-tint\": {\n        \"$value\": \"{primitive.color.neutral.surface-tint}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-bg-tint\"\n        }\n      },\n      \"border-default\": {\n        \"$value\": \"{primitive.color.neutral.border-default}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-border-default\"\n        }\n      },\n      \"border-subtle\": {\n        \"$value\": \"{primitive.color.neutral.border-subtle}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-border-subtle\"\n        }\n      },\n      \"text-primary\": {\n        \"$value\": \"{primitive.color.neutral.text-primary}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-text-primary\"\n        }\n      },\n      \"text-muted\": {\n        \"$value\": \"{primitive.color.neutral.text-muted}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-text-muted\"\n        }\n      },\n      \"text-inverse\": {\n        \"$value\": \"{primitive.color.neutral.pure-white}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-text-inverse\"\n        }\n      },\n      \"text-mono\": {\n        \"$value\": \"{primitive.color.neutral.pure-black}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-text-mono\"\n        }\n      },\n      \"status-informative\": {\n        \"$value\": \"{primitive.color.semantic.informative-fg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-informative\"\n        }\n      },\n      \"status-informative-bg\": {\n        \"$value\": \"{primitive.color.semantic.informative-bg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-informative-bg\"\n        }\n      },\n      \"status-informative-border\": {\n        \"$value\": \"{primitive.color.semantic.informative-border}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-informative-border\"\n        }\n      },\n      \"status-success\": {\n        \"$value\": \"{primitive.color.semantic.success-fg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-success\"\n        }\n      },\n      \"status-success-bg\": {\n        \"$value\": \"{primitive.color.semantic.success-bg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-success-bg\"\n        }\n      },\n      \"status-success-border\": {\n        \"$value\": \"{primitive.color.semantic.success-border}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-success-border\"\n        }\n      },\n      \"status-warning\": {\n        \"$value\": \"{primitive.color.semantic.warning-fg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-warning\"\n        }\n      },\n      \"status-warning-bg\": {\n        \"$value\": \"{primitive.color.semantic.warning-bg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-warning-bg\"\n        }\n      },\n      \"status-warning-border\": {\n        \"$value\": \"{primitive.color.semantic.warning-border}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-warning-border\"\n        }\n      },\n      \"status-danger\": {\n        \"$value\": \"{primitive.color.semantic.danger-fg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-danger\"\n        }\n      },\n      \"status-danger-bg\": {\n        \"$value\": \"{primitive.color.semantic.danger-bg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-danger-bg\"\n        }\n      },\n      \"status-danger-border\": {\n        \"$value\": \"{primitive.color.semantic.danger-border}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-danger-border\"\n        }\n      },\n      \"status-neutral\": {\n        \"$value\": \"{primitive.color.semantic.neutral-fg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-neutral\"\n        }\n      },\n      \"status-neutral-bg\": {\n        \"$value\": \"{primitive.color.semantic.neutral-bg}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-neutral-bg\"\n        }\n      },\n      \"status-neutral-border\": {\n        \"$value\": \"{primitive.color.semantic.neutral-border}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-color-status-neutral-border\"\n        }\n      }\n    },\n    \"font\": {\n      \"family-display\": {\n        \"$value\": \"{primitive.font.family.display}\",\n        \"$type\": \"fontFamily\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-family-display\"\n        }\n      },\n      \"family-text\": {\n        \"$value\": \"{primitive.font.family.text}\",\n        \"$type\": \"fontFamily\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-family-text\"\n        }\n      },\n      \"family-mono\": {\n        \"$value\": \"{primitive.font.family.mono}\",\n        \"$type\": \"fontFamily\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-family-mono\"\n        }\n      },\n      \"size-eyebrow\": {\n        \"$value\": \"{primitive.font.size.eyebrow}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-size-eyebrow\"\n        }\n      },\n      \"size-body-ui\": {\n        \"$value\": \"{primitive.font.size.body-ui}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-size-body-ui\"\n        }\n      },\n      \"size-body-doc\": {\n        \"$value\": \"{primitive.font.size.body-doc}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-size-body-doc\"\n        }\n      },\n      \"size-panel-title\": {\n        \"$value\": \"{primitive.font.size.panel-title}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-size-panel-title\"\n        }\n      },\n      \"size-section-title\": {\n        \"$value\": \"{primitive.font.size.section-title-desktop}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-size-section-title\"\n        }\n      },\n      \"size-page-title\": {\n        \"$value\": \"{primitive.font.size.page-title-desktop}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-size-page-title\"\n        }\n      },\n      \"line-height-heading\": {\n        \"$value\": \"{primitive.font.lineHeight.heading}\",\n        \"$type\": \"number\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-line-height-heading\"\n        }\n      },\n      \"line-height-body\": {\n        \"$value\": \"{primitive.font.lineHeight.body}\",\n        \"$type\": \"number\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-font-line-height-body\"\n        }\n      }\n    },\n    \"space\": {\n      \"1\": {\n        \"$value\": \"{primitive.space.1}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-1\"\n        }\n      },\n      \"2\": {\n        \"$value\": \"{primitive.space.2}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-2\"\n        }\n      },\n      \"3\": {\n        \"$value\": \"{primitive.space.3}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-3\"\n        }\n      },\n      \"4\": {\n        \"$value\": \"{primitive.space.4}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-4\"\n        }\n      },\n      \"5\": {\n        \"$value\": \"{primitive.space.5}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-5\"\n        }\n      },\n      \"6\": {\n        \"$value\": \"{primitive.space.6}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-6\"\n        }\n      },\n      \"8\": {\n        \"$value\": \"{primitive.space.8}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-8\"\n        }\n      },\n      \"11\": {\n        \"$value\": \"{primitive.space.11}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-11\"\n        }\n      },\n      \"12\": {\n        \"$value\": \"{primitive.space.12}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-12\"\n        }\n      },\n      \"16\": {\n        \"$value\": \"{primitive.space.16}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-space-16\"\n        }\n      }\n    },\n    \"radius\": {\n      \"none\": {\n        \"$value\": \"{primitive.radius.none}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-radius-none\"\n        }\n      },\n      \"sm\": {\n        \"$value\": \"{primitive.radius.sm}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-radius-sm\"\n        }\n      },\n      \"md\": {\n        \"$value\": \"{primitive.radius.md}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-radius-md\"\n        }\n      },\n      \"lg\": {\n        \"$value\": \"{primitive.radius.lg}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-radius-lg\"\n        }\n      }\n    },\n    \"shadow\": {\n      \"card\": {\n        \"$value\": \"{primitive.shadow.card}\",\n        \"$type\": \"shadow\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-shadow-card\"\n        }\n      },\n      \"action\": {\n        \"$value\": \"{primitive.shadow.action}\",\n        \"$type\": \"shadow\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-shadow-action\"\n        }\n      }\n    },\n    \"focus\": {\n      \"ring-width\": {\n        \"$value\": \"{primitive.focus.ring-width}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-focus-ring-width\",\n          \"source\": \"D04 \u00a75.2.4\"\n        }\n      },\n      \"ring-offset\": {\n        \"$value\": \"{primitive.focus.ring-offset}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-focus-ring-offset\",\n          \"source\": \"D04 \u00a75.2.4\"\n        }\n      },\n      \"ring-color\": {\n        \"$value\": \"{primitive.color.brand.brand-blue}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-focus-ring-color\",\n          \"source\": \"D04 \u00a75.2.4\"\n        }\n      }\n    }\n  },\n  \"component\": {\n    \"button\": {\n      \"primary-bg\": {\n        \"$value\": \"{semantic.color.brand-primary}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-primary-bg\"\n        }\n      },\n      \"primary-bg-hover\": {\n        \"$value\": \"{semantic.color.brand-secondary}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-primary-bg-hover\"\n        }\n      },\n      \"primary-text\": {\n        \"$value\": \"{semantic.color.text-inverse}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-primary-text\"\n        }\n      },\n      \"secondary-bg\": {\n        \"$value\": \"{semantic.color.bg-surface}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-secondary-bg\"\n        }\n      },\n      \"secondary-bg-hover\": {\n        \"$value\": \"{semantic.color.bg-tint}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-secondary-bg-hover\"\n        }\n      },\n      \"secondary-text\": {\n        \"$value\": \"{semantic.color.brand-deep}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-secondary-text\"\n        }\n      },\n      \"secondary-border\": {\n        \"$value\": \"{semantic.color.border-default}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-secondary-border\"\n        }\n      },\n      \"disabled-bg\": {\n        \"$value\": \"{semantic.color.bg-muted}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-disabled-bg\"\n        }\n      },\n      \"disabled-text\": {\n        \"$value\": \"{semantic.color.status-neutral}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-disabled-text\"\n        }\n      },\n      \"min-height\": {\n        \"$value\": \"{primitive.space.11}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-min-height\"\n        }\n      },\n      \"gap-compact\": {\n        \"$value\": \"{primitive.space.3}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-gap-compact\"\n        }\n      },\n      \"radius\": {\n        \"$value\": \"{semantic.radius.sm}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-button-radius\"\n        }\n      }\n    },\n    \"input\": {\n      \"bg\": {\n        \"$value\": \"{semantic.color.bg-surface}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-input-bg\"\n        }\n      },\n      \"border\": {\n        \"$value\": \"{semantic.color.border-default}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-input-border\"\n        }\n      },\n      \"border-error\": {\n        \"$value\": \"{semantic.color.status-danger}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-input-border-error\"\n        }\n      },\n      \"min-height\": {\n        \"$value\": \"{primitive.space.11}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-input-min-height\"\n        }\n      },\n      \"radius\": {\n        \"$value\": \"{semantic.radius.sm}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-input-radius\"\n        }\n      }\n    },\n    \"badge\": {\n      \"radius\": {\n        \"$value\": \"{semantic.radius.sm}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-badge-radius\"\n        }\n      }\n    },\n    \"banner\": {\n      \"radius\": {\n        \"$value\": \"{semantic.radius.md}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-banner-radius\"\n        }\n      }\n    },\n    \"card\": {\n      \"bg\": {\n        \"$value\": \"{semantic.color.bg-surface}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-card-bg\"\n        }\n      },\n      \"border\": {\n        \"$value\": \"{semantic.color.border-default}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-card-border\"\n        }\n      },\n      \"radius\": {\n        \"$value\": \"{semantic.radius.md}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-card-radius\"\n        }\n      },\n      \"shadow\": {\n        \"$value\": \"{semantic.shadow.card}\",\n        \"$type\": \"shadow\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-card-shadow\"\n        }\n      }\n    },\n    \"feature\": {\n      \"radius\": {\n        \"$value\": \"{semantic.radius.lg}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-feature-radius\"\n        }\n      }\n    },\n    \"provenance\": {\n      \"bg\": {\n        \"$value\": \"{semantic.color.bg-tint}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-provenance-bg\"\n        }\n      },\n      \"border\": {\n        \"$value\": \"{semantic.color.brand-primary}\",\n        \"$type\": \"color\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-provenance-border\"\n        }\n      },\n      \"radius\": {\n        \"$value\": \"{semantic.radius.md}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-provenance-radius\"\n        }\n      }\n    },\n    \"icon\": {\n      \"size-sm\": {\n        \"$value\": \"{primitive.icon.size-sm}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-icon-size-sm\"\n        }\n      },\n      \"size-md\": {\n        \"$value\": \"{primitive.icon.size-md}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-icon-size-md\"\n        }\n      },\n      \"size-lg\": {\n        \"$value\": \"{primitive.icon.size-lg}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-icon-size-lg\"\n        }\n      },\n      \"stroke-fine\": {\n        \"$value\": \"{primitive.icon.stroke-fine}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-icon-stroke-fine\"\n        }\n      },\n      \"stroke-default\": {\n        \"$value\": \"{primitive.icon.stroke-default}\",\n        \"$type\": \"dimension\",\n        \"$extensions\": {\n          \"cssVar\": \"--is-icon-stroke-default\"\n        }\n      }\n    }\n  }\n}\n";
+  const live = document.getElementById('live-status');
+  const toast = document.getElementById('toast');
+  let toastTimer;
+
+  function announce(message) {
+    live.textContent = '';
+    requestAnimationFrame(() => { live.textContent = message; });
+    toast.textContent = message;
+    toast.classList.add('is-show');
+    toast.setAttribute('aria-hidden', 'false');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('is-show');
+      toast.setAttribute('aria-hidden', 'true');
+    }, 2600);
+  }
+
+  async function copyText(value, label) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const area = document.createElement('textarea');
+        area.value = value;
+        area.setAttribute('readonly', '');
+        area.style.cssText = 'position:fixed;left:-9999px;top:0';
+        document.body.append(area);
+        area.select();
+        if (!document.execCommand('copy')) throw new Error('Copy unavailable');
+        area.remove();
+      }
+      announce(label + ' copied to clipboard.');
+    } catch (_) {
+      announce('Copy unavailable. Select and copy the value manually.');
+    }
+  }
+
+  function downloadFile(filename, content, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    announce(filename + ' download started.');
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn =>
+    btn.addEventListener('click', () => copyText(btn.dataset.copy, btn.dataset.copy))
+  );
+  document.getElementById('copy-css-btn').addEventListener('click', () =>
+    copyText(GENERATED_CSS, 'CSS tokens')
+  );
+  document.getElementById('download-json-top').addEventListener('click', () =>
+    downloadFile('AST-D01-01_Design-Tokens.json', GENERATED_JSON, 'application/json')
+  );
+  document.getElementById('download-json-btn').addEventListener('click', () =>
+    downloadFile('AST-D01-01_Design-Tokens.json', GENERATED_JSON, 'application/json')
+  );
+  document.getElementById('download-css-top').addEventListener('click', () =>
+    downloadFile('AST-D01-01_Design-Tokens.css', GENERATED_CSS, 'text/css')
+  );
+  document.querySelectorAll('.demo-action').forEach(btn =>
+    btn.addEventListener('click', () => announce(btn.dataset.feedback))
+  );
+
+  // D03 §5.2.4 Blur/Submit Validation with A02 Code Regex
+  const field = document.getElementById('ref-input');
+  const errorBox = document.getElementById('ref-error');
+  const codePattern = /^([A-H](0[1-9]|[1-9][0-9])|(AST|TPL)-[A-H](0[1-9]|[1-9][0-9])-(0[1-9]|[1-9][0-9])|PUB-(0[1-9]|[1-9][0-9])|REC-[A-H](0[1-9]|[1-9][0-9])-(00[1-9]|0[1-9][0-9]|[1-9][0-9][0-9]))$/;
+
+  function validateCode() {
+    const value = field.value.trim();
+    if (!value) {
+      field.setAttribute('aria-invalid', 'true');
+      errorBox.hidden = false;
+      errorBox.textContent = 'Library code is empty. Enter a valid A02 code such as A01 or REC-A04-001.';
+      return false;
+    }
+    if (!codePattern.test(value)) {
+      field.setAttribute('aria-invalid', 'true');
+      errorBox.hidden = false;
+      errorBox.textContent = 'Library code format does not match A02 rules. Use uppercase ASCII syntax such as A01, AST-D01-01, or REC-A04-001.';
+      return false;
+    }
+    field.setAttribute('aria-invalid', 'false');
+    errorBox.hidden = true;
+    errorBox.textContent = '';
+    return true;
+  }
+
+  field.addEventListener('blur', validateCode);
+  document.getElementById('example-form').addEventListener('submit', event => {
+    event.preventDefault();
+    if (validateCode()) {
+      announce('Library code validated. No record was modified.');
+    } else {
+      field.focus();
+      announce('Library code validation failed. Review the inline error message.');
+    }
+  });
+
+  // Active Navigation Sync (D02 §5.2.3)
+  const sections = [...document.querySelectorAll('.is-section')];
+  const navLinks = [...document.querySelectorAll('#side-nav .is-nav__link, .is-mobile-tabs a')];
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const targetHref = '#' + entry.target.id;
+          navLinks.forEach(link => {
+            if (link.getAttribute('href') === targetHref) {
+              link.setAttribute('aria-current', 'location');
+            } else {
+              link.removeAttribute('aria-current');
+            }
+          });
+        }
+      }
+    }, { rootMargin: '-12% 0px -74% 0px', threshold: 0 });
+    sections.forEach(section => observer.observe(section));
+  }
+})();
+</script>
+</body>
+</html>

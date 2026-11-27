@@ -1,0 +1,116 @@
+# B05 — Iconography, Diagrams & Visuals
+
+| Field | Value |
+| :--- | :--- |
+| **Code** | `B05` |
+| **Version** | `v1.0.0` |
+| **Status** | `Approved` |
+| **Effective Date** | `2026-11-22` |
+| **Next Review** | `2027-05-22` |
+| **Owner** | Hary Irfantri |
+| **Approver** | Hary Irfantri |
+| **Supersedes** | `None` |
+| **Governs** | `None` |
+
+## 1. Purpose
+
+This standard defines the iconography grid and sizing rules, technical schematics and diagrams, data charts, photography, illustration, and motion principles for **Irvantri Standards** (`Irvantri Standards Pte. Ltd.`). It ensures non-brand visual elements remain clear, consistent, accessible, and distinct from official brand marks (`B01`).
+
+## 2. Scope & Applicability
+
+### 2.1 In Scope
+This standard applies to:
+* All User Interface (`UI`) icons, system status glyphs, and small-format icon derivatives (`D01`–`D05`).
+* All technical schematics, architecture diagrams, workflows, and data charts across standards, publications (`PUB-`), and formal documents (`E01`–`E04`).
+* All editorial photography, illustrations, and motion transitions governed by `B02`–`B04` and `D01`–`D05`.
+
+### 2.2 Out of Scope
+This standard does not govern:
+* Official brand marks, lockups, clear space, or co-branding rules (governed by `B01`).
+* Core brand palette definitions, neutral scales, or semantic status colors (governed by `B02`).
+* Display and body typefaces, font sizes, or tabular numeral alignment (governed by `B03`).
+* Spatial grid base units (`4 px` / `4 mm`), corner radii, or signature graphic bars (governed by `B04`).
+
+## 3. Normative References
+
+The following documents are referenced in this standard. For undated references, the latest approved edition applies.
+* `Library-Index.md` — Irvantri Standards Unified Operating Library Index (`v1.1.8` or later).
+* `A01` — Document Control & Lifecycle.
+* `A02` — Taxonomy, Coding & File Naming.
+* `A03` — Entity & Brand Architecture.
+* `A04` — Compliance, Reviews & Exceptions.
+* `B01` — Marks & Lockups.
+* `B02` — Color System.
+* `B03` — Typography.
+* `B04` — Grids, Spacing & Graphic Devices.
+* `C01` — Voice, Tone & Plain Language.
+* `C02` — Terminology & Controlled Vocabulary.
+* `C03` — Technical & User Experience (UX) Writing.
+* `C04` — Data, Dates & Citation Formatting.
+* `D01` — Design Tokens & Architecture.
+* `D03` — Interface Components & Patterns.
+* `D04` — Accessibility & Usability.
+* `E01` — Formal Document Layout.
+* `E03` — Print & Production Specifications.
+* `E04` — Correspondence & Presentations.
+
+> **Informative Note:** Where a referenced standard holds `Planned` or `Draft` status at the time of `B05` adoption, the requirements stated in this standard and approved Series A, Series B (`B01`–`B04`), and Series C standards apply directly until the referenced standard reaches `Approved` status.
+
+## 4. Terms & Definitions
+
+For terms shared across the library, refer to `C02`, `B01`, and `B04`. For the purposes of this standard, the following definitions apply:
+* **Data Chart:** A structured visual representation—such as a bar, line, or table-backed chart—displaying quantitative series and comparisons (`C04`).
+* **Icon Grid:** A square design frame (`16 px × 16 px`, `20 px × 20 px`, or `24 px × 24 px`) and uniform stroke weight governing icon alignment and optical sizing (`B04 §5.1.1`).
+* **Reduced Motion:** A system or user preference (`prefers-reduced-motion`) minimizing non-essential animation, movement, or auto-scrolling transitions.
+* **Technical Schematic:** A structured diagram depicting system components, flows, taxonomies, or governance relationships using geometric shapes and labeled connectors.
+
+## 5. Requirements
+
+### 5.1 Iconography Grid, Strokes & Formats
+**5.1.1** `UI` icons SHALL be constructed on a `4 px` Base Unit icon grid (`16 px × 16 px`, `20 px × 20 px`, or `24 px × 24 px`) (`B04 §5.1.1`, `C04 §5.3.2`) with a uniform stroke weight of `1.5 px` or `2 px` across sibling icons.
+
+**5.1.2** Digital icons SHALL use Scalable Vector Graphics (`SVG`) masters or lossless Portable Network Graphics (`PNG`) derivatives exported at exact integer pixel dimensions (`C04 §5.3.2`).
+
+**5.1.3** Icons SHALL NOT be substituted for the official `B01` Primary Symbol or lockups, and `16 px` small-format derivatives SHALL simplify fine geometric detail rather than compressing intricate artwork (`B01 §5.3.2`).
+
+### 5.2 Technical Schematics & Data Charts
+**5.2.1** Technical schematics and architecture diagrams SHALL use straight or orthogonal connectors (`90°` bends) (`C04 §5.3.2`), consistent node styling, and legible labels (`B03 §5.2.2`).
+
+**5.2.2** Data charts SHALL label axes and series explicitly (`C04 §5.4.2`, `§5.4.4`) and SHALL NOT rely on color alone to distinguish data series (`B02 §5.5.2`).
+
+**5.2.3** Diagrams and charts SHALL NOT display internal project codenames (`A03 §5.4.2`, `C02 §5.3.3`) or unsubstantiated promotional claims (`C01 §5.1.2`).
+
+### 5.3 Photography & Illustration
+**5.3.1** Photography and illustrations in corporate communications (`E04`), publications (`PUB-`), and interfaces (`D02`) SHALL maintain an objective, realistic editorial tone (`C01 §5.1.1`, `§5.1.4`) and avoid staged clichés or unverified capability claims (`C01 §5.4.1`).
+
+**5.3.2** Photography and illustrations SHALL respect `B02 §5.4.2`–`§5.4.3` and `§5.5.1` contrast rules when paired with overlaid text or `B01` marks, and SHALL NOT use third-party imagery without documented rights clearance (`A03 §5.5.4`).
+
+### 5.4 Motion & Reduced-Motion Support
+**5.4.1** Motion transitions in digital interfaces (`D01`, `D03`) SHALL remain brief, functional, and purposeful, and SHALL NOT use disorienting flashing, spinning, or erratic movement (`D04`).
+
+**5.4.2** Digital interfaces (`D01`, `D03`) SHALL honor user reduced-motion preferences (`prefers-reduced-motion`) by disabling or simplifying non-essential motion transitions.
+
+## 6. Conformance & Verification
+
+A visual asset, diagram, chart, interface, or publication conforms to `B05` if and only if all of the following objective checks pass:
+
+| Check ID | Verification Criterion | Method |
+| :--- | :--- | :--- |
+| `B05-C1` | `UI` icons align to `16 px`, `20 px`, or `24 px` grids with uniform `1.5 px` or `2 px` strokes (`5.1.1`), use `SVG`/`PNG` masters (`5.1.2`), and avoid `B01` mark substitution or over-compressed detail (`5.1.3`). | Icon & asset audit |
+| `B05-C2` | Technical schematics use orthogonal/straight connectors and clear labels (`5.2.1`), and data charts pair color with non-color series cues (`5.2.2`). | Diagram & chart review |
+| `B05-C3` | Diagrams and charts contain zero internal codenames or promotional hype (`5.2.3`). | Content & glossary audit |
+| `B05-C4` | Photography and illustrations match objective editorial tone (`5.3.1`), preserve contrast and rights clearance (`5.3.2`), and avoid third-party non-affiliation claims (`A03 §5.6.2`). | Visual & rights inspection |
+| `B05-C5` | Motion transitions avoid disorienting movement (`5.4.1`) and honor reduced-motion preferences (`5.4.2`). | Interaction & `D04` audit |
+
+Exceptions to any requirement in this standard require a formal, time-boxed waiver approved and logged in accordance with `A04`.
+
+## 7. Linked Artifacts
+
+None.
+
+## 8. Revision History
+
+| Version | Date | Type | Summary of Changes | Approver |
+| :--- | :--- | :--- | :--- | :--- |
+| `v1.0.0` | `2026-11-22` | Major | Initial approved baseline of `B05` (Iconography, Diagrams & Visuals), locking the `16 px`–`24 px` icon grid and stroke rules, schematic and data chart accessibility rules, editorial photography/illustration standards, and reduced-motion requirements. | Hary Irfantri |
+| `v0.1.0` | `2026-11-22` | Pre-Release | Initial draft establishing the `16 px`–`24 px` icon grid and stroke rules, schematic and data chart accessibility rules, editorial photography/illustration standards, and reduced-motion requirements. | Hary Irfantri |

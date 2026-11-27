@@ -39,7 +39,7 @@ Every result below is measured on the delivered file, not inferred from another 
 * **Tokens and color:** a script parsed `AST-D01-01`, the `B02` tables, the `PUB-01` embedded `JSON` and `CSS`, and the `PUB-03` front matter. Contrast uses the `WCAG` 2.2 relative-luminance formula.
 * **Dependencies:** `SHA-256` of each font and `ICC` file against `Dependencies-Manifest.md (v2.0.0)`.
 
-> **Informative Note:** The `PDF` checks are structural. They are not a certified `PDF/X-4` (`ISO 15930-7:2010`) validation. Pull request `#3` adds an automated checker (`tools/library_checks.py`). Its first `CI` run (`46052490505`, head `65cffeb`) independently reports the same `PDF` issues as `F-04` and `U-01`. Its register, palette, token-parity, contrast, link, and dependency checks all pass. The run on `main` should be cited here once pull request `#3` is merged.
+> **Informative Note:** The `PDF` checks are structural. They are not a certified `PDF/X-4` (`ISO 15930-7:2010`) validation. The automated checker merged in pull request `#3` (`tools/library_checks.py`) was run on this branch at `e3f4935`, giving `PASS` with 8 known issues. Those known issues are the `F-04` and `U-01` defects. The `main` run for `ea4a36e` is `CI` run `46052909893`. The checker lists the secondary button border (`#CBD5E1`, `1.48:1`) as informative, on the view that the label identifies the control. `F-01` applies the stricter `B02 (v1.2.0) §5.2.2` wording instead, and the Approver decides which reading stands.
 
 ## 3. Section 6 Verification — Executable Templates
 

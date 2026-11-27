@@ -3,14 +3,14 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `B01` |
-| **Version** | `v2.0.1` |
+| **Version** | `v2.1.0` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Next Review** | `2027-05-22` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
 | **Supersedes** | `None` |
-| **Governs** | `AST-B01-01`, `AST-B01-02`, `AST-B01-03`, `AST-B01-04`, `AST-B01-05`, `AST-B01-06`, `AST-B01-07`, `AST-B01-08`, `AST-B01-09`, `AST-B01-10`, `AST-B01-11`, `AST-B01-12`, `AST-B01-13`, `AST-B01-14`, `AST-B01-15`, `AST-B01-16` |
+| **Governs** | `AST-B01-01`, `AST-B01-02`, `AST-B01-03`, `AST-B01-04`, `AST-B01-05`, `AST-B01-06`, `AST-B01-07`, `AST-B01-08`, `AST-B01-09`, `AST-B01-10`, `AST-B01-11`, `AST-B01-12`, `AST-B01-13`, `AST-B01-14`, `AST-B01-15`, `AST-B01-16`, `AST-B01-17`, `AST-B01-18`, `AST-B01-19`, `AST-B01-20`, `AST-B01-21`, `AST-B01-22`, `AST-B01-23` |
 
 ## 1. Purpose
 
@@ -22,6 +22,7 @@ This standard defines the official brand marks, approved lockup configurations, 
 This standard applies to:
 * All official brand symbols, wordmarks, and parent-endorsed lockups representing **Irvantri Standards** (`A03 §5.2.1`).
 * All Master Assets (`AST-B01`) registered in `Library-Index.md` and deployed across digital systems (`D01`–`D05`), formal documents (`E01`–`E04`), and compiled publications (`PUB-`).
+* Small-format symbols, browser favicons, and application icons that reproduce the Primary Symbol in digital interfaces (`D02`).
 * All `Tier 3` Endorsed Sub-Brand lockups (`A03 §5.1.5`) and `Tier 4` Co-Branded mark pairings (`A03 §5.5.3`).
 
 ### 2.2 Out of Scope
@@ -55,11 +56,13 @@ The following documents are referenced in this standard. For undated references,
 ## 4. Terms & Definitions
 
 For terms shared across the library, refer to `C02` and `A03`. For the purposes of this standard, the following definitions apply:
+* **App Icon Tile:** An opaque square background that carries the Primary Symbol on operating-system home screens and in installed web applications.
 * **Clear Space:** The mandatory minimum unobstructed margin surrounding a symbol or lockup, measured relative to the width of the primary symbol.
 * **Lockup:** A fixed geometric arrangement combining the primary symbol with the Master Brand wordmark and, where required, the Endorsement Line.
 * **Optical Parity:** Visual equivalence in perceived weight, height, and area between two paired marks in a co-branded layout.
 * **Primary Symbol:** The standalone geometric emblem representing Irvantri Standards without accompanying typography.
 * **Reversed Mark:** A single-color white (`#FFFFFF`) rendering of the symbol or lockup designed for dark backgrounds.
+* **Small-Format Symbol:** A registered, simplified derivative of the Primary Symbol drawn on a `16 px` grid for screen renders below `28 px`.
 
 ## 5. Requirements
 
@@ -72,6 +75,10 @@ For terms shared across the library, refer to `C02` and `A03`. For the purposes 
 **5.1.2** Digital implementations (`D01`) SHALL source marks from master Scalable Vector Graphics (`SVG`) files or lossless Portable Network Graphics (`PNG`) derivatives exported directly from those `SVG` masters. Print deliverables (`E03`) SHALL use vector masters (`SVG` or Portable Document Format (`PDF`)).
 
 **5.1.3** Every approved master mark file SHALL be registered as an `AST-B01` Master Asset in `Library-Index.md` and Section 7 of this standard, pinned to `B01 (vMAJOR.MINOR)` (`A01 §5.7.4`, `A02 §5.7.2`).
+
+**5.1.4** Windows Icon (`ICO`) favicon files SHALL contain only lossless frames exported from registered `AST-B01` masters at exact integer pixel sizes.
+
+**5.1.5** The Small-Format Symbol (`AST-B01-17`, `AST-B01-18`) is an official rendering of the Primary Symbol under Clause `5.1.1`. Its use is restricted to Clause `5.3.4`.
 
 ### 5.2 Lockup Selection & Architectural Alignment
 **5.2.1** Lockup selection across deliverables and interfaces SHALL follow the architectural rules in `A03 §5.1`–`§5.3`:
@@ -101,9 +108,17 @@ For terms shared across the library, refer to `C02` and `A03`. For the purposes 
 | **Primary Master Lockup** | `140 px` width (`28 px` symbol height) | `38 mm` width (`12 mm` symbol height) |
 | **Parent-Endorsed Lockup** | `260 px` width (`62.7 px` symbol height) | `64 mm` width (`15.4 mm` symbol height) |
 
-> **Informative Note:** Favicons and compact `16 px` system icons (`B05`) use simplified icon derivatives rather than the full Primary Symbol when rendered below `28 px`. The `260 px` and `64 mm` Parent-Endorsed Lockup floors align to the locked `4.15:1` (`664 × 160`) master geometry (`AST-B01-03` and `AST-B01-04`) so the Endorsement Line stays above the `9 px` / `6 pt` cap-height floor in Clause `5.3.3`.
+> **Informative Note:** Favicons and compact `16 px` system icons (`B05`) use the Small-Format Symbol (`5.3.4`) rather than the full Primary Symbol when rendered below `28 px`. The `260 px` and `64 mm` Parent-Endorsed Lockup floors align to the locked `4.15:1` (`664 × 160`) master geometry (`AST-B01-03` and `AST-B01-04`) so the Endorsement Line stays above the `9 px` / `6 pt` cap-height floor in Clause `5.3.3`.
 
 **5.3.3** Within the Parent-Endorsed Lockup, the Endorsement Line cap height SHALL NOT render smaller than `6 pt` in print or `9 px` on screen (`B03`).
+
+**5.3.4** The Small-Format Symbol SHALL be used only for screen renders from `16 px` to below `28 px`, such as browser tabs, bookmarks, and `16 px` system icons (`B05 §5.1.3`). It SHALL NOT be used in print or at `28 px` or larger, where the Primary Symbol applies.
+
+**5.3.5** At its `16 px` master size, every stroke of the Small-Format Symbol SHALL be at least `1.25 px` wide, measured between its parallel edges. Every gap between its two colors SHALL be at least `1.0 px` wide.
+
+**5.3.6** Favicon and app icon files rendered by a browser or operating system are exempt from Clause `5.3.1` inside the file, because the host interface supplies the surrounding margin. App Icon Tiles SHALL instead apply Clause `5.6.2`.
+
+> **Informative Note:** The Small-Format Symbol keeps the Primary Symbol's split ring, diagonals, and stubs in the same positions. Its strokes are thicker and snapped to the pixel grid so the zigzag stays legible at `16 px`.
 
 ### 5.4 Colorways & Background Contrast
 **5.4.1** Marks SHALL use only the three authorized colorway variants defined in `B02`:
@@ -114,6 +129,8 @@ For terms shared across the library, refer to `C02` and `A03`. For the purposes 
 **5.4.2** Background surfaces behind any mark SHALL maintain at least a `4.5:1` contrast ratio against the primary mark fill per Web Content Accessibility Guidelines (`WCAG`) 2.2 Level AA (`B02`, `D04`).
 
 **5.4.3** Marks SHALL NOT be placed directly over complex photography, textured patterns, or multi-hue gradients unless backed by an approved solid or translucent scrim meeting Clause `5.4.2` (`B02`).
+
+**5.4.4** Where a browser or operating system sets the background behind a favicon, the `SVG` favicon SHALL switch to the Reversed White colorway when the `prefers-color-scheme: dark` media query applies. `ICO` favicon fallbacks cannot switch colorway, so they SHALL use the Full-Color Primary colorway and are exempt from Clause `5.4.2`.
 
 ### 5.5 Co-Branding & Partner Lockups
 **5.5.1** In `Tier 4` equal-partnership Co-Branded lockups (`A03 §5.5.3`), the Irvantri Standards mark SHALL be sized at Optical Parity with the partner mark.
@@ -130,6 +147,8 @@ For terms shared across the library, refer to `C02` and `A03`. For the purposes 
 * Cropping, clipping, or enclosing the symbol inside unapproved badges or frames.
 * Recreating or redrawing the symbol instead of using registered `AST-B01` master files.
 
+**5.6.2** The App Icon Tile is an approved frame under Clause `5.6.1`. It SHALL be an opaque square of **Pure White** (`#FFFFFF`) carrying the Full-Color Primary symbol, or **Deep Navy** (`#092B55`) carrying the Reversed White symbol (`B02`). The symbol SHALL span two thirds of the tile width, which applies the `0.25×` Clear Space of Clause `5.3.1` on all four sides. Corner rounding and circular masks applied by the operating system are permitted.
+
 ## 6. Conformance & Verification
 
 A mark asset, digital interface, publication, or formal document conforms to `B01` if and only if all of the following objective checks pass:
@@ -143,6 +162,7 @@ A mark asset, digital interface, publication, or formal document conforms to `B0
 | `B01-C5` | Mark uses an authorized colorway (`5.4.1`), maintains at least `4.5:1` background contrast (`5.4.2`), and avoids unscreened complex imagery (`5.4.3`). | Color & contrast audit |
 | `B01-C6` | `Tier 4` Co-Branded lockups maintain Optical Parity (`5.5.1`), `1.0×` symbol-width divider spacing (`5.5.2`), and signed Approver/rights-holder authorization (`5.5.3`). | Co-branding & record audit |
 | `B01-C7` | Reproduced marks exhibit zero stretching, rotation, unapproved effects, typography alterations, cropping, or redrawing (`5.6.1`). | Visual inspection |
+| `B01-C8` | The Small-Format Symbol renders only from `16 px` to below `28 px` on screen (`5.3.4`), with strokes of at least `1.25 px` and color gaps of at least `1.0 px` at `16 px` (`5.3.5`). `ICO` frames are lossless exports of registered masters (`5.1.4`), and the Small-Format Symbol is used only as registered (`5.1.5`). Clear Space follows `5.3.6`. `SVG` favicons switch to Reversed White in dark mode (`5.4.4`). App Icon Tiles use an approved tile color and a two-thirds symbol width (`5.6.2`). | Pixel & geometry measurement |
 
 Exceptions to any requirement in this standard require a formal, time-boxed waiver approved and logged in accordance with `A04`.
 
@@ -166,11 +186,19 @@ Exceptions to any requirement in this standard require a formal, time-boxed waiv
 | `AST-B01-14` | Reversed White Primary Master Lockup (`PNG`) | `02_Assets/AST-B01-14_Primary-Lockup-White.png` | `B01 (v2.0)` | `Approved` | Lossless transparent `3200 × 640` `300 DPI` derivative exported directly from `AST-B01-06` |
 | `AST-B01-15` | Monochrome Black Primary Master Lockup (`PNG`) | `02_Assets/AST-B01-15_Primary-Lockup-Black.png` | `B01 (v2.0)` | `Approved` | Lossless `3200 × 640` `300 DPI` derivative exported directly from `AST-B01-07` |
 | `AST-B01-16` | Monochrome Black Symbol (`PNG`) | `02_Assets/AST-B01-16_Black-Symbol.png` | `B01 (v2.0)` | `Approved` | Lossless `1080 × 1080` `300 DPI` derivative exported directly from `AST-B01-08` |
+| `AST-B01-17` | Small-Format Symbol (`SVG`) | `02_Assets/AST-B01-17_Small-Format-Symbol.svg` | `B01 (v2.1)` | `Approved` | Full-color `16 × 16` simplified symbol for screen renders from `16 px` to below `28 px` (`5.3.4`); switches to Reversed White under `prefers-color-scheme: dark` (`5.4.4`); serves as the `SVG` favicon |
+| `AST-B01-18` | Reversed White Small-Format Symbol (`SVG`) | `02_Assets/AST-B01-18_White-Small-Format-Symbol.svg` | `B01 (v2.1)` | `Approved` | Fixed `#FFFFFF` `16 × 16` Small-Format Symbol for dark interface surfaces |
+| `AST-B01-19` | Favicon (`ICO`) | `02_Assets/AST-B01-19_Favicon.ico` | `B01 (v2.1)` | `Approved` | Lossless `16`, `32`, and `48 px` frames: `16 px` exported from `AST-B01-17`, `32` and `48 px` exported from `AST-B01-01` (`5.1.4`, `5.3.4`) |
+| `AST-B01-20` | App Icon (`SVG`) | `02_Assets/AST-B01-20_App-Icon.svg` | `B01 (v2.1)` | `Approved` | `512 × 512` **Pure White** App Icon Tile carrying the `AST-B01-01` paths at two thirds of the tile width (`5.6.2`) |
+| `AST-B01-21` | Apple Touch Icon (`PNG`) | `02_Assets/AST-B01-21_Apple-Touch-Icon.png` | `B01 (v2.1)` | `Approved` | Lossless opaque `180 × 180` derivative exported directly from `AST-B01-20` |
+| `AST-B01-22` | App Icon 192 (`PNG`) | `02_Assets/AST-B01-22_App-Icon-192.png` | `B01 (v2.1)` | `Approved` | Lossless opaque `192 × 192` derivative exported directly from `AST-B01-20` for web app manifests |
+| `AST-B01-23` | App Icon 512 (`PNG`) | `02_Assets/AST-B01-23_App-Icon-512.png` | `B01 (v2.1)` | `Approved` | Lossless opaque `512 × 512` derivative exported directly from `AST-B01-20` for web app manifests; ink stays within the maskable safe zone |
 
 ## 8. Revision History
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.1.0` | `2026-11-27` | Minor | Added the Small-Format Symbol (`5.1.5`, `5.3.4`, `5.3.5`), the `ICO` lossless-frame rule (`5.1.4`), the favicon and app icon Clear Space rule (`5.3.6`), the dark-mode `SVG` favicon colorway (`5.4.4`), and the App Icon Tile (`5.6.2`), with `B01-C8`, scope, and definitions; registered and approved `AST-B01-17`–`AST-B01-23`, pinned to `B01 (v2.1)`, and updated the `Governs` header per `REC-A04-011`. | Hary Irfantri |
 | `v2.0.1` | `2026-11-27` | Errata | Registered and approved `AST-B01-05`–`AST-B01-07` (Primary Master Lockup in Full-Color Primary, Reversed White, and Monochrome Black colorways, `800 × 160`, `5:1`), `AST-B01-08` (Monochrome Black Symbol), and `AST-B01-09`–`AST-B01-16` (lossless `300 DPI` `PNG` derivatives of every `SVG` master per `5.1.2`) in Section 7, pinned to `B01 (v2.0)`, and updated the `Governs` header (`A01 §5.2.8`, `§5.5.7`) per `REC-A04-008`. Sections 2 through 6 are unchanged. | Hary Irfantri |
 | `v2.0.0` | `2026-11-25` | Major | Resolved geometric conflict (`U-01`) between `5.3.2` and `5.3.3`/`B03 §5.2.5` by raising Parent-Endorsed Lockup minimums to `260 px` width (`62.7 px` symbol) digital and `64 mm` width (`15.4 mm` symbol) print (`B01-C4`); promoted `AST-B01-03` to `Approved`, allocated and approved `AST-B01-04` (reversed white lockup), updated `Governs` header, and re-pinned `AST-B01-01`–`AST-B01-04` to `B01 (v2.0)` per `REC-A04-006`. | Hary Irfantri |
 | `v1.0.1` | `2026-11-25` | Errata | Populated `Governs` header (`AST-B01-01`, `AST-B01-02`, `AST-B01-03` per `A01 §5.2.8`), promoted `AST-B01-01` and `AST-B01-02` to `Approved` in Section 7 (`A01 §5.5.7`), removed obsolete pre-approval note and updated `Library-Index.md` floor in Section 3, tightened `5.5.2` below 30 words, and confirmed `D02 (v2.0.0)` alignment per `REC-A04-005` (`F-07`, `F-10`). | Hary Irfantri |

@@ -3,14 +3,14 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `B01` |
-| **Version** | `v2.0.0` |
+| **Version** | `v2.0.1` |
 | **Status** | `Approved` |
-| **Effective Date** | `2026-11-25` |
+| **Effective Date** | `2026-11-27` |
 | **Next Review** | `2027-05-22` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
 | **Supersedes** | `None` |
-| **Governs** | `AST-B01-01`, `AST-B01-02`, `AST-B01-03`, `AST-B01-04` |
+| **Governs** | `AST-B01-01`, `AST-B01-02`, `AST-B01-03`, `AST-B01-04`, `AST-B01-05`, `AST-B01-06`, `AST-B01-07`, `AST-B01-08`, `AST-B01-09`, `AST-B01-10`, `AST-B01-11`, `AST-B01-12`, `AST-B01-13`, `AST-B01-14`, `AST-B01-15`, `AST-B01-16` |
 
 ## 1. Purpose
 
@@ -154,11 +154,24 @@ Exceptions to any requirement in this standard require a formal, time-boxed waiv
 | `AST-B01-02` | Reversed White Symbol (`SVG`) | `02_Assets/AST-B01-02_White-Symbol.svg` | `B01 (v2.0)` | `Approved` | Single-color `#FFFFFF` symbol master for dark surfaces |
 | `AST-B01-03` | Parent-Endorsed Lockup (`SVG`) | `02_Assets/AST-B01-03_Parent-Lockup.svg` | `B01 (v2.0)` | `Approved` | Full-color `664 × 160` (`4.15:1`) symbol, `IRVANTRI STANDARDS` wordmark, and `A member of Irvantri Group` endorsement for light surfaces (`260 px` / `64 mm` minimum) |
 | `AST-B01-04` | Reversed White Parent-Endorsed Lockup (`SVG`) | `02_Assets/AST-B01-04_Parent-Lockup-White.svg` | `B01 (v2.0)` | `Approved` | Reversed `#FFFFFF` `664 × 160` (`4.15:1`) Parent-Endorsed Lockup for dark surfaces (`260 px` / `64 mm` minimum) |
+| `AST-B01-05` | Primary Master Lockup (`SVG`) | `02_Assets/AST-B01-05_Primary-Lockup.svg` | `B01 (v2.0)` | `Approved` | Full-color `800 × 160` (`5:1`) symbol and single-line `IRVANTRI STANDARDS` wordmark without Endorsement Line for light surfaces (`140 px` / `38 mm` minimum) |
+| `AST-B01-06` | Reversed White Primary Master Lockup (`SVG`) | `02_Assets/AST-B01-06_Primary-Lockup-White.svg` | `B01 (v2.0)` | `Approved` | Reversed `#FFFFFF` `800 × 160` (`5:1`) Primary Master Lockup for dark surfaces (`140 px` / `38 mm` minimum) |
+| `AST-B01-07` | Monochrome Black Primary Master Lockup (`SVG`) | `02_Assets/AST-B01-07_Primary-Lockup-Black.svg` | `B01 (v2.0)` | `Approved` | Solid `#000000` `800 × 160` (`5:1`) Primary Master Lockup for single-ink print and monochrome reproduction (`140 px` / `38 mm` minimum) |
+| `AST-B01-08` | Monochrome Black Symbol (`SVG`) | `02_Assets/AST-B01-08_Black-Symbol.svg` | `B01 (v2.0)` | `Approved` | Solid `#000000` symbol master for single-ink print and monochrome reproduction (`28 px` / `12 mm` minimum) |
+| `AST-B01-09` | Primary Symbol (`PNG`) | `02_Assets/AST-B01-09_Primary-Symbol.png` | `B01 (v2.0)` | `Approved` | Lossless `1080 × 1080` `300 DPI` derivative exported directly from `AST-B01-01` |
+| `AST-B01-10` | Reversed White Symbol (`PNG`) | `02_Assets/AST-B01-10_White-Symbol.png` | `B01 (v2.0)` | `Approved` | Lossless transparent `1080 × 1080` `300 DPI` derivative exported directly from `AST-B01-02` |
+| `AST-B01-11` | Parent-Endorsed Lockup (`PNG`) | `02_Assets/AST-B01-11_Parent-Lockup.png` | `B01 (v2.0)` | `Approved` | Lossless `2656 × 640` `300 DPI` derivative exported directly from `AST-B01-03` |
+| `AST-B01-12` | Reversed White Parent-Endorsed Lockup (`PNG`) | `02_Assets/AST-B01-12_Parent-Lockup-White.png` | `B01 (v2.0)` | `Approved` | Lossless transparent `2656 × 640` `300 DPI` derivative exported directly from `AST-B01-04` |
+| `AST-B01-13` | Primary Master Lockup (`PNG`) | `02_Assets/AST-B01-13_Primary-Lockup.png` | `B01 (v2.0)` | `Approved` | Lossless `3200 × 640` `300 DPI` derivative exported directly from `AST-B01-05` |
+| `AST-B01-14` | Reversed White Primary Master Lockup (`PNG`) | `02_Assets/AST-B01-14_Primary-Lockup-White.png` | `B01 (v2.0)` | `Approved` | Lossless transparent `3200 × 640` `300 DPI` derivative exported directly from `AST-B01-06` |
+| `AST-B01-15` | Monochrome Black Primary Master Lockup (`PNG`) | `02_Assets/AST-B01-15_Primary-Lockup-Black.png` | `B01 (v2.0)` | `Approved` | Lossless `3200 × 640` `300 DPI` derivative exported directly from `AST-B01-07` |
+| `AST-B01-16` | Monochrome Black Symbol (`PNG`) | `02_Assets/AST-B01-16_Black-Symbol.png` | `B01 (v2.0)` | `Approved` | Lossless `1080 × 1080` `300 DPI` derivative exported directly from `AST-B01-08` |
 
 ## 8. Revision History
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.0.1` | `2026-11-27` | Errata | Registered and approved `AST-B01-05`–`AST-B01-07` (Primary Master Lockup in Full-Color Primary, Reversed White, and Monochrome Black colorways, `800 × 160`, `5:1`), `AST-B01-08` (Monochrome Black Symbol), and `AST-B01-09`–`AST-B01-16` (lossless `300 DPI` `PNG` derivatives of every `SVG` master per `5.1.2`) in Section 7, pinned to `B01 (v2.0)`, and updated the `Governs` header (`A01 §5.2.8`, `§5.5.7`) per `REC-A04-008`. Sections 2 through 6 are unchanged. | Hary Irfantri |
 | `v2.0.0` | `2026-11-25` | Major | Resolved geometric conflict (`U-01`) between `5.3.2` and `5.3.3`/`B03 §5.2.5` by raising Parent-Endorsed Lockup minimums to `260 px` width (`62.7 px` symbol) digital and `64 mm` width (`15.4 mm` symbol) print (`B01-C4`); promoted `AST-B01-03` to `Approved`, allocated and approved `AST-B01-04` (reversed white lockup), updated `Governs` header, and re-pinned `AST-B01-01`–`AST-B01-04` to `B01 (v2.0)` per `REC-A04-006`. | Hary Irfantri |
 | `v1.0.1` | `2026-11-25` | Errata | Populated `Governs` header (`AST-B01-01`, `AST-B01-02`, `AST-B01-03` per `A01 §5.2.8`), promoted `AST-B01-01` and `AST-B01-02` to `Approved` in Section 7 (`A01 §5.5.7`), removed obsolete pre-approval note and updated `Library-Index.md` floor in Section 3, tightened `5.5.2` below 30 words, and confirmed `D02 (v2.0.0)` alignment per `REC-A04-005` (`F-07`, `F-10`). | Hary Irfantri |
 | `v1.0.0` | `2026-11-22` | Major | Initial approved baseline of `B01` (Marks & Lockups), locking official marks, `AST-B01` master asset governance, touchpoint lockup selection, `0.25×` Clear Space, minimum digital and print dimensions, authorized colorways, `Tier 4` co-branding spacing, and mark misuse prohibitions. | Hary Irfantri |

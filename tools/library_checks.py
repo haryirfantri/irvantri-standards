@@ -432,7 +432,7 @@ def check_links(rep: Report):
         for line in live.splitlines():  # revision history describes past paths, so it is skipped
             if "`Planned`" in line or "`Deprecated`" in line or "Retired" in line or "retired" in line:
                 continue
-            for m in re.finditer(r"`(0[1-6]_[^`*]+\.(?:md|svg|png|json|pdf|html|ttf|icc|txt))`", line):
+            for m in re.finditer(r"`(0[1-6]_[^`*]+\.(?:md|svg|png|ico|json|pdf|html|ttf|icc|txt))`", line):
                 n += 1
                 if not (LIB / m.group(1)).exists():
                     rep.fail(c, f"links.register-path:{lib_rel(doc)}:{m.group(1)}",

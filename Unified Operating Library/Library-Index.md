@@ -4,7 +4,7 @@
 | :--- | :--- |
 | **Register** | `Library-Index.md` *(Uncoded master register)* |
 | **Entity** | Irvantri Standards |
-| **Version** | `v1.2.16` |
+| **Version** | `v1.2.17` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-20` |
 | **Last Updated** | `2026-11-27` |
@@ -171,6 +171,7 @@ Where two controlled items conflict, precedence resolves strictly from top to bo
 | `REC-A04-006` | B01 v2.0.0 Conflict Resolution & Event-Driven Audit | `05_Records/REC-A04-006_B01-v2-Event-Driven-Audit.md` | `2026-11-25` | `A03`, `B01`, `B02`, `B03`, `B04`, `B05`, `D02`, `E01`, `E03`, `E04` | `Closed` | `None` | Closed cross-clause conflict `F-01` (`U-01`) via `B01 (v2.0.0)` (`260 px` / `64 mm` minimums), verified all 9 citing standards and `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), and verified `F-02` closed via `PUB-01 (v2.0.0)` and `PUB-02 (v2.0.0)` on `2026-11-26` |
 | `REC-A04-007` | B03 v2.0.0 Typography Migration Event-Driven Audit | `05_Records/REC-A04-007_B03-v2-Typography-Migration-Audit.md` | `2026-11-26` | `A01`, `A02`, `A03`, `A04`, `B01`, `B03`, `D01`, `E01`, `E02`, `E03`, `E04` | `Closed` | `None` | Verified `B03 (v2.0.0)` Noto Sans superfamily migration, paired `E01`/`E02`/`E04` decoupling releases, `AST-D01-01` and `Dependencies-Manifest.md (v2.0.0)` sync, and full closure of `F-01` (`AST-B01-03`/`04`), `F-02` (`TPL-E01-02`/`03`), and `F-03` (`PUB-01`/`PUB-02 v2.0.0`) on `2026-11-26` |
 | `REC-A04-008` | B01 Primary Master Lockup & PNG Derivatives Pre-Release Gate | `05_Records/REC-A04-008_B01-Lockup-and-PNG-Pre-Release-Gate.md` | `2026-11-27` | `A01`, `A02`, `A04`, `B01`, `B02`, `B03`, `E01`, `E04` | `Closed` | `None` | Pre-Release Gate for `AST-B01-05`–`AST-B01-16` against `B01-C1`–`B01-C7` with measured geometry, palette, contrast, path-identity, and `PNG` evidence; zero non-conformities; Approver design sign-off `2026-11-27` |
+| `REC-A04-009` | Retrospective Pre-Release Gate for Templates, Tokens & Publications | `05_Records/REC-A04-009_Retrospective-Pre-Release-Gate-for-Templates-Tokens-and-Publications.md` | `2026-11-27` | `A01`, `A02`, `A03`, `A04`, `B01`, `B02`, `B03`, `C01`, `D01`, `D04`, `E01`, `E02`, `E03`, `E04` | `Open` | `None` | Measured retrospective gate for `TPL-E01-01`/`03`/`04`, `TPL-E04-01`/`03`, `AST-D01-01`, and `PUB-01`–`PUB-03`; findings `F-01`–`F-03` (`Major`) and `F-04`–`F-06` (`Minor`) open; upstream observations `U-01`–`U-03` |
 
 ---
 
@@ -202,6 +203,7 @@ Where two controlled items conflict, precedence resolves strictly from top to bo
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.17` | `2026-11-27` | Errata | Registered `REC-A04-009` (`Open`) in Section 7, recording a measured retrospective Pre-Release Gate for `TPL-E01-01`/`03`/`04`, `TPL-E04-01`/`03`, `AST-D01-01`, and `PUB-01`–`PUB-03` per `A01 §5.8.1` and `A04 §5.1.2`, `§5.5.2`. | Hary Irfantri |
 | `v1.2.16` | `2026-11-27` | Errata | Synced `B01` (`v2.0.1`, `ERRATA`, Section 7 and `Governs` registration only) in Section 4; registered `AST-B01-05`–`AST-B01-08` (Primary Master Lockup in three colorways and Monochrome Black Symbol) and `AST-B01-09`–`AST-B01-16` (lossless `300 DPI` `PNG` derivatives), all pinned to `B01 (v2.0)` and `Approved`, in Section 5; and registered `REC-A04-008` (`Closed`) in Section 7 per `A01 §5.5.6`, `§5.8.1` and `A04 §5.1.2`, `§5.5.2`. | Hary Irfantri |
 | `v1.2.15` | `2026-11-27` | Errata | Synced `B02` (`v1.2.0`, `MINOR`, adding `Border Strong` `#64748B` for input and control boundaries) in Section 4 following archival of outgoing `B02_Color-System_v1.1.1.md` to `99_Archive/` per `A01 §5.5.4`, `§5.7.2`, and `§5.8.1`; noted the `B02 v1.2.0` input border sync on `AST-D01-01` and `TPL-E01-03` in Section 5; and refreshed `PUB-01` (`v2.0.3`), `PUB-02` (`v2.0.2`), and `PUB-03` (`v1.1.2`) build manifests in Section 6. | Hary Irfantri |
 | `v1.2.14` | `2026-11-27` | Errata | Synchronized `AST-D01-01` to `E01 (v2.2.0)`, updated its generated date, and refreshed `PUB-01` to `v2.0.2` with aligned build metadata. | Hary Irfantri |

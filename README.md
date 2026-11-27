@@ -8,7 +8,7 @@ The authoritative repository for the governance, visual, verbal, digital, and do
 
 ---
 
-> **Status:** Approved · **Register:** `v1.2.15` · **Last updated:** 2026-11-27
+> **Status:** Approved · **Register:** `v1.2.17` · **Last updated:** 2026-11-27
 
 ## Purpose
 
@@ -19,10 +19,10 @@ The repository currently contains:
 | Resource | Count | Purpose |
 | --- | ---: | --- |
 | Normative standards | 22 | Binding rules across active Series A–E |
-| Master assets | 5 | Canonical marks and design-system exports |
+| Master assets | 17 | Canonical marks and design-system exports |
 | Executable templates | 6 | Print and digital production masters |
 | Compiled publications | 3 | Human-facing reference and overview documents |
-| Governance records | 7 | Reviews, audits, and conformance evidence |
+| Governance records | 9 | Reviews, audits, and conformance evidence |
 
 ## Library index
 

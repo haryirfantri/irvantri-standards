@@ -243,14 +243,14 @@ components:
 | **Deployment Filename** | `DESIGN.md` *(for Superdesign, Google Stitch, external repositories, and coding agents)* |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v1.2.1` |
+| **Version** | `v1.2.2` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` |
+| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.4.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` |
 
-> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md (v1.2.22)`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
+> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-27` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md (v1.2.23)`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
 
 ---
 
@@ -481,17 +481,18 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers & Assets** | `Library-Index.md (v1.2.22)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
+| **Master Registers & Assets** | `Library-Index.md (v1.2.23)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)` | `Approved` |
 | **Series B — Visual Foundations** | `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)` | `Approved` |
-| **Series E — Documents & Print** | `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` | `Approved` |
+| **Series E — Documents & Print** | `E01 (v2.4.0)`, `E02 (v1.1.0)`, `E04 (v2.2.0)` | `Approved` |
 
 **Table 5.** Revision History — `PUB-03`
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.2` | `2026-11-27` | Errata | Synchronized the source standards and Table 4 to `E01 (v2.4.0)` and `Library-Index.md (v1.2.23)` (`REC-A04-013`). | Hary Irfantri |
 | `v1.2.1` | `2026-11-27` | Errata | Synchronized the source standards and Table 4 to `B01 (v2.1.0)`, `B05 (v1.2.0)`, and `Library-Index.md (v1.2.22)`, and added favicon and app icon guidance for `AST-B01-17`–`AST-B01-23` (`REC-A04-012`). | Hary Irfantri |
 | `v1.2.0` | `2026-11-27` | Minor | Regenerated the front-matter typography and Table 3 from `AST-D01-01`: replaced the unsourced `48px` `headline-display` with `slide-title` (`64px`), added `slide-heading` (`40px`), raised `body-slide` from `22px` to `24px` (`E04 (v2.2.0) §5.2.6`), snapped all line heights to the `1.2` / `1.5` tokens, and removed deck sizes below `24px` (`REC-A04-009` `F-02`); refreshed the source standards and Table 4 to `A04 (v1.2.0)`, `B02 (v1.3.0)`, `E01 (v2.3.0)`, `E04 (v2.2.0)`, and `Library-Index.md (v1.2.20)`. | Hary Irfantri |
 | `v1.1.3` | `2026-11-27` | Errata | Moved the secondary button border guidance from `{colors.border-default}` to `{colors.border-strong}` per `B02 (v1.2.0) §5.2.2` (`REC-A04-009` `F-01`), and refreshed Table 4 to `Library-Index.md (v1.2.18)`. | Hary Irfantri |

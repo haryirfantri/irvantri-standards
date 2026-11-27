@@ -3,14 +3,14 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `E01` |
-| **Version** | `v2.3.0` |
+| **Version** | `v2.4.0` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Next Review** | `2027-05-26` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
 | **Supersedes** | `None` |
-| **Governs** | `TPL-E01-01`, `TPL-E01-02`, `TPL-E01-03`, `TPL-E01-04` |
+| **Governs** | `TPL-E01-01`, `TPL-E01-03`, `TPL-E01-04` |
 
 ## 1. Purpose
 
@@ -34,7 +34,7 @@ This standard does not govern:
 ## 3. Normative References
 
 The following documents are referenced in this standard. For undated references, the latest approved edition applies.
-* `Library-Index.md` — Irvantri Standards Unified Operating Library Index (`v1.2.12` or later).
+* `Library-Index.md` — Irvantri Standards Unified Operating Library Index (`v1.2.23` or later).
 * `A01` — Document Control & Lifecycle.
 * `A02` — Taxonomy, Coding & File Naming.
 * `A03` — Entity & Brand Architecture.
@@ -80,6 +80,10 @@ For terms shared across the library, refer to `C02`, `A01`, `A02`, `B01`, `B03`,
 
 **5.3.3** Digital `TPL-E01` templates MAY be maintained as standalone interactive `HTML` authoring masters whose exported `PDF` output conforms to Section `5.4`. Non-printing authoring controls SHALL be suppressed in `@media print` output. Each `HTML` template SHALL reference licensed `06_Dependencies/Fonts/` packages (`A02 §5.5.4`, `B03 §5.1.3`) and embed `AST-B01` vector marks (`B01 §5.1.2`).
 
+**5.3.4** An `HTML` authoring master (`5.3.3`) MAY serve as both the Print and Digital edition required by Clause `5.3.2` when it provides a press export from the same layout geometry. The press export SHALL add a `3 mm` Bleed and `3 mm`-offset crop marks (`E03 §5.1.4`). The press export SHALL replace each `sRGB` fill with its fixed `B02 §5.1.1` or `§5.6.1` `CMYK` build without automated conversion (`E03 §5.3.1`). The press export SHALL deliver `PDF/X-4` with embedded `B03` fonts (`E03 §5.4.1`). A color without a fixed `B02` `CMYK` build SHALL stop the press export.
+
+> **Informative Note:** `TPL-E01-03` provides the press export in two steps. Its "Export press PDF" control saves a `230 mm × 317 mm` sheet in `sRGB`. Running `tools/press_export.py` on that sheet writes the `PDF/X-4` file and runs the library-checks preflight.
+
 ### 5.4 Digital Distribution PDF Profile
 **5.4.1** Formal documents and compiled publications (`PUB-`) distributed digitally as `PDF` files SHALL use exact A4 (`210 mm × 297 mm`) trim dimensions (`C04 §5.3.2`). Digital `PDF` files SHALL omit print bleed extensions, slug areas, and crop marks.
 
@@ -99,7 +103,7 @@ A formal document or layout template conforms to `E01` if and only if all of the
 | :--- | :--- | :--- |
 | `E01-C1` | Cover applies `B01` lockup and Clear Space rules, optional horizontal or `4 mm` vertical spine `24%` / `76%` accent bar (`5.1.1`), the `B03` Display Typeface and `en-US` text without codenames (`5.1.2`), and `vMAJOR.MINOR.ERRATA`, `C02` status, and `YYYY-MM-DD` metadata (`5.1.3`). | Cover & metadata audit |
 | `E01-C2` | Running headers and footers align to `4 mm` increments and meet contrast and size rules (`5.2.1`), preserve `A member of Irvantri Group` and `© [YYYY] Irvantri Standards Pte. Ltd. All rights reserved.` (`5.2.2`), and include page numbers without blank fields (`5.2.3`). | Header, footer & pagination check |
-| `E01-C3` | Formal layout templates are registered as `TPL-E01` in `Library-Index.md` and Section 7 pinned to `E01 (vMAJOR.MINOR)` (`5.3.1`), maintain paired Print and Digital editions (`5.3.2`), and any `HTML` authoring template suppresses controls in `@media print` while referencing `06_Dependencies/Fonts/` and vector `AST-B01` marks (`5.3.3`). | Template & register audit |
+| `E01-C3` | Formal layout templates are registered as `TPL-E01` in `Library-Index.md` and Section 7 pinned to `E01 (vMAJOR.MINOR)` (`5.3.1`), maintain paired Print and Digital editions (`5.3.2`), and any `HTML` authoring template suppresses controls in `@media print` while referencing `06_Dependencies/Fonts/` and vector `AST-B01` marks (`5.3.3`). Any `HTML` master serving as the Print edition provides a press export with `3 mm` Bleed, crop marks, fixed `B02` `CMYK` builds, and `PDF/X-4` output that stops on unmapped colors (`5.3.4`). | Template & register audit |
 | `E01-C4` | Digital distribution `PDF` files use exact A4 trim without bleed or crop marks (`5.4.1`), or A4 within `±0.5 mm` for `HTML` authoring master exports declaring an A4 `@page` size (`5.4.5`), apply exact `B02` `sRGB` palette values (`5.4.2`), and embed licensed `B03` fonts, selectable text, and vector `AST-B01` marks or `≥ 300 DPI` lossless `PNG` derivatives for Cloud-Native Office File exports (`5.4.3`, `5.4.4`). | Digital `PDF` preflight audit |
 
 Exceptions to any requirement in this standard require a formal, time-boxed waiver approved and logged in accordance with `A04`.
@@ -109,14 +113,15 @@ Exceptions to any requirement in this standard require a formal, time-boxed waiv
 | Code | Artifact | File | Pinned Version | Status | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `TPL-E01-01` | Header & Footer Layout Template (Print) | `03_Templates/TPL-E01-01_Header-and-Footer-Print.pdf` | `E01 (v2.0)` | `Approved` | Press-ready A4 running header and footer template (`E03` `PDF/X-4`, `FOGRA39` / `ISO` Coated v2 `CMYK`, `2 mm` full-bleed top `24%` / `76%` split accent bar with `3 mm` bleed and `3 mm`-offset `100%` K crop marks, `20 mm` L/R and `16 mm` T/B Safe Margins, rule-free header with `72 mm` curve-outlined `AST-B01-03` lockup and `C02` `Approved` badge, ultra-clean single-line footer with `[v1.0.0]` monospace version and `Page [X] of [Y]`, embedded `B03 (v2.0.0)` Noto fonts; pair with `E01` cover/colophon for `A03 §5.6.1` copyright; revised and Approved `2026-11-26`; footer raised one `4 mm` step (lowest ink `19.30 mm` above trim) and neutral and Success inks moved to `B02 (v1.3.0) §5.6.1` builds on `2026-11-27` per `REC-A04-009` (`F-03`, `U-01`)) |
-| `TPL-E01-02` | Formal Document Cover Template (Print) | `03_Templates/TPL-E01-02_Formal-Cover-Print.pdf` | `E01 (v2.0)` | `Approved` | Press-ready A4 cover template (`E03` `PDF/X-4`, `FOGRA39` / `ISO` Coated v2 `CMYK`, `3 mm` bleed and `3 mm`-offset `100%` K crop marks, `24 mm` inner / `20 mm` outer margins, embedded `B03 (v2.0.0)` Noto fonts, `80 mm` `AST-B01-03` lockup, and `4 mm` `76%` / `24%` vertical left-spine bar; recompiled and Approved `2026-11-26`; neutral and Success inks moved to `B02 (v1.3.0) §5.6.1` builds on `2026-11-27` per `REC-A04-009` (`U-01`)) |
-| `TPL-E01-03` | Formal Document Cover Template (Digital) | `03_Templates/TPL-E01-03_Formal-Cover-Digital.html` | `E01 (v2.2)` | `Approved` | Editable interactive `HTML`/`CSS` A4 cover authoring master (`5.3.3`, `5.4` `sRGB` `PDF` export, zero bleed/crop marks, `24 mm` inner / `20 mm` outer margins, `16 mm` T/B Safe Margins, `4 mm` `76%` / `24%` vertical left-spine bar, `80 mm` curve-outlined `AST-B01-03` lockup, local `06_Dependencies/Fonts/` `B03 (v2.0.0)` Noto fonts, non-printing browser authoring bar with `contenteditable` fields, `C02` status switcher, `E02` banners/waiver controls, live preflight, and `@media print` A4 `PDF` export; upgraded from static `PDF` and Approved `2026-11-27`; header comment re-aligned to `E01 v2.3.0`, `B02 v1.3.0`, and `A04 v1.2.0` on `2026-11-27`) |
+| `TPL-E01-02` | Formal Document Cover Template (Print) | `99_Archive/TPL-E01-02_Formal-Cover-Print_v2.0.0.pdf` | `E01 (v2.0)` | `Deprecated` | Static press-ready A4 cover `PDF` (`E03` `PDF/X-4`, `FOGRA39`, `3 mm` bleed, `80 mm` `AST-B01-03` lockup, `4 mm` vertical left-spine bar). Failed `E01-C3` (`5.3.2`) against `TPL-E01-03` geometry and offered no fillable fields. Superseded by the `TPL-E01-03` press export (`5.3.4`) and moved to `99_Archive/` on `2026-11-27` per `REC-A04-013` (`A01 §5.7.3`). Code locked against reuse (`A02`). |
+| `TPL-E01-03` | Formal Document Cover Template | `03_Templates/TPL-E01-03_Formal-Cover-Digital.html` | `E01 (v2.4)` | `Approved` | Editable interactive `HTML`/`CSS` A4 cover authoring master (`5.3.3`, `5.4` `sRGB` `PDF` export, zero bleed/crop marks, `24 mm` inner / `20 mm` outer margins, `16 mm` T/B Safe Margins, `4 mm` `76%` / `24%` vertical left-spine bar, `80 mm` curve-outlined `AST-B01-03` lockup, local `06_Dependencies/Fonts/` `B03 (v2.0.0)` Noto fonts, non-printing browser authoring bar with `contenteditable` fields, `C02` status switcher, `E02` banners/waiver controls, live preflight, and `@media print` A4 `PDF` export; upgraded from static `PDF` and Approved `2026-11-27`; header comment re-aligned to `E01 v2.3.0`, `B02 v1.3.0`, and `A04 v1.2.0` on `2026-11-27`; press layout export (`230 mm × 317 mm` sheet, `3 mm` Bleed, `100%` K crop marks offset `3 mm`) converted to `PDF/X-4` by `tools/press_export.py`, serving as both Print and Digital edition (`5.3.4`), re-pinned to `E01 (v2.4)` on `2026-11-27` per `REC-A04-013`) |
 | `TPL-E01-04` | Header & Footer Layout Template (Digital) | `03_Templates/TPL-E01-04_Header-and-Footer-Digital.pdf` | `E01 (v2.0)` | `Approved` | Digital A4 running header and footer template (`5.4` `sRGB`, zero bleed/crop marks, `2 mm` top-edge `24%` / `76%` split accent bar, `20 mm` L/R and `16 mm` T/B Safe Margins, rule-free header with `72 mm` curve-outlined `AST-B01-03` lockup and `C02` `Approved` badge, ultra-clean single-line footer with `[v1.0.0]` monospace version and `Page [X] of [Y]`, embedded `B03 (v2.0.0)` Noto fonts, selectable live text; pair with `E01` cover/colophon for `A03 §5.6.1` copyright; revised and Approved `2026-11-26`; footer raised one `4 mm` step (lowest ink `19.22 mm` above trim) on `2026-11-27` per `REC-A04-009` (`F-03`)) |
 
 ## 8. Revision History
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.4.0` | `2026-11-27` | Minor | Added `5.3.4` permitting an `HTML` authoring master with a press export (`3 mm` Bleed, crop marks, fixed `B02` `CMYK` builds, `PDF/X-4`) to serve as both Print and Digital edition, and extended `E01-C3`; re-pinned `TPL-E01-03` to `E01 (v2.4)` with its press layout export; transitioned `TPL-E01-02` to `Deprecated` (superseded by `TPL-E01-03`) and removed it from `Governs`; updated the `Library-Index.md` reference floor (`v1.2.23`) in Section 3, per `REC-A04-013`. | Hary Irfantri |
 | `v2.3.0` | `2026-11-27` | Minor | Added `5.4.5` `±0.5 mm` A4 trim tolerance for digital `PDF` exports from `HTML` authoring masters declaring an A4 `@page` size, and extended `E01-C4`, per `REC-A04-009` (`U-02`); updated Section 7 notes for `TPL-E01-01`–`TPL-E01-04` after the footer move and `B02 (v1.3.0)` ink sync (`F-03`, `U-01`). | Hary Irfantri |
 | `v2.2.0` | `2026-11-27` | Minor | Added `5.3.3` permitting standalone interactive `HTML` authoring masters for digital `TPL-E01` templates with `@media print` control suppression, local `06_Dependencies/Fonts/` references, and embedded `AST-B01` vector marks; aligned Sections 1, 2.1, and `E01-C3`; promoted `TPL-E01-03` (`03_Templates/TPL-E01-03_Formal-Cover-Digital.html`, pinned to `E01 (v2.2)`) in Section 7 following archival of outgoing `TPL-E01-03_Formal-Cover-Digital_v2.0.0.pdf` and `E01_Formal-Document-Layout_v2.1.1.md` to `99_Archive/`; and updated the `Library-Index.md` reference floor (`v1.2.12`) in Section 3. | Hary Irfantri |
 | `v2.1.1` | `2026-11-26` | Errata | Removed cancelled `Planned` Google Docs row `TPL-E01-05` from `Governs` and Section 7 following Approver cancellation of the Google Workspace template migration (`A02 §5.3.1`), and updated the `Library-Index.md` reference floor (`v1.2.9`) in Section 3 per `A01 §5.5.7`. | Hary Irfantri |

@@ -65,6 +65,6 @@ None. Zero non-conformities were found.
 ## 6. Closure Verification (`A04 (v1.2.0) §5.2.3`, `§5.1.7`)
 
 * **Gate Verdict:** `Pass`. The items in Section 1 are released as listed.
-* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues on this branch.
+* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues. Continuous integration (`CI`) run `46067723817` measured commit `06d9f43`, which holds every gated change, and passed.
 * **Approver Sign-Off:** The Approver requested both follow-ups on `2026-11-27`. Merging the release pull request records sign-off and puts the release into effect.
 * **Approver:** Hary Irfantri

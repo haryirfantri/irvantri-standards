@@ -6,12 +6,12 @@
 | **Title** | Irvantri Standards Company Overview |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v2.0.5` |
+| **Version** | `v2.0.6` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-27` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Governing Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C03 (v1.0.1)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `D05 (v1.1.1)`, `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E03 (v1.1.0)`, `E04 (v2.2.0)` |
+| **Governing Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C03 (v1.0.1)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `D05 (v1.1.1)`, `E01 (v2.4.0)`, `E02 (v1.1.0)`, `E03 (v1.1.0)`, `E04 (v2.2.0)` |
 
 ---
 
@@ -144,13 +144,13 @@ Synthesized from the **Brand and Design System Guide** (`PUB-01`) and active Ser
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers, Assets & Templates** | `Library-Index.md (v1.2.22)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`), `TPL-E01-01`, `TPL-E01-02`, `TPL-E01-04` (`E01 (v2.0)`), `TPL-E01-03` (`E01 (v2.2)`) | `Approved` |
+| **Master Registers, Assets & Templates** | `Library-Index.md (v1.2.23)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`), `TPL-E01-01`, `TPL-E01-04` (`E01 (v2.0)`), `TPL-E01-03` (`E01 (v2.4)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)` | `Approved` |
 | **Series B — Visual Foundations** | `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C03 (v1.0.1)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `D05 (v1.1.1)` | `Approved` |
-| **Series E — Documents & Print** | `E01 (v2.3.0)`, `E02 (v1.1.0)`, `E03 (v1.1.0)`, `E04 (v2.2.0)` | `Approved` |
-| **Compiled Publications** | `PUB-01 (v2.0.6)` (`04_Publications/PUB-01_Brand-and-Design-System-Guide.html`) | `Approved` |
+| **Series E — Documents & Print** | `E01 (v2.4.0)`, `E02 (v1.1.0)`, `E03 (v1.1.0)`, `E04 (v2.2.0)` | `Approved` |
+| **Compiled Publications** | `PUB-01 (v2.0.7)` (`04_Publications/PUB-01_Brand-and-Design-System-Guide.html`) | `Approved` |
 
 ### 5.2 Revision History (`E02 §5.1.3`)
 
@@ -158,6 +158,7 @@ Synthesized from the **Brand and Design System Guide** (`PUB-01`) and active Ser
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.0.6` | `2026-11-27` | Errata | Synchronized the governing standards and Table 6 build manifest to `E01 (v2.4.0)`, `PUB-01 (v2.0.7)`, and `Library-Index.md (v1.2.23)`, re-pinned `TPL-E01-03` to `E01 (v2.4)`, and removed the `Deprecated` `TPL-E01-02` from Table 6 (`REC-A04-013`). | Hary Irfantri |
 | `v2.0.5` | `2026-11-27` | Errata | Synchronized the governing standards and Table 6 build manifest to `B01 (v2.1.0)`, `B05 (v1.2.0)`, `PUB-01 (v2.0.6)`, and `Library-Index.md (v1.2.22)`, and added the Small-Format Symbol and App Icon Tile to the Section 4.3 marks summary (`REC-A04-012`). | Hary Irfantri |
 | `v2.0.4` | `2026-11-27` | Errata | Synchronized the governing standards and Table 6 build manifest to `A04 (v1.2.0)`, `B02 (v1.3.0)`, `E01 (v2.3.0)`, `E03 (v1.1.0)`, `E04 (v2.2.0)`, `PUB-01 (v2.0.5)`, and `Library-Index.md (v1.2.20)`. | Hary Irfantri |
 | `v2.0.3` | `2026-11-27` | Errata | Corrected the Table 6 template pins to `TPL-E01-01`, `TPL-E01-02`, and `TPL-E01-04` at `E01 (v2.0)` and `TPL-E01-03` at `E01 (v2.2)` (`REC-A04-009` `F-05`), and synchronized Table 6 to `PUB-01 (v2.0.4)` and `Library-Index.md (v1.2.18)`. | Hary Irfantri |

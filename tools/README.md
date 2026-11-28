@@ -23,11 +23,28 @@ The GitHub Actions workflow `.github/workflows/library-checks.yml` runs the same
 | `contrast` | WCAG 2.2 ratios for the pairings in `contrast-pairs.json`, plus ratios quoted in library text checked against the maths | `B02-C5`, `D01-C2`, `D04-C1`, `D04-C2` |
 | `links` | Relative links in Markdown, HTML and SVG, and backticked library paths in the register and manifest (revision history skipped) | `A02-C5`, `A02-C7`, `E01-C3` |
 | `pdf-preflight` | Print: `PDF/X-4` in Info and XMP, one `FOGRA39` CMYK OutputIntent, A4 trim, 3 mm bleed, embedded fonts, CMYK-only operators on `B02` builds, total ink ≤ 300%, no undefined font resources. Digital: exact A4, no bleed, embedded fonts, `sRGB` values on the `B02` palette | `E03-C1`, `E03-C3`, `E03-C4`, `E01-C4` |
+| `press-export` | Runs `press_export.py` on each `fixtures/*press-layout.pdf` sample and preflights the `PDF/X-4` result: A4 trim, 3 mm bleed, `FOGRA39`, only `B02` CMYK builds, total ink ≤ 300%, embedded fonts | `E01-C3`, `E03-C1`, `E03-C3`, `E03-C4` |
 | `dependencies` | SHA-256 and byte size of every font and ICC profile against the manifest; no unlisted binaries; each font folder carries the full OFL-1.1 text with a copyright line | `B03-C2`, `A02-C10`, `E03-C4` |
 
 The PDF check is a structural preflight. It is not a certified `PDF/X` validation, so a press proof or a commercial preflight tool remains the final word for print (`E03 §5.4.3`).
 
 Checks that need a person (layout, tone, visual misuse) are not covered and still need review against each standard's Section 6.
+
+## Press export (`E01 §5.3.4`)
+
+An `HTML` authoring master such as `TPL-E01-03` makes press files in two steps:
+
+1. Fill in the cover, set it to `Approved`, and press **Export press PDF**. Save the result as a PDF from the browser print dialog with margins set to none. You get a `230 × 317 mm` sheet in sRGB with the A4 trim, a 3 mm bleed, and crop marks.
+2. Run the converter on that file:
+
+```sh
+pip install -r tools/requirements.txt
+python3 tools/press_export.py cover-press.pdf --title "Document title"
+```
+
+It writes `cover-press_PDFX4.pdf`. Each sRGB colour is swapped for its fixed `B02 §5.1.1` or `§5.6.1` CMYK build from a lookup table, never an ICC conversion. The tool sets the trim and bleed boxes, attaches the ISO Coated v2 / `FOGRA39` output intent from `06_Dependencies/Color-Profiles/`, writes `PDF/X-4` metadata, and runs the same preflight as `pdf-preflight`. It stops with an error on any colour that has no fixed build, on raster images, and on a page that is not the press sheet. An Owner colour proof is still needed before any press run (`E03 §5.4.3`).
+
+The sample in `fixtures/` is a blank `TPL-E01-03` press layout saved by Chromium. If you change the cover layout, save a fresh sample so the `press-export` check keeps measuring the current layout.
 
 ## Changing the rules
 

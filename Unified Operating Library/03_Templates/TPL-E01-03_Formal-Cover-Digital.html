@@ -6,11 +6,14 @@
 <title>TPL-E01-03 — Formal Document Cover Studio | Irvantri Standards</title>
 <!--
   Controlled Artifact: TPL-E01-03 (03_Templates/TPL-E01-03_Formal-Cover-Digital.html)
-  Governing Standard:  E01 (v2.3.0) — Formal Document Layout
+  Governing Standard:  E01 (v2.4.0) — Formal Document Layout
   Aligned Standards:   A01 (v1.2.0), A02 (v1.3.0), A03 (v1.1.1), A04 (v1.2.0),
-                       B01 (v2.0.0), B02 (v1.3.0), B03 (v2.0.0), B04 (v1.2.0), B05 (v1.1.0),
+                       B01 (v2.1.0), B02 (v1.3.0), B03 (v2.0.0), B04 (v1.2.0), B05 (v1.2.0),
                        C01 (v1.1.1), C02 (v1.1.0), C03 (v1.0.1), C04 (v1.0.1),
-                       D01 (v1.0.3), D02 (v2.0.1), D03 (v2.0.0), D04 (v1.2.1), E02 (v1.1.0)
+                       D01 (v1.0.3), D02 (v2.0.1), D03 (v2.0.0), D04 (v1.2.1), E02 (v1.1.0),
+                       E03 (v1.1.0)
+  Editions:            Digital: "Export A4 PDF" (E01 §5.4). Print: "Export press PDF", then
+                       tools/press_export.py for PDF/X-4 (E01 §5.3.4, E03 §5.4.1).
   Master Assets:       AST-B01-01, AST-B01-03 (B01 v2.0), AST-D01-01 (D01 v1.0)
   Dependencies:        06_Dependencies/Fonts/ (Dependencies-Manifest.md v2.0.0, SIL OFL-1.1)
 -->
@@ -991,6 +994,26 @@
     }
     [data-f] { outline: 0 !important; background: transparent !important; }
   }
+
+  /* Press Layout Export (E01 §5.3.4, E03 §5.1.4): A4 trim placed 10 mm inside a
+     230 mm x 317 mm sheet, 3 mm spine Bleed, and 100% K crop marks offset 3 mm.
+     The sRGB output is converted to PDF/X-4 by tools/press_export.py. */
+  .press-marks { display: none; }
+  @media print {
+    html.press, html.press body { width: 230mm; height: 317mm; }
+    html.press .app, html.press .stage, html.press .app[data-view] .stage,
+    html.press .viewport, html.press .frame {
+      width: 230mm !important;
+      height: 317mm !important;
+    }
+    html.press .sheet { top: 10mm !important; left: 10mm !important; }
+    html.press .press-marks { display: block; position: absolute; inset: 0; pointer-events: none; }
+    .press-marks i { position: absolute; display: block; }
+    .press-marks .bleed-deep { left: 7mm; top: 7mm; width: 7mm; height: 228.72mm; background: var(--is-color-brand-deep); }
+    .press-marks .bleed-accent { left: 7mm; top: 235.72mm; width: 7mm; height: 74.28mm; background: var(--is-color-brand-accent); }
+    .press-marks .crop-h { width: 7mm; height: 0.25pt; margin-top: -0.125pt; background: var(--is-color-text-mono); }
+    .press-marks .crop-v { width: 0.25pt; height: 7mm; margin-left: -0.125pt; background: var(--is-color-text-mono); }
+  }
 </style>
 </head>
 <body>
@@ -1010,6 +1033,7 @@
     <div class="spacer"></div>
     <button class="btn" id="reset" type="button">Reset fields</button>
     <button class="btn btn-line" id="save" type="button">Save HTML</button>
+    <button class="btn btn-line" id="pressExport" type="button" title="A4 with 3 mm bleed and crop marks for a print shop. Run tools/press_export.py on the saved PDF to make the PDF/X-4 file.">Export press PDF</button>
     <button class="btn btn-main" id="export" type="button">Export A4 PDF</button>
   </header>
 
@@ -1108,6 +1132,13 @@
             </div>
           </div>
         </article>
+        <div class="press-marks" aria-hidden="true">
+          <i class="bleed-deep"></i><i class="bleed-accent"></i>
+          <i class="crop-h" style="left:0;top:10mm"></i><i class="crop-v" style="left:10mm;top:0"></i>
+          <i class="crop-h" style="left:223mm;top:10mm"></i><i class="crop-v" style="left:220mm;top:0"></i>
+          <i class="crop-h" style="left:0;top:307mm"></i><i class="crop-v" style="left:10mm;top:310mm"></i>
+          <i class="crop-h" style="left:223mm;top:307mm"></i><i class="crop-v" style="left:220mm;top:310mm"></i>
+        </div>
       </div>
     </div>
     <div class="stagebar">
@@ -1128,10 +1159,10 @@
 
 <dialog id="exportDlg" aria-labelledby="exTitle">
   <h2 id="exTitle">This cover isn't ready</h2>
-  <p>Fix these items first, or export the PDF as it is.</p>
+  <p id="exText">Fix these items first, or export the PDF as it is.</p>
   <ul class="dlg-list" id="exList"></ul>
   <form method="dialog" class="dlg-actions">
-    <button class="btn btn-line" value="anyway">Export anyway</button>
+    <button class="btn btn-line" id="exAnyway" value="anyway">Export anyway</button>
     <button class="btn btn-main" value="fix" autofocus>Fix issues</button>
   </form>
 </dialog>
@@ -1383,17 +1414,52 @@ $('.skip').addEventListener('click', event => {
 });
 
 function print_(){ window.print(); }
+let dlgList = [];
+function showExportDlg(list, press){
+  dlgList = list;
+  $('#exTitle').textContent = press ? "This cover isn't ready for press" : "This cover isn't ready";
+  $('#exText').textContent = press
+    ? 'A press file needs an Approved cover with every field filled in (E03 §5.4.2). Fix these items first.'
+    : 'Fix these items first, or export the PDF as it is.';
+  $('#exAnyway').hidden = press;
+  $('#exList').replaceChildren(...list.map(i => buildIssueRow(i, false)));
+  $('#exportDlg').returnValue = '';
+  $('#exportDlg').showModal();
+}
 $('#export').addEventListener('click', () => {
   keys.forEach(k => { if (val(k)) touched.add(k); });
   check();
   if (!issues.length) return print_();
-  $('#exList').replaceChildren(...issues.map(i => buildIssueRow(i, false)));
-  $('#exportDlg').returnValue = '';
-  $('#exportDlg').showModal();
+  showExportDlg(issues, false);
+});
+
+/* Press layout export (E01 §5.3.4): A4 + 3 mm bleed + crop marks on a 230 x 317 mm sheet */
+function printPress(){
+  const page = document.createElement('style');
+  page.id = 'press-page';
+  page.textContent = '@page { size: 230mm 317mm; margin: 0; }';
+  document.head.append(page);
+  document.documentElement.classList.add('press');
+  const done = () => {
+    page.remove();
+    document.documentElement.classList.remove('press');
+    window.removeEventListener('afterprint', done);
+  };
+  window.addEventListener('afterprint', done);
+  window.print();
+}
+$('#pressExport').addEventListener('click', () => {
+  keys.forEach(k => { if (val(k)) touched.add(k); });
+  check();
+  const list = issues.slice();
+  if (state.status !== 'Approved')
+    list.unshift({k:'status', level:'error', text:'Press files need Approved status. Draft and review covers stay digital (E03 §5.4.2).'});
+  if (!list.length) return printPress();
+  showExportDlg(list, true);
 });
 $('#exportDlg').addEventListener('close', e => {
   if (e.target.returnValue === 'anyway') setTimeout(print_, 50);
-  if (e.target.returnValue === 'fix' && issues[0]) jump(issues[0].k);
+  if (e.target.returnValue === 'fix' && dlgList[0]) jump(dlgList[0].k);
 });
 $('#reset').addEventListener('click', () => { $('#resetDlg').returnValue = ''; $('#resetDlg').showModal(); });
 $('#resetDlg').addEventListener('close', e => {

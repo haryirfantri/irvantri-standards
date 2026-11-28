@@ -440,7 +440,8 @@ def check_links(rep: Report):
     c["summary"] = f"{n} relative references resolved"
 
 
-def pdf_checks(rep: Report, pal: dict):
+def pdf_checks(rep: Report, pal: dict, files: list[tuple[Path, bool]] | None = None):
+    """Preflight the registered template PDFs, or the given (path, is_print) pairs."""
     c = rep.check("pdf-preflight", "Structural PDF preflight (print PDF/X-4 and digital A4)",
                   ["E03-C1", "E03-C3", "E03-C4", "E01-C4"])
     try:
@@ -458,10 +459,12 @@ def pdf_checks(rep: Report, pal: dict):
         rgb_ok[tuple(int(h[i:i + 2], 16) for i in (1, 3, 5))] = h
     icc = LIB / "06_Dependencies/Color-Profiles/ISOcoated_v2_eci.icc"
 
-    for p in sorted((LIB / "03_Templates").glob("*.pdf")):
-        name = lib_rel(p)
+    if files is None:
+        files = [(p, "-Print" in p.stem) for p in sorted((LIB / "03_Templates").glob("*.pdf"))]
+    for p, is_print in files:
+        p = Path(p).resolve()
+        name = lib_rel(p) if p.is_relative_to(LIB) else p.name
         code = p.name.split("_")[0]
-        is_print = "-Print" in p.stem
         r = pypdf.PdfReader(str(p))
         root = r.trailer["/Root"]
         info = r.metadata or {}
@@ -608,6 +611,36 @@ def pdf_checks(rep: Report, pal: dict):
     c["summary"] = "structural preflight only; not a certified PDF/X validation"
 
 
+def check_press_export(rep: Report):
+    """Run tools/press_export.py on each committed press layout sample (E01 §5.3.4)."""
+    import tempfile
+    c = rep.check("press-export", "Press export of HTML authoring masters to PDF/X-4",
+                  ["E01-C3", "E03-C1", "E03-C3", "E03-C4"])
+    samples = sorted((TOOLS / "fixtures").glob("*press-layout.pdf"))
+    if not samples:
+        rep.fail(c, "press-export.no-sample", "no press layout sample in tools/fixtures/.")
+        return
+    try:
+        import press_export
+    except ImportError as e:
+        rep.fail(c, "press-export.import", f"tools/press_export.py could not be loaded: {e}")
+        return
+    for src in samples:
+        code = src.name.split("_")[0]
+        with tempfile.TemporaryDirectory() as tmp:
+            try:
+                res = press_export.press_export(src, Path(tmp) / "out.pdf", None)
+            except press_export.PressError as e:
+                rep.fail(c, f"press-export.stopped:{code}", f"{code}: press export stopped: {e}")
+                continue
+        pf = res["preflight"]
+        rep.measure(c, sample=rel(src), geometry=pf.get("geometry"), output_condition=pf.get("output_condition"),
+                    cmyk_values=pf.get("cmyk_values"), max_total_ink_pct=pf.get("max_total_ink_pct"),
+                    fonts=pf.get("fonts"), pdf_version=pf.get("pdf_version"))
+        for f in res["findings"]:
+            rep.fail(c, f"press-export.{f['id'].split('.', 1)[1]}", f"press export of {rel(src)}: {f['message']}")
+
+
 def check_dependencies(rep: Report):
     c = rep.check("dependencies", "Font and ICC checksums match the Dependencies Manifest; licence text present",
                   ["B03-C2", "A02-C10", "E03-C4"])
@@ -738,6 +771,7 @@ def main() -> int:
     check_contrast(rep, pal, toks)
     check_links(rep)
     pdf_checks(rep, pal)
+    check_press_export(rep)
     check_dependencies(rep)
     return write_reports(rep, Path(args.report_dir), pal)
 

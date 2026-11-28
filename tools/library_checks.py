@@ -688,6 +688,111 @@ def check_dependencies(rep: Report):
     c["summary"] = f"{len(listed)} checksummed files compared"
 
 
+# --------------------------------------------------------------------------- HTML authoring masters (E01 §5.5)
+
+PROFILE_FROM = {"E01": (2, 5), "E04": (2, 3)}  # first versions carrying the HTML Authoring Master Profile
+REMOTE_RE = re.compile(r"""(?:<(?:link|script|img|iframe|source|video|audio)\b[^>]*\b(?:href|src)\s*=\s*["']\s*(?:https?:)?//)"""
+                       r"""|(?:url\(\s*["']?\s*(?:https?:)?//)|(?:@import\s+(?:url\()?\s*["']?\s*(?:https?:)?//)""", re.I)
+FIELD_RE = re.compile(r"<(textarea|input|[a-z]+[^>]*\bcontenteditable(?:\s*=\s*[\"']?(?:true|plaintext-only)[\"']?)?)\b[^>]*>", re.I)
+
+
+def html_master_pins() -> list[tuple[str, Path, str, bool]]:
+    """(code, file, pin, profile applies) for every HTML template in the register."""
+    idx = (LIB / "Library-Index.md").read_text(encoding="utf-8")
+    out = []
+    for cells in table_rows(idx):
+        if len(cells) < 6 or not ticks(cells[0]).startswith("TPL-"):
+            continue
+        path, pin, status = ticks(cells[2]), ticks(cells[4]), ticks(cells[5])
+        if not path.endswith(".html") or status in ("Planned", "Deprecated"):
+            continue
+        m = re.fullmatch(r"([A-H]\d{2}) \(v(\d+)\.(\d+)\)", pin)
+        applies = bool(m and m.group(1) in PROFILE_FROM and (int(m.group(2)), int(m.group(3))) >= PROFILE_FROM[m.group(1)])
+        out.append((ticks(cells[0]), LIB / path, pin, applies))
+    return out
+
+
+def measure_html_master(text: str, manifest_sha: set[str]) -> dict:
+    """Static measurements for E01 §5.5.3, §5.5.4, §5.5.6–§5.5.9. Behaviour (overflow, keyboard) needs a browser."""
+    import base64
+    styles = "\n".join(re.findall(r"<style\b[^>]*>(.*?)</style>", text, flags=re.S | re.I))
+    styles = re.sub(r"/\*.*?\*/", "", styles, flags=re.S)
+    literal = []
+    for m in re.finditer(r"(?<![\w-])([a-z-]+)\s*:\s*([^;{}]+)", styles):
+        prop, val = m.group(1), m.group(2)
+        if prop.startswith("--") or styles[max(0, m.start() - 2):m.start()].endswith("--"):
+            continue
+        if HEX_RE.search(val) or RGB_FN_RE.search(val):
+            literal.append(f"{prop}: {val.strip()[:40]}")
+    for m in re.finditer(r"""\bstyle\s*=\s*["']([^"']*)["']""", text):
+        if HEX_RE.search(m.group(1)) or RGB_FN_RE.search(m.group(1)):
+            literal.append(f"style=\"{m.group(1)[:40]}\"")
+    remote = sorted({m.group(0)[:80] for m in REMOTE_RE.finditer(text)})
+    fonts, font_fail = [], []
+    for m in re.finditer(r"@font-face\s*{(.*?)}", styles, flags=re.S):
+        src = re.search(r"""url\(\s*["']?([^"')]+)""", m.group(1))
+        ref = src.group(1) if src else ""
+        if ref.startswith("data:"):
+            sha = hashlib.sha256(base64.b64decode(ref.split(",", 1)[1])).hexdigest()
+            fonts.append({"embedded": True, "sha256": sha, "in_manifest": sha in manifest_sha})
+            if sha not in manifest_sha:
+                font_fail.append(f"embedded font {sha[:12]} is not byte-identical to a 06_Dependencies file")
+        else:
+            fonts.append({"embedded": False, "ref": ref[:80]})
+            font_fail.append(f"font not embedded: {ref[:60]}")
+    fields = [f.group(0) for f in FIELD_RE.finditer(text)
+              if not re.search(r"""type\s*=\s*["']?(?:button|submit|reset|checkbox|radio|hidden|file|color|range|date)""", f.group(0), re.I)]
+    unlimited = [f[:60] for f in fields if not re.search(r"\b(?:maxlength|data-max(?:length|chars)?)\s*=", f, re.I)]
+    words = re.sub(r"<[^>]+>", " ", text)
+    press = bool(re.search(r"Export press PDF", words))
+    return {
+        "literal_colors": literal,                                                  # 5.5.3
+        "fields": len(fields), "fields_without_limit": unlimited,                  # 5.5.4
+        "save_filled_copy": bool(re.search(r"Save filled copy", words, re.I)),      # 5.5.6
+        "unsaved_warning": "beforeunload" in text,                                 # 5.5.6
+        "press_export": press,
+        "press_preview": bool(re.search(r"Press preview", words, re.I)) if press else None,  # 5.5.7
+        "remote_requests": remote, "fonts": fonts, "font_failures": font_fail,     # 5.5.8
+        "aria_live": len(re.findall(r"aria-live\s*=", text)) + len(re.findall(r"""role\s*=\s*["'](?:status|alert)["']""", text)),  # 5.5.9
+    }
+
+
+def check_html_masters(rep: Report):
+    c = rep.check("html-master", "HTML authoring master profile: tokens, field limits, saving, press preview, offline single file",
+                  ["E01-C5", "E04-C4", "D04-C3"])
+    man = (LIB / "06_Dependencies/Dependencies-Manifest.md").read_text(encoding="utf-8")
+    manifest_sha = set(re.findall(r"`([0-9a-f]{64})`", man))
+    n_applies = 0
+    for code, path, pin, applies in html_master_pins():
+        if not path.exists():
+            continue
+        m = measure_html_master(path.read_text(encoding="utf-8"), manifest_sha)
+        rep.measure(c, code=code, file=lib_rel(path), pin=pin, profile_applies=applies, **m)
+        if not applies:
+            continue  # pinned before the profile existed (E01 §5.5.1): measured, never failed
+        n_applies += 1
+        problems = []
+        if m["literal_colors"]:
+            problems.append(("literal-color", f"literal colour values in style rules (E01 §5.5.3): {m['literal_colors'][:3]}"))
+        if m["fields_without_limit"]:
+            problems.append(("field-limit", f"{len(m['fields_without_limit'])} field(s) without a declared character limit (E01 §5.5.4)"))
+        if not m["save_filled_copy"]:
+            problems.append(("save", "no `Save filled copy` control (E01 §5.5.6)"))
+        if not m["unsaved_warning"]:
+            problems.append(("unsaved-warning", "no unsaved-changes warning (E01 §5.5.6)"))
+        if m["press_export"] and not m["press_preview"]:
+            problems.append(("press-preview", "press export without a `Press preview` control (E01 §5.5.7)"))
+        if m["remote_requests"]:
+            problems.append(("remote", f"requests remote resources (E01 §5.5.8): {m['remote_requests'][:3]}"))
+        if m["font_failures"]:
+            problems.append(("fonts", f"fonts not embedded byte-identical (E01 §5.5.8): {m['font_failures'][:3]}"))
+        if not m["aria_live"]:
+            problems.append(("live-region", "no ARIA Live Region for messages (E01 §5.5.9)"))
+        for pid, msg in problems:
+            rep.fail(c, f"html-master.{pid}:{code}", f"{code}: {msg}.")
+    c["summary"] = f"{len(html_master_pins())} HTML templates measured; {n_applies} pinned to a profile version and enforced"
+
+
 # --------------------------------------------------------------------------- report
 
 def git(*args: str) -> str:
@@ -772,6 +877,7 @@ def main() -> int:
     check_links(rep)
     pdf_checks(rep, pal)
     check_press_export(rep)
+    check_html_masters(rep)
     check_dependencies(rep)
     return write_reports(rep, Path(args.report_dir), pal)
 

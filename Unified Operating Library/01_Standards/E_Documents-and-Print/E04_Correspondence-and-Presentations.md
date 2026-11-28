@@ -3,9 +3,9 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `E04` |
-| **Version** | `v2.2.0` |
+| **Version** | `v2.3.0` |
 | **Status** | `Approved` |
-| **Effective Date** | `2026-11-27` |
+| **Effective Date** | `2026-11-28` |
 | **Next Review** | `2027-05-26` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
@@ -37,7 +37,7 @@ This standard does not govern:
 ## 3. Normative References
 
 The following documents are referenced in this standard. For undated references, the latest approved edition applies.
-* `Library-Index.md` — Irvantri Standards Unified Operating Library Index (`v1.2.9` or later).
+* `Library-Index.md` — Irvantri Standards Unified Operating Library Index (`v1.2.24` or later).
 * `A01` — Document Control & Lifecycle.
 * `A02` — Taxonomy, Coding & File Naming.
 * `A03` — Entity & Brand Architecture.
@@ -50,6 +50,8 @@ The following documents are referenced in this standard. For undated references,
 * `C02` — Terminology & Controlled Vocabulary.
 * `C04` — Data, Dates & Citation Formatting.
 * `D01` — Design Tokens & Architecture.
+* `D03` — Interface Components & Patterns.
+* `D04` — Accessibility & Usability.
 * `E01` — Formal Document Layout.
 * `E02` — Versioning & Draft Marking.
 * `E03` — Print & Production Specifications.
@@ -121,6 +123,12 @@ A member of Irvantri Group
 
 **5.4.2** External proposals and correspondence containing standardized company descriptions SHALL reproduce an approved `C01 §5.5.1` boilerplate verbatim without altering corporate names (`A03 §5.2.1`).
 
+**5.4.3** Page-based letterhead and memorandum templates (`TPL-E04`) created or revised on or after `2026-11-28` SHALL meet the `HTML` Authoring Master Profile in `E01 §5.5`.
+
+**5.4.4** A slide deck master maintained in `HTML` SHALL meet `E01 §5.5.3`, `§5.5.4`, `§5.5.6`, `§5.5.8`, and `§5.5.9`. It SHALL apply `E01 §5.5.5` to the `1920 px × 1080 px` slide canvas (`5.2.1`) in place of the A4 trim.
+
+**5.4.5** Where users edit slides or workbooks in an office tool, a slide deck master or workbook template MAY also exist as a native or Cloud-Native Office File (`A02 §5.4.6`). It SHALL hold its own `TPL-E04` code. A slide file SHALL apply the `5.2.1` geometry and the `5.2.6` type scale. A workbook template SHALL meet Section `5.5`.
+
 ### 5.5 Operational Spreadsheets & Workbooks
 **5.5.1** Manually authored operational workbooks SHALL include a leading `Overview` tab recording title, version (`vMAJOR.MINOR.ERRATA`), `C02` status, Owner, and last updated date (`YYYY-MM-DD`) (`A01 §5.5.1`, `C04 §5.1.1`). The `Overview` tab SHALL display `Irvantri Standards Pte. Ltd.` and `A member of Irvantri Group` (`A03 §5.2.3`, `§5.3.3`).
 
@@ -139,7 +147,7 @@ A letterhead, memorandum, presentation deck, operational workbook, email signatu
 | `E04-C1` | Letterheads and memoranda use A4 / `4 mm` geometry (`5.1.1`), `B01` lockup within `16 mm` Safe Margins (`5.1.2`), required `A03`/`ISO` 8601 attribution (`5.1.3`), formal `en-US` copy without contractions or parent-entity binding (`5.1.4`), `120 g/m²` archival stock when printed (`5.1.5`), and `E01 §5.4` digital `PDF` rules when distributed electronically (`5.1.6`). | Correspondence & channel audit |
 | `E04-C2` | Slide decks use `16:9` (`1920 px × 1080 px`) aligned to `4 px` (`5.2.1`), display `B01`/`A03` cover and closing attribution (`5.2.2`), use the `B03` Display Typeface and `16 pt` minimum Text Typeface meeting `WCAG` 2.2 Level AA contrast (`5.2.3`), omit external codenames (`5.2.4`), mark non-Approved review decks (`5.2.5`), and apply the `64 px` / `40 px` / `24 px` slide type scale with no slide text below `24 px` (`5.2.6`). | Slide master & deck audit |
 | `E04-C3` | Corporate email signatures use `HTML` or plain text with sans-serif fallbacks without full-signature raster images (`5.3.1`), follow the mandatory ordered block (`5.3.2`), use an `AST-B01`-derived Primary Master Lockup or Primary Symbol `PNG` without embedding the Parent-Endorsed Lockup (`5.3.3`), and omit unused lines, unofficial abbreviations, personal numbers, quotes, hype, altered endorsements, or unauthorized badges (`5.3.4`). | Email client & copy check |
-| `E04-C4` | Shared correspondence and slide templates are registered as `TPL-E04` in `Library-Index.md` and Section 7 pinned to `E04 (vMAJOR.MINOR)` (`5.4.1`), and company descriptions reproduce approved `C01 §5.5.1` boilerplates verbatim (`5.4.2`). | Template & boilerplate audit |
+| `E04-C4` | Shared correspondence and slide templates are registered as `TPL-E04` in `Library-Index.md` and Section 7 pinned to `E04 (vMAJOR.MINOR)` (`5.4.1`), company descriptions reproduce approved `C01 §5.5.1` boilerplates verbatim (`5.4.2`), page-based templates meet `E01 §5.5` (`5.4.3`), `HTML` slide masters meet the listed `E01 §5.5` clauses on the `16:9` canvas (`5.4.4`), and native companion files meet `5.2.1` and `5.2.6` or Section `5.5` (`5.4.5`). | Template & boilerplate audit |
 | `E04-C5` | Operational workbooks include a leading `Overview` tab with required metadata and `A03` attribution (`5.5.1`), apply `B03` typography, frozen headers, and `WCAG` 2.2 Level AA `B02` styling (`5.5.2`), enforce `C04` units, `YYYY-MM-DD` dates, non-blank cells, and `C02` status styling (`5.5.3`), and register shared workbook templates as `TPL-E04` (`5.5.4`). | Workbook & template audit |
 
 Exceptions to any requirement in this standard require a formal, time-boxed waiver approved and logged in accordance with `A04`.
@@ -156,6 +164,7 @@ Exceptions to any requirement in this standard require a formal, time-boxed waiv
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.3.0` | `2026-11-28` | Minor | Added `5.4.3` applying the `E01 §5.5` `HTML` Authoring Master Profile to page-based letterhead and memorandum templates created or revised from `2026-11-28`, `5.4.4` applying it to `HTML` slide masters on the `1920 px × 1080 px` canvas, and `5.4.5` permitting native or Cloud-Native Office File companions for slide and workbook templates; extended `E04-C4`; added `D03` and `D04` and updated the `Library-Index.md` reference floor (`v1.2.24`) in Section 3, per `REC-A04-014`. Existing templates keep their pins. | Hary Irfantri |
 | `v2.2.0` | `2026-11-27` | Minor | Added `5.2.6` slide type scale (`64 px` title, `40 px` heading, `24 px` body minimum, line heights `1.2` / `1.5`) published as `AST-D01-01` tokens, added `D01` to Section 3, and extended `E04-C2`, per `REC-A04-009` (`F-02`); updated Section 7 notes for `TPL-E04-01` and `TPL-E04-03` after the footer move and `B02 (v1.3.0)` ink sync (`F-03`, `U-01`). | Hary Irfantri |
 | `v2.1.1` | `2026-11-26` | Errata | Removed cancelled `Planned` Google Workspace rows (`TPL-E04-04`, `TPL-E04-05`) from `Governs` and Section 7 (`A02 §5.3.1`), updated `TPL-E04-02` (`Planned`) to `HTML/CSS` to `sRGB` `PDF` concise pitch deck scope, and updated the `Library-Index.md` reference floor (`v1.2.9`) in Section 3 per `A01 §5.5.7`. | Hary Irfantri |
 | `v2.1.0` | `2026-11-26` | Minor | Added Section `5.5` (`5.5.1`–`5.5.4`) and Check `E04-C5` governing manually authored operational spreadsheets and workbooks; defined Operational Workbook in Section 4 and expanded Sections 1 and 2 (`D05` boundary); registered `TPL-E04-04` (`Google Docs`, `Planned`) and `TPL-E04-05` (`Google Sheets`, `Planned`) in `Governs` and Section 7; aligned `TPL-E04-02` (`Planned`) with Cloud-Native Office File naming (`A02 §5.4.6`) and concise pitch deck scope; and updated the `Library-Index.md` reference floor (`v1.2.8`). | Hary Irfantri |

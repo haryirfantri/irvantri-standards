@@ -3,9 +3,9 @@
 | Field | Value |
 | :--- | :--- |
 | **Code** | `E01` |
-| **Version** | `v2.4.0` |
+| **Version** | `v2.5.0` |
 | **Status** | `Approved` |
-| **Effective Date** | `2026-11-27` |
+| **Effective Date** | `2026-11-28` |
 | **Next Review** | `2027-05-26` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
@@ -14,7 +14,7 @@
 
 ## 1. Purpose
 
-This standard defines the cover geometry, metadata panel structure, running header and footer layout, pagination rules, corporate attribution requirements, and digital distribution `PDF` profile for formal documents across **Irvantri Standards** (`Irvantri Standards Pte. Ltd.`). It ensures formal documents present a consistent, legible, and authoritative visual structure across print, interactive `HTML` authoring, cloud-native authoring, and digital distribution.
+This standard defines the cover geometry, metadata panel structure, running header and footer layout, pagination rules, corporate attribution requirements, `HTML` authoring master profile, and digital distribution `PDF` profile for formal documents across **Irvantri Standards** (`Irvantri Standards Pte. Ltd.`). It ensures formal documents present a consistent, legible, and authoritative visual structure across print, interactive `HTML` authoring, cloud-native authoring, and digital distribution.
 
 ## 2. Scope & Applicability
 
@@ -34,7 +34,7 @@ This standard does not govern:
 ## 3. Normative References
 
 The following documents are referenced in this standard. For undated references, the latest approved edition applies.
-* `Library-Index.md` — Irvantri Standards Unified Operating Library Index (`v1.2.23` or later).
+* `Library-Index.md` — Irvantri Standards Unified Operating Library Index (`v1.2.24` or later).
 * `A01` — Document Control & Lifecycle.
 * `A02` — Taxonomy, Coding & File Naming.
 * `A03` — Entity & Brand Architecture.
@@ -45,15 +45,22 @@ The following documents are referenced in this standard. For undated references,
 * `B04` — Grids, Spacing & Graphic Devices.
 * `C01` — Voice, Tone & Plain Language.
 * `C02` — Terminology & Controlled Vocabulary.
+* `C03` — Technical & User Experience (`UX`) Writing.
 * `C04` — Data, Dates & Citation Formatting.
+* `D01` — Design Tokens & Architecture.
+* `D03` — Interface Components & Patterns.
+* `D04` — Accessibility & Usability.
 * `E03` — Print & Production Specifications.
 
 ## 4. Terms & Definitions
 
-For terms shared across the library, refer to `C02`, `A01`, `A02`, `B01`, `B03`, and `B04`. For the purposes of this standard, the following definitions apply:
+For terms shared across the library, refer to `C02`, `A01`, `A02`, `B01`, `B03`, `B04`, `D03`, and `D04`. For the purposes of this standard, the following definitions apply:
 * **Cover Page:** The front title sheet of a formal document presenting brand identification, document title, metadata summary, and signature visual geometry.
 * **Digital Distribution PDF:** An electronic `PDF` deliverable formatted at exact A4 trim dimensions in Standard Red-Green-Blue (`sRGB`) color without print bleed or crop marks for screen viewing and electronic distribution.
+* **Filled Copy:** A single `HTML` file, saved from an `HTML` Authoring Master, that holds the master and every value a user entered.
+* **HTML Authoring Master:** A standalone `HTML`/`CSS` template file that users fill in a browser and that exports the template's `PDF` editions (`5.3.3`, `5.3.4`).
 * **Metadata Panel:** A structured summary block displaying controlled document attributes—such as identifier, version, status, owner, approver, and dates—on a formal document.
+* **Press Preview:** An on-screen view of a press export showing the A4 trim, the `3 mm` Bleed, and the crop marks.
 * **Running Footer:** The recurring bottom margin region displaying document title, version, attribution, and page numbering across pages.
 * **Running Header:** The recurring top margin region displaying brand lockup and document or status context across pages.
 
@@ -95,6 +102,31 @@ For terms shared across the library, refer to `C02`, `A01`, `A02`, `B01`, `B03`,
 
 **5.4.5** A digital distribution `PDF` exported from an `HTML` authoring master (`5.3.3`) meets the A4 trim in Clause `5.4.1` when each page dimension is within `±0.5 mm` of A4. The master SHALL declare an A4 `@page` size (for example, `@page { size: A4 }`). The tolerance covers browser rounding during export.
 
+### 5.5 HTML Authoring Master Profile
+**5.5.1** A page-based `TPL-E01` template created or revised on or after `2026-11-28` SHALL be an `HTML` Authoring Master (`5.3.3`). Where the template serves print, the master SHALL provide a press export (`5.3.4`) and serve as both editions (`5.3.2`). Static `PDF` templates `Approved` before that date MAY remain in use until their next revision.
+
+**5.5.2** A Cloud-Native Office File (`A02 §5.4.6`) or native office file MAY be registered alongside an `HTML` Authoring Master under its own `TPL-` code where its users author in that tool. It SHALL apply the master's `B02` and `B03` values and place the lockup, title, and metadata panel within `±0.5 mm` of the master's positions. Its digital `PDF` exports SHALL conform to Section `5.4`.
+
+**5.5.3** The master SHALL declare color, type, and spacing values as `CSS` custom properties whose values equal the `AST-D01-01` tokens (`D01`). Style rules SHALL use those custom properties and SHALL NOT contain literal `HEX` or `RGB` color values.
+
+**5.5.4** Each editable field SHALL pair a visible text label with its input (`D03 §5.2.1`). Each field SHALL show placeholder text stating the expected content. Each free-text field SHALL declare a maximum character count and SHALL stop input beyond that count.
+
+**5.5.5** The master SHALL measure each field against its layout box after each edit. Where content overflows its box or the A4 trim, the master SHALL name the field and the fix in an error message on field blur (`D03 §5.2.2`, `§5.2.4`). The master SHALL NOT produce either export while any overflow remains.
+
+**5.5.6** The master SHALL provide a `Save filled copy` control that downloads a Filled Copy. Opening the Filled Copy SHALL restore every entered value. The master SHALL warn the user before a reload or close discards unsaved changes. The master SHOULD also autosave entered values in browser storage and offer to restore them when reopened.
+
+> **Informative Note:** Browser storage stays on the device and browser that saved it. The Filled Copy is the file people share or keep; autosave only protects work in progress.
+
+**5.5.7** Where the master provides a press export, it SHALL provide a Press Preview control adjacent to the press export control. The Press Preview SHALL render on screen the trim, `3 mm` Bleed, and crop marks of the press export from the same layout geometry.
+
+**5.5.8** The master SHALL be a single file that operates with no network connection. It SHALL NOT request scripts, style sheets, fonts, or images from a remote host. It SHALL embed each `B03` font it uses as a data Uniform Resource Identifier (`URI`) byte-identical to its `06_Dependencies/Fonts/` file, which satisfies the reference in Clause `5.3.3`. It SHALL embed `AST-B01` marks as inline vector paths (`B01 §5.1.2`).
+
+**5.5.9** The authoring interface SHALL conform to `D04 §5.1`–`§5.3`. Every field and control SHALL be operable by keyboard alone in visual order and SHALL expose an accessible name. Validation, overflow, and save messages SHALL be announced through an Accessible Rich Internet Applications (`ARIA`) Live Region (`D04 §5.3.2`).
+
+**5.5.10** The Pre-Release Gate record (`A04 §5.1.5`) for an `HTML` Authoring Master SHALL cite measured evidence (`A04 §5.1.6`) from exports made at the release commit. The evidence SHALL include a digital `PDF` preflight against Section `5.4`. Where Clause `5.3.4` applies, it SHALL include a press `PDF` with its `PDF/X-4` preflight output, TrimBox and BleedBox sizes, and `CMYK` ink table. It SHALL also include results for Clauses `5.5.3`–`5.5.9`.
+
+> **Informative Note:** The `html-master` check in `tools/library_checks.py` measures Clauses `5.5.3`, `5.5.4`, and `5.5.6`–`5.5.9` statically for every `HTML` template pinned to `E01 (v2.5)` or later. Overflow blocking (`5.5.5`), restoring a Filled Copy (`5.5.6`), and keyboard operation (`5.5.9`) need a browser run recorded in the gate record.
+
 ## 6. Conformance & Verification
 
 A formal document or layout template conforms to `E01` if and only if all of the following objective checks pass:
@@ -105,6 +137,7 @@ A formal document or layout template conforms to `E01` if and only if all of the
 | `E01-C2` | Running headers and footers align to `4 mm` increments and meet contrast and size rules (`5.2.1`), preserve `A member of Irvantri Group` and `© [YYYY] Irvantri Standards Pte. Ltd. All rights reserved.` (`5.2.2`), and include page numbers without blank fields (`5.2.3`). | Header, footer & pagination check |
 | `E01-C3` | Formal layout templates are registered as `TPL-E01` in `Library-Index.md` and Section 7 pinned to `E01 (vMAJOR.MINOR)` (`5.3.1`), maintain paired Print and Digital editions (`5.3.2`), and any `HTML` authoring template suppresses controls in `@media print` while referencing `06_Dependencies/Fonts/` and vector `AST-B01` marks (`5.3.3`). Any `HTML` master serving as the Print edition provides a press export with `3 mm` Bleed, crop marks, fixed `B02` `CMYK` builds, and `PDF/X-4` output that stops on unmapped colors (`5.3.4`). | Template & register audit |
 | `E01-C4` | Digital distribution `PDF` files use exact A4 trim without bleed or crop marks (`5.4.1`), or A4 within `±0.5 mm` for `HTML` authoring master exports declaring an A4 `@page` size (`5.4.5`), apply exact `B02` `sRGB` palette values (`5.4.2`), and embed licensed `B03` fonts, selectable text, and vector `AST-B01` marks or `≥ 300 DPI` lossless `PNG` derivatives for Cloud-Native Office File exports (`5.4.3`, `5.4.4`). | Digital `PDF` preflight audit |
+| `E01-C5` | New or revised page templates are `HTML` Authoring Masters with a press export where they serve print (`5.5.1`); any native companion file matches `B02`/`B03` values and `±0.5 mm` positions (`5.5.2`); colors and type come from `AST-D01-01` custom properties with no literal colors (`5.5.3`); fields have visible labels, placeholders, and enforced character limits (`5.5.4`); overflow is named and blocks export (`5.5.5`); a Filled Copy restores every value and unsaved changes trigger a warning (`5.5.6`); a Press Preview sits beside the press export (`5.5.7`); the file makes zero remote requests and embeds byte-identical fonts and inline marks (`5.5.8`); the interface passes `D04` keyboard, accessible name, and Live Region checks (`5.5.9`); and the gate record holds the measured export evidence (`5.5.10`). | Template, network, checksum & accessibility audit |
 
 Exceptions to any requirement in this standard require a formal, time-boxed waiver approved and logged in accordance with `A04`.
 
@@ -121,6 +154,7 @@ Exceptions to any requirement in this standard require a formal, time-boxed waiv
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.5.0` | `2026-11-28` | Minor | Added Section `5.5` (`5.5.1`–`5.5.10`), the `HTML` Authoring Master Profile, making an `HTML` master with press export the default for page-based `TPL-E01` templates created or revised from `2026-11-28`, with field label and limit, overflow, Filled Copy, Press Preview, offline single-file, accessibility, and gate-evidence requirements; added Check `E01-C5`; defined Filled Copy, `HTML` Authoring Master, and Press Preview in Section 4; added `C03`, `D01`, `D03`, and `D04` and updated the `Library-Index.md` reference floor (`v1.2.24`) in Section 3, per `REC-A04-014`. Existing templates keep their pins. | Hary Irfantri |
 | `v2.4.0` | `2026-11-27` | Minor | Added `5.3.4` permitting an `HTML` authoring master with a press export (`3 mm` Bleed, crop marks, fixed `B02` `CMYK` builds, `PDF/X-4`) to serve as both Print and Digital edition, and extended `E01-C3`; re-pinned `TPL-E01-03` to `E01 (v2.4)` with its press layout export; transitioned `TPL-E01-02` to `Deprecated` (superseded by `TPL-E01-03`) and removed it from `Governs`; updated the `Library-Index.md` reference floor (`v1.2.23`) in Section 3, per `REC-A04-013`. | Hary Irfantri |
 | `v2.3.0` | `2026-11-27` | Minor | Added `5.4.5` `±0.5 mm` A4 trim tolerance for digital `PDF` exports from `HTML` authoring masters declaring an A4 `@page` size, and extended `E01-C4`, per `REC-A04-009` (`U-02`); updated Section 7 notes for `TPL-E01-01`–`TPL-E01-04` after the footer move and `B02 (v1.3.0)` ink sync (`F-03`, `U-01`). | Hary Irfantri |
 | `v2.2.0` | `2026-11-27` | Minor | Added `5.3.3` permitting standalone interactive `HTML` authoring masters for digital `TPL-E01` templates with `@media print` control suppression, local `06_Dependencies/Fonts/` references, and embedded `AST-B01` vector marks; aligned Sections 1, 2.1, and `E01-C3`; promoted `TPL-E01-03` (`03_Templates/TPL-E01-03_Formal-Cover-Digital.html`, pinned to `E01 (v2.2)`) in Section 7 following archival of outgoing `TPL-E01-03_Formal-Cover-Digital_v2.0.0.pdf` and `E01_Formal-Document-Layout_v2.1.1.md` to `99_Archive/`; and updated the `Library-Index.md` reference floor (`v1.2.12`) in Section 3. | Hary Irfantri |

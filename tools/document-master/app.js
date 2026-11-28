@@ -197,7 +197,7 @@
     if (paletteCache) return paletteCache;
     const cs = getComputedStyle(document.documentElement), out = {};
     ['brand-primary', 'brand-accent', 'brand-deep', 'brand-secondary', 'bg-surface', 'bg-canvas', 'bg-muted', 'bg-tint', 'border-subtle', 'border-default',
-      'border-strong', 'text-muted', 'text-primary', 'text-mono'].concat(['informative', 'success', 'warning', 'danger', 'neutral'].flatMap(r => [`status-${r}`, `status-${r}-bg`, `status-${r}-border`]))
+      'text-muted', 'text-primary', 'text-mono'].concat(['informative', 'success', 'warning', 'danger', 'neutral'].flatMap(r => [`status-${r}`, `status-${r}-bg`, `status-${r}-border`]))
       .forEach(k => { out[k] = cs.getPropertyValue('--is-color-' + k).trim(); });
     return (paletteCache = out);
   }

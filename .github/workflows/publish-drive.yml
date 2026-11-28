@@ -1,0 +1,88 @@
+name: Publish to Google Drive
+
+# One-way publish of Standards Design/ from GitHub main to the Google Drive
+# Distribution Mirror and append-only 99_Archive/ Cold Archive (A01 §5.9.3).
+# Runs on manual trigger or release tag (v*), after Library checks pass.
+#
+# To activate automated CI publishing, add a repository secret:
+#   GDRIVE_SERVICE_ACCOUNT_JSON  — Google Cloud service account key JSON with
+#                                  Editor access to the Standards Design folder.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview planned Drive changes without modifying files"
+        required: false
+        default: true
+        type: boolean
+      archive_outgoing:
+        description: "Copy replaced/removed Drive files into 99_Archive/ first"
+        required: false
+        default: true
+        type: boolean
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r tools/requirements.txt
+      - run: python3 tools/library_checks.py --report-dir check-report
+
+  publish-drive:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GDRIVE_SA: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
+      STANDARDS_DESIGN_DRIVE_ID: "17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check credentials
+        id: creds
+        run: |
+          if [ -z "$GDRIVE_SA" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "GDRIVE_SERVICE_ACCOUNT_JSON secret is not configured. Skipping CI publish (run tools/publish_drive.py locally via gdrive CLI instead)." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install rclone
+        if: steps.creds.outputs.configured == 'true'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq rclone
+
+      - name: Mirror active Standards Design/ tree to Google Drive
+        if: steps.creds.outputs.configured == 'true'
+        run: |
+          printf '%s' "$GDRIVE_SA" > /tmp/sa.json
+          cat > /tmp/rclone.conf <<EOF
+          [gdrive]
+          type = drive
+          scope = drive
+          service_account_file = /tmp/sa.json
+          root_folder_id = ${STANDARDS_DESIGN_DRIVE_ID}
+          EOF
+          FLAGS="--config /tmp/rclone.conf --exclude /99_Archive/** --exclude /98_Drafts/**"
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            FLAGS="$FLAGS --dry-run"
+          fi
+          if [ "${{ inputs.archive_outgoing }}" = "true" ] || [ "${{ github.event_name }}" = "push" ]; then
+            TAG="${GITHUB_REF_NAME:-$(date -u +%Y-%m-%d)}"
+            FLAGS="$FLAGS --backup-dir gdrive:99_Archive --suffix _${TAG} --suffix-keep-extension"
+          fi
+          rclone sync "Standards Design" gdrive: $FLAGS -v
+          rm -f /tmp/sa.json /tmp/rclone.conf

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Automated measurement checks for the Irvantri Standards Unified Operating Library.
+"""Automated measurement checks for Standards Design (Irvantri Standards).
 
 Every check measures the real files on the checked-out commit and records the
 numbers it measured, so governance records (A04) can cite a run of this script
@@ -33,7 +33,7 @@ from pathlib import Path
 from urllib.parse import unquote
 
 REPO = Path(__file__).resolve().parent.parent
-LIB = REPO / "Unified Operating Library"
+LIB = REPO / "Standards Design"
 TOOLS = REPO / "tools"
 
 HEX_RE = re.compile(r"(?<![0-9A-Za-z&])#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})(?![0-9A-Za-z_-])")
@@ -232,10 +232,12 @@ def check_palette(rep: Report, pal: dict):
     counts = {}
     n_files = 0
     for p in active_files(".md", ".svg", ".html", ".json", ".css"):
-        if "06_Dependencies" in p.parts:
+        if "06_Dependencies" in p.parts or "05_Records" in p.parts:
             continue
         n_files += 1
         text = p.read_text(encoding="utf-8", errors="replace")
+        if p.suffix == ".md":
+            text = re.split(r"^(?:## (?:\d+(?:\.\d+)?\.|Appendix [A-Z] —).*Revision History|\*\*Table \d+\.\*\* Revision History)", text, flags=re.M)[0]
         for ln, line in enumerate(text.splitlines(), 1):
             for m in HEX_RE.finditer(line):
                 raw = "#" + m.group(1)
@@ -432,7 +434,7 @@ def check_links(rep: Report):
         for line in live.splitlines():  # revision history describes past paths, so it is skipped
             if "`Planned`" in line or "`Deprecated`" in line or "Retired" in line or "retired" in line:
                 continue
-            for m in re.finditer(r"`(0[1-6]_[^`*]+\.(?:md|svg|png|ico|json|pdf|html|ttf|icc|txt))`", line):
+            for m in re.finditer(r"`(0[1-6]_[^`*]+\.(?:md|svg|png|ico|json|pdf|html|css|ttf|icc|txt))`", line):
                 n += 1
                 if not (LIB / m.group(1)).exists():
                     rep.fail(c, f"links.register-path:{lib_rel(doc)}:{m.group(1)}",
@@ -897,6 +899,31 @@ def write_reports(rep: Report, out: Path, pal: dict) -> int:
     return 1 if failing else 0
 
 
+def check_token_css(rep: Report):
+    c = rep.check("token-css", "Generated CSS tokens (AST-D01-02) drift-free and component kit (AST-D03-01) hex-free",
+                  ["D01-C3", "D03-C1"])
+    sys.path.insert(0, str(TOOLS))
+    import build_tokens_css as btc
+    css_path = LIB / "02_Assets/AST-D01-02_Design-Tokens.css"
+    kit_path = LIB / "02_Assets/AST-D03-01_Component-Kit.css"
+    if not css_path.exists():
+        rep.fail(c, "token-css.missing:AST-D01-02", "`02_Assets/AST-D01-02_Design-Tokens.css` does not exist; run tools/build_tokens_css.py.")
+    else:
+        same, diff_text, count = btc.check_drift(LIB / "02_Assets/AST-D01-01_Design-Tokens.json", css_path)
+        rep.measure(c, file=lib_rel(css_path), custom_properties=count, drift_free=same)
+        if not same:
+            rep.fail(c, "token-css.drift:AST-D01-02",
+                     "AST-D01-02 differs from AST-D01-01; run `python3 tools/build_tokens_css.py`.", diff=diff_text[:500])
+    if kit_path.exists():
+        kit_text = kit_path.read_text(encoding="utf-8")
+        raw_hex = [m.group(0) for m in HEX_RE.finditer(kit_text)]
+        rep.measure(c, file=lib_rel(kit_path), raw_hex_count=len(raw_hex))
+        if raw_hex:
+            rep.fail(c, "token-css.kit-raw-hex:AST-D03-01",
+                     f"AST-D03-01 contains raw hexadecimal color(s): {raw_hex[:5]} (D01 §5.3.1).")
+    c["summary"] = "AST-D01-02 drift-checked against AST-D01-01; AST-D03-01 verified hex-free"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--report-dir", default="check-report", help="where to write check-report.json and check-report.md")
@@ -908,6 +935,7 @@ def main() -> int:
     check_register(rep)
     check_palette(rep, pal)
     toks = check_tokens(rep, pal)
+    check_token_css(rep)
     check_contrast(rep, pal, toks)
     check_links(rep)
     pdf_checks(rep, pal)

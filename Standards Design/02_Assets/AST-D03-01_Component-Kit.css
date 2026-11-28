@@ -1,0 +1,154 @@
+/*
+ * Irvantri Standards Design System — Component Kit
+ * Code: AST-D03-01 | Governing Standard: D03 | Pinned: D03 (v2.0)
+ * Requires: AST-D01-02_Design-Tokens.css (load it first)
+ * Rules: every color, size, radius and shadow comes from an --is- custom property
+ * (D01 §5.3.1, B02 §5.4.3). No raw hex values appear in this file.
+ * Breakpoint 767px = primitive.breakpoint.compact-max (D02 §5.1.1); custom
+ * properties cannot be used inside media queries, so the value is written here.
+ */
+
+/* ---------- Base ---------- */
+.is-root {
+  font-family: var(--is-font-family-text);
+  font-size: var(--is-font-size-body-ui);
+  line-height: var(--is-font-line-height-body);
+  color: var(--is-color-text-primary);
+  background: var(--is-color-bg-canvas);
+}
+.is-root *, .is-root *::before, .is-root *::after { box-sizing: border-box; }
+
+/* Focus Indicator: 3px solid Brand Blue, 3px offset (D04 §5.2.3–5.2.4) */
+.is-root :focus-visible {
+  outline: var(--is-focus-ring-width) solid var(--is-focus-ring-color);
+  outline-offset: var(--is-focus-ring-offset);
+}
+
+.is-page-title { font-family: var(--is-font-family-display); font-size: var(--is-font-size-page-title); line-height: var(--is-font-line-height-heading); margin: 0 0 var(--is-space-4); }
+.is-section-title { font-family: var(--is-font-family-display); font-size: var(--is-font-size-section-title); line-height: var(--is-font-line-height-heading); margin: 0 0 var(--is-space-3); }
+.is-panel-title { font-size: var(--is-font-size-panel-title); font-weight: 600; line-height: var(--is-font-line-height-heading); margin: 0 0 var(--is-space-2); }
+.is-eyebrow { font-size: var(--is-font-size-eyebrow); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--is-color-text-muted); }
+.is-muted { color: var(--is-color-text-muted); }
+.is-mono { font-family: var(--is-font-family-mono); }
+
+/* ---------- Buttons (D03 §5.1) ---------- */
+.is-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--is-space-2);
+  min-height: var(--is-button-min-height); min-width: var(--is-button-min-height);
+  padding: 0 var(--is-space-4);
+  font: inherit; font-weight: 600;
+  border: 1px solid transparent; border-radius: var(--is-button-radius);
+  cursor: pointer; text-decoration: none;
+}
+.is-btn--primary { background: var(--is-button-primary-bg); color: var(--is-button-primary-text); box-shadow: var(--is-shadow-action); }
+.is-btn--primary:hover { background: var(--is-button-primary-bg-hover); }
+.is-btn--secondary { background: var(--is-button-secondary-bg); color: var(--is-button-secondary-text); border-color: var(--is-button-secondary-border); }
+.is-btn--secondary:hover { background: var(--is-button-secondary-bg-hover); }
+.is-btn--danger { background: var(--is-color-status-danger); color: var(--is-color-text-inverse); }
+/* Hover and Active also change shape cues, not color alone (D03 §5.1.3) */
+.is-btn:hover:not(:disabled) { text-decoration: underline; text-underline-offset: 3px; }
+.is-btn:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+.is-btn:disabled, .is-btn[aria-disabled="true"] {
+  background: var(--is-button-disabled-bg); color: var(--is-button-disabled-text);
+  border: 1px dashed var(--is-button-disabled-text); box-shadow: none; cursor: not-allowed;
+}
+.is-btn-row { display: flex; flex-wrap: wrap; gap: var(--is-button-gap-compact); align-items: center; }
+
+/* Helper text for disabled controls and fields (D03 §5.1.5) */
+.is-helper { display: block; margin-top: var(--is-space-1); font-size: var(--is-font-size-body-ui); color: var(--is-color-text-muted); }
+
+/* ---------- Form fields (D03 §5.2, B02 §5.2.2) ---------- */
+.is-field { display: flex; flex-direction: column; gap: var(--is-space-1); margin-bottom: var(--is-space-4); max-width: 480px; }
+.is-label { font-weight: 600; }
+.is-input, .is-select, .is-textarea {
+  min-height: var(--is-input-min-height);
+  padding: var(--is-space-2) var(--is-space-3);
+  font: inherit; color: var(--is-color-text-primary);
+  background: var(--is-input-bg);
+  border: 1px solid var(--is-input-border); border-radius: var(--is-input-radius);
+}
+.is-textarea { min-height: calc(var(--is-input-min-height) * 2); resize: vertical; }
+.is-input::placeholder { color: var(--is-color-text-muted); }
+.is-input:disabled, .is-select:disabled { background: var(--is-color-bg-muted); border-style: dashed; cursor: not-allowed; }
+.is-field--error .is-input, .is-field--error .is-select, .is-field--error .is-textarea {
+  border: 2px solid var(--is-input-border-error);
+}
+.is-error-text { display: flex; gap: var(--is-space-1); align-items: flex-start; color: var(--is-color-status-danger); font-weight: 600; }
+.is-error-text::before { content: "\2715"; font-weight: 700; } /* glyph cue, not color alone (B02 §5.5.2) */
+
+.is-check { display: inline-flex; align-items: center; gap: var(--is-space-2); min-height: var(--is-input-min-height); cursor: pointer; }
+.is-check input { width: 20px; height: 20px; accent-color: var(--is-color-brand-primary); }
+
+/* ---------- Status badges (D03 §5.3.2, E02 §5.2.2) ---------- */
+.is-badge {
+  display: inline-flex; align-items: center; gap: var(--is-space-1);
+  padding: var(--is-space-1) var(--is-space-2);
+  font-size: var(--is-font-size-eyebrow); font-weight: 600; line-height: 1.5;
+  border: 1px solid; border-radius: var(--is-badge-radius);
+  white-space: nowrap;
+}
+.is-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.is-badge--informative { color: var(--is-color-status-informative); background: var(--is-color-status-informative-bg); border-color: var(--is-color-status-informative-border); }
+.is-badge--success { color: var(--is-color-status-success); background: var(--is-color-status-success-bg); border-color: var(--is-color-status-success-border); }
+.is-badge--warning { color: var(--is-color-status-warning); background: var(--is-color-status-warning-bg); border-color: var(--is-color-status-warning-border); }
+.is-badge--danger { color: var(--is-color-status-danger); background: var(--is-color-status-danger-bg); border-color: var(--is-color-status-danger-border); }
+.is-badge--neutral { color: var(--is-color-status-neutral); background: var(--is-color-status-neutral-bg); border-color: var(--is-color-status-neutral-border); }
+
+/* ---------- Banners and alerts ---------- */
+.is-banner {
+  display: flex; gap: var(--is-space-3); align-items: flex-start;
+  padding: var(--is-space-3) var(--is-space-4); margin-bottom: var(--is-space-3);
+  border: 1px solid; border-left-width: 4px; border-radius: var(--is-banner-radius);
+}
+.is-banner__title { font-weight: 600; margin: 0 0 var(--is-space-1); }
+.is-banner p { margin: 0; }
+.is-banner--informative { color: var(--is-color-text-primary); background: var(--is-color-status-informative-bg); border-color: var(--is-color-status-informative); }
+.is-banner--success { color: var(--is-color-text-primary); background: var(--is-color-status-success-bg); border-color: var(--is-color-status-success); }
+.is-banner--warning { color: var(--is-color-text-primary); background: var(--is-color-status-warning-bg); border-color: var(--is-color-status-warning); }
+.is-banner--danger { color: var(--is-color-text-primary); background: var(--is-color-status-danger-bg); border-color: var(--is-color-status-danger); }
+.is-banner--informative .is-banner__title { color: var(--is-color-status-informative); }
+.is-banner--success .is-banner__title { color: var(--is-color-status-success); }
+.is-banner--warning .is-banner__title { color: var(--is-color-status-warning); }
+.is-banner--danger .is-banner__title { color: var(--is-color-status-danger); }
+
+/* ---------- Cards ---------- */
+.is-card { background: var(--is-card-bg); border: 1px solid var(--is-card-border); border-radius: var(--is-card-radius); box-shadow: var(--is-card-shadow); padding: var(--is-space-6); }
+
+/* ---------- Data tables (D03 §5.3.1, §5.3.3) ---------- */
+.is-table { width: 100%; border-collapse: collapse; background: var(--is-color-bg-surface); }
+.is-table caption { text-align: left; font-weight: 600; padding-bottom: var(--is-space-2); }
+.is-table th, .is-table td { padding: var(--is-space-3) var(--is-space-4); text-align: left; border-bottom: 1px solid var(--is-color-border-subtle); vertical-align: top; }
+.is-table thead th { background: var(--is-color-bg-canvas); font-weight: 600; border-bottom: 1px solid var(--is-color-border-default); }
+.is-table .is-num { text-align: right; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 767px) {
+  .is-table--reflow caption { display: block; width: 100%; }
+  .is-table--reflow thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .is-table--reflow, .is-table--reflow tbody, .is-table--reflow tr, .is-table--reflow td { display: block; width: 100%; }
+  .is-table--reflow tr { border: 1px solid var(--is-card-border); border-radius: var(--is-card-radius); margin-bottom: var(--is-space-3); background: var(--is-card-bg); }
+  .is-table--reflow td { display: flex; justify-content: space-between; gap: var(--is-space-4); border-bottom: 1px solid var(--is-color-border-subtle); }
+  .is-table--reflow td:last-child { border-bottom: 0; }
+  .is-table--reflow td::before { content: attr(data-label); font-weight: 600; color: var(--is-color-text-muted); }
+  .is-table--reflow .is-num { text-align: right; }
+}
+
+/* ---------- Confirmation dialog (D03 §5.4.1, D04 §5.2.2) ---------- */
+.is-dialog { max-width: 480px; width: calc(100% - 2 * var(--is-space-4)); padding: var(--is-space-6); border: 1px solid var(--is-card-border); border-radius: var(--is-card-radius); box-shadow: var(--is-shadow-action); color: var(--is-color-text-primary); background: var(--is-color-bg-surface); }
+.is-dialog::backdrop { background: rgba(15, 23, 42, 0.5); }
+.is-dialog__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--is-button-gap-compact); margin-top: var(--is-space-6); }
+
+/* ---------- Empty state (D03 §5.4.2) ---------- */
+.is-empty { text-align: center; padding: var(--is-space-12) var(--is-space-6); border: 1px dashed var(--is-color-border-default); border-radius: var(--is-card-radius); background: var(--is-color-bg-surface); }
+.is-empty__title { font-size: var(--is-font-size-panel-title); font-weight: 600; margin: 0 0 var(--is-space-2); }
+.is-empty p { margin: 0 0 var(--is-space-4); color: var(--is-color-text-muted); }
+
+/* ---------- Provenance callout (D03 §5.4.3) ---------- */
+.is-provenance { display: flex; gap: var(--is-space-3); padding: var(--is-space-4); background: var(--is-provenance-bg); border: 1px solid var(--is-provenance-border); border-left-width: 4px; border-radius: var(--is-provenance-radius); }
+.is-provenance__label { font-weight: 600; color: var(--is-color-brand-deep); }
+.is-provenance p { margin: 0; }
+
+/* ---------- Motion (D04 §5.3.3) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .is-root *, .is-root *::before, .is-root *::after { transition: none !important; animation: none !important; }
+  .is-btn:active:not(:disabled) { transform: none; }
+}

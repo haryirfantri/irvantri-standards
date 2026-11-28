@@ -4,13 +4,13 @@
 | :--- | :--- |
 | **Register** | `06_Dependencies/Dependencies-Manifest.md` *(Uncoded dependency manifest)* |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
-| **Version** | `v2.0.0` |
+| **Version** | `v2.1.0` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-26` |
-| **Last Updated** | `2026-11-26` |
+| **Last Updated** | `2026-11-28` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Governing Rules** | `A02 §5.5.4` (Third-Party Dependencies), `A03 §5.6.2` (Third-Party Attribution), `B03 §5.1.3` (Font Licensing), `E03 §5.3.1` (Print Color Profiles) |
+| **Governing Rules** | `A02 §5.5.4` (Third-Party Dependencies), `A03 §5.6.2` (Third-Party Attribution), `B03 §5.1.3` (Font Licensing), `E03 §5.3.1` (Print Color Profiles), `E01 §5.5.8` (Offline Authoring Masters) |
 
 ---
 
@@ -66,9 +66,34 @@ Color profiles below are governed by `B02 §5.1.3` and `E03 §5.3.1` for Interna
 
 ---
 
-## 4. Revision History
+## 4. Script Libraries (`06_Dependencies/Scripts/`)
+
+Script libraries below are stored unmodified with their verbatim upstream `LICENSE` text and embedded byte-identical, as `base64` data, in `TPL-E01-06` so the master works offline (`E01 §5.5.8`). Each embedded copy names its source file in a `data-dependency` attribute, and the `html-master` library check compares its `SHA-256` with this table. All are distributed under the **MIT License (`MIT`)**; the `marked` licence file also retains the upstream `BSD-3-Clause` notice for the original Markdown specification.
+
+| Package Path | Role | Package Contents | Upstream Version | Rights Holder / Publisher | License | Governing Standard |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `06_Dependencies/Scripts/Paged.js/` | Pagination: page boxes, running header and footer, `Page X of Y`, footnotes, cross-reference page numbers | `paged.js` (browser build), `LICENSE.md` | `0.4.3` | Adam Hyde / Coko Foundation (`© 2018`) | `MIT` | `E01`, `E05` |
+| `06_Dependencies/Scripts/marked/` | Markdown to `HTML` | `marked.umd.js`, `LICENSE` | `18.3.0` | Christopher Jeffrey (`© 2011–2018`) and MarkedJS (`© 2018+`); the `LICENSE` also carries John Gruber's original Markdown notice (`© 2004`, `BSD-3-Clause`) | `MIT`, `BSD-3-Clause` notice retained | `E05` |
+| `06_Dependencies/Scripts/Turndown/` | Paste conversion, `HTML` to Markdown | `turndown.browser.umd.js`, `LICENSE` | `7.2.5` | Dom Christie (`© 2017`) | `MIT` | `E05` |
+| `06_Dependencies/Scripts/turndown-plugin-gfm/` | Paste conversion of tables, strikethrough and task lists | `turndown-plugin-gfm.js`, `LICENSE` | `1.0.2` | Dom Christie (`© 2017`) | `MIT` | `E05` |
+
+### Verified Script Checksums (`SHA-256`)
+
+| File Path | Size (bytes) | `SHA-256` Checksum |
+| :--- | :--- | :--- |
+| `06_Dependencies/Scripts/Paged.js/paged.js` | `920,798` | `4cae0c875c89084b353ceee87bcc742388de3133f2bbf48830b63f1d2d357e4f` |
+| `06_Dependencies/Scripts/marked/marked.umd.js` | `55,534` | `f8c7f128939415995e2219e8a84bec42fab27f5980d22e361339e6901da5eadf` |
+| `06_Dependencies/Scripts/Turndown/turndown.browser.umd.js` | `27,166` | `ead805af2012a8434b58f1dab07b452370a7dcd3e9665ff64fc1d61dd2e38e9a` |
+| `06_Dependencies/Scripts/turndown-plugin-gfm/turndown-plugin-gfm.js` | `4,191` | `cf744cc1b7580f06d64ce236a4ff2630a53d389eccf2133a09d71ca443511912` |
+
+> **Informative Note:** Paged.js has had no upstream release since `0.4.3` (`2023`). If a browser change breaks it, the fallback approved on `2026-11-28` is an in-house paginator for the fixed `E05` element set, released through the same Pre-Release Gate.
+
+---
+
+## 5. Revision History
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.1.0` | `2026-11-28` | Minor | Added Section 4 registering the `MIT` script libraries `Paged.js 0.4.3`, `marked 18.3.0`, `Turndown 7.2.5`, and `turndown-plugin-gfm 1.0.2` in `06_Dependencies/Scripts/`, stored unmodified with upstream `LICENSE` text and `SHA-256` checksums, embedded byte-identical in `TPL-E01-06` per `A02 (v1.3.0) §5.5.4` and `E01 (v2.6.0) §5.5.8`; outgoing `v2.0.0` archived to `99_Archive/` (`REC-A04-015`). | Hary Irfantri |
 | `v2.0.0` | `2026-11-26` | Major | Migrated `06_Dependencies/Fonts/` from retired `B03 (v1.1.0)` packages (`Montserrat`, `Inter`, `JetBrains Mono`, archived to `99_Archive/`) to the `B03 (v2.0.0)` Noto Sans superfamily (`Noto Sans Display v2.003`, `Noto Sans v2.004`, `Noto Sans Mono v2.006`) with verified `SHA-256` checksums and `SIL OFL-1.1` attribution per `A02 (v1.2.0) §5.5.4`. | Hary Irfantri |
 | `v1.0.0` | `2026-11-26` | Major | Initial approved baseline registering the three complete `B03` brand typeface packages (`Montserrat`, `Inter`, `JetBrains Mono` with variable fonts, `static/` suites, `OFL.txt`, and `README.txt`) and the `ISOcoated_v2_eci.icc` (`FOGRA39`) International Color Consortium (`ICC`) profile with verified `SHA-256` checksums and rights-holder attributions per `A02 (v1.2.0) §5.5.4`. | Hary Irfantri |

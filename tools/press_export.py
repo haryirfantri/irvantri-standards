@@ -37,6 +37,7 @@ from xml.sax.saxutils import escape
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import library_checks as lc  # noqa: E402
+import pdf_finish  # noqa: E402
 
 MM = lc.MM
 SHEET_MM = (230.0, 317.0)   # A4 trim plus 10 mm on every side
@@ -130,7 +131,7 @@ def check_ext_gstates(resources, where):
             raise PressError(f"{where}: graphics state {name} uses a soft mask, which may carry RGB colour.")
 
 
-def xmp(title: str, now: str, doc_id: str) -> bytes:
+def xmp(title: str, now: str, doc_id: str, author: str = "Irvantri Standards Pte. Ltd.") -> bytes:
     t = escape(title)
     return f"""<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/">
@@ -146,7 +147,7 @@ def xmp(title: str, now: str, doc_id: str) -> bytes:
       <pdf:Producer>Irvantri Standards tools/press_export.py (pypdf)</pdf:Producer>
       <dc:format>application/pdf</dc:format>
       <dc:title><rdf:Alt><rdf:li xml:lang="x-default">{t}</rdf:li></rdf:Alt></dc:title>
-      <dc:creator><rdf:Seq><rdf:li>Irvantri Standards Pte. Ltd.</rdf:li></rdf:Seq></dc:creator>
+      <dc:creator><rdf:Seq><rdf:li>{escape(author)}</rdf:li></rdf:Seq></dc:creator>
       <xmp:CreatorTool>Chromium (HTML authoring master press layout)</xmp:CreatorTool>
       <xmp:CreateDate>{now}</xmp:CreateDate>
       <xmp:ModifyDate>{now}</xmp:ModifyDate>
@@ -161,7 +162,7 @@ def xmp(title: str, now: str, doc_id: str) -> bytes:
 <?xpacket end="w"?>""".encode("utf-8")
 
 
-def press_export(src: Path, out: Path, title: str | None) -> dict:
+def press_export(src: Path, out: Path, title: str | None, author: str | None = None) -> dict:
     import pypdf
     from pypdf.generic import (ArrayObject, DecodedStreamObject, DictionaryObject, FloatObject,
                                NameObject, NumberObject, TextStringObject)
@@ -175,6 +176,8 @@ def press_export(src: Path, out: Path, title: str | None) -> dict:
         raise PressError("the input PDF has form fields; flatten them first.")
 
     writer = pypdf.PdfWriter(clone_from=reader)
+    if reader.outline:
+        pdf_finish.tidy_outline(reader, writer)  # restore heading numbers a browser dropped (E05 §5.9.2)
     writer.pdf_header = b"%PDF-1.6"
     seen: set[int] = set()
     measured = []
@@ -220,12 +223,16 @@ def press_export(src: Path, out: Path, title: str | None) -> dict:
     writer.root_object[NameObject("/OutputIntents")] = ArrayObject([writer._add_object(intent)])
 
     old = reader.metadata or {}
-    title = title or str(old.get("/Title") or src.stem)
+    cover = pdf_finish.cover_fields(reader)  # TPL-E01-06 covers carry title and Owner (E05 §5.9.2)
+    title = title or cover.get("title") or str(old.get("/Title") or src.stem)
+    author = author or cover.get("owner") or "Irvantri Standards Pte. Ltd."
+    if "/Lang" not in writer.root_object:
+        writer.root_object[NameObject("/Lang")] = TextStringObject("en-US")
     now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
     pdf_date = now.strftime("D:%Y%m%d%H%M%S+00'00'")
     writer.metadata = {
         "/Title": title,
-        "/Author": "Irvantri Standards Pte. Ltd.",
+        "/Author": author,
         "/Creator": "Chromium (HTML authoring master press layout)",
         "/Producer": "Irvantri Standards tools/press_export.py (pypdf)",
         "/CreationDate": pdf_date,
@@ -234,7 +241,7 @@ def press_export(src: Path, out: Path, title: str | None) -> dict:
     }
     writer._info.get_object()[NameObject("/Trapped")] = NameObject("/False")
     meta = DecodedStreamObject()
-    meta.set_data(xmp(title, now.isoformat().replace("+00:00", "Z"), str(uuid.uuid4())))
+    meta.set_data(xmp(title, now.isoformat().replace("+00:00", "Z"), str(uuid.uuid4()), author))
     meta[NameObject("/Type")] = NameObject("/Metadata")
     meta[NameObject("/Subtype")] = NameObject("/XML")
     writer.root_object[NameObject("/Metadata")] = writer._add_object(meta)
@@ -254,11 +261,12 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("pdf", type=Path, help="PDF saved from the \"Export press PDF\" button")
     ap.add_argument("--out", type=Path, help="output path (default: <input>_PDFX4.pdf)")
-    ap.add_argument("--title", help="document title for the PDF metadata (default: the input title)")
+    ap.add_argument("--title", help="document title for the PDF metadata (default: the cover title, else the input title)")
+    ap.add_argument("--author", help="document Owner for the PDF metadata (default: the cover Owner, else the organization)")
     args = ap.parse_args()
     out = args.out or args.pdf.with_name(args.pdf.stem + "_PDFX4.pdf")
     try:
-        result = press_export(args.pdf, out, args.title)
+        result = press_export(args.pdf, out, args.title, args.author)
     except PressError as e:
         print(f"Press export stopped: {e}", file=sys.stderr)
         return 1

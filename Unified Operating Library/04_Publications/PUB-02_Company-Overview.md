@@ -6,12 +6,12 @@
 | **Title** | Irvantri Standards Company Overview |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v2.0.7` |
+| **Version** | `v2.0.8` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-28` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Governing Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C03 (v1.0.1)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `D05 (v1.1.1)`, `E01 (v2.5.0)`, `E02 (v1.1.0)`, `E03 (v1.1.0)`, `E04 (v2.3.0)` |
+| **Governing Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C03 (v1.0.1)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `D05 (v1.1.1)`, `E01 (v2.6.0)`, `E02 (v1.1.0)`, `E03 (v1.1.0)`, `E04 (v2.3.0)`, `E05 (v1.0.0)` |
 
 ---
 
@@ -97,7 +97,7 @@ Irvantri Standards maintains `22` `Approved` normative standards across five act
 | **Series B** | Visual Foundations | `Active` | `B01`–`B05` (Marks and lockups, color system, typography, spatial grids and graphic devices, iconography and visuals) |
 | **Series C** | Information & Verbal Standards | `Active` | `C01`–`C04` (Voice, tone, and plain language; terminology and vocabulary; technical and User Experience (`UX`) writing; data, dates, and citations) |
 | **Series D** | Digital Systems & Interfaces | `Active` | `D01`–`D05` (Design tokens, responsive shells and navigation, interface components, accessibility and usability, generated outputs and exports) |
-| **Series E** | Formal Documents & Print | `Active` | `E01`–`E04` (Formal document layout, versioning and draft marking, print and production specifications, correspondence and presentations) |
+| **Series E** | Formal Documents & Print | `Active` | `E01`–`E05` (Formal document layout, versioning and draft marking, print and production specifications, correspondence and presentations, document body elements) |
 | **Series F–H** | Systems & Engineering (`F`), Processes & Delivery (`G`), Quality, Security & Information Integrity (`H`) | `Reserved` | Activated when operational need justifies formal company-wide rules (`A01 §5.4.4`) |
 
 ---
@@ -144,13 +144,13 @@ Synthesized from the **Brand and Design System Guide** (`PUB-01`) and active Ser
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers, Assets & Templates** | `Library-Index.md (v1.2.24)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`), `TPL-E01-01`, `TPL-E01-04` (`E01 (v2.0)`), `TPL-E01-03` (`E01 (v2.4)`) | `Approved` |
+| **Master Registers, Assets & Templates** | `Library-Index.md (v1.2.25)`, `Dependencies-Manifest.md (v2.1.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`), `TPL-E01-03` (`E01 (v2.4)`), `TPL-E01-06` (`E01 (v2.6)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)` | `Approved` |
 | **Series B — Visual Foundations** | `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C03 (v1.0.1)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `D05 (v1.1.1)` | `Approved` |
-| **Series E — Documents & Print** | `E01 (v2.5.0)`, `E02 (v1.1.0)`, `E03 (v1.1.0)`, `E04 (v2.3.0)` | `Approved` |
-| **Compiled Publications** | `PUB-01 (v2.0.8)` (`04_Publications/PUB-01_Brand-and-Design-System-Guide.html`) | `Approved` |
+| **Series E — Documents & Print** | `E01 (v2.6.0)`, `E02 (v1.1.0)`, `E03 (v1.1.0)`, `E04 (v2.3.0)`, `E05 (v1.0.0)` | `Approved` |
+| **Compiled Publications** | `PUB-01 (v2.0.9)` (`04_Publications/PUB-01_Brand-and-Design-System-Guide.html`) | `Approved` |
 
 ### 5.2 Revision History (`E02 §5.1.3`)
 
@@ -158,6 +158,7 @@ Synthesized from the **Brand and Design System Guide** (`PUB-01`) and active Ser
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v2.0.8` | `2026-11-28` | Errata | Synchronized the governing standards, the Series E row of Table 4, and the Table 6 build manifest to `E01 (v2.6.0)`, the new `E05 (v1.0.0)`, `Dependencies-Manifest.md (v2.1.0)`, `PUB-01 (v2.0.9)`, and `Library-Index.md (v1.2.25)`; replaced the deprecated `TPL-E01-01` and `TPL-E01-04` with `TPL-E01-06` (`REC-A04-015`). | Hary Irfantri |
 | `v2.0.7` | `2026-11-28` | Errata | Synchronized the governing standards and Table 6 build manifest to `E01 (v2.5.0)`, `E04 (v2.3.0)`, `PUB-01 (v2.0.8)`, and `Library-Index.md (v1.2.24)`, and corrected the closing colophon, which still showed `v2.0.5` (`REC-A04-014`). | Hary Irfantri |
 | `v2.0.6` | `2026-11-27` | Errata | Synchronized the governing standards and Table 6 build manifest to `E01 (v2.4.0)`, `PUB-01 (v2.0.7)`, and `Library-Index.md (v1.2.23)`, re-pinned `TPL-E01-03` to `E01 (v2.4)`, and removed the `Deprecated` `TPL-E01-02` from Table 6 (`REC-A04-013`). | Hary Irfantri |
 | `v2.0.5` | `2026-11-27` | Errata | Synchronized the governing standards and Table 6 build manifest to `B01 (v2.1.0)`, `B05 (v1.2.0)`, `PUB-01 (v2.0.6)`, and `Library-Index.md (v1.2.22)`, and added the Small-Format Symbol and App Icon Tile to the Section 4.3 marks summary (`REC-A04-012`). | Hary Irfantri |
@@ -171,4 +172,4 @@ Synthesized from the **Brand and Design System Guide** (`PUB-01`) and active Ser
 
 ---
 
-`PUB-02` · `v2.0.7` · Compiled `2026-11-28` | © 2026 Irvantri Standards Pte. Ltd. All rights reserved. | A member of Irvantri Group
+`PUB-02` · `v2.0.8` · Compiled `2026-11-28` | © 2026 Irvantri Standards Pte. Ltd. All rights reserved. | A member of Irvantri Group

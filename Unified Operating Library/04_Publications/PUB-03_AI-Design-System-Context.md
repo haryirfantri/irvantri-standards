@@ -243,14 +243,14 @@ components:
 | **Deployment Filename** | `DESIGN.md` *(for Superdesign, Google Stitch, external repositories, and coding agents)* |
 | **Entity** | Irvantri Standards (`Irvantri Standards Pte. Ltd.`) |
 | **Affiliation** | A member of Irvantri Group |
-| **Version** | `v1.2.3` |
+| **Version** | `v1.2.4` |
 | **Status** | `Approved` |
 | **Effective Date** | `2026-11-28` |
 | **Owner** | Hary Irfantri |
 | **Approver** | Hary Irfantri |
-| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.5.0)`, `E02 (v1.1.0)`, `E04 (v2.3.0)` |
+| **Source Standards** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)`, `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)`, `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)`, `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)`, `E01 (v2.6.0)`, `E02 (v1.1.0)`, `E04 (v2.3.0)`, `E05 (v1.0.0)` |
 
-> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-28` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md (v1.2.24)`). Active normative standards (`A01`–`E04`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
+> **Precedence Notice (`A01 §5.1.4`, `§5.7.5`):** This compiled publication (`PUB-03`) is an informative Artificial Intelligence (`AI`) design and authoring context compiled on `2026-11-28` from the **Irvantri Standards Unified Operating Library** (`Library-Index.md (v1.2.25)`). Active normative standards (`A01`–`E05`) and `02_Assets/AST-D01-01_Design-Tokens.json` prevail in the event of any conflict between this publication and an underlying standard.
 
 ---
 
@@ -382,6 +382,8 @@ Depth is communicated primarily through surface tone contrast (`{colors.surface}
 * **Brand Mark Assets (`B01 v2.1.0`):** Source all logos verbatim from approved `02_Assets/` Scalable Vector Graphics (`SVG`) masters (`AST-B01-01` Primary Symbol `≥ 28px`/`12 mm`; `AST-B01-02` White Symbol `≥ 28px`/`12 mm`; `AST-B01-03` Full-Color Parent-Endorsed Lockup `4.15:1` `≥ 260px`/`64 mm`; `AST-B01-04` White Parent-Endorsed Lockup `4.15:1` `≥ 260px`/`64 mm`) with at least `0.25×` Primary Symbol width unobstructed Clear Space on all four sides.
 * **Favicons & App Icons (`B01 v2.1.0 §5.3.4`, `§5.4.4`, `§5.6.2`; `B05 §5.1.4`):** Below `28px`, never shrink the Primary Symbol; use `AST-B01-17_Small-Format-Symbol.svg` (`16px`–`27px`, switches to white under `prefers-color-scheme: dark`) or `AST-B01-18_White-Small-Format-Symbol.svg` on dark surfaces. Web pages link `AST-B01-17` as `<link rel="icon" type="image/svg+xml">`, `AST-B01-19_Favicon.ico` as the fallback, and `AST-B01-21_Apple-Touch-Icon.png` as `apple-touch-icon`; web app manifests list `AST-B01-22_App-Icon-192.png` and `AST-B01-23_App-Icon-512.png`. Never redraw the symbol as a `UI` icon or place it in any frame other than the Pure White App Icon Tile.
 
+* **Formal Document Bodies (`E05`, `E01 §5.5.11`):** Write full formal documents in `TPL-E01-06` as Markdown; the master owns every visual value. Headings: Heading 1 `22pt`/`800` `{colors.secondary}` on a new page, Heading 2 `15pt`/`700`, Heading 3 `12.5pt`/`700`, Heading 4 `12pt`/`700` Text Typeface, numbered `1`, `1.1`, `1.1.1`. Body `12pt`/`1.5`; tables and code `10.5pt`; footnotes and source lines `9pt`. Table captions sit above (`Table N.`), figure captions below (`Figure N.`); every figure needs alternative text. Callouts use GitHub alert syntax (`> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]`) mapped to the `B02` semantic roles with a text label. Never use raw `HTML`, text colour or font changes, highlight, underline for emphasis, emoji, merged cells, or syntax colouring.
+
 ---
 
 ## Do's and Don'ts
@@ -481,17 +483,18 @@ When compiling HyperText Markup Language (`HTML`) and Cascading Style Sheets (`C
 
 | Series / Layer | Source Items and Exact Versions | Status |
 | :--- | :--- | :--- |
-| **Master Registers & Assets** | `Library-Index.md (v1.2.24)`, `Dependencies-Manifest.md (v2.0.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
+| **Master Registers & Assets** | `Library-Index.md (v1.2.25)`, `Dependencies-Manifest.md (v2.1.0)`, `AST-B01-01`–`AST-B01-04` (`B01 (v2.0)`), `AST-B01-17`–`AST-B01-23` (`B01 (v2.1)`), `AST-D01-01` (`D01 (v1.0)`) | `Approved` |
 | **Series A — Governance** | `A01 (v1.2.0)`, `A02 (v1.3.0)`, `A03 (v1.1.1)`, `A04 (v1.2.0)` | `Approved` |
 | **Series B — Visual Foundations** | `B01 (v2.1.0)`, `B02 (v1.3.0)`, `B03 (v2.0.0)`, `B04 (v1.2.0)`, `B05 (v1.2.0)` | `Approved` |
 | **Series C — Verbal Standards** | `C01 (v1.1.1)`, `C02 (v1.1.0)`, `C04 (v1.0.1)` | `Approved` |
 | **Series D — Digital Systems** | `D01 (v1.0.3)`, `D02 (v2.0.1)`, `D03 (v2.0.0)`, `D04 (v1.2.1)` | `Approved` |
-| **Series E — Documents & Print** | `E01 (v2.5.0)`, `E02 (v1.1.0)`, `E04 (v2.3.0)` | `Approved` |
+| **Series E — Documents & Print** | `E01 (v2.6.0)`, `E02 (v1.1.0)`, `E04 (v2.3.0)`, `E05 (v1.0.0)` | `Approved` |
 
 **Table 5.** Revision History — `PUB-03`
 
 | Version | Date | Type | Summary of Changes | Approver |
 | :--- | :--- | :--- | :--- | :--- |
+| `v1.2.4` | `2026-11-28` | Errata | Added the Formal Document Bodies component summary from `E05 (v1.0.0)`; synchronized the source standards and Table 4 to `E01 (v2.6.0)`, `E05 (v1.0.0)`, `Dependencies-Manifest.md (v2.1.0)`, and `Library-Index.md (v1.2.25)` (`REC-A04-015`). | Hary Irfantri |
 | `v1.2.3` | `2026-11-28` | Errata | Synchronized the source standards and Table 4 to `E01 (v2.5.0)`, `E04 (v2.3.0)`, and `Library-Index.md (v1.2.24)` (`REC-A04-014`). | Hary Irfantri |
 | `v1.2.2` | `2026-11-27` | Errata | Synchronized the source standards and Table 4 to `E01 (v2.4.0)` and `Library-Index.md (v1.2.23)` (`REC-A04-013`). | Hary Irfantri |
 | `v1.2.1` | `2026-11-27` | Errata | Synchronized the source standards and Table 4 to `B01 (v2.1.0)`, `B05 (v1.2.0)`, and `Library-Index.md (v1.2.22)`, and added favicon and app icon guidance for `AST-B01-17`–`AST-B01-23` (`REC-A04-012`). | Hary Irfantri |

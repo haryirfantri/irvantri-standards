@@ -642,13 +642,13 @@ def check_press_export(rep: Report):
 
 
 def check_dependencies(rep: Report):
-    c = rep.check("dependencies", "Font and ICC checksums match the Dependencies Manifest; licence text present",
+    c = rep.check("dependencies", "Font, ICC and script checksums match the Dependencies Manifest; licence text present",
                   ["B03-C2", "A02-C10", "E03-C4"])
     man = LIB / "06_Dependencies/Dependencies-Manifest.md"
     rows = table_rows(man.read_text(encoding="utf-8"))
     listed = set()
     for cells in rows:
-        path = next((ticks(x) for x in cells if re.fullmatch(r"`06_Dependencies/[^`]+\.(ttf|otf|icc)`", x.strip())), None)
+        path = next((ticks(x) for x in cells if re.fullmatch(r"`06_Dependencies/[^`]+\.(ttf|otf|icc|js)`", x.strip())), None)
         sha = next((ticks(x) for x in cells if re.fullmatch(r"`[0-9a-f]{64}`", x.strip())), None)
         size = next((int(ticks(x).replace(",", "")) for x in cells if re.fullmatch(r"`[\d,]+`", x.strip())), None)
         if not path or not sha:
@@ -667,7 +667,7 @@ def check_dependencies(rep: Report):
         if size is not None and size != len(data):
             rep.fail(c, f"dependencies.size:{path}", f"`{path}` is {len(data):,} bytes, manifest says {size:,}.")
     for p in sorted((LIB / "06_Dependencies").rglob("*")):
-        if p.suffix.lower() in (".ttf", ".otf", ".icc") and lib_rel(p) not in listed:
+        if p.is_file() and p.suffix.lower() in (".ttf", ".otf", ".icc", ".js") and lib_rel(p) not in listed:
             rep.fail(c, f"dependencies.unlisted:{lib_rel(p)}", f"`{lib_rel(p)}` is not listed with a checksum in the manifest.")
     for d in sorted((LIB / "06_Dependencies/Fonts").iterdir()):
         if not d.is_dir():
@@ -685,6 +685,19 @@ def check_dependencies(rep: Report):
             rep.fail(c, f"dependencies.ofl-incomplete:{d.name}", f"`{lib_rel(ofl)}` is missing OFL-1.1 sections {missing}.")
         if not has_copyright:
             rep.fail(c, f"dependencies.ofl-copyright:{d.name}", f"`{lib_rel(ofl)}` has no upstream copyright line before the licence text.")
+    scripts = LIB / "06_Dependencies/Scripts"
+    for d in sorted(scripts.iterdir()) if scripts.is_dir() else []:
+        if not d.is_dir():
+            continue
+        lic = next((d / n for n in ("LICENSE", "LICENSE.md", "LICENSE.txt") if (d / n).exists()), None)
+        if lic is None:
+            rep.fail(c, f"dependencies.licence-missing:{d.name}", f"`{lib_rel(d)}` has no upstream LICENSE file (A02 §5.5.4).")
+            continue
+        t = lic.read_text(encoding="utf-8", errors="replace")
+        mit = "Permission is hereby granted, free of charge" in t and bool(re.search(r"Copyright", t))
+        rep.measure(c, licence=lib_rel(lic), bytes=len(t.encode()), mit_text=mit)
+        if not mit:
+            rep.fail(c, f"dependencies.licence-incomplete:{d.name}", f"`{lib_rel(lic)}` does not carry the MIT permission notice and copyright line.")
     c["summary"] = f"{len(listed)} checksummed files compared"
 
 
@@ -715,7 +728,8 @@ def html_master_pins() -> list[tuple[str, Path, str, bool]]:
 def measure_html_master(text: str, manifest_sha: set[str]) -> dict:
     """Static measurements for E01 §5.5.3, §5.5.4, §5.5.6–§5.5.9. Behaviour (overflow, keyboard) needs a browser."""
     import base64
-    styles = "\n".join(re.findall(r"<style\b[^>]*>(.*?)</style>", text, flags=re.S | re.I))
+    styles = "\n".join(re.findall(r"<style\b[^>]*>(.*?)</style>", text, flags=re.S | re.I)
+                       + re.findall(r"<script\b[^>]*\bdata-stylesheet\b[^>]*>(.*?)</script>", text, flags=re.S | re.I))
     styles = re.sub(r"/\*.*?\*/", "", styles, flags=re.S)
     literal = []
     for m in re.finditer(r"(?<![\w-])([a-z-]+)\s*:\s*([^;{}]+)", styles):
@@ -740,6 +754,13 @@ def measure_html_master(text: str, manifest_sha: set[str]) -> dict:
         else:
             fonts.append({"embedded": False, "ref": ref[:80]})
             font_fail.append(f"font not embedded: {ref[:60]}")
+    scripts, script_fail = [], []
+    for m in re.finditer(r"""<script\b[^>]*\bsrc\s*=\s*["']data:[^;,"']*;base64,([A-Za-z0-9+/=]+)["'][^>]*>""", text):
+        sha = hashlib.sha256(base64.b64decode(m.group(1))).hexdigest()
+        dep = re.search(r"""data-dependency\s*=\s*["']([^"']+)""", m.group(0))
+        scripts.append({"dependency": dep.group(1) if dep else None, "sha256": sha, "in_manifest": sha in manifest_sha})
+        if sha not in manifest_sha:
+            script_fail.append(f"embedded script {dep.group(1) if dep else sha[:12]} is not byte-identical to a 06_Dependencies file")
     fields = [f.group(0) for f in FIELD_RE.finditer(text)
               if not re.search(r"""type\s*=\s*["']?(?:button|submit|reset|checkbox|radio|hidden|file|color|range|date)""", f.group(0), re.I)]
     unlimited = [f[:60] for f in fields if not re.search(r"\b(?:maxlength|data-max(?:length|chars)?)\s*=", f, re.I)]
@@ -753,6 +774,7 @@ def measure_html_master(text: str, manifest_sha: set[str]) -> dict:
         "press_export": press,
         "press_preview": bool(re.search(r"Press preview", words, re.I)) if press else None,  # 5.5.7
         "remote_requests": remote, "fonts": fonts, "font_failures": font_fail,     # 5.5.8
+        "scripts": scripts, "script_failures": script_fail,                        # 5.5.8, A02 §5.5.4
         "aria_live": len(re.findall(r"aria-live\s*=", text)) + len(re.findall(r"""role\s*=\s*["'](?:status|alert)["']""", text)),  # 5.5.9
     }
 
@@ -786,10 +808,23 @@ def check_html_masters(rep: Report):
             problems.append(("remote", f"requests remote resources (E01 §5.5.8): {m['remote_requests'][:3]}"))
         if m["font_failures"]:
             problems.append(("fonts", f"fonts not embedded byte-identical (E01 §5.5.8): {m['font_failures'][:3]}"))
+        if m["script_failures"]:
+            problems.append(("scripts", f"script libraries not embedded byte-identical (E01 §5.5.8, A02 §5.5.4): {m['script_failures'][:3]}"))
         if not m["aria_live"]:
             problems.append(("live-region", "no ARIA Live Region for messages (E01 §5.5.9)"))
         for pid, msg in problems:
             rep.fail(c, f"html-master.{pid}:{code}", f"{code}: {msg}.")
+    # TPL-E01-06 is generated from tools/document-master/; the committed file must equal a fresh build.
+    try:
+        import build_document_master as bdm
+        if bdm.OUT.exists():
+            same = bdm.OUT.read_text(encoding="utf-8") == bdm.build()
+            rep.measure(c, code="TPL-E01-06", built_from="tools/document-master/", matches_source=same)
+            if not same:
+                rep.fail(c, "html-master.build:TPL-E01-06",
+                         "TPL-E01-06: the committed template differs from tools/document-master/; run tools/build_document_master.py.")
+    except ImportError:
+        pass
     c["summary"] = f"{len(html_master_pins())} HTML templates measured; {n_applies} pinned to a profile version and enforced"
 
 

@@ -83,6 +83,14 @@ Files are updated in place, so Drive file IDs and shared links never change. Wit
 
 Annotated release tags (`register-vX.Y.Z`, `A01 §5.7.2`) are created automatically by `.github/workflows/tag-release.yml` whenever `Standards Design/Library-Index.md` changes version on `main`. See `AGENTS.md` for the full release and post-merge checklist.
 
+## Release helpers, governance watch & E2E verification
+
+* **Version bumping (`tools/bump.py`):** updates standard/register headers, Section 8/10 Revision History, `Library-Index.md`, `Sync Required` transitions on `MAJOR` bumps (`A01 §5.5.3`), and `README.md` stats (`python3 tools/bump.py B02 minor --note "..." --dry-run`).
+* **Gate record scaffolding (`tools/new_rec.py`):** auto-numbers the next `REC-A04-NNN`, fills measured automated evidence from `check-report/check-report.json`, optionally registers it in `Library-Index.md` Section 7 (`--register`), and patches `A04 §5.1.7` CI citations (`--cite-ci`).
+* **Governance calendar watch (`tools/governance_watch.py` + `.github/workflows/governance-watch.yml`):** runs monthly on the 1st to flag standards due within 60 days (`A01 §5.6`), expiring waivers/known issues (`A04 §5.4.9`), and upcoming Scheduled Consistency Reviews (`A04 §5.1.2`).
+* **Browser E2E (`tools/e2e/verify_document_master.mjs` + `.github/workflows/browser-e2e.yml`):** reproducible Playwright Chromium verification of `TPL-E01-06` (offline load, blank Draft opening state, replace confirmation, sample render, Press Preview, Export Blocks + **Go to** + ARIA Live Region, and A4 PDF export).
+* **Makefile:** `make setup` creates `.venv`; `make check`, `make test`, `make build`, `make build-check`, `make publish-dry`, and `make publish` run the standard workflows.
+
 ## Citing a run in a record
 
-Cite the commit, the run URL and the check ID (`A04 §5.1.7`), for example: "`contrast` passed, 39 pairings, minimum 5.10:1 (library checks run `<url>`, commit `<sha>`)".
+Every pull request run of `.github/workflows/library-checks.yml` posts a sticky comment with the exact `A04 §5.1.7` citation command (`python3 tools/new_rec.py --cite-ci ...`). Cite the commit, the run URL and the check ID, for example: "`contrast` passed, 42 pairings, minimum 4.87:1 (library checks run `<url>`, commit `<sha>`)".

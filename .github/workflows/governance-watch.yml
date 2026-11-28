@@ -1,0 +1,62 @@
+name: Governance calendar watch
+
+# Monthly check of upcoming standard reviews (A01 §5.6), Scheduled Consistency
+# Reviews (A04 §5.1.2), active waiver expiries (A04 §5.4.9), and known-issues
+# review_by dates. Opens or updates a single `governance-reminder` issue when
+# items are due within the lookahead window, and closes it once resolved.
+
+on:
+  schedule:
+    - cron: "0 7 1 * *" # 1st of every month, 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check governance calendar
+        id: watch
+        run: |
+          set +e
+          python3 tools/governance_watch.py --summary watch.md --fail-on-action
+          rc=$?
+          set -e
+          cat watch.md >> "$GITHUB_STEP_SUMMARY"
+          if [ "$rc" -eq 2 ]; then
+            echo "action_needed=true" >> "$GITHUB_OUTPUT"
+          elif [ "$rc" -eq 0 ]; then
+            echo "action_needed=false" >> "$GITHUB_OUTPUT"
+          else
+            exit "$rc"
+          fi
+
+      - name: Open or update reminder issue
+        if: steps.watch.outputs.action_needed == 'true'
+        run: |
+          gh label create governance-reminder --color 074C96 --description "Scheduled governance review or waiver reminder" 2>/dev/null || true
+          NUM=$(gh issue list --label governance-reminder --state open --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body-file watch.md
+          else
+            gh issue create --title "Standards Design — Governance review reminder" --label governance-reminder --body-file watch.md
+          fi
+
+      - name: Close reminder issue when clear
+        if: steps.watch.outputs.action_needed == 'false'
+        run: |
+          for NUM in $(gh issue list --label governance-reminder --state open --json number --jq '.[].number'); do
+            gh issue close "$NUM" --comment "All governance reviews, waivers, and known issues are current (run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})."
+          done

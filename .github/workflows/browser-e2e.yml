@@ -1,0 +1,42 @@
+name: Browser E2E verification
+
+# Runs reproducible Playwright Chromium verification against TPL-E01-06
+# Formal Document Master whenever its source, built HTML, or E2E test changes.
+
+on:
+  pull_request:
+    paths:
+      - "tools/document-master/**"
+      - "tools/build_document_master.py"
+      - "tools/e2e/**"
+      - "Standards Design/03_Templates/TPL-E01-06_Formal-Document-Master.html"
+      - ".github/workflows/browser-e2e.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/document-master/**"
+      - "tools/e2e/**"
+      - "Standards Design/03_Templates/TPL-E01-06_Formal-Document-Master.html"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright & Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Verify TPL-E01-06 Formal Document Master in Chromium
+        run: node tools/e2e/verify_document_master.mjs --export-pdf /tmp/tpl-e01-06-digital.pdf

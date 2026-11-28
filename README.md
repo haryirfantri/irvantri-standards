@@ -118,8 +118,9 @@ Generated artifacts (`AST-D01-02_Design-Tokens.css`, `TPL-E01-06_Formal-Document
 | `python3 tools/new_rec.py --title "..." --report check-report/check-report.json --register` | Scaffold the next `REC-A04-NNN` with measured CI evidence and register it in `Library-Index.md` |
 | `python3 tools/governance_watch.py` | Check upcoming standard reviews, Scheduled Consistency Review cadence, and waiver/known-issue expiries |
 | `make build` / `make build-check` | Regenerate or drift-check `AST-D01-02`, `TPL-E01-06`, and `README.md` stats |
+| `make build-dist` | Build downstream `@irvantri/design-system` bundle (`tokens.css`, `components.css`, `tokens.ts`, Tailwind v3/v4) in `dist/` |
 | `make publish-dry` / `make publish` | Preview or execute one-way publish from `main` to the Google Drive Distribution Mirror |
-| `node tools/e2e/verify_document_master.mjs` | Run headless Chromium E2E verification on `TPL-E01-06_Formal-Document-Master.html` |
+| `node tools/e2e/verify_component_gallery.mjs` / `verify_document_master.mjs` | Run Chromium E2E, `320`/`768`/`1280 px` reflow, and `axe-core` WCAG 2.2 AA verification |
 | `python3 tools/press_export.py <file.pdf>` / `tools/pdf_finish.py <file.pdf>` | Convert HTML master press exports to `PDF/X-4` (`FOGRA39`) or finalize digital A4 PDF bookmarks/metadata |
 
 See [tools/README.md](tools/README.md) for detailed check coverage and [Dependencies-Manifest.md](Standards%20Design/06_Dependencies/Dependencies-Manifest.md) for third-party checksums and licenses.

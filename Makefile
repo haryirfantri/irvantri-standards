@@ -1,7 +1,7 @@
 VENV := .venv
 PY := $(if $(wildcard $(VENV)/bin/python3),$(VENV)/bin/python3,python3)
 
-.PHONY: help setup test check build build-check publish-dry publish
+.PHONY: help setup test check build build-check build-dist publish-dry publish
 
 help: ## Show available targets
 	@awk 'BEGIN {FS = ":.*## "} /^[a-zA-Z_-]+:.*## / {printf "  %-14s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -26,6 +26,9 @@ build-check: ## Verify all generated artifacts are drift-free
 	$(PY) tools/build_tokens_css.py --check
 	$(PY) tools/build_document_master.py --check
 	$(PY) tools/build_readme.py --check
+
+build-dist: ## Build @irvantri/design-system (CSS, TypeScript, Tailwind v3/v4) in dist/
+	$(PY) tools/build_tokens_exports.py --out-dir dist
 
 publish-dry: ## Preview Google Drive one-way mirror changes (no mutations)
 	$(PY) tools/publish_drive.py --dry-run

@@ -1,0 +1,93 @@
+name: Drive mirror drift check
+
+# Daily read-only comparison of the Google Drive Distribution Mirror against
+# Standards Design/ on main (A01 §5.9.3). Opens (or updates) one GitHub issue
+# labelled drive-drift when Drive differs or the check cannot authenticate, and
+# closes it once Drive matches again. Catches failed or skipped publishes,
+# manual edits on Drive, and an expired refresh token.
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # daily, 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: drive-drift
+  cancel-in-progress: true
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
+      GDRIVE_OAUTH_CLIENT_SECRET: ${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}
+      GDRIVE_OAUTH_REFRESH_TOKEN: ${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}
+      STANDARDS_DESIGN_DRIVE_ID: "17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin"
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compare Drive with main
+        id: cmp
+        run: |
+          if [ -z "$GDRIVE_OAUTH_REFRESH_TOKEN" ] || [ -z "$GDRIVE_OAUTH_CLIENT_ID" ] || [ -z "$GDRIVE_OAUTH_CLIENT_SECRET" ]; then
+            echo "Drive OAuth secrets are not configured; drift check skipped." >> "$GITHUB_STEP_SUMMARY"
+            echo "state=skipped" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          set +e
+          python3 tools/publish_drive.py --backend api --dry-run --fail-on-drift --summary plan.md > plan.log 2>&1
+          rc=$?
+          set -e
+          cat plan.log
+          [ -f plan.md ] && cat plan.md >> "$GITHUB_STEP_SUMMARY"
+          case $rc in
+            0) echo "state=clean" >> "$GITHUB_OUTPUT" ;;
+            2) echo "state=drift" >> "$GITHUB_OUTPUT" ;;
+            *) echo "state=error" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Open or update drift issue
+        if: steps.cmp.outputs.state == 'drift' || steps.cmp.outputs.state == 'error'
+        run: |
+          RUN_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          {
+            if [ "${{ steps.cmp.outputs.state }}" = "error" ]; then
+              echo "The drift check could not complete (often an expired or revoked refresh token)."
+              echo
+              echo '```'
+              tail -n 30 plan.log
+              echo '```'
+            else
+              cat plan.md
+              echo
+              echo "Fix: re-run **Publish to Google Drive** on \`main\` (Actions → Publish to Google Drive → Run workflow, untick *dry run*)."
+            fi
+            echo
+            echo "Run: ${RUN_URL} · commit \`$(git rev-parse HEAD)\`"
+          } > body.md
+          gh label create drive-drift --color D93F0B --description "Google Drive mirror differs from main" 2>/dev/null || true
+          NUM=$(gh issue list --label drive-drift --state open --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body-file body.md
+          else
+            gh issue create --title "Google Drive mirror differs from main" --label drive-drift --body-file body.md
+          fi
+
+      - name: Close drift issue when clean
+        if: steps.cmp.outputs.state == 'clean'
+        run: |
+          for NUM in $(gh issue list --label drive-drift --state open --json number --jq '.[].number'); do
+            gh issue close "$NUM" --comment "Drive mirror matches \`main\` at \`$(git rev-parse HEAD)\` (run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})."
+          done

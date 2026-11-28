@@ -2,13 +2,22 @@ name: Publish to Google Drive
 
 # One-way publish of Standards Design/ from GitHub main to the Google Drive
 # Distribution Mirror and append-only 99_Archive/ Cold Archive (A01 §5.9.3).
-# Runs on manual trigger or release tag (v*), after Library checks pass.
 #
-# To activate automated CI publishing, add a repository secret:
-#   GDRIVE_SERVICE_ACCOUNT_JSON  — Google Cloud service account key JSON with
-#                                  Editor access to the Standards Design folder.
+# Runs on every push to main that changes Standards Design/ (that is, every
+# merged pull request), after Library checks pass on the same commit. After a
+# successful publish it creates the annotated release tag register-vX.Y.Z for
+# the Library-Index.md version (A01 §5.7.2) if that tag does not exist yet.
+#
+# Authentication: OAuth 2.0 refresh token of the library Owner's Google account
+# (a service account cannot create files in a personal My Drive). Repository
+# secrets, created once with tools/drive_oauth_token.py (see tools/README.md):
+#   GDRIVE_OAUTH_CLIENT_ID, GDRIVE_OAUTH_CLIENT_SECRET, GDRIVE_OAUTH_REFRESH_TOKEN
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "Standards Design/**"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -16,17 +25,14 @@ on:
         required: false
         default: true
         type: boolean
-      archive_outgoing:
-        description: "Copy replaced/removed Drive files into 99_Archive/ first"
-        required: false
-        default: true
-        type: boolean
-  push:
-    tags:
-      - "v*"
 
 permissions:
   contents: read
+
+# Publishes run one at a time, in merge order; a queued run is never cancelled mid-way.
+concurrency:
+  group: drive-publish
+  cancel-in-progress: false
 
 jobs:
   verify:
@@ -40,49 +46,57 @@ jobs:
       - run: pip install -r tools/requirements.txt
       - run: python3 tools/library_checks.py --report-dir check-report
 
-  publish-drive:
+  publish:
     needs: verify
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    permissions:
+      contents: write # release tag only
     env:
-      GDRIVE_SA: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
+      GDRIVE_OAUTH_CLIENT_ID: ${{ secrets.GDRIVE_OAUTH_CLIENT_ID }}
+      GDRIVE_OAUTH_CLIENT_SECRET: ${{ secrets.GDRIVE_OAUTH_CLIENT_SECRET }}
+      GDRIVE_OAUTH_REFRESH_TOKEN: ${{ secrets.GDRIVE_OAUTH_REFRESH_TOKEN }}
       STANDARDS_DESIGN_DRIVE_ID: "17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin"
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Check credentials
         id: creds
         run: |
-          if [ -z "$GDRIVE_SA" ]; then
+          if [ -z "$GDRIVE_OAUTH_REFRESH_TOKEN" ] || [ -z "$GDRIVE_OAUTH_CLIENT_ID" ] || [ -z "$GDRIVE_OAUTH_CLIENT_SECRET" ]; then
             echo "configured=false" >> "$GITHUB_OUTPUT"
-            echo "GDRIVE_SERVICE_ACCOUNT_JSON secret is not configured. Skipping CI publish (run tools/publish_drive.py locally via gdrive CLI instead)." >> "$GITHUB_STEP_SUMMARY"
+            echo "::warning::Drive OAuth secrets are not configured; nothing was published. See tools/README.md."
+            echo "Drive OAuth secrets are not configured; nothing was published. See \`tools/README.md\` → *Publishing one-way to Google Drive*." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "configured=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Install rclone
+      - name: Publish
         if: steps.creds.outputs.configured == 'true'
+        env:
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq rclone
+          MODE=--apply
+          if [ "$DRY_RUN" = "true" ]; then MODE=--dry-run; fi
+          python3 tools/publish_drive.py --backend api $MODE --archive-policy versioned --summary "$GITHUB_STEP_SUMMARY"
 
-      - name: Mirror active Standards Design/ tree to Google Drive
-        if: steps.creds.outputs.configured == 'true'
+      - name: Tag register release
+        if: steps.creds.outputs.configured == 'true' && !(github.event_name == 'workflow_dispatch' && inputs.dry_run)
         run: |
-          printf '%s' "$GDRIVE_SA" > /tmp/sa.json
-          cat > /tmp/rclone.conf <<EOF
-          [gdrive]
-          type = drive
-          scope = drive
-          service_account_file = /tmp/sa.json
-          root_folder_id = ${STANDARDS_DESIGN_DRIVE_ID}
-          EOF
-          FLAGS="--config /tmp/rclone.conf --exclude /99_Archive/** --exclude /98_Drafts/**"
-          if [ "${{ inputs.dry_run }}" = "true" ]; then
-            FLAGS="$FLAGS --dry-run"
+          VERSION=$(grep -m1 -oP '^\|\s*\*\*Version\*\*\s*\|\s*`\Kv\d+\.\d+\.\d+' "Standards Design/Library-Index.md")
+          TAG="register-${VERSION}"
+          if git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null; then
+            echo "Tag ${TAG} already exists; not re-tagging." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
           fi
-          if [ "${{ inputs.archive_outgoing }}" = "true" ] || [ "${{ github.event_name }}" = "push" ]; then
-            TAG="${GITHUB_REF_NAME:-$(date -u +%Y-%m-%d)}"
-            FLAGS="$FLAGS --backup-dir gdrive:99_Archive --suffix _${TAG} --suffix-keep-extension"
-          fi
-          rclone sync "Standards Design" gdrive: $FLAGS -v
-          rm -f /tmp/sa.json /tmp/rclone.conf
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" "$GITHUB_SHA" -m "Standards Design ${TAG} (Library-Index.md ${VERSION}), published to Google Drive by run ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          git push origin "refs/tags/${TAG}"
+          echo "Created release tag \`${TAG}\` at \`${GITHUB_SHA}\`." >> "$GITHUB_STEP_SUMMARY"

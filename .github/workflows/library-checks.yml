@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r tools/requirements.txt
 
+      - name: Test tools
+        run: python3 -m unittest discover -s tools/tests -v
+
       - name: Run library checks
         run: python3 tools/library_checks.py --report-dir check-report
 

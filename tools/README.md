@@ -65,14 +65,43 @@ python3 tools/pdf_finish.py "REF-001 Title v1.0.0.pdf"
 
 ## Publishing one-way to Google Drive (`A01 §5.9.3`)
 
-Google Drive (`Standards Design/`, folder ID `17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin`) mirrors `Standards Design/` one-way from GitHub `main` and hosts the append-only `99_Archive/` Cold Archive:
+Google Drive (`Standards Design/`, folder ID `17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin`) mirrors `Standards Design/` one-way from GitHub `main` and hosts the append-only `99_Archive/` Cold Archive.
+
+### Automatic: every merge to `main`
+
+| Workflow | When | What it does |
+| :--- | :--- | :--- |
+| `.github/workflows/publish-drive.yml` | Every push to `main` that changes `Standards Design/` (each merged pull request); manual run with an optional dry run | Runs `library_checks.py`, then `publish_drive.py --apply`, one run at a time in merge order. Writes the plan to the run summary. Creates the annotated tag `register-vX.Y.Z` for the `Library-Index.md` version if it does not exist yet (`A01 §5.7.2`). |
+| `.github/workflows/drive-drift.yml` | Daily 06:17 UTC; manual | Read-only comparison of Drive with `main`. Opens one issue labelled `drive-drift` when Drive differs or authentication fails, and closes it when Drive matches again. |
+
+Files are updated in place, so Drive file IDs and shared links never change. With the default `--archive-policy versioned`, the outgoing Drive copy goes to `99_Archive/` only when its `vMAJOR.MINOR` changes (`A01 §5.5.3`, `§5.5.4`, `§5.7.2`) or the file is removed (`A01 §5.7.3`); `ERRATA` updates and unversioned assets are updated in place, with Git history and release tags as their record. Nothing in `99_Archive/` is ever modified or deleted.
+
+### One-time setup (library Owner)
+
+Drive is in a personal Google account, so CI signs in as the Owner with an OAuth refresh token (a service account cannot create files in a personal My Drive).
+
+1. In the [Google Cloud Console](https://console.cloud.google.com/), create a project (for example `irvantri-standards-publish`) and enable the **Google Drive API**.
+2. **OAuth consent screen:** User type *External*; app name `Standards Design Publisher`; add your Google account as a test user; then press **Publish app** so the status reads *In production*. Refresh tokens of apps left in *Testing* expire after 7 days. Google shows an "unverified app" warning when you sign in; choose *Advanced → Go to … (unsafe)*. That is expected for a private app only you use.
+3. **Credentials → Create credentials → OAuth client ID →** application type *Desktop app*. Note the client ID and client secret.
+4. On your own computer, signed in to the Google account that owns `Standards Design`:
+
+   ```sh
+   python3 tools/drive_oauth_token.py --client-id "<client id>" --client-secret "<client secret>"
+   ```
+
+   Approve access in the browser; the script prints the refresh token.
+5. In GitHub: **Settings → Secrets and variables → Actions → New repository secret**, add `GDRIVE_OAUTH_CLIENT_ID`, `GDRIVE_OAUTH_CLIENT_SECRET`, and `GDRIVE_OAUTH_REFRESH_TOKEN`.
+6. **Actions → Publish to Google Drive → Run workflow** with *dry run* ticked to confirm access, then once more unticked to publish.
+
+The token grants Drive access to your account: keep it only in GitHub Secrets. To revoke it, remove the app at <https://myaccount.google.com/permissions>; the next drift check will open an issue until a new token is stored.
+
+### Manual (local or agent session)
 
 ```sh
-python3 tools/publish_drive.py --dry-run
-python3 tools/publish_drive.py --apply --archive-outgoing
+python3 tools/publish_drive.py --dry-run          # preview (gdrive CLI, or the API when GDRIVE_OAUTH_* is set)
+python3 tools/publish_drive.py --apply            # publish with the versioned archive policy
+python3 -m unittest discover -s tools/tests -v    # publisher tests
 ```
-
-For automated CI publishing via `.github/workflows/publish-drive.yml`, configure the repository secret `GDRIVE_SERVICE_ACCOUNT_JSON` with a Google Cloud service account granted Editor access to the `Standards Design` folder.
 
 ## Citing a run in a record
 

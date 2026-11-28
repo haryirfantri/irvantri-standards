@@ -80,7 +80,7 @@ None. Zero non-conformities were found. The stale `PUB-02` colophon version was 
 ## 7. Closure Verification (`A04 (v1.2.0) §5.2.3`, `§5.1.7`)
 
 * **Gate Verdict:** `Pass`. The items in Section 1 are released as listed.
-* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues on the release branch. The continuous integration (`CI`) run for the release commit is cited in the pull request.
+* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues on the release branch. Continuous integration (`CI`) run `46117411792` measured commit `cdcbac5`, which holds every gated change, and passed. The `html-master` check measured 1 `HTML` template and enforced none, since no template is yet pinned to a profile version.
 * **Follow-Up:** The header and footer (`TPL-E01-01`, `TPL-E01-04`) and the letterheads (`TPL-E04-01`, `TPL-E04-03`) move to `HTML` Authoring Masters in later releases, each with its own gate under `E01 §5.5.10`. `TPL-E01-03` meets the profile when it is next revised (Section 4).
 * **Approver Sign-Off:** The Approver approved the proposal on `2026-11-28`. Merging the release pull request records sign-off and puts the release into effect.
 * **Approver:** Hary Irfantri

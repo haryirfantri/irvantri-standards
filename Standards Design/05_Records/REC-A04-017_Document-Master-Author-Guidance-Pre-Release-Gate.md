@@ -72,6 +72,6 @@ None. One defect found during the build was fixed before this record: the cheat 
 ## 7. Closure Verification (`A04 (v1.2.1) §5.2.3`, `§5.1.7`)
 
 * **Gate Verdict:** `Pass`. The items in Section 1 are released as listed.
-* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues on the release branch. CI run citation (`A04 §5.1.7`) recorded upon PR `library-checks` completion.
+* **Automated Check:** `python3 tools/library_checks.py` gives `PASS` with zero failing findings and zero known issues on the release branch. The continuous integration (`CI`) `library-checks` run [`46138887184`](https://github.com/haryirfantri/irvantri-standards/actions/runs/46138887184) on commit `3b51f42` of the release pull request completed with `success` (`A04 §5.1.7`).
 * **Approver Sign-Off:** The Approver approved the plan, preview, and rebase onto `Standards Design` (`Library-Index.md v2.0.1`) on `2026-11-28`. Merging the release pull request records sign-off and puts the release into effect.
 * **Approver:** Hary Irfantri

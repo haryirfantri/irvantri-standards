@@ -1,0 +1,38 @@
+name: Tag register release
+
+# Creates an annotated release tag register-vX.Y.Z on main whenever
+# Standards Design/Library-Index.md changes version (A01 §5.7.2).
+# Requires no external secrets; uses the default GITHUB_TOKEN.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Standards Design/Library-Index.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create annotated register tag
+        run: |
+          VERSION=$(grep -m1 -oP '^\|\s*\*\*Version\*\*\s*\|\s*`\Kv\d+\.\d+\.\d+' "Standards Design/Library-Index.md")
+          TAG="register-${VERSION}"
+          if git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null; then
+            echo "Tag \`${TAG}\` already exists; nothing to do." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" "$GITHUB_SHA" -m "Standards Design ${TAG} (Library-Index.md ${VERSION})"
+          git push origin "refs/tags/${TAG}"
+          echo "Created annotated release tag \`${TAG}\` at \`${GITHUB_SHA}\`." >> "$GITHUB_STEP_SUMMARY"

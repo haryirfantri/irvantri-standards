@@ -65,14 +65,18 @@ python3 tools/pdf_finish.py "REF-001 Title v1.0.0.pdf"
 
 ## Publishing one-way to Google Drive (`A01 §5.9.3`)
 
-Google Drive (`Standards Design/`, folder ID `17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin`) mirrors `Standards Design/` one-way from GitHub `main` and hosts the append-only `99_Archive/` Cold Archive:
+Google Drive (`Standards Design/`, folder ID `17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin`) mirrors `Standards Design/` one-way from GitHub `main` and hosts the append-only `99_Archive/` Cold Archive. Publishing is run from `main` after a merge using the signed-in `gdrive` CLI (agent or local Owner session), so no long-lived Drive credentials are stored in GitHub Secrets:
 
 ```sh
-python3 tools/publish_drive.py --dry-run
-python3 tools/publish_drive.py --apply --archive-outgoing
+python3 tools/publish_drive.py --dry-run                 # preview planned changes
+python3 tools/publish_drive.py --apply                   # publish with the versioned archive policy
+python3 tools/publish_drive.py --dry-run --fail-on-drift # exit 2 if Drive differs from main
+python3 -m unittest discover -s tools/tests -v           # publisher tests
 ```
 
-For automated CI publishing via `.github/workflows/publish-drive.yml`, configure the repository secret `GDRIVE_SERVICE_ACCOUNT_JSON` with a Google Cloud service account granted Editor access to the `Standards Design` folder.
+Files are updated in place, so Drive file IDs and shared links never change. With the default `--archive-policy versioned`, the outgoing Drive copy goes to `99_Archive/` only when its `vMAJOR.MINOR` changes (`A01 §5.5.3`, `§5.5.4`, `§5.7.2`) or the file is removed (`A01 §5.7.3`); `ERRATA` updates and unversioned assets are updated in place, with Git history and release tags as their record. Nothing in `99_Archive/` is ever modified or deleted.
+
+Annotated release tags (`register-vX.Y.Z`, `A01 §5.7.2`) are created automatically by `.github/workflows/tag-release.yml` whenever `Standards Design/Library-Index.md` changes version on `main`. See `AGENTS.md` for the full release and post-merge checklist.
 
 ## Citing a run in a record
 

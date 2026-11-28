@@ -9,18 +9,30 @@ Roles:
     and append-only Cold Archive (99_Archive/).
 
 Behaviour:
+  * Uses the signed-in `gdrive` CLI (agent or local Owner session) so no
+    long-lived Drive credentials are stored in GitHub Secrets.
   * Never deletes anything inside Google Drive 99_Archive/.
-  * Before overwriting or removing an active file on Drive, optionally snapshots
-    the outgoing Drive copy into 99_Archive/ with a collision-free suffix
-    (_vX.Y.Z for versioned Markdown/HTML, or _YYYY-MM-DD[-rNN] for assets/templates).
-  * Updates existing Drive files in-place (`gdrive mutate update`) so Drive file
-    IDs and shared links remain stable.
-  * Defaults to --dry-run; pass --apply to execute mutations.
+  * Updates existing Drive files in-place so Drive file IDs and shared links
+    remain stable.
+  * Archive policy (--archive-policy):
+      versioned  (default) snapshot the outgoing Drive copy into 99_Archive/
+                 only when its `vMAJOR.MINOR` differs from the incoming file
+                 (A01 §5.5.3, §5.5.4, §5.7.2), and always before an active file
+                 is removed (A01 §5.7.3). ERRATA updates and unversioned assets
+                 are updated in place; Git history and release tags hold them.
+      all        snapshot every replaced or removed file (legacy behaviour,
+                 same as --archive-outgoing).
+      none       never snapshot.
+    Archive names follow A02 §5.6.1: `_vX.Y.Z` for versioned Markdown, else
+    `_YYYY-MM-DD`, with `-rNN` added on collision.
+  * Defaults to a dry run; pass --apply to execute mutations.
 
 Usage (from the repository root):
     python3 tools/publish_drive.py --dry-run
-    python3 tools/publish_drive.py --apply --archive-outgoing
-    python3 tools/publish_drive.py --apply --retire-drafts
+    python3 tools/publish_drive.py --apply
+    python3 tools/publish_drive.py --dry-run --fail-on-drift
+
+Exit status: 0 on success; 2 with --fail-on-drift when any action is planned.
 """
 from __future__ import annotations
 
@@ -33,73 +45,94 @@ import re
 import subprocess
 import sys
 import tempfile
+from dataclasses import dataclass, field
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 LIB = ROOT / "Standards Design"
 DEFAULT_DRIVE_ROOT_ID = os.environ.get("STANDARDS_DESIGN_DRIVE_ID", "17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin")
 ACTIVE_TOP = ["Library-Index.md", "01_Standards", "02_Assets", "03_Templates", "04_Publications", "05_Records", "06_Dependencies"]
+SKIP_DIRS = {"99_Archive", "98_Drafts"}
+FOLDER_MIME = "application/vnd.google-apps.folder"
+TEXT_EXTS = {".md", ".json", ".css", ".svg", ".html", ".txt"}
+VERSION_RE = re.compile(r"^\|\s*\*\*Version\*\*\s*\|\s*`(v(\d+)\.(\d+)\.(\d+))`\s*\|", re.M)
 
 
-def run_gdrive(*args: str, parse_json: bool = False):
-    cmd = ["gdrive", *args]
-    if parse_json:
-        cmd.append("--json")
-    proc = subprocess.run(cmd, capture_output=True, text=True)
-    if proc.returncode != 0:
-        raise RuntimeError(f"Command failed ({proc.returncode}): {' '.join(cmd)}\n{proc.stderr.strip()}")
-    if parse_json:
-        text = proc.stdout.strip()
-        return json.loads(text) if text else []
-    return proc.stdout.strip()
+# --------------------------------------------------------------------------- backend
 
 
-def list_drive_folder(folder_id: str) -> list[dict]:
-    data = run_gdrive("readonly", "ls", folder_id, parse_json=True)
-    if isinstance(data, dict):
-        return data.get("files", [])
-    return data
+class DriveBackend:
+    """Minimal Drive surface the publisher needs. Items are dicts with
+    id, name, mimeType and, for files, size and (when known) md5Checksum."""
+
+    def list(self, folder_id: str) -> list[dict]:
+        raise NotImplementedError
+
+    def download(self, file_id: str, out: Path) -> None:
+        raise NotImplementedError
+
+    def update(self, file_id: str, src: Path) -> None:
+        raise NotImplementedError
+
+    def upload(self, src: Path, parent_id: str, name: str | None = None) -> str:
+        raise NotImplementedError
+
+    def mkdir(self, name: str, parent_id: str) -> str:
+        raise NotImplementedError
+
+    def trash(self, file_id: str) -> None:
+        raise NotImplementedError
 
 
-def crawl_drive(folder_id: str, prefix: str = "") -> tuple[dict[str, str], dict[str, dict]]:
-    """Return (dir_rel -> id, file_rel -> item_dict) for active mirror paths."""
-    dirs: dict[str, str] = {"": folder_id}
-    files: dict[str, dict] = {}
-    items = list_drive_folder(folder_id)
-    for item in items:
-        name = item["name"]
-        rel = f"{prefix}/{name}" if prefix else name
-        mime = item.get("mimeType", "")
-        if mime == "application/vnd.google-apps.folder":
-            dirs[rel] = item["id"]
-            if rel in ("99_Archive", "98_Drafts"):
-                continue
-            sub_d, sub_f = crawl_drive(item["id"], rel)
-            dirs.update(sub_d)
-            files.update(sub_f)
-        else:
-            files[rel] = item
-    return dirs, files
+class GdriveCliBackend(DriveBackend):
+    """Wraps the `gdrive` CLI (readonly/mutate namespaces)."""
+
+    def _run(self, *args: str, parse_json: bool = False):
+        cmd = ["gdrive", *args]
+        if parse_json:
+            cmd.append("--json")
+        proc = subprocess.run(cmd, capture_output=True, text=True)
+        if proc.returncode != 0:
+            raise RuntimeError(f"Command failed ({proc.returncode}): {' '.join(cmd)}\n{proc.stderr.strip()}")
+        if parse_json:
+            text = proc.stdout.strip()
+            return json.loads(text) if text else []
+        return proc.stdout.strip()
+
+    def list(self, folder_id: str) -> list[dict]:
+        data = self._run("readonly", "ls", folder_id, parse_json=True)
+        return data.get("files", []) if isinstance(data, dict) else data
+
+    def download(self, file_id: str, out: Path) -> None:
+        self._run("readonly", "download", file_id, "--out", str(out))
+
+    def update(self, file_id: str, src: Path) -> None:
+        self._run("mutate", "update", file_id, str(src))
+
+    def upload(self, src: Path, parent_id: str, name: str | None = None) -> str:
+        if name and name != src.name:
+            with tempfile.TemporaryDirectory() as tmp:
+                renamed = Path(tmp) / name
+                renamed.write_bytes(src.read_bytes())
+                return self.upload(renamed, parent_id)
+        self._run("mutate", "upload", str(src), "--parent", parent_id)
+        return self._find(parent_id, src.name)
+
+    def mkdir(self, name: str, parent_id: str) -> str:
+        self._run("mutate", "mkdir", name, "--parent", parent_id)
+        return self._find(parent_id, name)
+
+    def trash(self, file_id: str) -> None:
+        self._run("mutate", "trash", file_id)
+
+    def _find(self, parent_id: str, name: str) -> str:
+        for item in self.list(parent_id):
+            if item["name"] == name:
+                return item["id"]
+        raise RuntimeError(f"{name} not found in {parent_id} after creation")
 
 
-def local_tree() -> tuple[list[str], dict[str, Path]]:
-    dirs: list[str] = []
-    files: dict[str, Path] = {}
-    for top in ACTIVE_TOP:
-        p = LIB / top
-        if not p.exists():
-            continue
-        if p.is_file():
-            files[top] = p
-            continue
-        dirs.append(top)
-        for sub in sorted(p.rglob("*")):
-            rel = sub.relative_to(LIB).as_posix()
-            if sub.is_dir():
-                dirs.append(rel)
-            elif sub.is_file():
-                files[rel] = sub
-    return dirs, files
+# --------------------------------------------------------------------------- helpers
 
 
 def md5_file(path: Path) -> str:
@@ -110,15 +143,19 @@ def md5_file(path: Path) -> str:
     return h.hexdigest()
 
 
+def read_version(text: str) -> tuple[str, int, int] | None:
+    """Return (vX.Y.Z, MAJOR, MINOR) from a controlled header, or None."""
+    m = VERSION_RE.search(text)
+    return (m.group(1), int(m.group(2)), int(m.group(3))) if m else None
+
+
 def archive_name_for(rel: str, downloaded: Path, existing_archive_names: set[str], today: str) -> str:
     p = Path(rel)
     stem, suffix = p.stem, p.suffix
     ver = None
     if suffix == ".md":
-        text = downloaded.read_text(encoding="utf-8", errors="replace")
-        m = re.search(r"^\|\s*\*\*Version\*\*\s*\|\s*`(v\d+\.\d+\.\d+)`\s*\|", text, flags=re.M)
-        if m:
-            ver = m.group(1)
+        v = read_version(downloaded.read_text(encoding="utf-8", errors="replace"))
+        ver = v[0] if v else None
     tag = ver or today
     candidate = f"{stem}_{tag}{suffix}"
     n = 2
@@ -129,145 +166,263 @@ def archive_name_for(rel: str, downloaded: Path, existing_archive_names: set[str
     return candidate
 
 
-def main() -> int:
+def should_archive(policy: str, kind: str, outgoing: Path | None, incoming: Path | None) -> tuple[bool, str]:
+    """Decide whether the outgoing Drive copy goes to 99_Archive/ before it is replaced."""
+    if policy == "none":
+        return False, "archive policy none"
+    if policy == "all":
+        return True, "archive policy all"
+    if kind == "REMOVE":
+        return True, "removed active file (A01 §5.7.3)"
+    if outgoing is None or incoming is None or outgoing.suffix != ".md":
+        return False, "unversioned file: in-place update"
+    old = read_version(outgoing.read_text(encoding="utf-8", errors="replace"))
+    new = read_version(incoming.read_text(encoding="utf-8", errors="replace"))
+    if not old or not new:
+        return False, "no version header: in-place update"
+    if (old[1], old[2]) != (new[1], new[2]):
+        return True, f"{old[0]} -> {new[0]} (MAJOR/MINOR, A01 §5.7.2)"
+    return False, f"{old[0]} -> {new[0]} (ERRATA: in-place update)"
+
+
+# --------------------------------------------------------------------------- planning
+
+
+@dataclass
+class Action:
+    kind: str  # MKDIR, UPLOAD, UPDATE, REMOVE, ARCHIVE_SEED, RETIRE_DRAFTS
+    target: str
+    detail: str
+    archive: bool = False
+    archive_reason: str = ""
+
+
+@dataclass
+class Plan:
+    actions: list[Action] = field(default_factory=list)
+    drive_dirs: dict[str, str] = field(default_factory=dict)
+    drive_files: dict[str, dict] = field(default_factory=dict)
+    local_dirs: list[str] = field(default_factory=list)
+    local_files: dict[str, Path] = field(default_factory=dict)
+    archive_names: set[str] = field(default_factory=set)
+    seed_uploads: list[tuple[str, Path]] = field(default_factory=list)
+
+
+def crawl_drive(be: DriveBackend, folder_id: str, prefix: str = "") -> tuple[dict[str, str], dict[str, dict]]:
+    """Return (dir_rel -> id, file_rel -> item) for active mirror paths."""
+    dirs: dict[str, str] = {"": folder_id} if not prefix else {}
+    files: dict[str, dict] = {}
+    for item in be.list(folder_id):
+        rel = f"{prefix}/{item['name']}" if prefix else item["name"]
+        if item.get("mimeType") == FOLDER_MIME:
+            dirs[rel] = item["id"]
+            if rel in SKIP_DIRS:
+                continue
+            sub_d, sub_f = crawl_drive(be, item["id"], rel)
+            dirs.update(sub_d)
+            files.update(sub_f)
+        else:
+            files[rel] = item
+    return dirs, files
+
+
+def local_tree(lib: Path = LIB) -> tuple[list[str], dict[str, Path]]:
+    dirs: list[str] = []
+    files: dict[str, Path] = {}
+    for top in ACTIVE_TOP:
+        p = lib / top
+        if not p.exists():
+            continue
+        if p.is_file():
+            files[top] = p
+            continue
+        dirs.append(top)
+        for sub in sorted(p.rglob("*")):
+            rel = sub.relative_to(lib).as_posix()
+            if sub.is_dir():
+                dirs.append(rel)
+            elif sub.is_file():
+                files[rel] = sub
+    return dirs, files
+
+
+def build_plan(be: DriveBackend, root_id: str, lib: Path, policy: str, scratch: Path,
+               verify_bytes: bool = False, seed_dir: Path | None = None, retire_drafts: bool = False) -> Plan:
+    plan = Plan()
+    plan.drive_dirs, plan.drive_files = crawl_drive(be, root_id)
+    plan.local_dirs, plan.local_files = local_tree(lib)
+    if "99_Archive" in plan.drive_dirs:
+        plan.archive_names = {i["name"] for i in be.list(plan.drive_dirs["99_Archive"])}
+
+    for d in plan.local_dirs:
+        if d not in plan.drive_dirs:
+            plan.actions.append(Action("MKDIR", d, "create missing mirror folder"))
+
+    for rel, path in sorted(plan.local_files.items()):
+        size = path.stat().st_size
+        remote = plan.drive_files.get(rel)
+        if remote is None:
+            plan.actions.append(Action("UPLOAD", rel, f"new file ({size} B)"))
+            continue
+        remote_size = int(remote.get("size", -1))
+        remote_md5 = remote.get("md5Checksum")
+        outgoing: Path | None = None
+        if remote_size != size:
+            detail = f"size changed ({remote_size} B -> {size} B)"
+        elif remote_md5:
+            if remote_md5 == md5_file(path):
+                continue
+            detail = f"content changed ({size} B, md5 differs)"
+        elif path.suffix.lower() in TEXT_EXTS or verify_bytes:
+            outgoing = scratch / f"{len(plan.actions)}_{path.name}"
+            be.download(remote["id"], outgoing)
+            if md5_file(outgoing) == md5_file(path):
+                outgoing.unlink(missing_ok=True)
+                continue
+            detail = f"content changed ({size} B, md5 differs)"
+        else:
+            continue
+        if policy == "versioned" and path.suffix == ".md" and outgoing is None:
+            outgoing = scratch / f"{len(plan.actions)}_{path.name}"
+            be.download(remote["id"], outgoing)
+        arc, why = should_archive(policy, "UPDATE", outgoing, path)
+        plan.actions.append(Action("UPDATE", rel, detail, arc, why))
+
+    for rel, remote in sorted(plan.drive_files.items()):
+        if rel not in plan.local_files:
+            arc, why = should_archive(policy, "REMOVE", None, None)
+            plan.actions.append(Action("REMOVE", rel, f"not in GitHub active tree (id={remote['id']})", arc, why))
+
+    if seed_dir and seed_dir.exists():
+        for p in sorted(seed_dir.iterdir()):
+            if p.is_file() and p.name not in plan.archive_names:
+                plan.seed_uploads.append((p.name, p))
+                plan.actions.append(Action("ARCHIVE_SEED", f"99_Archive/{p.name}", f"preserve historical file ({p.stat().st_size} B)"))
+
+    if retire_drafts and "98_Drafts" in plan.drive_dirs:
+        plan.actions.append(Action("RETIRE_DRAFTS", "98_Drafts", f"trash retired non-controlled folder (id={plan.drive_dirs['98_Drafts']})"))
+    return plan
+
+
+def apply_plan(be: DriveBackend, plan: Plan, root_id: str, today: str, log=print) -> None:
+    needs_archive = any(a.archive for a in plan.actions) or plan.seed_uploads
+    archive_id = plan.drive_dirs.get("99_Archive")
+    if needs_archive and not archive_id:
+        archive_id = be.mkdir("99_Archive", root_id)
+        plan.drive_dirs["99_Archive"] = archive_id
+        log("Created folder 99_Archive")
+
+    for d in plan.local_dirs:  # parents precede children (sorted rglob)
+        if d not in plan.drive_dirs:
+            parent = Path(d).parent.as_posix()
+            parent = "" if parent == "." else parent
+            plan.drive_dirs[d] = be.mkdir(Path(d).name, plan.drive_dirs[parent])
+            log(f"Created folder {d}")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp_dir = Path(tmp)
+        for a in plan.actions:
+            if a.kind in ("UPDATE", "REMOVE"):
+                remote = plan.drive_files[a.target]
+                if a.archive:
+                    dl = tmp_dir / Path(a.target).name
+                    be.download(remote["id"], dl)
+                    name = archive_name_for(a.target, dl, plan.archive_names, today)
+                    be.upload(dl, archive_id, name)
+                    log(f"Archived outgoing {a.target} -> 99_Archive/{name} ({a.archive_reason})")
+                if a.kind == "UPDATE":
+                    be.update(remote["id"], plan.local_files[a.target])
+                    log(f"Updated in-place {a.target}")
+                else:
+                    be.trash(remote["id"])
+                    log(f"Trashed retired active file {a.target}")
+            elif a.kind == "UPLOAD":
+                parent = Path(a.target).parent.as_posix()
+                parent = "" if parent == "." else parent
+                be.upload(plan.local_files[a.target], plan.drive_dirs[parent])
+                log(f"Uploaded new file {a.target}")
+            elif a.kind == "ARCHIVE_SEED":
+                name = a.target.split("/", 1)[1]
+                src = dict(plan.seed_uploads)[name]
+                be.upload(src, archive_id, name)
+                log(f"Seeded archive {a.target}")
+            elif a.kind == "RETIRE_DRAFTS":
+                be.trash(plan.drive_dirs["98_Drafts"])
+                log("Trashed retired 98_Drafts/")
+
+
+def render_summary(plan: Plan, mode: str, root_id: str, commit: str | None) -> str:
+    lines = [f"## Drive publish ({mode})", ""]
+    if commit:
+        lines.append(f"- **Commit:** `{commit}`")
+    lines += [f"- **Drive folder:** `{root_id}`", f"- **Planned actions:** {len(plan.actions)}", ""]
+    if plan.actions:
+        lines += ["| Action | Path | Detail | Archive |", "| :--- | :--- | :--- | :--- |"]
+        for a in plan.actions:
+            arc = f"yes: {a.archive_reason}" if a.archive else (a.archive_reason or "—")
+            lines.append(f"| `{a.kind}` | `{a.target}` | {a.detail} | {arc} |")
+    else:
+        lines.append("Drive mirror matches `Standards Design/` on this commit.")
+    return "\n".join(lines) + "\n"
+
+
+# --------------------------------------------------------------------------- main
+
+
+def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--drive-root-id", default=DEFAULT_DRIVE_ROOT_ID, help="Google Drive folder ID for Standards Design")
     ap.add_argument("--apply", action="store_true", help="Apply mutations to Google Drive (default is dry-run)")
     ap.add_argument("--dry-run", action="store_true", help="Preview changes without modifying Drive (default)")
-    ap.add_argument("--archive-outgoing", action="store_true", help="Snapshot replaced/removed Drive files into 99_Archive/ before updating")
+    ap.add_argument("--archive-policy", choices=["versioned", "all", "none"], default="versioned",
+                    help="When to snapshot outgoing Drive files into 99_Archive/ (default: versioned)")
+    ap.add_argument("--archive-outgoing", action="store_true", help="Alias for --archive-policy all")
     ap.add_argument("--retire-drafts", action="store_true", help="Trash retired 98_Drafts/ folder from the mirrored Drive root")
     ap.add_argument("--seed-archive-dir", type=Path, help="Optional local folder of historical archive files to append into Drive 99_Archive/ if absent")
-    ap.add_argument("--verify-bytes", action="store_true", help="Download and hash even size-matching binary files")
-    args = ap.parse_args()
+    ap.add_argument("--verify-bytes", action="store_true", help="Download and hash size-matching binaries when Drive gives no checksum")
+    ap.add_argument("--summary", type=Path, help="Append a Markdown summary of the plan to this file")
+    ap.add_argument("--plan-json", type=Path, help="Write the planned actions as JSON to this file")
+    ap.add_argument("--fail-on-drift", action="store_true", help="Exit 2 when any action is planned (drift detection)")
+    args = ap.parse_args(argv)
     do_apply = args.apply and not args.dry_run
+    policy = "all" if args.archive_outgoing else args.archive_policy
     today = dt.date.today().isoformat()
 
     if not LIB.exists():
         raise SystemExit(f"Library folder not found: {LIB}")
 
-    drive_dirs, drive_files = crawl_drive(args.drive_root_id)
-    local_dirs, local_files = local_tree()
-
-    archive_id = drive_dirs.get("99_Archive")
-    existing_archive_names: set[str] = set()
-    if archive_id:
-        for item in list_drive_folder(archive_id):
-            existing_archive_names.add(item["name"])
-
-    actions: list[tuple[str, str, str]] = []
-
-    # 1. Folders to create
-    for d in local_dirs:
-        if d not in drive_dirs:
-            actions.append(("MKDIR", d, "create missing mirror folder"))
-
-    # 2. Files to upload or update in-place
-    text_exts = {".md", ".json", ".css", ".svg", ".html", ".txt"}
-    with tempfile.TemporaryDirectory() as check_tmp:
-        check_dir = Path(check_tmp)
-        for rel, path in sorted(local_files.items()):
-            local_size = path.stat().st_size
-            if rel not in drive_files:
-                actions.append(("UPLOAD", rel, f"new file ({local_size} B)"))
-                continue
-            remote = drive_files[rel]
-            remote_size = int(remote.get("size", -1))
-            if remote_size != local_size:
-                actions.append(("UPDATE", rel, f"size changed ({remote_size} B -> {local_size} B)"))
-            elif path.suffix.lower() in text_exts or args.verify_bytes:
-                dl = check_dir / Path(rel).name
-                run_gdrive("readonly", "download", remote["id"], "--out", str(dl))
-                if md5_file(dl) != md5_file(path):
-                    actions.append(("UPDATE", rel, f"content changed ({local_size} B, md5 differs)"))
-                dl.unlink(missing_ok=True)
-
-    # 3. Active files on Drive no longer present in GitHub Standards Design/
-    for rel, remote in sorted(drive_files.items()):
-        if rel not in local_files:
-            actions.append(("REMOVE", rel, f"not in GitHub active tree (id={remote['id']})"))
-
-    # 4. Optional seed archive uploads (append-only)
-    seed_uploads: list[tuple[str, Path]] = []
-    if args.seed_archive_dir and args.seed_archive_dir.exists():
-        for p in sorted(args.seed_archive_dir.iterdir()):
-            if p.is_file() and p.name not in existing_archive_names:
-                seed_uploads.append((p.name, p))
-                actions.append(("ARCHIVE_SEED", f"99_Archive/{p.name}", f"preserve historical file ({p.stat().st_size} B)"))
-
-    # 5. Optional retire 98_Drafts/
-    if args.retire_drafts and "98_Drafts" in drive_dirs:
-        actions.append(("RETIRE_DRAFTS", "98_Drafts", f"trash retired non-controlled folder (id={drive_dirs['98_Drafts']})"))
+    be = GdriveCliBackend()
+    with tempfile.TemporaryDirectory() as scratch:
+        plan = build_plan(be, args.drive_root_id, LIB, policy, Path(scratch),
+                          verify_bytes=args.verify_bytes, seed_dir=args.seed_archive_dir,
+                          retire_drafts=args.retire_drafts)
 
     mode = "APPLY" if do_apply else "DRY-RUN"
-    print(f"=== Standards Design Drive Publish ({mode}) ===")
+    print(f"=== Standards Design Drive Publish ({mode}, archive={policy}) ===")
     print(f"Source: {LIB}")
     print(f"Target Drive folder ID: {args.drive_root_id}")
-    print(f"Planned actions: {len(actions)}")
-    for kind, target, detail in actions:
-        print(f"  [{kind:13s}] {target} — {detail}")
+    print(f"Planned actions: {len(plan.actions)}")
+    for a in plan.actions:
+        arc = f"  [archive: {a.archive_reason}]" if a.archive else ""
+        print(f"  [{a.kind:13s}] {a.target} — {a.detail}{arc}")
 
-    if not do_apply:
+    commit = os.environ.get("GITHUB_SHA")
+    if args.summary:
+        with args.summary.open("a", encoding="utf-8") as fh:
+            fh.write(render_summary(plan, mode, args.drive_root_id, commit))
+    if args.plan_json:
+        args.plan_json.write_text(json.dumps([a.__dict__ for a in plan.actions], indent=2), encoding="utf-8")
+
+    if do_apply and plan.actions:
+        apply_plan(be, plan, args.drive_root_id, today)
+        print("\nPublish complete.")
+    elif not do_apply:
         print("\nDry-run complete. Re-run with --apply to execute.")
-        return 0
+    else:
+        print("\nNothing to publish.")
 
-    # Ensure 99_Archive exists if needed
-    if (args.archive_outgoing or seed_uploads) and not archive_id:
-        out = run_gdrive("mutate", "mkdir", "99_Archive", "--parent", args.drive_root_id)
-        print(out)
-        drive_dirs, _ = crawl_drive(args.drive_root_id)
-        archive_id = drive_dirs["99_Archive"]
-
-    # Execute MKDIR in topological order
-    for d in local_dirs:
-        if d not in drive_dirs:
-            parent_rel = str(Path(d).parent)
-            parent_rel = "" if parent_rel == "." else parent_rel
-            parent_id = drive_dirs[parent_rel]
-            name = Path(d).name
-            run_gdrive("mutate", "mkdir", name, "--parent", parent_id)
-            for item in list_drive_folder(parent_id):
-                if item["name"] == name:
-                    drive_dirs[d] = item["id"]
-                    break
-            print(f"Created folder {d} ({drive_dirs[d]})")
-
-    with tempfile.TemporaryDirectory() as tmp:
-        tmp_dir = Path(tmp)
-        # Execute UPDATE and REMOVE (archiving outgoing if requested)
-        for kind, rel, _ in actions:
-            if kind in ("UPDATE", "REMOVE"):
-                remote = drive_files[rel]
-                if args.archive_outgoing and archive_id:
-                    dl = tmp_dir / Path(rel).name
-                    run_gdrive("readonly", "download", remote["id"], "--out", str(dl))
-                    arc_name = archive_name_for(rel, dl, existing_archive_names, today)
-                    arc_path = tmp_dir / arc_name
-                    dl.rename(arc_path)
-                    run_gdrive("mutate", "upload", str(arc_path), "--parent", archive_id)
-                    print(f"Archived outgoing {rel} -> 99_Archive/{arc_name}")
-                if kind == "UPDATE":
-                    run_gdrive("mutate", "update", remote["id"], str(local_files[rel]))
-                    print(f"Updated in-place {rel}")
-                else:
-                    run_gdrive("mutate", "trash", remote["id"])
-                    print(f"Trashed retired active file {rel}")
-            elif kind == "UPLOAD":
-                parent_rel = str(Path(rel).parent)
-                parent_rel = "" if parent_rel == "." else parent_rel
-                run_gdrive("mutate", "upload", str(local_files[rel]), "--parent", drive_dirs[parent_rel])
-                print(f"Uploaded new file {rel}")
-
-        # Seed append-only archive files
-        for name, p in seed_uploads:
-            run_gdrive("mutate", "upload", str(p), "--parent", archive_id)
-            print(f"Seeded archive 99_Archive/{name}")
-
-        # Retire 98_Drafts if requested
-        if args.retire_drafts and "98_Drafts" in drive_dirs:
-            run_gdrive("mutate", "trash", drive_dirs["98_Drafts"])
-            print("Trashed retired 98_Drafts/")
-
-    print("\nPublish complete.")
+    if args.fail_on_drift and plan.actions and not do_apply:
+        return 2
     return 0
 
 

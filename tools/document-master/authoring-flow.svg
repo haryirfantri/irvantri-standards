@@ -11,7 +11,7 @@
     <path d="M484 50 L494 55 L484 60 Z"/>
     <path d="M484 160 L494 165 L484 170 Z"/>
   </g>
-  <g fill="#FFFFFF" stroke="#64748B" stroke-width="1.5">
+  <g fill="#FFFFFF" stroke="#5F6C7E" stroke-width="1.5">
     <rect x="10" y="25" width="140" height="60" rx="4"/>
     <rect x="10" y="135" width="140" height="60" rx="4"/>
     <rect x="494" y="25" width="136" height="60" rx="4"/>

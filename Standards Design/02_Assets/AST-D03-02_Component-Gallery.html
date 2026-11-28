@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AST-D03-02 — Irvantri Standards Design System Component Gallery</title>
+  <!--
+    Code: AST-D03-02 | Governing Standard: D03 | Pinned: D03 (v2.0)
+    Loads AST-D01-02 (generated tokens) and AST-D03-01 (component kit) from the same folder.
+    Every component below uses kit classes only; no inline colors.
+  -->
+  <link rel="stylesheet" href="AST-D01-02_Design-Tokens.css">
+  <link rel="stylesheet" href="AST-D03-01_Component-Kit.css">
+  <style>
+    .g-wrap { max-width: 1120px; margin: 0 auto; padding: var(--is-space-8) var(--is-space-6); }
+    .g-section { margin-bottom: var(--is-space-12); }
+    .g-grid { display: grid; gap: var(--is-space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .g-stack > * + * { margin-top: var(--is-space-3); }
+    .g-header { background: var(--is-color-bg-surface); border-bottom: 1px solid var(--is-color-border-subtle); }
+    .g-header .g-wrap { padding-top: var(--is-space-6); padding-bottom: var(--is-space-6); }
+    .g-skip { position: absolute; left: var(--is-space-4); top: -100px; }
+    .g-skip:focus { top: var(--is-space-4); }
+    @media (max-width: 767px) { .g-wrap { padding: var(--is-space-6) var(--is-space-4); } }
+  </style>
+</head>
+<body class="is-root" style="margin:0">
+  <a class="is-btn is-btn--secondary g-skip" href="#main">Skip to content</a>
+  <header class="g-header">
+    <div class="g-wrap">
+      <p class="is-eyebrow">Irvantri Standards Design System</p>
+      <h1 class="is-page-title">Component gallery</h1>
+      <p class="is-muted">Reference rendering of every <span class="is-mono">AST-D03-01</span> component and state. Active normative standards prevail over this gallery.</p>
+    </div>
+  </header>
+
+  <main id="main" class="g-wrap">
+
+    <section class="g-section" aria-labelledby="h-buttons">
+      <h2 class="is-section-title" id="h-buttons">Buttons</h2>
+      <div class="g-grid">
+        <div class="is-card g-stack">
+          <h3 class="is-panel-title">Primary and secondary</h3>
+          <div class="is-btn-row">
+            <button class="is-btn is-btn--primary" type="button">Save changes</button>
+            <button class="is-btn is-btn--secondary" type="button">Export report</button>
+          </div>
+          <p class="is-helper">One primary action per view or form footer (D03 §5.1.4).</p>
+        </div>
+        <div class="is-card g-stack">
+          <h3 class="is-panel-title">Disabled with prerequisite</h3>
+          <button class="is-btn is-btn--primary" type="button" disabled aria-describedby="submit-help">Submit for review</button>
+          <span class="is-helper" id="submit-help">Add a document owner to submit this draft.</span>
+        </div>
+        <div class="is-card g-stack">
+          <h3 class="is-panel-title">Destructive</h3>
+          <button class="is-btn is-btn--danger" type="button" id="open-dialog">Delete draft</button>
+          <p class="is-helper">Opens a confirmation dialog that names the target item.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="g-section" aria-labelledby="h-forms">
+      <h2 class="is-section-title" id="h-forms">Form fields</h2>
+      <form class="is-card" novalidate>
+        <div class="is-field">
+          <label class="is-label" for="f-title">Document title</label>
+          <input class="is-input" id="f-title" name="title" type="text" value="Brand and Design System Guide">
+        </div>
+        <div class="is-field is-field--error">
+          <label class="is-label" for="f-code">Standard code</label>
+          <input class="is-input" id="f-code" name="code" type="text" value="B2" aria-invalid="true" aria-describedby="f-code-err">
+          <span class="is-error-text" id="f-code-err" role="status">Code B2 is not valid. Use a series letter and two digits, such as B02.</span>
+        </div>
+        <div class="is-field">
+          <label class="is-label" for="f-status">Status</label>
+          <select class="is-select" id="f-status" name="status">
+            <option>Draft</option><option>In Review</option><option>Approved</option>
+          </select>
+        </div>
+        <div class="is-field">
+          <label class="is-label" for="f-notes">Review notes</label>
+          <textarea class="is-textarea" id="f-notes" name="notes"></textarea>
+          <span class="is-helper">Notes appear in the revision history.</span>
+        </div>
+        <label class="is-check"><input type="checkbox" name="notify" checked> Notify the Approver</label>
+      </form>
+    </section>
+
+    <section class="g-section" aria-labelledby="h-status">
+      <h2 class="is-section-title" id="h-status">Status badges and banners</h2>
+      <div class="is-card g-stack">
+        <div class="is-btn-row" aria-label="Lifecycle status badges">
+          <span class="is-badge is-badge--informative">Planned</span>
+          <span class="is-badge is-badge--warning">Draft</span>
+          <span class="is-badge is-badge--informative">In Review</span>
+          <span class="is-badge is-badge--success">Approved</span>
+          <span class="is-badge is-badge--warning">Sync Required</span>
+          <span class="is-badge is-badge--danger">Deprecated</span>
+        </div>
+        <p class="is-helper">Mapping per E02 §5.2.2. Each badge carries its exact C02 status text.</p>
+      </div>
+      <div class="g-stack" style="margin-top: var(--is-space-6)">
+        <div class="is-banner is-banner--informative" role="status"><div><p class="is-banner__title">Review in progress</p><p>This standard is In Review and is not binding until the Approver signs off.</p></div></div>
+        <div class="is-banner is-banner--success" role="status"><div><p class="is-banner__title">Export complete</p><p>The register was exported as a CSV file.</p></div></div>
+        <div class="is-banner is-banner--warning" role="status"><div><p class="is-banner__title">Sync required</p><p>Two templates still cite B02 (v1.1). Update them before the next release.</p></div></div>
+        <div class="is-banner is-banner--danger" role="alert"><div><p class="is-banner__title">Upload failed</p><p>The file is larger than 25 MB. Compress it and upload it again.</p></div></div>
+      </div>
+    </section>
+
+    <section class="g-section" aria-labelledby="h-table">
+      <h2 class="is-section-title" id="h-table">Data table</h2>
+      <p class="is-muted">Below 768 px wide, rows reflow into summary cards (D03 §5.3.3).</p>
+      <table class="is-table is-table--reflow">
+        <caption>Normative standards, Series B</caption>
+        <thead><tr><th scope="col">Code</th><th scope="col">Standard</th><th scope="col">Status</th><th scope="col" class="is-num">Clauses (count)</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Code" class="is-mono">B01</td><td data-label="Standard">Marks &amp; Lockups</td><td data-label="Status"><span class="is-badge is-badge--success">Approved</span></td><td data-label="Clauses (count)" class="is-num">24</td></tr>
+          <tr><td data-label="Code" class="is-mono">B02</td><td data-label="Standard">Color System</td><td data-label="Status"><span class="is-badge is-badge--informative">In Review</span></td><td data-label="Clauses (count)" class="is-num">13</td></tr>
+          <tr><td data-label="Code" class="is-mono">B06</td><td data-label="Standard">—</td><td data-label="Status"><span class="is-badge is-badge--informative">Planned</span></td><td data-label="Clauses (count)" class="is-num">None</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="g-section" aria-labelledby="h-patterns">
+      <h2 class="is-section-title" id="h-patterns">Empty state and provenance</h2>
+      <div class="g-grid">
+        <div class="is-empty">
+          <p class="is-empty__title">No waivers recorded</p>
+          <p>Waivers appear here after the Approver grants one under A04.</p>
+          <button class="is-btn is-btn--secondary" type="button">Request a waiver</button>
+        </div>
+        <div class="is-provenance" role="note">
+          <div>
+            <p class="is-provenance__label">Archived snapshot · read-only</p>
+            <p>This is B02 v1.1.1 as approved on 2026-11-25. Changes need a new revision under A01 §5.5.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="is-dialog" id="confirm" aria-labelledby="confirm-title" aria-describedby="confirm-desc">
+    <h2 class="is-panel-title" id="confirm-title">Delete draft B02 v1.2.0?</h2>
+    <p id="confirm-desc">The draft and its review notes will be permanently deleted. Approved versions are not affected.</p>
+    <div class="is-dialog__actions">
+      <button class="is-btn is-btn--secondary" type="button" id="cancel">Keep draft</button>
+      <button class="is-btn is-btn--danger" type="button" id="confirm-delete">Delete draft</button>
+    </div>
+  </dialog>
+  <script>
+    const d = document.getElementById('confirm');
+    document.getElementById('open-dialog').addEventListener('click', () => d.showModal());
+    document.getElementById('cancel').addEventListener('click', () => d.close());
+    document.getElementById('confirm-delete').addEventListener('click', () => d.close());
+  </script>
+</body>
+</html>

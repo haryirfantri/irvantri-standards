@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-LIB = ROOT / "Unified Operating Library"
+LIB = ROOT / "Standards Design"
 SRC = ROOT / "tools/document-master"
 OUT = LIB / "03_Templates/TPL-E01-06_Formal-Document-Master.html"
 

@@ -345,17 +345,10 @@
     },
     {
       "file": "01_Standards/B_Visual-Foundations/B02_Color-System.md",
-      "text": "(`#64748B`, `4.76:1` on white)",
-      "fg": "#64748B",
+      "text": "(`#5F6C7E`, `5.34:1` on white)",
+      "fg": "#5F6C7E",
       "bg": "#FFFFFF",
-      "stated": 4.76
-    },
-    {
-      "file": "04_Publications/PUB-03_AI-Design-System-Context.md",
-      "text": "(`4.76:1` on white)",
-      "fg": "#64748B",
-      "bg": "#FFFFFF",
-      "stated": 4.76
+      "stated": 5.34
     },
     {
       "file": "04_Publications/PUB-03_AI-Design-System-Context.md",

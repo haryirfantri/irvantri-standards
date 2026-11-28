@@ -1,14 +1,20 @@
 name: Browser E2E verification
 
-# Runs reproducible Playwright Chromium verification against TPL-E01-06
-# Formal Document Master whenever its source, built HTML, or E2E test changes.
+# Runs reproducible Playwright Chromium verification against:
+#   1. TPL-E01-06 Formal Document Master (offline load, blank state, confirmation,
+#      sample render, Press Preview, Export Blocks + Go to + Live Region, A4 PDF).
+#   2. AST-D03-02 Component Gallery + AST-D03-01 Component Kit + AST-D01-02 Tokens
+#      (320/768/1280px reflow, 3px Brand Blue focus ring, dialog, axe-core WCAG 2.2 AA).
 
 on:
   pull_request:
     paths:
       - "tools/document-master/**"
       - "tools/build_document_master.py"
+      - "tools/build_tokens_css.py"
       - "tools/e2e/**"
+      - "Standards Design/02_Assets/AST-D01-*"
+      - "Standards Design/02_Assets/AST-D03-*"
       - "Standards Design/03_Templates/TPL-E01-06_Formal-Document-Master.html"
       - ".github/workflows/browser-e2e.yml"
   push:
@@ -16,6 +22,8 @@ on:
     paths:
       - "tools/document-master/**"
       - "tools/e2e/**"
+      - "Standards Design/02_Assets/AST-D01-*"
+      - "Standards Design/02_Assets/AST-D03-*"
       - "Standards Design/03_Templates/TPL-E01-06_Formal-Document-Master.html"
   workflow_dispatch:
 
@@ -33,20 +41,31 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install Playwright & Chromium
+      - name: Install Playwright, axe-core & Chromium
         run: |
-          npm install --no-save playwright
+          npm install --no-save playwright axe-core
           npx playwright install --with-deps chromium
+
+      - name: Verify AST-D03-02 Component Gallery (reflow + WCAG 2.2 AA)
+        run: |
+          set -o pipefail
+          node tools/e2e/verify_component_gallery.mjs 2>&1 | tee /tmp/e2e-gallery.log
 
       - name: Verify TPL-E01-06 Formal Document Master in Chromium
         run: |
           set -o pipefail
-          node tools/e2e/verify_document_master.mjs --export-pdf /tmp/tpl-e01-06-digital.pdf 2>&1 | tee /tmp/e2e.log
+          node tools/e2e/verify_document_master.mjs --export-pdf /tmp/tpl-e01-06-digital.pdf 2>&1 | tee /tmp/e2e-master.log
 
       - name: Publish E2E summary
         if: always()
         run: |
-          echo "### TPL-E01-06 Browser E2E Verification" >> "$GITHUB_STEP_SUMMARY"
-          echo '```text' >> "$GITHUB_STEP_SUMMARY"
-          cat /tmp/e2e.log >> "$GITHUB_STEP_SUMMARY"
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          for pair in "AST-D03-02 Component Gallery:/tmp/e2e-gallery.log" "TPL-E01-06 Formal Document Master:/tmp/e2e-master.log"; do
+            TITLE="${pair%%:*}"
+            LOG="${pair#*:}"
+            if [ -f "$LOG" ]; then
+              echo "### ${TITLE}" >> "$GITHUB_STEP_SUMMARY"
+              echo '```text' >> "$GITHUB_STEP_SUMMARY"
+              cat "$LOG" >> "$GITHUB_STEP_SUMMARY"
+              echo '```' >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done

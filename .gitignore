@@ -1,3 +1,4 @@
 check-report/
 __pycache__/
 .venv/
+dist/

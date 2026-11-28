@@ -900,16 +900,18 @@ def write_reports(rep: Report, out: Path, pal: dict) -> int:
 
 
 def check_token_css(rep: Report):
-    c = rep.check("token-css", "Generated CSS tokens (AST-D01-02) drift-free and component kit (AST-D03-01) hex-free",
+    c = rep.check("token-css", "Generated CSS tokens (AST-D01-02) drift-free, component kit hex-free, and all --is-* vars defined",
                   ["D01-C3", "D03-C1"])
     sys.path.insert(0, str(TOOLS))
     import build_tokens_css as btc
     css_path = LIB / "02_Assets/AST-D01-02_Design-Tokens.css"
     kit_path = LIB / "02_Assets/AST-D03-01_Component-Kit.css"
+    defined_vars: set[str] = set()
     if not css_path.exists():
         rep.fail(c, "token-css.missing:AST-D01-02", "`02_Assets/AST-D01-02_Design-Tokens.css` does not exist; run tools/build_tokens_css.py.")
     else:
         same, diff_text, count = btc.check_drift(LIB / "02_Assets/AST-D01-01_Design-Tokens.json", css_path)
+        defined_vars = set(re.findall(r"(--is-[a-z0-9-]+)\s*:", css_path.read_text(encoding="utf-8")))
         rep.measure(c, file=lib_rel(css_path), custom_properties=count, drift_free=same)
         if not same:
             rep.fail(c, "token-css.drift:AST-D01-02",
@@ -921,7 +923,26 @@ def check_token_css(rep: Report):
         if raw_hex:
             rep.fail(c, "token-css.kit-raw-hex:AST-D03-01",
                      f"AST-D03-01 contains raw hexadecimal color(s): {raw_hex[:5]} (D01 §5.3.1).")
-    c["summary"] = "AST-D01-02 drift-checked against AST-D01-01; AST-D03-01 verified hex-free"
+    # Every var(--is-...) used in kit, gallery, and HTML templates must resolve to AST-D01-02 or a local declaration
+    if defined_vars:
+        consumers = [p for p in [kit_path, LIB / "02_Assets/AST-D03-02_Component-Gallery.html"] if p.exists()]
+        tpl_dir = LIB / "03_Templates"
+        if tpl_dir.exists():
+            consumers.extend(sorted(tpl_dir.glob("*.html")))
+        checked_refs = 0
+        for p in consumers:
+            text = p.read_text(encoding="utf-8", errors="replace")
+            local_defs = set(re.findall(r"(--is-[a-z0-9-]+)\s*:", text))
+            used = sorted(set(re.findall(r"var\(\s*(--is-[a-z0-9-]+)\s*[,)]", text)))
+            checked_refs += len(used)
+            undefined = [v for v in used if v not in defined_vars and v not in local_defs]
+            rep.measure(c, file=lib_rel(p), is_vars_used=len(used), undefined=undefined)
+            for v in undefined:
+                rep.fail(c, f"token-css.undefined-var:{lib_rel(p)}:{v}",
+                         f"`{lib_rel(p)}` uses `var({v})`, which is not declared in AST-D01-02 or locally (D01 §5.3.1).")
+        c["summary"] = f"AST-D01-02 drift-free; AST-D03-01 hex-free; {checked_refs} --is-* references resolved across {len(consumers)} files"
+    else:
+        c["summary"] = "AST-D01-02 missing; AST-D03-01 verified hex-free"
 
 
 def _load_standards_from_index() -> dict[str, dict]:

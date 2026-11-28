@@ -88,6 +88,19 @@ html, body { margin: 0; background: var(--is-color-bg-muted); color: var(--is-co
 .restore { margin: 0 0 var(--is-space-4); padding: var(--is-space-3); border: 1px solid var(--is-color-status-informative-border); background: var(--is-color-status-informative-bg); border-radius: var(--is-radius-md); font-size: 13px; }
 .restore[hidden] { display: none; }
 .restore .row { display: flex; gap: var(--is-space-2); margin-top: var(--is-space-2); }
+.row { display: flex; flex-wrap: wrap; gap: var(--is-space-2); margin-top: var(--is-space-2); }
+.guide .steps { margin: var(--is-space-3) 0 0; padding-left: 20px; font-size: 13px; line-height: 1.5; }
+.guide .steps li { margin-bottom: var(--is-space-2); }
+.guide .note { font-size: 12px; color: var(--is-color-text-muted); margin: var(--is-space-2) 0 0; }
+.confirm { margin-top: var(--is-space-3); padding: var(--is-space-3); border: 1px solid var(--is-color-status-warning-border); background: var(--is-color-status-warning-bg); border-radius: var(--is-radius-md); font-size: 13px; }
+.confirm[hidden] { display: none; }
+.cheat { width: 100%; border-collapse: collapse; margin-top: var(--is-space-3); font-size: 12px; }
+.cheat caption { text-align: left; font-weight: 600; font-size: 13px; padding-bottom: var(--is-space-1); }
+.cheat th, .cheat td { text-align: left; vertical-align: top; padding: 5px 6px; border-bottom: 1px solid var(--is-color-border-subtle); }
+.cheat th { font-weight: 600; color: var(--is-color-text-muted); }
+.cheat code { font-family: var(--is-font-family-mono); font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cheat-more { font-size: 12px; color: var(--is-color-text-muted); margin: var(--is-space-2) 0 0; }
+.issues h2 .n { font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--is-color-status-danger); margin-left: var(--is-space-1); }
 details.group { border-bottom: 1px solid var(--is-color-border-subtle); padding: var(--is-space-3) 0; }
 details.group > summary { cursor: pointer; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--is-color-text-muted); padding: var(--is-space-1) 0; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--is-space-3); margin-top: var(--is-space-3); }
@@ -181,6 +194,27 @@ html.press-view .pagedjs_pages { gap: 6mm; }
         <div class="row"><button type="button" class="btn primary" id="btn-restore">Restore it</button><button type="button" class="btn" id="btn-discard">Discard it</button></div>
       </div>
 
+      <details class="group guide" id="guide" open>
+        <summary>How to use this template</summary>
+        <ol class="steps">
+          <li><b>Start.</b> Press Start blank document for a new document, or Load sample document to see every element in use.</li>
+          <li><b>Fill the cover.</b> Complete Cover and metadata. Document title, Identifier, Version, Issue date, Owner and Approver are required.</li>
+          <li><b>Write the body.</b> Type Markdown in Body, or paste from Word or Google Docs. Use the insert buttons or the Markdown cheat sheet below the body.</li>
+          <li><b>Fix the export checks.</b> Each item under Export checks says what to change. Press its Go to button to jump there.</li>
+          <li><b>Save your work.</b> Press Save filled copy. To keep editing later, open the saved file in a browser.</li>
+          <li><b>Export.</b> Press Export A4 PDF for screen, email and office printing, and save it as a PDF in the print dialog. Use Export press PDF only for an Approved document that goes to a commercial printer.</li>
+        </ol>
+        <div class="row">
+          <button type="button" class="btn" id="btn-blank">Start blank document</button>
+          <button type="button" class="btn" id="btn-sample">Load sample document</button>
+        </div>
+        <div class="confirm" id="start-confirm" hidden role="region" aria-labelledby="start-confirm-text">
+          <span id="start-confirm-text">This replaces every field, the body and the images with the blank document. Unsaved changes are lost. Save filled copy first to keep them.</span>
+          <div class="row"><button type="button" class="btn primary" id="btn-start-yes">Replace current document</button><button type="button" class="btn" id="btn-start-no">Keep current document</button></div>
+        </div>
+        <p class="note">The page frame, fonts and colors are locked so every document matches the brand. The full element rules are in E05 Document Body Elements.</p>
+      </details>
+
       <details class="group" open>
         <summary>Cover and metadata</summary>
         <div class="grid">
@@ -227,6 +261,63 @@ html.press-view .pagedjs_pages { gap: 6mm; }
         </div>
       </details>
 
+      <details class="group" id="cheat">
+        <summary>Markdown cheat sheet</summary>
+        <table class="cheat">
+          <caption>Type the text on the right to get the element on the left.</caption>
+          <thead><tr><th scope="col">Element</th><th scope="col">Type this</th></tr></thead>
+          <tbody>
+              <tr><td>Heading, levels 1 to 4</td><td><code># Chapter
+## Section</code></td></tr>
+              <tr><td>Bold, italic</td><td><code>**bold**  *italic*</code></td></tr>
+              <tr><td>Link</td><td><code>[text](https://address)</code></td></tr>
+              <tr><td>Bulleted, numbered, checklist</td><td><code>- Item
+1. Step
+- [ ] To do</code></td></tr>
+              <tr><td>Table with caption</td><td><code>Table: Caption {#tbl-name}
+
+| Item | Amount (SGD) |
+| :--- | ---: |
+| Fees | 120.00 |
+| Total | 120.00 |</code></td></tr>
+              <tr><td>Source line under a table</td><td><code>Source: Where the data comes from.</code></td></tr>
+              <tr><td>Landscape table</td><td><code>Table: Caption {landscape}</code></td></tr>
+              <tr><td>Callout</td><td><code>&gt; [!NOTE]
+&gt; Text. Also [!TIP], [!IMPORTANT],
+&gt; [!WARNING] and [!CAUTION].</code></td></tr>
+              <tr><td>Summary box (before the first chapter)</td><td><code>&gt; [!SUMMARY]
+&gt; Key points.</code></td></tr>
+              <tr><td>Quotation</td><td><code>&gt; Quoted text.
+&gt;
+&gt; — Source</code></td></tr>
+              <tr><td>Code block</td><td><code>```text {lines}
+code
+```</code></td></tr>
+              <tr><td>Figure (add the image first)</td><td><code>![What it shows](image-1.png &quot;Caption {#fig-name}&quot;)</code></td></tr>
+              <tr><td>Footnote</td><td><code>Text.[^1]
+
+[^1]: Footnote text.</code></td></tr>
+              <tr><td>Cross-reference</td><td><code>See [](#tbl-name) on page [](#tbl-name &quot;page&quot;).</code></td></tr>
+              <tr><td>Requirement clause</td><td><code>**5.1.1** Clause text.</code></td></tr>
+              <tr><td>Sign-off block</td><td><code>```signoff
+Name: Full name
+Role: Role
+Date: YYYY-MM-DD
+```</code></td></tr>
+              <tr><td>Page break</td><td><code>\pagebreak</code></td></tr>
+              <tr><td>Appendix</td><td><code># Appendix A — Title</code></td></tr>
+              <tr><td>Glossary</td><td><code># Glossary
+
+Term
+: Definition</code></td></tr>
+              <tr><td>References</td><td><code># References
+
+1. Author. Title. YYYY.</code></td></tr>
+          </tbody>
+        </table>
+        <p class="cheat-more">Text colors, fonts, underlining, emoji, raw HTML and merged cells are not available, so every document stays on brand. Load sample document shows each element rendered.</p>
+      </details>
+
       <details class="group">
         <summary>Front and back matter</summary>
         <div class="grid">
@@ -248,7 +339,7 @@ html.press-view .pagedjs_pages { gap: 6mm; }
       </details>
     </div>
     <section class="issues" aria-labelledby="issues-h">
-      <h2 id="issues-h">Export checks</h2>
+      <h2 id="issues-h">Export checks<span class="n" id="issues-n"></span></h2>
       <div id="issues" role="status" aria-live="polite"></div>
     </section>
     <div class="status-line" id="status-line" role="status" aria-live="polite"></div>

@@ -55,6 +55,8 @@ python3 tools/build_document_master.py          # writes the template
 python3 tools/build_document_master.py --check  # exit 1 if stale
 ```
 
+The template opens as a blank `Draft` with a **How to use this template** panel, **Start blank document** and **Load sample document** buttons, and a **Markdown cheat sheet**. The sample (`sampleState()` in `app.js`) is the document behind `fixtures/TPL-E01-06_press-layout.pdf`; load it before saving a fresh fixture. The one-page author guide is `Standards Design/04_Publications/PUB-04_Document-Master-Quick-Start.md`; update it when the workflow or the Export Block messages change.
+
 After **Export A4 PDF**, finish the digital PDF so document properties and bookmarks match `E05 §5.9.2`:
 
 ```sh

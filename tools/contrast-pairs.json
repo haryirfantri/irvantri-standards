@@ -128,6 +128,13 @@
       "clause": "B02 §5.3.1, §5.5.1"
     },
     {
+      "fg": "semantic.color.text-primary",
+      "bg": "semantic.color.status-warning-bg",
+      "min": 4.5,
+      "use": "TPL-E01-06 replace-document confirmation text on its warning panel",
+      "clause": "B02 §5.5.1, C03 §5.3.1"
+    },
+    {
       "fg": "semantic.color.status-danger",
       "bg": "semantic.color.status-danger-bg",
       "min": 4.5,

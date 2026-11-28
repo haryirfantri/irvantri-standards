@@ -59,6 +59,23 @@
     };
   }
 
+  // A blank document: required fields empty, a Draft at v0.1.0 dated today, and a first chapter to type over.
+  function blankState() {
+    const today = new Date().toISOString().slice(0, 10);
+    return {
+      v: 1,
+      fields: {
+        'f-title': '', 'f-subtitle': '', 'f-category': '', 'f-identifier': '', 'f-version': 'v0.1.0', 'f-status': 'Draft', 'f-date': today,
+        'f-owner': '', 'f-approver': '', 'f-superseded': '', 'f-waiver': '', 'f-waiver-expiry': '',
+        'f-body': '# Introduction\n\nReplace this line with the first paragraph of the document.\n',
+        'f-distribution': '',
+        'f-history': '| Version | Date | Type | Summary of Changes | Approver |\n| :--- | :--- | :--- | :--- | :--- |\n| `v0.1.0` | `' + today + '` | Pre-Release | Initial draft. | — |'
+      },
+      options: { 'o-twosided': false, 'o-watermark': false, 'o-section': false, 'o-lot': false, 'o-lof': false, 'o-back': true },
+      images: {}
+    };
+  }
+
   // ------------------------------------------------------------------ field rules (E01 §5.1.3, §5.5.4; E02)
   const ISO = /^\d{4}-\d{2}-\d{2}$/;
   function validDate(s) {
@@ -118,7 +135,7 @@
         tokenizer(src) { const m = /^\[\^([^\]\s]+)\]/.exec(src); if (m) return { type: 'fnref', raw: m[0], id: m[1] }; },
         renderer(t) {
           const def = ctx.footnotes[t.id];
-          if (def == null) { ctx.issues.push({ msg: `Footnote [^${t.id}] has no text. Add a line "[^${t.id}]: text" (E05 §5.7.1).`, field: 'f-body' }); return '<sup>?</sup>'; }
+          if (def == null) { ctx.issues.push({ msg: `Footnote [^${t.id}] has no text. Add a line "[^${t.id}]: text" (E05 §5.7.1).`, field: 'f-body', find: `[^${t.id}]` }); return '<sup>?</sup>'; }
           ctx.usedFootnotes.add(t.id);
           return `<span class="fn">${md.parseInline(def)}</span>`;
         } },
@@ -293,7 +310,7 @@
     body = body.replace(/^\\pagebreak[ \t]*$/gm, '\n@@PAGEBREAK@@\n');
     const box = parseBlock(body);
     box.querySelectorAll('p').forEach(p => { if (p.textContent.trim() === '@@PAGEBREAK@@') { const d = document.createElement('div'); d.className = 'startpage pb'; p.replaceWith(d); } });
-    Object.keys(ctx.footnotes).forEach(id => { if (!ctx.usedFootnotes.has(id)) issues.push({ msg: `Footnote [^${id}] is defined but never used. Remove it or cite it (E05 §5.7.1).`, field: 'f-body' }); });
+    Object.keys(ctx.footnotes).forEach(id => { if (!ctx.usedFootnotes.has(id)) issues.push({ msg: `Footnote [^${id}] is defined but never used. Remove it or cite it (E05 §5.7.1).`, field: 'f-body', find: `[^${id}]:` }); });
 
     // Parts and heading numbers (E05 §5.2.3, §5.8)
     const RANK = { body: 0, appendix: 1, glossary: 2, references: 3 };
@@ -313,13 +330,13 @@
         else if (/^Glossary$/i.test(plain)) part = 'glossary';
         else if (/^References$/i.test(plain)) part = 'references';
         else part = 'body';
-        if (RANK[part] < lastRank) issues.push({ msg: `"${plain}" is out of order. Parts run: body, appendices, glossary, references (E05 §5.8.1).`, field: 'f-body' });
+        if (RANK[part] < lastRank) issues.push({ msg: `"${plain}" is out of order. Parts run: body, appendices, glossary, references (E05 §5.8.1).`, field: 'f-body', find: plain });
         lastRank = Math.max(lastRank, RANK[part]);
         if (part === 'glossary' || part === 'references') { if (++seenBack[part] > 1) issues.push({ msg: `There is more than one ${part} section (E05 §5.8.1).`, field: 'f-body' }); }
         if (part === 'appendix') {
           appLetter++;
           const letter = String.fromCharCode(64 + appLetter);
-          if (m[1] !== letter) issues.push({ msg: `"${plain}" should be Appendix ${letter}: appendices are lettered in order (E05 §5.8.3).`, field: 'f-body' });
+          if (m[1] !== letter) issues.push({ msg: `"${plain}" should be Appendix ${letter}: appendices are lettered in order (E05 §5.8.3).`, field: 'f-body', find: plain });
           n = [appLetter, 0, 0];
         } else if (part === 'body') { n[0]++; n[1] = 0; n[2] = 0; }
         h.classList.add('part-' + part);
@@ -338,7 +355,7 @@
       if (part === 'references' && lvl === 1) label = 'References';
       if (num) { h.innerHTML = `<span class="hn">${num}</span> ` + h.innerHTML; }
       h.id = a.id || ('h-' + (++idx));
-      if (a.id) { if (targets[a.id]) issues.push({ msg: `The id {#${a.id}} is used twice (E05 §5.7.2).`, field: 'f-body' }); targets[a.id] = label || plain; }
+      if (a.id) { if (targets[a.id]) issues.push({ msg: `The id {#${a.id}} is used twice (E05 §5.7.2).`, field: 'f-body', find: `{#${a.id}}` }); targets[a.id] = label || plain; }
       h.dataset.part = part;
       if (lvl === 1 || (lvl === 2 && (part === 'body' || part === 'appendix'))) toc.push({ lvl, num: num || (part === 'appendix' && lvl === 1 ? '' : ''), id: h.id, text: lvl === 1 && part === 'appendix' ? plain : h.textContent.replace(num, '').trim() });
       if (lvl === 1 && o['o-section']) h.dataset.secname = plain;
@@ -434,7 +451,7 @@
       c.innerHTML = `<b>${label}.</b> ${cap ? cap.text : ''}`;
       t.prepend(c);
       t.id = (cap && cap.id) || ('t-' + tables.length);
-      if (cap && cap.id) { if (targets[cap.id]) issues.push({ msg: `The id {#${cap.id}} is used twice (E05 §5.7.2).`, field: 'f-body' }); targets[cap.id] = label; }
+      if (cap && cap.id) { if (targets[cap.id]) issues.push({ msg: `The id {#${cap.id}} is used twice (E05 §5.7.2).`, field: 'f-body', find: `{#${cap.id}}` }); targets[cap.id] = label; }
       tables.push({ label, text: cap ? cap.text.replace(/<[^>]+>/g, '') : '', id: t.id });
       t.querySelectorAll('[align="right"]').forEach(x => { x.classList.add('num'); });
       t.querySelectorAll('[align="center"]').forEach(x => { x.classList.add('ctr'); });
@@ -490,16 +507,16 @@
         if (!entry && /^data:image\//.test(src)) entry = { type: src.slice(5, src.indexOf(';')), data: src };
         if (!entry) {
           issues.push({ msg: /^https?:/i.test(src) ? `${label} links to ${src}. Masters work offline: download the image and add it with Add image (E01 §5.5.8).`
-            : `${label} uses "${src}", which is not in Images. Add it with Add image (E05 §5.6.2).`, field: 'f-body' });
+            : `${label} uses "${src}", which is not in Images. Add it with Add image (E05 §5.6.2).`, field: 'f-body', find: src });
           cell.innerHTML = `<div class="sub">[Missing image: ${esc(src)}]</div>`;
         } else if (entry.type === 'image/svg+xml') {
           const svgText = entry.svg || decodeURIComponent(escape(atob(entry.data.split(',')[1])));
           const bad = svgColorsOk(svgText);
-          if (bad.length) issues.push({ msg: `${label} (${src}) uses colors outside B02: ${bad.slice(0, 4).join(', ')}. Redraw it with palette colors (E05 §5.6.4).`, field: 'f-body' });
+          if (bad.length) issues.push({ msg: `${label} (${src}) uses colors outside B02: ${bad.slice(0, 4).join(', ')}. Redraw it with palette colors (E05 §5.6.4).`, field: 'f-body', find: src });
           const clean = sanitizeSvg(svgText, `f${figN}${k}-`);
           const wmm = Math.min(maxMm, (entry.w || 600) / MM);
           cell.innerHTML = clean ? clean.replace(/^<svg/, `<svg role="img" aria-label="${esc(alt)}" style="width: ${wmm.toFixed(1)}mm; height: auto; display: block; margin: 0 auto"`) : '';
-          if (!clean) issues.push({ msg: `${label} (${src}) is not a readable SVG file.`, field: 'f-body' });
+          if (!clean) issues.push({ msg: `${label} (${src}) is not a readable SVG file. Export it again as plain SVG and add it with Add image.`, field: 'f-body', find: src });
         } else {
           const wmm = Math.min(maxMm, ((entry.w || 600) / 300) * 25.4);
           cell.innerHTML = `<img src="${entry.data}" alt="${esc(alt)}" style="width: ${wmm.toFixed(1)}mm" data-raster="1">`;
@@ -513,7 +530,7 @@
       if (!capText) issues.push({ msg: `${label} has no caption. Add a title in quotes after the file name, or a "Figure: caption" line below (E05 §5.6.1).`, field: 'f-body' });
       fig.appendChild(fc);
       fig.id = capId || ('fig-' + figN);
-      if (capId) { if (targets[capId]) issues.push({ msg: `The id {#${capId}} is used twice (E05 §5.7.2).`, field: 'f-body' }); targets[capId] = label; }
+      if (capId) { if (targets[capId]) issues.push({ msg: `The id {#${capId}} is used twice (E05 §5.7.2).`, field: 'f-body', find: `{#${capId}}` }); targets[capId] = label; }
       figures.push({ label, text: (capText || '').replace(/<[^>]+>/g, ''), id: fig.id });
       p.replaceWith(fig);
     });
@@ -521,7 +538,7 @@
     // Cross-references (E05 §5.7.2)
     box.querySelectorAll('a.xref').forEach(a => {
       const id = a.getAttribute('href').slice(1);
-      if (!targets[id]) { issues.push({ msg: `Cross-reference to #${id} has no target. Add {#${id}} to a heading or caption (E05 §5.7.2).`, field: 'f-body' }); a.textContent = '[missing reference]'; return; }
+      if (!targets[id]) { issues.push({ msg: `Cross-reference to #${id} has no target. Add {#${id}} to a heading or caption (E05 §5.7.2).`, field: 'f-body', find: `(#${id}` }); a.textContent = '[missing reference]'; return; }
       if (a.dataset.mode === 'page') { a.classList.add('xref-page'); a.textContent = ''; } else a.textContent = targets[id];
     });
 
@@ -744,6 +761,7 @@
   function showIssues(press) {
     const list = allIssues(press);
     const box = $('issues');
+    $('issues-n').textContent = list.length ? ` · ${list.length} to fix` : '';
     if (!list.length) { box.innerHTML = '<p class="ok">No problems found. Both exports are ready.</p>'; return list; }
     box.innerHTML = '<ul></ul>';
     const ul = box.firstChild;
@@ -754,7 +772,17 @@
       if (i.field) {
         const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = `Go to ${LABELS[i.field] || 'field'}`;
         b.style.minHeight = '28px'; b.style.padding = '2px 8px'; b.style.marginTop = '2px';
-        b.addEventListener('click', () => { const el = $(i.field); el.closest('details').open = true; el.focus(); });
+        b.addEventListener('click', () => {
+          const el = $(i.field); el.closest('details').open = true; el.focus();
+          // Select the text the item refers to, where it can be found in the field.
+          const at = i.find ? el.value.indexOf(i.find) : -1;
+          if (at >= 0 && el.setSelectionRange) {
+            el.setSelectionRange(at, at + i.find.length);
+            const line = el.value.slice(0, at).split('\n').length;
+            const lh = parseFloat(getComputedStyle(el).lineHeight) || 20;
+            el.scrollTop = Math.max(0, (line - 3) * lh);
+          }
+        });
         li.appendChild(b);
       }
       ul.appendChild(li);
@@ -806,6 +834,7 @@
     await settle();
     const list = showIssues(false);
     if (list.length) return blockExport(list);
+    setStatus('In the print dialog, choose Save as PDF and set margins to None. Before sending the PDF, the Owner runs tools/pdf_finish.py on it to set its title, author and language (E05 §5.9.2).');
     withTitle(() => window.print());
   }
   async function exportPress() {
@@ -822,6 +851,7 @@
       window.removeEventListener('afterprint', done);
     };
     window.addEventListener('afterprint', done);
+    setStatus('In the print dialog, choose Save as PDF and set margins to None. The Owner then runs tools/press_export.py on the saved file to make the PDF/X-4 press file (E01 §5.3.4).');
     withTitle(() => window.print());
   }
   function togglePressView(on) {
@@ -984,9 +1014,36 @@
   $('btn-press-preview').addEventListener('click', () => togglePressView());
   window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
 
-  // Start: a Filled Copy restores its values; otherwise the sample loads, and autosaved work is offered.
+  // Start blank or load the sample. Replacing unsaved work asks first, naming what is lost (C03 §5.3.1).
+  let pendingStart = null;
+  function startWith(kind) {
+    const state = kind === 'sample' ? sampleState() : blankState();
+    apply(state); touched.clear(); showFieldErrors(); dirty = false;
+    $('start-confirm').hidden = true; pendingStart = null;
+    preview();
+    announce(kind === 'sample' ? 'Sample document loaded. It shows every body element.' : 'Blank document started. Fill the cover fields first.');
+    if (kind === 'blank') $('f-title').focus();
+  }
+  function askStart(kind) {
+    if (!dirty) return startWith(kind);
+    pendingStart = kind;
+    $('start-confirm-text').textContent = `This replaces every field, the body and the images with the ${kind === 'sample' ? 'sample' : 'blank'} document. Unsaved changes are lost. Save filled copy first to keep them.`;
+    $('start-confirm').hidden = false;
+    $('btn-start-no').focus();
+  }
+  $('btn-blank').addEventListener('click', () => askStart('blank'));
+  $('btn-sample').addEventListener('click', () => askStart('sample'));
+  $('btn-start-yes').addEventListener('click', () => { if (pendingStart) startWith(pendingStart); });
+  $('btn-start-no').addEventListener('click', () => { $('start-confirm').hidden = true; pendingStart = null; $('btn-blank').focus(); });
+
+  // The guide stays open until the author closes it; that choice is remembered in this browser only.
+  const GUIDE_KEY = 'tpl-e01-06-guide';
+  try { if (localStorage.getItem(GUIDE_KEY) === 'closed') $('guide').open = false; } catch (e) { /* storage blocked */ }
+  $('guide').addEventListener('toggle', () => { try { localStorage.setItem(GUIDE_KEY, $('guide').open ? 'open' : 'closed'); } catch (e) { /* storage blocked */ } });
+
+  // Start: a Filled Copy restores its values; otherwise a blank document opens, and autosaved work is offered.
   const filled = JSON.parse($('filled-state').textContent || 'null');
-  apply(filled || sampleState());
+  apply(filled || blankState());
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); } catch (e) { saved = null; }
   if (saved && saved.state) {
@@ -995,6 +1052,6 @@
     $('btn-restore').addEventListener('click', () => { apply(saved.state); $('restore').hidden = true; dirty = true; preview(); announce('Unsaved work restored.'); });
     $('btn-discard').addEventListener('click', () => { try { localStorage.removeItem(STORE_KEY); } catch (e) { /* ignore */ } $('restore').hidden = true; announce('Unsaved work discarded.'); });
   }
-  window.__tpl = { preview, collect, apply, buildDocument, allIssues, pressify, unpressify, exportDigital, exportPress, togglePressView, saveFilledCopy, PRESS_CSS, addImageFile, onPaste, cleanPastedHtml, td };
+  window.__tpl = { preview, collect, apply, buildDocument, sampleState, blankState, startWith, allIssues, pressify, unpressify, exportDigital, exportPress, togglePressView, saveFilledCopy, PRESS_CSS, addImageFile, onPaste, cleanPastedHtml, td };
   document.fonts.ready.then(preview);
 })();

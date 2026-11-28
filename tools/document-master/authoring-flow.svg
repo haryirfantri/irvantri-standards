@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="640" height="220">
+  <title>Authoring flow</title>
+  <g fill="none" stroke="#092B55" stroke-width="1.5">
+    <path d="M150 55 H190 V110 H230"/>
+    <path d="M150 165 H190 V110"/>
+    <path d="M410 110 H450 V55 H484"/>
+    <path d="M450 110 V165 H484"/>
+  </g>
+  <g fill="#092B55">
+    <path d="M230 105 L240 110 L230 115 Z"/>
+    <path d="M484 50 L494 55 L484 60 Z"/>
+    <path d="M484 160 L494 165 L484 170 Z"/>
+  </g>
+  <g fill="#FFFFFF" stroke="#64748B" stroke-width="1.5">
+    <rect x="10" y="25" width="140" height="60" rx="4"/>
+    <rect x="10" y="135" width="140" height="60" rx="4"/>
+    <rect x="494" y="25" width="136" height="60" rx="4"/>
+    <rect x="494" y="135" width="136" height="60" rx="4"/>
+  </g>
+  <rect x="240" y="75" width="170" height="70" rx="4" fill="#092B55"/>
+  <g font-family="'Noto Sans Local', 'Noto Sans', sans-serif" text-anchor="middle">
+    <text x="80" y="52" font-size="13" font-weight="700" fill="#0F172A">Cover fields</text>
+    <text x="80" y="70" font-size="12" fill="#5F6C7E">title, status, owner</text>
+    <text x="80" y="162" font-size="13" font-weight="700" fill="#0F172A">Markdown body</text>
+    <text x="80" y="180" font-size="12" fill="#5F6C7E">typed or pasted</text>
+    <text x="325" y="106" font-size="13" font-weight="700" fill="#FFFFFF">TPL-E01-06</text>
+    <text x="325" y="124" font-size="12" fill="#FFFFFF">E01 frame, E05 styles</text>
+    <text x="562" y="52" font-size="13" font-weight="700" fill="#0F172A">Digital A4 PDF</text>
+    <text x="562" y="70" font-size="12" fill="#5F6C7E">pdf_finish.py</text>
+    <text x="562" y="162" font-size="13" font-weight="700" fill="#0F172A">Press PDF/X-4</text>
+    <text x="562" y="180" font-size="12" fill="#5F6C7E">press_export.py</text>
+  </g>
+</svg>

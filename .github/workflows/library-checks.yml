@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   library-checks:
@@ -38,6 +39,47 @@ jobs:
         run: |
           if [ -f check-report/check-report.md ]; then
             cat check-report/check-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Comment A04 §5.1.7 citation on PR
+        if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUM: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python3 - <<'PY' > /tmp/pr-comment.md
+          import json, os, pathlib
+          p = pathlib.Path("check-report/check-report.json")
+          run_id, run_url, sha = os.environ["RUN_ID"], os.environ["RUN_URL"], os.environ["HEAD_SHA"]
+          short = sha[:7]
+          if p.exists():
+              d = json.loads(p.read_text(encoding="utf-8"))
+              m = d.get("meta", {})
+              verdict = str(m.get("verdict", "unknown")).upper()
+              total = len(d.get("checks", []))
+              fails = m.get("failing_findings", 0)
+              known = m.get("known_issue_findings", 0)
+          else:
+              verdict, total, fails, known = "ERROR", 0, 1, 0
+          print("<!-- library-checks-citation -->")
+          print(f"### Library checks: `{verdict}` ({total} checks, {fails} failing, {known} known)")
+          print()
+          print(f"- **Commit:** `{short}` (`{sha}`)")
+          print(f"- **CI Run:** [`{run_id}`]({run_url})")
+          print()
+          print("Cite in `REC-A04-0xx` (`A04 §5.1.7`):")
+          print("```sh")
+          print(f'python3 tools/new_rec.py --cite-ci "Standards Design/05_Records/REC-A04-0xx_....md" --ci-run "{run_url}" --commit "{short}"')
+          print("```")
+          PY
+          CID=$(gh api "repos/${{ github.repository }}/issues/${PR_NUM}/comments" --jq '.[] | select(.body | contains("<!-- library-checks-citation -->")) | .id' | head -n1)
+          if [ -n "$CID" ]; then
+            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/${CID}" -F body=@/tmp/pr-comment.md >/dev/null
+          else
+            gh api -X POST "repos/${{ github.repository }}/issues/${PR_NUM}/comments" -F body=@/tmp/pr-comment.md >/dev/null
           fi
 
       - name: Keep report

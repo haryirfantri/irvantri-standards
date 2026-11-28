@@ -19,16 +19,12 @@ Rebuild these from their sources and verify with `--check`:
 ## 3. Release checklist (before opening a PR)
 1. Use `python3 tools/bump.py <CODE|INDEX> <major|minor|errata> --note "..."` (preview with `--dry-run` first) to update headers, Section 8/10 Revision History, `Library-Index.md`, `Sync Required` transitions on `MAJOR` bumps (`A01 §5.5.3`), and `README.md` stats together.
 2. Refresh any `PUB-` build manifests listed by `bump.py` and update `AST-`/`TPL-` pins (`A01 §5.7.4`) as needed.
-3. Add a `REC-A04-0xx` Pre-Release Gate record in `05_Records/` and register it in `Library-Index.md` (`A04 §5.1.5`).
-4. Run checks locally:
+3. Run `make check` (or `python3 tools/library_checks.py --report-dir check-report`) and scaffold the Pre-Release Gate record with measured evidence (`A04 §5.1.5`):
    ```sh
-   python3 -m unittest discover -s tools/tests -v
-   python3 tools/library_checks.py --report-dir check-report
-   python3 tools/build_tokens_css.py --check
-   python3 tools/build_document_master.py --check
-   python3 tools/build_readme.py --check
+   python3 tools/new_rec.py --title "<Title> Pre-Release Gate" --standards A01,A04,... --report check-report/check-report.json --register
    ```
-5. After CI passes on the PR, cite the CI run URL and commit SHA in the `REC-A04-0xx` record (`A04 §5.1.7`).
+4. Re-run `make check` (one-time local setup: `make setup`) to confirm all unit tests, drift checks, and library checks pass.
+5. After CI passes on the PR, copy the `--cite-ci` command from the bot's PR comment to record the CI run URL and commit SHA in `REC-A04-0xx` (`A04 §5.1.7`).
 
 ## 4. After merging to `main` (Google Drive publish — required)
 Google Drive (`Standards Design/`, folder ID `17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin`) is published **one-way from `main`** by the agent or Owner using the signed-in `gdrive` CLI (`A01 §5.9.3`):

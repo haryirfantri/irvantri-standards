@@ -98,8 +98,9 @@ Standards Design/               Controlled library root (mirrored one-way to Goo
 ├── 05_Records/                 Immutable reviews, audits, and Pre-Release Gate records (REC-A04-*)
 └── 06_Dependencies/            Tracked third-party fonts, scripts, ICC profile & SHA-256 manifest
 
-tools/                          Automated checks, release helpers, builders, PDF tools, and tests
-.github/                        CI workflows (library-checks, tag-release), PR template, CODEOWNERS
+tools/                          Automated checks, release helpers, builders, E2E suite, PDF tools, and tests
+.github/                        CI workflows (library-checks, browser-e2e, governance-watch, tag-release)
+Makefile                        Single-command setup, verification, build, and Drive publish targets
 AGENTS.md                       Contributor and AI agent playbook & release checklist
 ```
 
@@ -111,14 +112,14 @@ Generated artifacts (`AST-D01-02_Design-Tokens.css`, `TPL-E01-06_Formal-Document
 
 | Command | Purpose |
 | :--- | :--- |
-| `pip install -r tools/requirements.txt` | Install the single external dependency (`pypdf`) for PDF preflight and press export |
-| `python3 tools/library_checks.py --report-dir check-report` | Run all 15 automated governance, palette, token, contrast, link, PDF, HTML, and dependency checks |
-| `python3 -m unittest discover -s tools/tests -v` | Run unit tests for release automation, governance checks, and the Drive publisher |
+| `make setup` | Create `.venv` and install `pypdf` (`tools/requirements.txt`) for PDF preflight and press export |
+| `make check` | Run all unit tests, drift checks (`build_* --check`), and all 15 library checks |
 | `python3 tools/bump.py <CODE\|INDEX> <major\|minor\|errata> --note "..."` | Bump versions across headers, Revision History, `Library-Index.md`, `Sync Required` pins, and `README.md` |
-| `python3 tools/build_tokens_css.py [--check]` | Generate or drift-check `AST-D01-02_Design-Tokens.css` from `AST-D01-01_Design-Tokens.json` |
-| `python3 tools/build_document_master.py [--check]` | Generate or drift-check `TPL-E01-06_Formal-Document-Master.html` from `tools/document-master/` |
-| `python3 tools/build_readme.py [--check]` | Synchronize or drift-check `README.md` status and count blocks from `Library-Index.md` |
-| `python3 tools/publish_drive.py --dry-run \| --apply` | Preview or execute one-way publish from `main` to the Google Drive Distribution Mirror |
+| `python3 tools/new_rec.py --title "..." --report check-report/check-report.json --register` | Scaffold the next `REC-A04-NNN` with measured CI evidence and register it in `Library-Index.md` |
+| `python3 tools/governance_watch.py` | Check upcoming standard reviews, Scheduled Consistency Review cadence, and waiver/known-issue expiries |
+| `make build` / `make build-check` | Regenerate or drift-check `AST-D01-02`, `TPL-E01-06`, and `README.md` stats |
+| `make publish-dry` / `make publish` | Preview or execute one-way publish from `main` to the Google Drive Distribution Mirror |
+| `node tools/e2e/verify_document_master.mjs` | Run headless Chromium E2E verification on `TPL-E01-06_Formal-Document-Master.html` |
 | `python3 tools/press_export.py <file.pdf>` / `tools/pdf_finish.py <file.pdf>` | Convert HTML master press exports to `PDF/X-4` (`FOGRA39`) or finalize digital A4 PDF bookmarks/metadata |
 
 See [tools/README.md](tools/README.md) for detailed check coverage and [Dependencies-Manifest.md](Standards%20Design/06_Dependencies/Dependencies-Manifest.md) for third-party checksums and licenses.

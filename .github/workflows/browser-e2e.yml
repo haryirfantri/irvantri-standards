@@ -39,4 +39,14 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Verify TPL-E01-06 Formal Document Master in Chromium
-        run: node tools/e2e/verify_document_master.mjs --export-pdf /tmp/tpl-e01-06-digital.pdf
+        run: |
+          set -o pipefail
+          node tools/e2e/verify_document_master.mjs --export-pdf /tmp/tpl-e01-06-digital.pdf 2>&1 | tee /tmp/e2e.log
+
+      - name: Publish E2E summary
+        if: always()
+        run: |
+          echo "### TPL-E01-06 Browser E2E Verification" >> "$GITHUB_STEP_SUMMARY"
+          echo '```text' >> "$GITHUB_STEP_SUMMARY"
+          cat /tmp/e2e.log >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"

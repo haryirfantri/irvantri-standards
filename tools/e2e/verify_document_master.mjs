@@ -8,7 +8,7 @@
  *   3. Sample load & replace-document confirmation (only shown when dirty; Keep returns focus).
  *   4. Sample renders paged output cleanly with zero Export checks.
  *   5. Press Preview toggles aria-pressed="true" and renders press sheets.
- *   6. Export Blocks: invalid title/body stops export, updates #issues-n, announces via #live,
+ *   6. Export Blocks: broken body stops export, updates #issues-n, announces via #live,
  *      and "Go to" selects the offending body text.
  *   7. Digital A4 PDF export produces a non-empty PDF (optionally saved via --export-pdf).
  *
@@ -56,8 +56,12 @@ await page.addInitScript(() => {
   };
 });
 
+const readySeq = () => page.evaluate(() => Number(document.documentElement.dataset.ready || 0));
+const waitRenderAfter = (prev) =>
+  page.waitForFunction((n) => Number(document.documentElement.dataset.ready || 0) > n, prev, { timeout: 45000 });
+
 await page.goto(url, { waitUntil: "load" });
-await page.waitForSelector("#stage .pagedjs_page", { timeout: 20000 });
+await waitRenderAfter(0);
 
 // 1. Opening state: blank Draft at v0.1.0 with guide open
 const initial = await page.evaluate(() => ({
@@ -85,11 +89,12 @@ assert.equal(await page.isHidden("#start-confirm"), true, "Confirmation should h
 assert.equal(await page.inputValue("#f-title"), "Temporary Unsaved Draft", "Keep must preserve edits");
 console.log("PASS 2/7: Replace-document confirmation verified");
 
-// 3. Load sample document via confirmation
+// 3. Load sample document via confirmation and wait for full layout + showIssues()
+const seqBeforeSample = await readySeq();
 await page.click("#btn-sample");
 await page.waitForSelector("#start-confirm:not([hidden])");
 await page.click("#btn-start-yes");
-await page.waitForFunction(() => document.querySelectorAll("#stage .pagedjs_page").length >= 10, null, { timeout: 30000 });
+await waitRenderAfter(seqBeforeSample);
 const sampleInfo = await page.evaluate(() => ({
   title: document.querySelector("#f-title").value,
   pages: document.querySelectorAll("#stage .pagedjs_page").length,
@@ -102,16 +107,16 @@ console.log(`PASS 3/7: Sample loaded cleanly (${sampleInfo.pages} pages, 0 expor
 
 // 4. Press preview toggle
 await page.click("#btn-press-preview");
-await page.waitForFunction(() => document.querySelector("#btn-press-preview").getAttribute("aria-pressed") === "true", null, { timeout: 30000 });
+await page.waitForFunction(() => document.querySelector("#btn-press-preview").getAttribute("aria-pressed") === "true", null, { timeout: 15000 });
 const pressSheets = await page.locator("#stage .press-sheet").count();
 assert.equal(pressSheets, sampleInfo.pages, "Press preview must render one press sheet per page");
 await page.click("#btn-press-preview");
-await page.waitForFunction(() => document.querySelector("#btn-press-preview").getAttribute("aria-pressed") === "false", null, { timeout: 30000 });
+await page.waitForFunction(() => document.querySelector("#btn-press-preview").getAttribute("aria-pressed") === "false", null, { timeout: 15000 });
 console.log(`PASS 4/7: Press preview toggled cleanly (${pressSheets} sheets)`);
 
 // 5. Export A4 PDF succeeds on clean sample and triggers window.print()
 await page.click("#btn-pdf");
-await page.waitForFunction(() => window.__printCalls >= 1, null, { timeout: 15000 });
+await page.waitForFunction(() => window.__printCalls >= 1, null, { timeout: 45000 });
 if (exportPdfPath) {
   await page.emulateMedia({ media: "print" });
   await page.pdf({ path: exportPdfPath, preferCSSPageSize: true, printBackground: true });
@@ -120,11 +125,13 @@ if (exportPdfPath) {
 }
 console.log("PASS 5/7: Export A4 PDF succeeded");
 
-// 6. Export Blocks stop export, announce via ARIA Live Region, and Go to selects body text
+// 6. Export Blocks stop export, announce via ARIA Live Region (30ms delay after settle), and Go to selects body text
 const priorPrints = await page.evaluate(() => window.__printCalls);
+const seqBeforeBreak = await readySeq();
 await page.fill("#f-body", "# Broken Chapter\n\nMissing footnote[^99] and broken ref [Table](#tbl-missing).\n");
-await page.waitForFunction(() => document.querySelector("#issues-n").textContent.includes("to fix"), null, { timeout: 15000 });
+await waitRenderAfter(seqBeforeBreak);
 await page.click("#btn-pdf");
+await page.waitForFunction(() => /Export stopped/i.test(document.querySelector("#live").textContent), null, { timeout: 45000 });
 const blockInfo = await page.evaluate(() => ({
   prints: window.__printCalls,
   live: document.querySelector("#live").textContent.trim(),

@@ -18,6 +18,11 @@ The GitHub Actions workflow `.github/workflows/library-checks.yml` runs the same
 | Check | What is measured | Evidence for |
 | :--- | :--- | :--- |
 | `register-sync` | Version, status and next-review date in each standard's header against `Library-Index.md`; every registered path exists (except `Planned`/`Deprecated`); every file in `02_`–`05_` is registered | `A01` header metadata, `A02-C3`, `A02-C5`, `A02-C9` |
+| `readme-sync` | Verifies `README.md` status banner and resource counts match `Library-Index.md` via `tools/build_readme.py` | `A01 §5.8.1` |
+| `pin-sync` | Every active `AST-`/`TPL-` pin matches its governing standard `MAJOR` version (or is `Sync Required`), is not ahead, and matches the governing standard's Section 7 | `A01 §5.5.3`, `A01 §5.7.4`, `A02 §5.7.2` |
+| `pub-manifest` | Every `Approved` `PUB-` Source Manifest cites current live standard versions, and the file includes a visible precedence notice and compile date | `A01-C10`, `A01 §5.7.5` |
+| `revision-history` | Newest Revision History row matches header `Version` across all active standards (Section 8) and `Library-Index.md` (Section 10) | `A01 §5.2`, `A01 §5.5.5` |
+| `review-due` | `Next Review` dates are valid and not overdue by > 30 calendar days; active (`Open`/`Approved`) waivers have not passed `Expiry Date` | `A01 §5.6.5`, `A04 §5.1.3`, `A04 §5.4.9` |
 | `palette` | Every `#RRGGBB` and `rgb()` value in active `.md` (excluding Revision History and terminal `05_Records/`), `.svg`, `.html`, `.json`, `.css` files is a `B02` value and uppercase | `B02-C1`, `B02-C2`, `D01-C2` |
 | `token-parity` | `AST-D01-01` colors, `RGB` and `CMYK` against `B02`; every reference resolves; JSON embedded in HTML equals the master; `--is-` custom properties equal their token values | `D01-C2`, `D01-C3`, `B02-C1` |
 | `token-css` | Verifies `AST-D01-02_Design-Tokens.css` matches a fresh build from `AST-D01-01` via `tools/build_tokens_css.py`, and that `AST-D03-01_Component-Kit.css` contains zero raw hexadecimal colors | `D01-C3`, `D03-C1` |

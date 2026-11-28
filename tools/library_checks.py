@@ -924,6 +924,234 @@ def check_token_css(rep: Report):
     c["summary"] = "AST-D01-02 drift-checked against AST-D01-01; AST-D03-01 verified hex-free"
 
 
+def _load_standards_from_index() -> dict[str, dict]:
+    idx = (LIB / "Library-Index.md").read_text(encoding="utf-8")
+    sec4 = idx.split("## 4.", 1)[1].split("## 5.", 1)[0]
+    stds: dict[str, dict] = {}
+    for cells in table_rows(sec4):
+        if len(cells) < 7:
+            continue
+        code = ticks(cells[0])
+        if re.fullmatch(r"[A-H]\d{2}", code):
+            stds[code] = {
+                "path": ticks(cells[2]),
+                "version": ticks(cells[3]),
+                "status": ticks(cells[4]),
+                "next_review": ticks(cells[6]),
+            }
+    return stds
+
+
+def check_readme_sync(rep: Report):
+    c = rep.check("readme-sync", "README.md register version and counts match Library-Index.md",
+                  ["A01 §5.8.1"])
+    sys.path.insert(0, str(TOOLS))
+    import build_readme
+    readme_path = REPO / "README.md"
+    if not readme_path.exists():
+        rep.fail(c, "readme-sync.missing", "README.md does not exist.")
+        return
+    try:
+        same, diff_text, stats = build_readme.check_drift(LIB / "Library-Index.md", readme_path)
+    except ValueError as e:
+        rep.fail(c, "readme-sync.markers", str(e))
+        return
+    rep.measure(c, register=stats["version"], standards=len(stats["stds"]),
+                assets=len(stats["assets"]), templates_active=len(stats["tpls_active"]),
+                publications=len(stats["pubs"]), records=len(stats["recs"]), drift_free=same)
+    if not same:
+        rep.fail(c, "readme-sync.drift",
+                 "README.md stats differ from Library-Index.md; run `python3 tools/build_readme.py`.",
+                 diff=diff_text[:500])
+    c["summary"] = f"README.md checked against Library-Index.md ({stats['version']})"
+
+
+def check_pin_sync(rep: Report):
+    c = rep.check("pin-sync", "AST-/TPL- pins match governing standard MAJOR version and Section 7",
+                  ["A01 §5.5.3", "A01 §5.7.4", "A02 §5.7.2"])
+    idx = (LIB / "Library-Index.md").read_text(encoding="utf-8")
+    stds = _load_standards_from_index()
+    sec5 = idx.split("## 5.", 1)[1].split("## 6.", 1)[0]
+
+    # Parse Section 7 tables from governing standards once
+    sec7_cache: dict[str, dict[str, tuple[str, str]]] = {}
+    for scode, info in stds.items():
+        p = LIB / info["path"]
+        if not p.exists():
+            continue
+        text = p.read_text(encoding="utf-8")
+        if "## 7." not in text or "## 8." not in text:
+            continue
+        sec7 = text.split("## 7.", 1)[1].split("## 8.", 1)[0]
+        rows_map: dict[str, tuple[str, str]] = {}
+        for r in table_rows(sec7):
+            if len(r) >= 5 and re.fullmatch(r"(?:AST|TPL)-[A-H]\d{2}-\d{2}", ticks(r[0])):
+                rows_map[ticks(r[0])] = (ticks(r[3]), ticks(r[4]))
+        sec7_cache[scode] = rows_map
+
+    checked = 0
+    for cells in table_rows(sec5):
+        if len(cells) < 6:
+            continue
+        code = ticks(cells[0])
+        if not re.fullmatch(r"(?:AST|TPL)-[A-H]\d{2}-\d{2}", code):
+            continue
+        gov, pin, status = ticks(cells[3]), ticks(cells[4]), ticks(cells[5])
+        if status in ("Planned", "Deprecated"):
+            continue
+        checked += 1
+        std = stds.get(gov)
+        if not std:
+            rep.fail(c, f"pin-sync.unknown-std:{code}", f"{code} references unknown governing standard `{gov}`.")
+            continue
+        pm = re.fullmatch(r"([A-H]\d{2})\s*\(v(\d+)\.(\d+)\)", pin)
+        sm = re.fullmatch(r"v(\d+)\.(\d+)\.\d+", std["version"])
+        if not pm or pm.group(1) != gov:
+            rep.fail(c, f"pin-sync.format:{code}", f"{code} pin `{pin}` does not match `{gov} (vMAJOR.MINOR)` (A01 §5.7.4).")
+            continue
+        p_maj, p_min = int(pm.group(2)), int(pm.group(3))
+        s_maj, s_min = int(sm.group(1)), int(sm.group(2))
+        rep.measure(c, code=code, governing=gov, pin=pin, std_version=std["version"], status=status)
+        if (p_maj, p_min) > (s_maj, s_min):
+            rep.fail(c, f"pin-sync.ahead:{code}", f"{code} pin `{pin}` is ahead of {gov} `{std['version']}`.")
+        elif p_maj < s_maj and status != "Sync Required":
+            rep.fail(c, f"pin-sync.major-drift:{code}",
+                     f"{code} is pinned to `{pin}` but {gov} is `{std['version']}`; status must be `Sync Required` (A01 §5.5.3).")
+        sec7_entry = sec7_cache.get(gov, {}).get(code)
+        if sec7_entry is None:
+            rep.fail(c, f"pin-sync.missing-sec7:{code}", f"{code} is not listed in {gov} Section 7 Linked Artifacts (A01 §5.7.4).")
+        elif sec7_entry != (pin, status):
+            rep.fail(c, f"pin-sync.sec7-mismatch:{code}",
+                     f"{code} in Library-Index.md (`{pin}`, `{status}`) differs from {gov} Section 7 (`{sec7_entry[0]}`, `{sec7_entry[1]}`).")
+    c["summary"] = f"{checked} active AST-/TPL- pins verified against governing standards and Section 7"
+
+
+def check_pub_manifests(rep: Report):
+    c = rep.check("pub-manifest", "Compiled publication manifests cite current source standards and precedence notice",
+                  ["A01-C10", "A01 §5.7.5"])
+    idx = (LIB / "Library-Index.md").read_text(encoding="utf-8")
+    stds = _load_standards_from_index()
+    sec6 = idx.split("## 6.", 1)[1].split("## 7.", 1)[0]
+    checked_pubs = checked_refs = 0
+    for cells in table_rows(sec6):
+        if len(cells) < 6:
+            continue
+        pcode = ticks(cells[0])
+        if not re.fullmatch(r"PUB-\d{2}", pcode):
+            continue
+        fpath, compiled_date, manifest, status = ticks(cells[2]), ticks(cells[3]), cells[4], ticks(cells[5])
+        if status in ("Planned", "Deprecated"):
+            continue
+        checked_pubs += 1
+        refs = re.findall(r"`([A-H]\d{2})\s*\((v\d+\.\d+\.\d+)\)`", manifest)
+        for sc, sv in refs:
+            checked_refs += 1
+            live = stds.get(sc, {}).get("version")
+            if live and live != sv and status == "Approved":
+                rep.fail(c, f"pub-manifest.stale-ref:{pcode}:{sc}",
+                         f"{pcode} Source Manifest cites `{sc} ({sv})`, but live {sc} is `{live}` (A01 §5.7.5).")
+        p = LIB / fpath
+        if p.exists():
+            text = p.read_text(encoding="utf-8", errors="replace")
+            has_notice = bool(re.search(r"prevail", text, re.I))
+            has_date = compiled_date in text
+            rep.measure(c, code=pcode, refs=len(refs), compiled_date=compiled_date,
+                        precedence_notice=has_notice, date_present=has_date)
+            if not has_notice:
+                rep.fail(c, f"pub-manifest.no-precedence:{pcode}",
+                         f"{pcode} (`{fpath}`) is missing a visible precedence notice (A01 §5.7.5).")
+            if not has_date:
+                rep.fail(c, f"pub-manifest.no-date:{pcode}",
+                         f"{pcode} (`{fpath}`) does not contain its registered compile date `{compiled_date}` (A01 §5.7.5).")
+    c["summary"] = f"{checked_pubs} publications checked ({checked_refs} source standard references verified)"
+
+
+def check_revision_history(rep: Report):
+    c = rep.check("revision-history", "Newest Revision History row matches document header Version",
+                  ["A01 §5.2", "A01 §5.5.5"])
+    stds = _load_standards_from_index()
+    checked = 0
+    for code, info in sorted(stds.items()):
+        if info["status"] in ("Planned", "Deprecated"):
+            continue
+        p = LIB / info["path"]
+        if not p.exists():
+            continue
+        checked += 1
+        text = p.read_text(encoding="utf-8")
+        hdr_ver = md_header(p).get("Version")
+        parts = re.split(r"^##\s+8\.\s+Revision History", text, maxsplit=1, flags=re.M)
+        if len(parts) < 2:
+            rep.fail(c, f"revision-history.missing:{code}", f"{code} is missing Section 8 Revision History.")
+            continue
+        m = re.search(r"^\|\s*`(v\d+\.\d+\.\d+)`\s*\|", parts[1], re.M)
+        top_ver = m.group(1) if m else None
+        rep.measure(c, code=code, header=hdr_ver, newest_row=top_ver)
+        if top_ver != hdr_ver:
+            rep.fail(c, f"revision-history.mismatch:{code}",
+                     f"{code} header Version is `{hdr_ver}` but newest Section 8 row is `{top_ver}`.")
+    # Also check Library-Index.md Section 10
+    idx_path = LIB / "Library-Index.md"
+    idx_text = idx_path.read_text(encoding="utf-8")
+    idx_ver = md_header(idx_path).get("Version")
+    parts = re.split(r"^##\s+10\.\s+Revision History", idx_text, maxsplit=1, flags=re.M)
+    top_idx = re.search(r"^\|\s*`(v\d+\.\d+\.\d+)`\s*\|", parts[1], re.M).group(1) if len(parts) > 1 else None
+    checked += 1
+    rep.measure(c, code="Library-Index.md", header=idx_ver, newest_row=top_idx)
+    if top_idx != idx_ver:
+        rep.fail(c, "revision-history.mismatch:Library-Index.md",
+                 f"Library-Index.md header Version is `{idx_ver}` but newest Section 10 row is `{top_idx}`.")
+    c["summary"] = f"{checked} documents verified (header Version == newest Revision History row)"
+
+
+def check_review_due(rep: Report, today: dt.date | None = None):
+    c = rep.check("review-due", "Standard Next Review dates and active waiver Expiry Dates are current",
+                  ["A01 §5.6.5", "A04 §5.1.3", "A04 §5.4.9"])
+    today = today or dt.date.today()
+    stds = _load_standards_from_index()
+    checked_stds = upcoming = 0
+    for code, info in sorted(stds.items()):
+        if info["status"] != "Approved":
+            continue
+        checked_stds += 1
+        raw = info["next_review"]
+        try:
+            due = dt.date.fromisoformat(raw)
+        except ValueError:
+            rep.fail(c, f"review-due.bad-date:{code}", f"{code} has invalid Next Review date `{raw}`.")
+            continue
+        days_left = (due - today).days
+        rep.measure(c, code=code, next_review=raw, days_remaining=days_left)
+        if days_left < -30:
+            rep.fail(c, f"review-due.overdue:{code}",
+                     f"{code} Next Review `{raw}` is overdue by {-days_left} days (> 30 calendar days, A01 §5.6.5).")
+        elif days_left <= 30:
+            upcoming += 1
+
+    idx = (LIB / "Library-Index.md").read_text(encoding="utf-8")
+    sec7 = idx.split("## 7.", 1)[1].split("## 8.", 1)[0]
+    checked_recs = 0
+    for cells in table_rows(sec7):
+        if len(cells) < 7:
+            continue
+        rcode = ticks(cells[0])
+        if not re.fullmatch(r"REC-[A-H]\d{2}-\d{3}", rcode):
+            continue
+        status, expiry = ticks(cells[5]), ticks(cells[6])
+        checked_recs += 1
+        if status in ("Open", "Approved") and expiry and expiry.lower() != "none":
+            try:
+                exp = dt.date.fromisoformat(expiry)
+            except ValueError:
+                rep.fail(c, f"review-due.bad-expiry:{rcode}", f"{rcode} has invalid Expiry Date `{expiry}`.")
+                continue
+            rep.measure(c, code=rcode, status=status, expiry_date=expiry, days_remaining=(exp - today).days)
+            if exp < today:
+                rep.fail(c, f"review-due.waiver-expired:{rcode}",
+                         f"{rcode} (`{status}`) passed Expiry Date `{expiry}` without closure or renewal (A04 §5.4.9).")
+    c["summary"] = f"{checked_stds} standard review dates ({upcoming} due within 30d) and {checked_recs} governance records checked"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--report-dir", default="check-report", help="where to write check-report.json and check-report.md")
@@ -933,6 +1161,11 @@ def main() -> int:
     rep = Report(known)
     pal = load_palette()
     check_register(rep)
+    check_readme_sync(rep)
+    check_pin_sync(rep)
+    check_pub_manifests(rep)
+    check_revision_history(rep)
+    check_review_due(rep)
     check_palette(rep, pal)
     toks = check_tokens(rep, pal)
     check_token_css(rep)

@@ -14,20 +14,21 @@ Rebuild these from their sources and verify with `--check`:
 | :--- | :--- | :--- |
 | `Standards Design/02_Assets/AST-D01-02_Design-Tokens.css` | `AST-D01-01_Design-Tokens.json` | `python3 tools/build_tokens_css.py` |
 | `Standards Design/03_Templates/TPL-E01-06_Formal-Document-Master.html` | `tools/document-master/*` | `python3 tools/build_document_master.py` |
+| `README.md` (status & counts blocks) | `Standards Design/Library-Index.md` | `python3 tools/build_readme.py` |
 
 ## 3. Release checklist (before opening a PR)
-1. Update the standard/artifact header (`Version`, `Last Updated`, `Next Review` if applicable) and Section 8 Revision History.
-2. Synchronize `Standards Design/Library-Index.md` (version, status, next review, notes, and register version bump per `A01 §5.5.6`).
-3. If `MAJOR` changed, mark dependent `AST-`/`TPL-` items `Sync Required` (`A01 §5.5.3`) and update pins (`A01 §5.7.4`).
-4. Add a `REC-A04-0xx` Pre-Release Gate record in `05_Records/` and register it in `Library-Index.md` (`A04 §5.1.5`).
-5. Run checks locally:
+1. Use `python3 tools/bump.py <CODE|INDEX> <major|minor|errata> --note "..."` (preview with `--dry-run` first) to update headers, Section 8/10 Revision History, `Library-Index.md`, `Sync Required` transitions on `MAJOR` bumps (`A01 §5.5.3`), and `README.md` stats together.
+2. Refresh any `PUB-` build manifests listed by `bump.py` and update `AST-`/`TPL-` pins (`A01 §5.7.4`) as needed.
+3. Add a `REC-A04-0xx` Pre-Release Gate record in `05_Records/` and register it in `Library-Index.md` (`A04 §5.1.5`).
+4. Run checks locally:
    ```sh
    python3 -m unittest discover -s tools/tests -v
    python3 tools/library_checks.py --report-dir check-report
    python3 tools/build_tokens_css.py --check
    python3 tools/build_document_master.py --check
+   python3 tools/build_readme.py --check
    ```
-6. After CI passes on the PR, cite the CI run URL and commit SHA in the `REC-A04-0xx` record (`A04 §5.1.7`).
+5. After CI passes on the PR, cite the CI run URL and commit SHA in the `REC-A04-0xx` record (`A04 §5.1.7`).
 
 ## 4. After merging to `main` (Google Drive publish — required)
 Google Drive (`Standards Design/`, folder ID `17-hTsw-2MIT-SzA6pRgzocpKTy1vwYin`) is published **one-way from `main`** by the agent or Owner using the signed-in `gdrive` CLI (`A01 §5.9.3`):

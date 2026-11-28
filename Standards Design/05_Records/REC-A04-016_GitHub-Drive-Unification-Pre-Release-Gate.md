@@ -49,7 +49,7 @@ This record gates the unification of the diverged Google Drive (`Standards Desig
 | `dependencies` | `B03-C2`, `A02-C10`, `E03-C4` | `Pass` | All `15` font binaries, `3` full upstream `SIL OFL-1.1` `OFL.txt` files, `4` `MIT` script libraries, and `ISOcoated_v2_eci.icc` matched `Dependencies-Manifest.md (v2.1.1)` `SHA-256` checksums and byte sizes. |
 | `C01-C6` & `C02-C1` | `C01 §5.6.1`, `C02 §5.1.1` | `Pass` | `0` non-`en-US` `colour`/`colours` spellings in `AST-D03-01`/`02` and `Library-Index.md`; `0` active `Unified Operating Library` strings outside historical revision logs and immutable pre-unification records. |
 
-* **CI Run Citation (`A04 §5.1.7`):** Pending Pull Request `library-checks.yml` run (will be recorded on the PR before merge).
+* **CI Run Citation (`A04 §5.1.7`):** `Library checks` run `46137119271` (`https://github.com/haryirfantri/irvantri-standards/actions/runs/46137119271`), commit `e698abab741af14af009b515f5298822bdc8083c` — verdict `PASS` (`0` failing findings across all `10` checks including `pdf-preflight`, `press-export`, and `token-css`).
 
 ## 4. Findings
 

@@ -72,9 +72,9 @@ Per [A01 §5.9](Standards%20Design/01_Standards/A_Governance/A01_Document-Contro
 
 1. **GitHub (`haryirfantri/irvantri-standards`) — Authoring Repository of Record:**
    - All changes to `Standards Design/` are authored on feature branches and reviewed via Pull Requests running `.github/workflows/library-checks.yml`.
-   - Git commit history and annotated release tags preserve every historical revision natively.
+   - Git commit history and annotated release tags (`register-vX.Y.Z`, created automatically by `.github/workflows/tag-release.yml`) preserve every historical revision natively.
 2. **Google Drive (`Standards Design/`) — Read-Only Distribution Mirror & Cold Archive:**
-   - Active controlled folders (`01_Standards/`–`06_Dependencies/` and `Library-Index.md`) are published strictly one-way from GitHub `main`, automatically on every merge, by `.github/workflows/publish-drive.yml` (`tools/publish_drive.py`); a daily drift check (`.github/workflows/drive-drift.yml`) flags any difference.
+   - Active controlled folders (`01_Standards/`–`06_Dependencies/` and `Library-Index.md`) are published strictly one-way from GitHub `main` after merge via `tools/publish_drive.py` (see `AGENTS.md`).
    - `99_Archive/` resides exclusively on Google Drive as an append-only Cold Archive preserving outgoing `MAJOR`/`MINOR`/`Deprecated` snapshots and retired vendor packages.
 
 ### Run checks locally

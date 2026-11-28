@@ -9,6 +9,8 @@ Roles:
     and append-only Cold Archive (99_Archive/).
 
 Behaviour:
+  * Uses the signed-in `gdrive` CLI (agent or local Owner session) so no
+    long-lived Drive credentials are stored in GitHub Secrets.
   * Never deletes anything inside Google Drive 99_Archive/.
   * Updates existing Drive files in-place so Drive file IDs and shared links
     remain stable.
@@ -25,17 +27,10 @@ Behaviour:
     `_YYYY-MM-DD`, with `-rNN` added on collision.
   * Defaults to a dry run; pass --apply to execute mutations.
 
-Backends (--backend, default auto):
-  * api   Google Drive REST API v3 with an OAuth 2.0 refresh token for the
-          library Owner's account. Used in CI. Reads GDRIVE_OAUTH_CLIENT_ID,
-          GDRIVE_OAUTH_CLIENT_SECRET and GDRIVE_OAUTH_REFRESH_TOKEN.
-  * cli   the `gdrive` command-line tool, for local or agent sessions.
-  auto picks api when GDRIVE_OAUTH_REFRESH_TOKEN is set, else cli.
-
 Usage (from the repository root):
     python3 tools/publish_drive.py --dry-run
     python3 tools/publish_drive.py --apply
-    python3 tools/publish_drive.py --dry-run --fail-on-drift --summary plan.md
+    python3 tools/publish_drive.py --dry-run --fail-on-drift
 
 Exit status: 0 on success; 2 with --fail-on-drift when any action is planned.
 """
@@ -45,16 +40,11 @@ import argparse
 import datetime as dt
 import hashlib
 import json
-import mimetypes
 import os
 import re
 import subprocess
 import sys
 import tempfile
-import time
-import urllib.error
-import urllib.parse
-import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -68,7 +58,7 @@ TEXT_EXTS = {".md", ".json", ".css", ".svg", ".html", ".txt"}
 VERSION_RE = re.compile(r"^\|\s*\*\*Version\*\*\s*\|\s*`(v(\d+)\.(\d+)\.(\d+))`\s*\|", re.M)
 
 
-# --------------------------------------------------------------------------- backends
+# --------------------------------------------------------------------------- backend
 
 
 class DriveBackend:
@@ -140,143 +130,6 @@ class GdriveCliBackend(DriveBackend):
             if item["name"] == name:
                 return item["id"]
         raise RuntimeError(f"{name} not found in {parent_id} after creation")
-
-
-class DriveApiBackend(DriveBackend):
-    """Google Drive REST API v3 using an OAuth 2.0 refresh token (standard library only).
-
-    The refresh token belongs to the library Owner's personal Google account, so
-    files created in My Drive count against the Owner's quota and stay owned by
-    the Owner. A service account cannot create files in a personal My Drive.
-    """
-
-    API = "https://www.googleapis.com/drive/v3"
-    UPLOAD = "https://www.googleapis.com/upload/drive/v3"
-    TOKEN_URL = "https://oauth2.googleapis.com/token"
-    FIELDS = "id,name,mimeType,size,md5Checksum"
-
-    def __init__(self, client_id: str, client_secret: str, refresh_token: str, opener=None):
-        self.client_id = client_id
-        self.client_secret = client_secret
-        self.refresh_token = refresh_token
-        self._open = opener or urllib.request.urlopen
-        self._token: str | None = None
-        self._expires = 0.0
-
-    @classmethod
-    def from_env(cls) -> "DriveApiBackend":
-        missing = [k for k in ("GDRIVE_OAUTH_CLIENT_ID", "GDRIVE_OAUTH_CLIENT_SECRET", "GDRIVE_OAUTH_REFRESH_TOKEN") if not os.environ.get(k)]
-        if missing:
-            raise SystemExit(f"Missing environment variables for the api backend: {', '.join(missing)}")
-        return cls(os.environ["GDRIVE_OAUTH_CLIENT_ID"], os.environ["GDRIVE_OAUTH_CLIENT_SECRET"], os.environ["GDRIVE_OAUTH_REFRESH_TOKEN"])
-
-    # -- plumbing
-    def _access_token(self) -> str:
-        if self._token and time.time() < self._expires - 60:
-            return self._token
-        body = urllib.parse.urlencode({
-            "client_id": self.client_id,
-            "client_secret": self.client_secret,
-            "refresh_token": self.refresh_token,
-            "grant_type": "refresh_token",
-        }).encode()
-        req = urllib.request.Request(self.TOKEN_URL, data=body, method="POST",
-                                     headers={"Content-Type": "application/x-www-form-urlencoded"})
-        try:
-            with self._open(req) as resp:
-                data = json.loads(resp.read())
-        except urllib.error.HTTPError as e:
-            detail = e.read().decode(errors="replace")
-            hint = ""
-            if "invalid_grant" in detail:
-                hint = (" The refresh token was revoked or expired. If the OAuth consent screen is in"
-                        " 'Testing', tokens expire after 7 days: publish the app ('In production') and"
-                        " mint a new token with tools/drive_oauth_token.py.")
-            raise SystemExit(f"OAuth token refresh failed (HTTP {e.code}): {detail}{hint}") from None
-        self._token = data["access_token"]
-        self._expires = time.time() + int(data.get("expires_in", 3600))
-        return self._token
-
-    def _request(self, method: str, url: str, *, data: bytes | None = None, headers: dict | None = None,
-                 raw: bool = False, want_headers: bool = False, retries: int = 4):
-        for attempt in range(retries + 1):
-            h = {"Authorization": f"Bearer {self._access_token()}"}
-            h.update(headers or {})
-            req = urllib.request.Request(url, data=data, method=method, headers=h)
-            try:
-                with self._open(req) as resp:
-                    payload = resp.read()
-                    if want_headers:
-                        return dict(resp.headers.items())
-                    if raw:
-                        return payload
-                    return json.loads(payload) if payload else {}
-            except urllib.error.HTTPError as e:
-                if e.code in (429, 500, 502, 503, 504) and attempt < retries:
-                    time.sleep(2 ** attempt)
-                    continue
-                raise RuntimeError(f"Drive API {method} {url} failed (HTTP {e.code}): {e.read().decode(errors='replace')}") from None
-        raise RuntimeError("unreachable")
-
-    # -- operations
-    def list(self, folder_id: str) -> list[dict]:
-        items: list[dict] = []
-        token = None
-        while True:
-            q = {
-                "q": f"'{folder_id}' in parents and trashed = false",
-                "fields": f"nextPageToken,files({self.FIELDS})",
-                "pageSize": "1000",
-                "supportsAllDrives": "true",
-                "includeItemsFromAllDrives": "true",
-            }
-            if token:
-                q["pageToken"] = token
-            data = self._request("GET", f"{self.API}/files?{urllib.parse.urlencode(q)}")
-            items.extend(data.get("files", []))
-            token = data.get("nextPageToken")
-            if not token:
-                return items
-
-    def download(self, file_id: str, out: Path) -> None:
-        out.write_bytes(self._request("GET", f"{self.API}/files/{file_id}?alt=media&supportsAllDrives=true", raw=True))
-
-    def _resumable(self, method: str, url: str, meta: dict, src: Path) -> dict:
-        mime = mimetypes.guess_type(src.name)[0] or "application/octet-stream"
-        hdrs = self._request(method, url, data=json.dumps(meta).encode(), want_headers=True, headers={
-            "Content-Type": "application/json; charset=UTF-8",
-            "X-Upload-Content-Type": mime,
-            "X-Upload-Content-Length": str(src.stat().st_size),
-        })
-        location = hdrs.get("Location") or hdrs.get("location")
-        if not location:
-            raise RuntimeError(f"Drive API did not return an upload session for {src}")
-        return self._request("PUT", location, data=src.read_bytes(), headers={"Content-Type": mime})
-
-    def update(self, file_id: str, src: Path) -> None:
-        self._resumable("PATCH", f"{self.UPLOAD}/files/{file_id}?uploadType=resumable&supportsAllDrives=true&fields={self.FIELDS}", {}, src)
-
-    def upload(self, src: Path, parent_id: str, name: str | None = None) -> str:
-        meta = {"name": name or src.name, "parents": [parent_id]}
-        res = self._resumable("POST", f"{self.UPLOAD}/files?uploadType=resumable&supportsAllDrives=true&fields={self.FIELDS}", meta, src)
-        return res["id"]
-
-    def mkdir(self, name: str, parent_id: str) -> str:
-        res = self._request("POST", f"{self.API}/files?supportsAllDrives=true&fields=id",
-                            data=json.dumps({"name": name, "mimeType": FOLDER_MIME, "parents": [parent_id]}).encode(),
-                            headers={"Content-Type": "application/json; charset=UTF-8"})
-        return res["id"]
-
-    def trash(self, file_id: str) -> None:
-        self._request("PATCH", f"{self.API}/files/{file_id}?supportsAllDrives=true&fields=id",
-                      data=json.dumps({"trashed": True}).encode(),
-                      headers={"Content-Type": "application/json; charset=UTF-8"})
-
-
-def make_backend(name: str) -> DriveBackend:
-    if name == "auto":
-        name = "api" if os.environ.get("GDRIVE_OAUTH_REFRESH_TOKEN") else "cli"
-    return DriveApiBackend.from_env() if name == "api" else GdriveCliBackend()
 
 
 # --------------------------------------------------------------------------- helpers
@@ -519,7 +372,6 @@ def render_summary(plan: Plan, mode: str, root_id: str, commit: str | None) -> s
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--drive-root-id", default=DEFAULT_DRIVE_ROOT_ID, help="Google Drive folder ID for Standards Design")
-    ap.add_argument("--backend", choices=["auto", "api", "cli"], default="auto", help="Drive access method (default: auto)")
     ap.add_argument("--apply", action="store_true", help="Apply mutations to Google Drive (default is dry-run)")
     ap.add_argument("--dry-run", action="store_true", help="Preview changes without modifying Drive (default)")
     ap.add_argument("--archive-policy", choices=["versioned", "all", "none"], default="versioned",
@@ -528,7 +380,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--retire-drafts", action="store_true", help="Trash retired 98_Drafts/ folder from the mirrored Drive root")
     ap.add_argument("--seed-archive-dir", type=Path, help="Optional local folder of historical archive files to append into Drive 99_Archive/ if absent")
     ap.add_argument("--verify-bytes", action="store_true", help="Download and hash size-matching binaries when Drive gives no checksum")
-    ap.add_argument("--summary", type=Path, help="Append a Markdown summary of the plan to this file (e.g. $GITHUB_STEP_SUMMARY)")
+    ap.add_argument("--summary", type=Path, help="Append a Markdown summary of the plan to this file")
     ap.add_argument("--plan-json", type=Path, help="Write the planned actions as JSON to this file")
     ap.add_argument("--fail-on-drift", action="store_true", help="Exit 2 when any action is planned (drift detection)")
     args = ap.parse_args(argv)
@@ -539,14 +391,14 @@ def main(argv: list[str] | None = None) -> int:
     if not LIB.exists():
         raise SystemExit(f"Library folder not found: {LIB}")
 
-    be = make_backend(args.backend)
+    be = GdriveCliBackend()
     with tempfile.TemporaryDirectory() as scratch:
         plan = build_plan(be, args.drive_root_id, LIB, policy, Path(scratch),
                           verify_bytes=args.verify_bytes, seed_dir=args.seed_archive_dir,
                           retire_drafts=args.retire_drafts)
 
     mode = "APPLY" if do_apply else "DRY-RUN"
-    print(f"=== Standards Design Drive Publish ({mode}, backend={type(be).__name__}, archive={policy}) ===")
+    print(f"=== Standards Design Drive Publish ({mode}, archive={policy}) ===")
     print(f"Source: {LIB}")
     print(f"Target Drive folder ID: {args.drive_root_id}")
     print(f"Planned actions: {len(plan.actions)}")

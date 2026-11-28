@@ -6,12 +6,9 @@ Run from the repository root:
 from __future__ import annotations
 
 import hashlib
-import io
-import json
 import sys
 import tempfile
 import unittest
-import urllib.error
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -220,76 +217,6 @@ class PublishTests(unittest.TestCase):
         s = pd.render_summary(plan, "DRY-RUN", ROOT_ID, "abc123")
         self.assertIn("`UPLOAD`", s)
         self.assertIn("abc123", s)
-
-
-class FakeResp(io.BytesIO):
-    def __init__(self, body: bytes = b"", headers: dict | None = None):
-        super().__init__(body)
-        self.headers = headers or {}
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *a):
-        return False
-
-
-class ApiBackendTests(unittest.TestCase):
-    def make(self, responses):
-        calls = []
-
-        def opener(req):
-            calls.append(req)
-            r = responses.pop(0)
-            if isinstance(r, Exception):
-                raise r
-            return r
-
-        be = pd.DriveApiBackend("cid", "secret", "refresh", opener=opener)
-        return be, calls
-
-    def token(self):
-        return FakeResp(json.dumps({"access_token": "AT", "expires_in": 3600}).encode())
-
-    def test_list_paginates_and_reuses_token(self):
-        be, calls = self.make([
-            self.token(),
-            FakeResp(json.dumps({"files": [{"id": "1", "name": "a"}], "nextPageToken": "p2"}).encode()),
-            FakeResp(json.dumps({"files": [{"id": "2", "name": "b"}]}).encode()),
-        ])
-        self.assertEqual([f["id"] for f in be.list("FOLDER")], ["1", "2"])
-        self.assertEqual(calls[0].full_url, pd.DriveApiBackend.TOKEN_URL)
-        self.assertIn("pageToken=p2", calls[2].full_url)
-        self.assertEqual(calls[1].get_header("Authorization"), "Bearer AT")
-
-    def test_update_uses_resumable_patch_on_same_id(self):
-        with tempfile.TemporaryDirectory() as t:
-            src = Path(t) / "x.md"
-            src.write_text("hello")
-            be, calls = self.make([
-                self.token(),
-                FakeResp(b"", {"Location": "https://upload.example/session"}),
-                FakeResp(json.dumps({"id": "F1"}).encode()),
-            ])
-            be.update("F1", src)
-        self.assertEqual(calls[1].get_method(), "PATCH")
-        self.assertIn("/upload/drive/v3/files/F1?uploadType=resumable", calls[1].full_url)
-        self.assertEqual(calls[2].get_method(), "PUT")
-        self.assertEqual(calls[2].data, b"hello")
-
-    def test_retries_transient_errors(self):
-        pd.time.sleep = lambda s: None  # no real waiting in tests
-        err = urllib.error.HTTPError("u", 503, "busy", {}, io.BytesIO(b"busy"))
-        be, calls = self.make([self.token(), err, FakeResp(json.dumps({"id": "D"}).encode())])
-        self.assertEqual(be.mkdir("dir", "P"), "D")
-        self.assertEqual(len(calls), 3)
-
-    def test_invalid_grant_explains_testing_mode(self):
-        err = urllib.error.HTTPError("u", 400, "bad", {}, io.BytesIO(b'{"error":"invalid_grant"}'))
-        be, _ = self.make([err])
-        with self.assertRaises(SystemExit) as cm:
-            be.list("F")
-        self.assertIn("7 days", str(cm.exception))
 
 
 if __name__ == "__main__":
